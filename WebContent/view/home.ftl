@@ -37,7 +37,7 @@
 			<div id="menu">
 				<div id="main">
 					<dl>
-						<dd>主菜单</dd>
+						<dd class="active">主菜单</dd>
 						<dd>主菜单</dd>
 						<dd>主菜单</dd>
 						<dd>主菜单</dd>
