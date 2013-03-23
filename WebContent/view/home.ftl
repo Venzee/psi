@@ -45,6 +45,7 @@
 						<dd class="last">主菜单</dd>
 					</dl>
 				</div>
+				<!-- 
 				<div id="second">
 					<dl>
 						<dd>二级菜单</dd>
@@ -52,7 +53,7 @@
 						<dd>二级菜单</dd>
 						<dd class="last">二级菜单</dd>
 					</dl>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div id="fastnavi">

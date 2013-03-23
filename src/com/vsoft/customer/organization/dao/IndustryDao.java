@@ -16,7 +16,7 @@ public class IndustryDao extends BaseDao {
 
 	public void addIndustry(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_industry", data);
+			this.insertToTable("com_customer_industry", data);
 			LOG.info("新增行业成功");
 		} catch (SQLException e) {
 			LOG.error("新增行业时出错", e);
@@ -26,7 +26,7 @@ public class IndustryDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllIndustry(List<Object> params) {
 		List<Map<String, Object>> list = null;
-		String sql = "select t.id,t.name,t.description from com_industry t";
+		String sql = "select t.id,t.name,t.description from com_customer_industry t";
 		try {
 			list = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {

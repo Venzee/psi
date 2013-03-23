@@ -18,7 +18,7 @@ public class IndustryService {
 	private IndustryDao industryDao;
 
 	public void addIndustry(Industry industry) {
-		Map<String, Object> data = DataUtil.parseObjectToMap(industry, Industry.class.getName());
+		Map<String, Object> data = DataUtil.parseObjectToMap(industry, Industry.class);
 		industryDao.addIndustry(data);
 	}
 
@@ -27,7 +27,7 @@ public class IndustryService {
 		List<Object> params = new ArrayList<Object>();
 		List<Map<String, Object>> data = industryDao.queryAllIndustry(params);
 		for (Map<String, Object> map : data) {
-			Industry industry = (Industry) DataUtil.parseMapToObject(map, Industry.class.getName());
+			Industry industry = (Industry) DataUtil.parseMapToObject(map, Industry.class);
 			list.add(industry);
 		}
 		return list;

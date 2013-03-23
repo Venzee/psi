@@ -16,27 +16,27 @@ import com.vsoft.customer.user.entity.User;
 public class CustomerController {
 
 	@Autowired
-	CustomerService service;
+	private CustomerService customerService;
 
 	@RequestMapping("/register/init")
 	public String initRegister(HttpServletRequest request, Organization organization, Company company, User user) {
-		user = service.register(organization, company, user);
+		user = customerService.register(organization, company, user);
 		return login(request, user);
 	}
 
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request, User user) {
-		user = service.register(user);
+		user = customerService.register(user);
 		return login(request, user);
 	}
 
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, User user) {
 		boolean result = false;
-		if(user.getId() == 0){
-			user = service.login(user);
+		if (user.getId() == 0) {
+			user = customerService.login(user);
 		}
-		if(user.getId() != 0){
+		if (user.getId() != 0) {
 			String sessionId = request.getSession().getId();
 			result = SessionUtil.putSession(sessionId, user);
 		}

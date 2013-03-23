@@ -26,17 +26,17 @@ public class CustomerService {
 	private UserDao userDao;
 
 	public User register(Organization organization, Company company, User user) {
-		Map<String, Object> organizationData = DataUtil.parseObjectToMap(organization, Organization.class.getName());
+		Map<String, Object> organizationData = DataUtil.parseObjectToMap(organization, Organization.class);
 		int organizationId = organizationDao.addOrganizationReturnId(organizationData);
 		company.setOrganizationId(organizationId);
-		Map<String, Object> companyData = DataUtil.parseObjectToMap(company, Company.class.getName());
+		Map<String, Object> companyData = DataUtil.parseObjectToMap(company, Company.class);
 		int companyId = companyDao.addCompanyReturnId(companyData);
 		user.setCompanyId(companyId);
 		return register(user);
 	}
 
 	public User register(User user) {
-		Map<String, Object> userData = DataUtil.parseObjectToMap(user, User.class.getName());
+		Map<String, Object> userData = DataUtil.parseObjectToMap(user, User.class);
 		int userId = userDao.addUserReturnId(userData);
 		user.setId(userId);
 		return user;
@@ -47,7 +47,7 @@ public class CustomerService {
 		params.add(user.getUsername());
 		params.add(user.getPassword());
 		Map<String, Object> data = userDao.queryUserForLogin(params);
-		user = (User) DataUtil.parseMapToObject(data, User.class.getName());
+		user = (User) DataUtil.parseMapToObject(data, User.class);
 		return user;
 	}
 }

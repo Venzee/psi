@@ -13,7 +13,7 @@ public class Record implements Serializable {
 	private int goodsId;// 商品ID
 	private Double inprice;// 进货价
 	private Double price;// 销售价格
-	private int receiptId;// 上级编号
+	private int receiptId;// 单据编号
 
 	public int getId() {
 		return id;

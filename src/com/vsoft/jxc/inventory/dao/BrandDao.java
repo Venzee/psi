@@ -21,7 +21,7 @@ public class BrandDao extends BaseDao {
 
 	public void addBrand(Map<String, Object> data) {
 		try {
-			this.insertToTable("basic_brand", data);
+			this.insertToTable("com_jxc_brand", data);
 			LOG.info("新增品牌成功");
 		} catch (SQLException e) {
 			LOG.error("新增品牌时出错", e);

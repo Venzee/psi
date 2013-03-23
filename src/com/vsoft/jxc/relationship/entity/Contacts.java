@@ -2,20 +2,20 @@ package com.vsoft.jxc.relationship.entity;
 
 import java.io.Serializable;
 
-public class Supplier implements Serializable {
+public class Contacts implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5061899606894272335L;
+	private static final long serialVersionUID = 6992809248914449330L;
 	private int id;
-	private String name;// 供应商名称
-	private String contact;// 联系方式
+	private String name;// 客户名称
+	private String contact;// 联系人
+	private String phone;// 联系电话
 	private String fax;// 传真
 	private String address;// 联系地址
-	private String bankName;// 银行名称
-	private String bankCardNo;// 银行卡号
 	private String remark;
+	private int type;// 往来单位类型 1为客户，2为供货商，3为代理商
 	private int companyId;// 信息所属公司ID
 
 	public int getId() {
@@ -42,6 +42,14 @@ public class Supplier implements Serializable {
 		this.contact = contact;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getFax() {
 		return fax;
 	}
@@ -58,28 +66,20 @@ public class Supplier implements Serializable {
 		this.address = address;
 	}
 
-	public String getBankName() {
-		return bankName;
-	}
-
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-
-	public String getBankCardNo() {
-		return bankCardNo;
-	}
-
-	public void setBankCardNo(String bankCardNo) {
-		this.bankCardNo = bankCardNo;
-	}
-
 	public String getRemark() {
 		return remark;
 	}
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public int getCompanyId() {

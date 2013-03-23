@@ -16,7 +16,7 @@ public class OrganizationService {
 	private OrganizationDao organizationDao;
 
 	public void addOrganization(Organization organization) {
-		Map<String, Object> data = DataUtil.parseObjectToMap(organization, Organization.class.getName());
+		Map<String, Object> data = DataUtil.parseObjectToMap(organization, Organization.class);
 		organizationDao.addOrganization(data);
 	}
 }

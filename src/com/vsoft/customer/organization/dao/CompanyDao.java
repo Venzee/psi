@@ -15,7 +15,7 @@ public class CompanyDao extends BaseDao {
 
 	public void addCompany(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_company", data);
+			this.insertToTable("com_customer_company", data);
 			LOG.info("新增公司成功");
 		} catch (SQLException e) {
 			LOG.error("新增公司时出错", e);
@@ -26,7 +26,7 @@ public class CompanyDao extends BaseDao {
 	public int addCompanyReturnId(Map<String, Object> data) {
 		int id = 0;
 		try {
-			id = this.insertAndReturnPrimaryId("com_company", data);
+			id = this.insertAndReturnPrimaryId("com_customer_company", data);
 			LOG.info("新增公司成功， ID = " + id);
 		} catch (SQLException e) {
 			LOG.error("新增公司时出错", e);

@@ -8,11 +8,11 @@ import java.util.Map;
 
 public class DataUtil {
 
-	public static Object parseMapToObject(Map<String, Object> data, String className) {
+	public static Object parseMapToObject(Map<String, Object> data, Class<?> oc) {
 		Object obj = null;
 		Class<?> c = null;
 		try {
-			c = Class.forName(className);
+			c = Class.forName(oc.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -38,11 +38,11 @@ public class DataUtil {
 		return obj;
 	}
 
-	public static Map<String, Object> parseObjectToMap(Object obj, String className) {
+	public static Map<String, Object> parseObjectToMap(Object obj, Class<?> oc) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		Class<?> c = null;
 		try {
-			c = Class.forName(className);
+			c = Class.forName(oc.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

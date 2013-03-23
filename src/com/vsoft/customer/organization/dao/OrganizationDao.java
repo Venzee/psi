@@ -14,7 +14,7 @@ public class OrganizationDao extends BaseDao {
 
 	public void addOrganization(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_organization", data);
+			this.insertToTable("com_customer_organization", data);
 			LOG.info("新增机构成功");
 		} catch (SQLException e) {
 			LOG.error("新增机构时出错", e);
@@ -25,7 +25,7 @@ public class OrganizationDao extends BaseDao {
 	public int addOrganizationReturnId(Map<String, Object> data) {
 		int id = 0;
 		try {
-			id = this.insertAndReturnPrimaryId("com_organization", data);
+			id = this.insertAndReturnPrimaryId("com_customer_organization", data);
 			LOG.info("新增机构成功，ID = " + id);
 		} catch (SQLException e) {
 			LOG.error("新增机构时出错", e);
