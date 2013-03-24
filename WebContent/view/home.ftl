@@ -8,7 +8,7 @@
 		<meta http-equiv="expires" content="0">
 		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 		<meta http-equiv="description" content="This is my page">
-		<link rel="stylesheet" type="text/css" href="style/css/web.css">
+		<link rel="stylesheet" type="text/css" href="style/css/pss.css">
 		<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
 	</head>
 	<script type="text/javascript">

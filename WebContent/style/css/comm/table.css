@@ -1,0 +1,266 @@
+@CHARSET "UTF-8";
+
+.table .text_10 {
+	width: 10px;
+}
+
+.table .text_15 {
+	width: 15px;
+}
+
+.table .text_20 {
+	width: 20px;
+}
+
+.table .text_30 {
+	width: 30px;
+}
+
+.table .text_40 {
+	width: 40px;
+}
+
+.table .text_50 {
+	width: 50px;
+}
+
+.table .text_60 {
+	width: 60px;
+}
+
+.table .text_70 {
+	width: 70px;
+}
+
+.table .text_80 {
+	width: 80px;
+}
+
+.table .text_90 {
+	width: 90px;
+}
+
+.table .text_100 {
+	width: 100px;
+}
+
+.table .text_120 {
+	width: 120px;
+}
+
+.table .text_150 {
+	width: 150px;
+}
+
+.table .text_200 {
+	width: 200px;
+}
+
+.table .text_5p {
+	width: 5%;
+	max-width: 60px;
+	min-width: 40px;
+}
+
+.table .text_10p {
+	width: 10%;
+	max-width: 120px;
+	min-width: 80px;
+}
+
+.table .text_15p {
+	width: 15%;
+	max-width: 180px;
+	min-width: 120px;
+}
+
+.table .text_20p {
+	width: 20%;
+	max-width: 240px;
+	min-width: 160px;
+}
+
+.table .text_25p {
+	width: 25%;
+	max-width: 300px;
+	min-width: 200px;
+}
+
+.table .text_30p {
+	width: 30%;
+	max-width: 360px;
+	min-width: 240px;
+}
+
+.table .text_35p {
+	width: 35%;
+	max-width: 420px;
+	min-width: 280px;
+}
+
+.table .text_55p {
+	width: 55%;
+	max-width: 660px;
+	min-width: 440px;
+}
+
+.table {
+	width: 100%;
+}
+
+
+.form {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.table .head {
+	width: 100%;
+	color: #eee;
+	font-weight: bold;
+	border: 1px solid #09365f;
+	text-shadow: 1px 1px 0px #000;
+	background: #064884;
+	background: -moz-linear-gradient(top, #3b75b4 0%, #064884 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3b75b4), color-stop(100%, #064884));
+	filter: progid:     DXImageTransform.Microsoft.gradient(startColorstr=     '#3b75b4', endColorstr=     '#064884', GradientType=     0);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.table .head .title {
+	height: 30px;
+}
+
+.table .head .title_name {
+	height: 16px;
+	padding: 0 10px;
+	margin: 7px 10px;
+	line-height: 16px;
+	border-left: 5px solid blue;
+	float: left;
+}
+
+.table .head .source_head {
+	height: 28px;
+	line-height: 28px;
+}
+
+.table .source_head dl dd {
+	float: left;
+	text-align: center;
+}
+
+.table .source {
+	width: 100%;
+	border: 1px solid #dcdcdc;
+}
+
+.table .source dl {
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.table .source .odd {
+	background-color: #f3f3f3;
+}
+
+.table .source dl dd {
+	float: left;
+	text-align: center;
+}
+
+.table .source dl dd .last {
+	border-right: none;
+}
+
+.table .source .source_line {
+	height: 26px;
+	line-height: 26px;
+}
+
+.table .source .source_line:HOVER {
+	background-color: #fff;
+}
+
+.table .source .source_line input {
+	height: 14px;
+	margin: 6px 0;
+}
+
+.table .form_source {
+	background-color: #fff;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.table .form_source dl {
+	float: left;
+	margin: 3px 0;
+}
+
+.table .form_source dd {
+	margin: 3px 0;
+}
+
+.table .form_source input,textarea,img {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.table .form_source .source_name {
+	width: 30%;
+	text-align: center;
+}
+
+.table .form_source .source_name dd {
+	height: 22px;
+	line-height: 22px;
+}
+
+.table .form_source .source_name .high {
+	height: 77px;
+	line-height: 77px;
+}
+
+.table .form_source .source_name .img_120 {
+	height: 120px;
+	line-height: 120px;
+}
+
+.table .form_source .source_value {
+	width: 70%;
+	text-align: left;
+}
+
+.table .form_source .source_value input {
+	height: 20px;
+	padding: 0 5px;
+}
+
+.table .form_source .source_value textarea {
+	height: 75px;
+	padding: 0 5px;
+}
+
+.table .form_source .source_value .img_150 {
+	height: 150px;
+}
+
+.table .foot {
+	height: 30px;
+	width: 100%;
+	color: #555;
+	border: 1px solid #dcdcdc;
+	background: #eee;
+	text-shadow: 1px 1px 0px #000;
+	background: -moz-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #eeeeee));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee', GradientType=0);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
