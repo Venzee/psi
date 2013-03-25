@@ -14,6 +14,7 @@ public class Receipt implements Serializable {
 	private Date createDate;// 创建时间
 	private Date checkDate;// 审核时间
 	private Date postedDate;// 过账时间
+	private Double totalPrice;// 总价
 	private int customerId;// 客户ID
 	private int supplierId;// 供应商ID
 	private int outWarehouseId; // 出货仓库
@@ -63,6 +64,14 @@ public class Receipt implements Serializable {
 
 	public void setPostedDate(Date postedDate) {
 		this.postedDate = postedDate;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public int getCustomerId() {

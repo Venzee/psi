@@ -13,6 +13,7 @@ public class Record implements Serializable {
 	private int goodsId;// 商品ID
 	private Double inprice;// 进货价
 	private Double price;// 销售价格
+	private Double totalPrice;// 总价
 	private int receiptId;// 单据编号
 
 	public int getId() {
@@ -53,6 +54,14 @@ public class Record implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public int getReceiptId() {

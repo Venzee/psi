@@ -11,5 +11,5 @@
 
 /* CSS reset by Eric Meyer */
 @import url("comm/reset.css");
-@import url("pss/web.css");
 @import url("comm/table.css");
+@import url("pss/web.css");

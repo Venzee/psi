@@ -1,13 +1,3 @@
-/*-------------------------------------------------
- * Project:　　  test
- * FileName:    BrandDao.java
- * PackageName: com.vsoft.jxc.basic.dao
- * Company:     Sentree
- * Copyright:   ©2013 Sentree Co.
- * Version:     1.0
- * History:     Mar 18, 2013 4:13:27 PM (zw) Create
- *------------------------------------------------*/
-
 package com.vsoft.pss.inventory.dao;
 
 import java.sql.SQLException;
@@ -21,7 +11,7 @@ public class BrandDao extends BaseDao {
 
 	public void addBrand(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_jxc_brand", data);
+			this.insertToTable("com_pss_brand", data);
 			LOG.info("新增品牌成功");
 		} catch (SQLException e) {
 			LOG.error("新增品牌时出错", e);

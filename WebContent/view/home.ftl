@@ -33,7 +33,12 @@
 	</script>
 	<body>
 		<div id="top">
-			<div id="panel"></div>
+			<div id="panel">
+				<div id="user">
+					<div>欢迎您：管理员 Venzee</div>
+					<div>当前时间：2013年3月25日13:09:57</div>
+				</div>
+			</div>
 			<div id="menu">
 				<div id="main">
 					<dl>
@@ -63,8 +68,10 @@
 			</div>
 		</div>
 		<div id="content">
-			<#include "table/base.ftl">
-			<#include "form/base.ftl">
+			<#include "comm/table.ftl">
+			<#include "comm/form.ftl">
+			<#include "comm/table.ftl">
+			<#include "comm/form.ftl">
 		</div>
 	</body>
 </html>

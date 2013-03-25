@@ -15,7 +15,7 @@ public class MenuDao extends BaseDao {
 
 	public void addMenu(Map<String, Object> data) {
 		try {
-			this.insertToTable("sys_menu", data);
+			this.insertToTable("com_pss_menu", data);
 			LOG.info("新增菜单时成功");
 		} catch (SQLException e) {
 			LOG.error("新增菜单时出错", e);
