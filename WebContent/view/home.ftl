@@ -12,12 +12,16 @@
 		<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
 	</head>
 	<script type="text/javascript">
+		function changeFrmHeight(width, height){
+			$("#mainFrame").width(width);
+			$("#mainFrame").height(height);
+		}
 		$(document).ready(function(){
 			$('#title_in').bind({
 				mouseover:function(){
 					$('#navi').show('fast');
 					$('#navi').bind({
-						mouseout:function(){$(this).hide('fast');} 
+						mouseout:function(){$(this).hide('fast');}
 					})
 				}
 			})
@@ -32,6 +36,7 @@
 		});
 	</script>
 	<body>
+		<div id="modal"></div>
 		<div id="top">
 			<div id="panel">
 				<div id="user">
@@ -42,7 +47,7 @@
 			<div id="menu">
 				<div id="main">
 					<dl>
-						<dd class="active">主菜单</dd>
+						<dd class="active"><a href="view/comm/form.ftl" target="mainFrame">添加表单</a></dd>
 						<dd>主菜单</dd>
 						<dd>主菜单</dd>
 						<dd>主菜单</dd>
@@ -50,7 +55,6 @@
 						<dd class="last">主菜单</dd>
 					</dl>
 				</div>
-				<!-- 
 				<div id="second">
 					<dl>
 						<dd>二级菜单</dd>
@@ -58,7 +62,7 @@
 						<dd>二级菜单</dd>
 						<dd class="last">二级菜单</dd>
 					</dl>
-				</div> -->
+				</div>
 			</div>
 		</div>
 		<div id="fastnavi">
@@ -68,10 +72,7 @@
 			</div>
 		</div>
 		<div id="content">
-			<#include "comm/table.ftl">
-			<#include "comm/form.ftl">
-			<#include "comm/table.ftl">
-			<#include "comm/form.ftl">
+			<iframe frameborder="0" scrolling="no" width="100%" height="100%" src="view/basic/sort.ftl" id="mainFrame" name="mainFrame"></iframe>
 		</div>
 	</body>
 </html>

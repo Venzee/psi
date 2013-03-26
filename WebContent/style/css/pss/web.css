@@ -3,13 +3,27 @@
 body {
 	font: normal 14px "微软雅黑";
 	background-color: #eee;
-	background-image: url("../image/body_bg.png");
+	background-image: url("../../image/body_bg.png");
 }
 
 .clear {
 	height: 1px;
 	clear: both;
 	float: none;
+}
+
+#modal {
+	z-index: 1000;
+	width: 100%;
+	display: none;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+	left: 0;
+	top: 0;
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
 }
 
 #top {
@@ -21,11 +35,11 @@ body {
 	height: 55px;
 	color: #fff;
 	text-shadow: 1px 1px 0px #000;
-	background: #3b75b4;
-	background: -moz-linear-gradient(top, #064884 0%, #3b75b4 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #064884), color-stop(100%, #3b75b4));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#064884', endColorstr='#3b75b4', GradientType=0);
-	border: 1px solid #064884;
+	background: #34495E;
+	background: -moz-linear-gradient(top, #34495E 0%, #2C3E50 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #34495E), color-stop(100%, #2C3E50));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#34495E', endColorstr='#2C3E50', GradientType=0);
+	border: 1px solid #34495E;
 }
 
 #panel #user {
@@ -54,9 +68,9 @@ body {
 	font-weight: bold;
 	background: #7d8f33;
 	text-shadow: 1px 1px 0px #000;
-	background: -moz-linear-gradient(top, #93aa4c 0%, #7d8f33 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #93aa4c), color-stop(100%, #7d8f33));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#93aa4c', endColorstr='#7d8f33', GradientType=0);
+	background: -moz-linear-gradient(top, #1ABC9C 0%, #16A085 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1ABC9C), color-stop(100%, #16A085));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1ABC9C', endColorstr='#16A085', GradientType=0);
 }
 
 #menu #main dd {
