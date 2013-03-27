@@ -10,6 +10,7 @@
 		<meta http-equiv="description" content="This is my page">
 		<link rel="stylesheet" type="text/css" href="style/css/pss.css">
 		<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="script/js/form.js"></script>
 	</head>
 	<script type="text/javascript">
 		function changeFrmHeight(width, height){
@@ -47,7 +48,7 @@
 			<div id="menu">
 				<div id="main">
 					<dl>
-						<dd class="active"><a href="view/comm/form.ftl" target="mainFrame">添加表单</a></dd>
+						<dd class="active"></dd>
 						<dd>主菜单</dd>
 						<dd>主菜单</dd>
 						<dd>主菜单</dd>
@@ -57,7 +58,7 @@
 				</div>
 				<div id="second">
 					<dl>
-						<dd>二级菜单</dd>
+						<dd><a href="inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
 						<dd>二级菜单</dd>
 						<dd>二级菜单</dd>
 						<dd class="last">二级菜单</dd>
@@ -72,7 +73,7 @@
 			</div>
 		</div>
 		<div id="content">
-			<iframe frameborder="0" scrolling="no" width="100%" height="100%" src="view/basic/sort.ftl" id="mainFrame" name="mainFrame"></iframe>
+			<iframe frameborder="0" scrolling="no" width="100%" height="100%" src="" id="mainFrame" name="mainFrame"></iframe>
 		</div>
 	</body>
 </html>
