@@ -74,29 +74,31 @@ public class DataUtil {
 	protected static void setter(Object obj, String attr, Object value, Class<?> type) {
 		try {
 			String methodHead = "set";
-			if (type.isPrimitive()) {
-				String name = type.getName();
-				if (name.equals("int")) {
-					value = Integer.parseInt(value.toString());
-				} else if (name.equals("float")) {
-					value = Float.parseFloat(value.toString());
-				} else if (name.equals("double")) {
-					value = Double.parseDouble(value.toString());
-				} else if (name.equals("byte")) {
-					value = Byte.parseByte(value.toString());
-				} else if (name.equals("short")) {
-					value = Short.parseShort(value.toString());
-				} else if (name.equals("char")) {
+			if (value != null) {
+				if (type.isPrimitive()) {
+					String name = type.getName();
+					if (name.equals("int")) {
+						value = Integer.parseInt(value.toString());
+					} else if (name.equals("float")) {
+						value = Float.parseFloat(value.toString());
+					} else if (name.equals("double")) {
+						value = Double.parseDouble(value.toString());
+					} else if (name.equals("byte")) {
+						value = Byte.parseByte(value.toString());
+					} else if (name.equals("short")) {
+						value = Short.parseShort(value.toString());
+					} else if (name.equals("char")) {
 
-				} else if (name.equals("long")) {
-					value = Long.parseLong(value.toString());
-				} else if (name.equals("boolean")) {
-					value = Boolean.parseBoolean(value.toString());
-					methodHead = "is";
+					} else if (name.equals("long")) {
+						value = Long.parseLong(value.toString());
+					} else if (name.equals("boolean")) {
+						value = Boolean.parseBoolean(value.toString());
+						methodHead = "is";
+					}
 				}
+				Method method = obj.getClass().getMethod(methodHead + attr, type);
+				method.invoke(obj, value);
 			}
-			Method method = obj.getClass().getMethod(methodHead + attr, type);
-			method.invoke(obj, value);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

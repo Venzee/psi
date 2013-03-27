@@ -23,12 +23,14 @@ public class SortDao extends BaseDao {
 	}
 	
 	public List<Map<String, Object>> queryAllSort(List<Object> params) {
+		List<Map<String, Object>> datas = null;
 		String sql = "select s.id,s.name,s.remark,s.topId,s.level from com_pss_sort s";
 		try {
-			this.executeQueryWithMultiple(sql, params);
+			datas = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return datas;
 	}
+	
 }

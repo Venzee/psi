@@ -95,6 +95,27 @@
 				</div>
 			</div>
 			<div class="source">
+				<#list sortList as sort>
+					<#if sort_index % 2 = 0>
+						<dl class="source_line odd">
+							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.id}" /></dd>
+							<dd class="text_5p">${sort.id}</dd>
+							<dd class="text_35p">${sort.name}</dd>
+							<dd class="text_20p">${sort.topId}</dd>
+							<dd class="text_35p">${sort.remark}</dd>
+						</dl>
+					</#if>
+					<#if sort_index % 2 = 1>
+						<dl class="source_line">
+							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.id}" /></dd>
+							<dd class="text_5p">${sort.id}</dd>
+							<dd class="text_35p">${sort.name}</dd>
+							<dd class="text_20p">${sort.topId}</dd>
+							<dd class="text_35p">${sort.remark}</dd>
+						</dl>
+					</#if>
+				</#list>
+				<!-- 
 				<dl class="source_line odd">
 					<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="1" /></dd>
 					<dd class="text_5p">1</dd>
@@ -108,33 +129,16 @@
 					<dd class="text_35p">分类名称</dd>
 					<dd class="text_20p">父级分类</dd>
 					<dd class="text_35p">备注</dd>
-				</dl>
-				<dl class="source_line odd">
-					<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="3" /></dd>
-					<dd class="text_5p">3</dd>
-					<dd class="text_35p">分类名称</dd>
-					<dd class="text_20p">父级分类</dd>
-					<dd class="text_35p">备注</dd>
-				</dl>
-				<dl class="source_line">
-					<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="4" /></dd>
-					<dd class="text_5p">4</dd>
-					<dd class="text_35p">分类名称</dd>
-					<dd class="text_20p">父级分类</dd>
-					<dd class="text_35p">备注</dd>
-				</dl>
-				<dl class="source_line odd">
-					<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="5" /></dd>
-					<dd class="text_5p">5</dd>
-					<dd class="text_35p">分类名称</dd>
-					<dd class="text_20p">父级分类</dd>
-					<dd class="text_35p">备注</dd>
-				</dl>
+				</dl> -->
 			</div>
 			<div class="foot">
 				<div class="left">
-					<div class="check_all">全选</div>
-					<div class="check_invert">反选</div>
+					<#if (sortList?size>1) >
+						<div class="btn">
+							<div class="check_all">全选</div>
+							<div class="check_invert">反选</div>
+						</div>
+					</#if>
 					<dl class="page">
 						<dd>上一页</dd>
 						<dd>1</dd>

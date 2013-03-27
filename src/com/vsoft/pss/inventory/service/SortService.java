@@ -26,13 +26,10 @@ public class SortService {
 		List<Sort> list = new ArrayList<Sort>();
 		List<Object> params = new ArrayList<Object>();
 		List<Map<String, Object>> datas = sortDao.queryAllSort(params);
-		if(datas != null && datas.size() > 0){
-			for (Map<String, Object> data : datas) {
-				Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
-				list.add(sort);
-			}
+		for (Map<String, Object> data : datas) {
+			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
+			list.add(sort);
 		}
-		
 		return list;
 	}
 }
