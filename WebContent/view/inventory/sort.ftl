@@ -18,15 +18,32 @@
 						parent.$('#modal').fadeOut();
 					});
 				parent.$('#sortForm .sub').click(function(){
-					$.each(parent.$('body .not_null'), function(i,n){
-						if($(this).val() == null || $(this).val() == ''){
-							$(this).addClass('error');
-						}else{
-							$(this).removeClass('error');
+					var datas = 'randomNum=' + Math.random();
+					$.each(parent.$('#sortForm .form_value'),function(i,n){
+						datas = datas + "&" + $(this).attr('name') + "=" + $(this).val();
+					});
+					$.ajax({
+						type: "POST",
+						url: "add",
+						data: datas,
+						success: function(msg){
+							parent.$('#sortForm').slideUp();
+							parent.$('#modal').fadeOut();
 						}
 					});
 				});
 			});
+			function validForm(){
+				var valid = false;
+				$.each(parent.$('body .not_null'), function(i,n){
+					if($(this).val() == null || $(this).val() == ''){
+						$(this).addClass('error');
+					}else{
+						$(this).removeClass('error');
+					}
+				});
+				return valid;
+			}
 			$('.delete').click(function(){
 				var ids = '';
 				var size = $('.table').find('.checked').size();
@@ -98,20 +115,20 @@
 				<#list sortList as sort>
 					<#if sort_index % 2 = 0>
 						<dl class="source_line odd">
-							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.id}" /></dd>
-							<dd class="text_5p">${sort.id}</dd>
-							<dd class="text_35p">${sort.name}</dd>
-							<dd class="text_20p">${sort.topId}</dd>
-							<dd class="text_35p">${sort.remark}</dd>
+							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.sort.id}" /></dd>
+							<dd class="text_5p">${sort.sort.id}</dd>
+							<dd class="text_35p">${sort.sort.name}</dd>
+							<dd class="text_20p">${sort.topName}</dd>
+							<dd class="text_35p">${sort.sort.remark}</dd>
 						</dl>
 					</#if>
 					<#if sort_index % 2 = 1>
 						<dl class="source_line">
-							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.id}" /></dd>
-							<dd class="text_5p">${sort.id}</dd>
+							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.sort.id}" /></dd>
+							<dd class="text_5p">${sort.sort.id}</dd>
 							<dd class="text_35p">${sort.name}</dd>
-							<dd class="text_20p">${sort.topId}</dd>
-							<dd class="text_35p">${sort.remark}</dd>
+							<dd class="text_20p">${sort.topName}</dd>
+							<dd class="text_35p">${sort.sort.remark}</dd>
 						</dl>
 					</#if>
 				</#list>
@@ -173,25 +190,20 @@
 					<dd class="high">备注:</dd>
 				</dl>
 				<dl class="source_value">
-					<dd><input type="text" class="text_500 not_null" name="" /></dd>
+					<dd><input type="text" class="text_500 not_null form_value" name="name" /></dd>
 					<dd>
-						<select class="text_150">
-							<option>分类1</option>
-							<option>分类2</option>
-							<option>分类3</option>
+						<select class="text_150 form_value" name="topId">
+							<option value="1">分类1</option>
+							<option value="2">分类2</option>
+							<option value="3">分类3</option>
 						</select>
-						<select class="text_150">
-							<option>分类1</option>
-							<option>分类2</option>
-							<option>分类3</option>
-						</select>
-						<select class="text_150">
-							<option>分类1</option>
-							<option>分类2</option>
-							<option>分类3</option>
+						<select class="text_150 form_value" name="level">
+							<option value="1">分类1</option>
+							<option value="1">分类2</option>
+							<option value="1">分类3</option>
 						</select>
 					</dd>
-					<dd><textarea class="text_500 not_null"></textarea></dd>
+					<dd><textarea class="text_500 not_null form_value" name="remark"></textarea></dd>
 				</dl>
 				<div class="clear"></div>
 			</div>

@@ -8,11 +8,14 @@ import java.util.Map;
 
 public class DataUtil {
 
-	public static Object parseMapToObject(Map<String, Object> data, Class<?> oc) {
+	private static final String[] UN_SUPPORT_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
+
+	public static Object parseMapToObject(Map<String, Object> data, Class<?> pc) {
+
 		Object obj = null;
 		Class<?> c = null;
 		try {
-			c = Class.forName(oc.getName());
+			c = Class.forName(pc.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -24,20 +27,61 @@ public class DataUtil {
 			e.printStackTrace();
 		}
 		Field[] fields = c.getDeclaredFields();
-		for (int i = 0; i < fields.length; i++) {
-			String fieldName = fields[i].getName();
-			int mod = fields[i].getModifiers();
-			if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
-				char[] fc = fieldName.toCharArray();
-				fc[0] = Character.toUpperCase(fc[0]);
-				StringBuffer newFiledName = new StringBuffer();
-				newFiledName.append(fc);
-				setter(obj, newFiledName.toString(), data.get(fieldName), fields[i].getType());
+		for (Field field : fields) {
+			Class<?> oc = null;
+			boolean support = true;
+			Class<?> type = field.getType();
+			String typeName = type.getName();
+			if (!field.getType().isPrimitive()) {
+				for (String str : UN_SUPPORT_TYPE) {
+					if (str.equals(typeName)) {
+						support = false;
+						break;
+					}
+				}
+				if (support) {
+					try {
+						oc = Class.forName(typeName);
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					Field[] fs = oc.getDeclaredFields();
+					Object o = null;
+					try {
+						o = oc.newInstance();
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
+					for (Field f : fs) {
+						setter(f, o, data);
+					}
+				}
+				
 			}
+			setter(field, obj, data);
 		}
 		return obj;
 	}
-
+	
+	protected static void setter(Field field, Object obj, Map<String, Object> data){
+		String fieldName = field.getName();
+		int mod = field.getModifiers();
+		Class<?> type = field.getType();
+		if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
+			char[] fc = fieldName.toCharArray();
+			StringBuffer newFiledName = new StringBuffer();
+			StringBuffer lowerCaseFiledName = new StringBuffer();
+			for (char ch : fc) {
+				lowerCaseFiledName.append(Character.toLowerCase(ch));
+			}
+			fc[0] = Character.toUpperCase(fc[0]);
+			newFiledName.append(fc);
+			setter(obj, newFiledName.toString(), data.get(lowerCaseFiledName.toString()), type);
+		}
+	}
+	
 	public static Map<String, Object> parseObjectToMap(Object obj, Class<?> oc) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		Class<?> c = null;

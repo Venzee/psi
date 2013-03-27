@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vsoft.pss.inventory.entity.Sort;
+import com.vsoft.pss.inventory.entity.form.SortForm;
 import com.vsoft.pss.inventory.service.SortService;
 
 @Controller
@@ -20,12 +21,12 @@ public class SortController {
 	@RequestMapping("/add")
 	public String addSort(Sort sort) {
 		sortService.addSort(sort);
-		return "inventory/sort";
+		return "redirect:list";
 	}
 	
 	@RequestMapping("/list")
 	public String queryAllSort(ModelMap map) {
-		List<Sort> list = sortService.queryAllSort();
+		List<SortForm> list = sortService.queryAllSort();
 		map.put("sortList", list);
 		return "inventory/sort";
 	}

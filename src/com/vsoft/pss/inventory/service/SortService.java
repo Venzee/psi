@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.vsoft.core.util.DataUtil;
 import com.vsoft.pss.inventory.dao.SortDao;
 import com.vsoft.pss.inventory.entity.Sort;
+import com.vsoft.pss.inventory.entity.form.SortForm;
 
 @Service
 public class SortService {
@@ -22,12 +23,13 @@ public class SortService {
 		sortDao.addSort(data);
 	}
 	
-	public List<Sort> queryAllSort() {
-		List<Sort> list = new ArrayList<Sort>();
+	public List<SortForm> queryAllSort() {
+		List<SortForm> list = new ArrayList<SortForm>();
 		List<Object> params = new ArrayList<Object>();
+		params.add(1);
 		List<Map<String, Object>> datas = sortDao.queryAllSort(params);
 		for (Map<String, Object> data : datas) {
-			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
+			SortForm sort = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
 			list.add(sort);
 		}
 		return list;
