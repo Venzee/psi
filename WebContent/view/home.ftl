@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>首页</title>
-
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -10,12 +9,16 @@
 		<meta http-equiv="description" content="This is my page">
 		<link rel="stylesheet" type="text/css" href="style/css/pss.css">
 		<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="script/js/form.js"></script>
+		<script type="text/javascript" src="script/js/comm.js"></script>
 	</head>
 	<script type="text/javascript">
-		function changeFrmHeight(width, height){
-			$("#mainFrame").width(width);
-			$("#mainFrame").height(height);
+		function loading(){
+			$('#modal').append('<img id="load" src="style/image/loading.gif" />');
+			$('#load').css('position', 'absolute');
+			$('#load').css('z-index', '1002');
+			$('#load').css('border', 'none');
+			$('#load').css('left', (($(window).width()-$('#load').outerWidth())/2));
+			$('#load').css('top', (($(window).height()-$('#load').outerHeight())/2));
 		}
 		$(document).ready(function(){
 			$('#title_in').bind({
@@ -33,7 +36,6 @@
 					$('#fastnavi').css('margin-top', 0);
 				}
 			})
-			
 		});
 	</script>
 	<body>
@@ -73,7 +75,7 @@
 			</div>
 		</div>
 		<div id="content">
-			<iframe frameborder="0" scrolling="no" width="100%" height="100%" src="" id="mainFrame" name="mainFrame"></iframe>
+			<iframe frameborder="0" scrolling="no" width="100%" onload="frameAutoSize(this)" height="100%" src="" id="mainFrame" name="mainFrame"></iframe>
 		</div>
 	</body>
 </html>
