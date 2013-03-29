@@ -148,7 +148,7 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b75b4', endColorstr='#2980B9', GradientType=0);
 }
 
-.table .head .title {
+.table .head .title,.operation {
 	height: 30px;
 }
 
@@ -159,6 +159,46 @@
 	line-height: 16px;
 	border-left: 5px solid #2C3E50;
 	float: left;
+}
+
+.table .head .operation,.operation div {
+	float: right;
+}
+
+.table .head .operation div {
+	width: 50px;
+	height: 24px;
+	line-height: 24px;
+	margin: 3px 5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.table .head .operation .add:hover,.sub:hover {
+	color: #27AE60;
+}
+
+.table .head .operation .edit:hover {
+	color: #E67E22;
+}
+
+.table .head .operation .delete:hover {
+	color: #E74C3C;
+}
+
+.table .head .operation .close {
+	height: 16px;
+	padding: 0 10px;
+	margin: 7px 5px;
+	line-height: 16px;
+	border-left: 5px solid #95A5A6;
+	color: #dcdcdc;
+	cursor: pointer;
+	float: right;
+}
+
+.table .head .operation .close:hover {
+	color: #E74C3C;
 }
 
 .table .head .close {
@@ -330,21 +370,35 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee', GradientType=0);
 }
 
-.table .foot .left,.right,.left .btn,.left .page {
+.table .foot .btn,.operation,.operation .page {
 	height: 30px;
 	line-height: 30px;
 }
 
-.table .foot .left .page dd:hover {
+.table .foot .operation .page{
+	margin-right: 10px;
+}
+
+.table .foot .operation .page dd:hover {
 	color: #3498DB;
 }
 
-.table .foot .left .page dd.active {
+.table .foot .operation .page dd.active {
 	cursor: text;
 	color: #2980B9;
 }
 
-.table .foot .left .btn div,.right div {
+.table .foot .operation .page dd.page_num {
+	cursor: text;
+	color: #555;
+}
+
+.table .foot .operation .page dd.record_count {
+	cursor: text;
+	color: #555;
+}
+
+.table .foot .btn div,.operation div {
 	width: 50px;
 	height: 24px;
 	line-height: 24px;
@@ -353,15 +407,11 @@
 	cursor: pointer;
 }
 
-.table .foot .left,.left div,.left .btn,.left .page,.page dd {
+.table .foot .btn,.btn div,.operation .page,.page dd {
 	float: left;
 }
 
-.table .foot .left .btn {
-	margin-right: 30px;
-}
-
-.table .foot .left .page dd {
+.table .foot .operation .page dd {
 	padding: 0 10px;
 	height: 20px;
 	line-height: 20px;
@@ -369,7 +419,7 @@
 	cursor: pointer;
 }
 
-.table .foot .right,.right div {
+.table .foot .operation,.operation div {
 	float: right;
 }
 
@@ -387,4 +437,10 @@
 
 .table .foot .check_all:hover,.check_invert:hover {
 	color: #16A085;
+}
+
+.dialog {
+	display: none;
+	z-index: 1001;
+	position: fixed;
 }

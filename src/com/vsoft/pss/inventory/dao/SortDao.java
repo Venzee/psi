@@ -22,9 +22,17 @@ public class SortDao extends BaseDao {
 		}
 	}
 	
+	public void updateTableById(Map<String, Object> data) {
+		try {
+			this.updateTableById("com_pss_sort", data);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Map<String, Object>> queryAllSort(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.remark,s.topId,s.level,ts.name as topname from com_pss_sort s left join com_pss_sort ts on ts.id = ?";
+		String sql = "select s.id,s.name,s.remark,s.topId,s.level,ts.name as topname from com_pss_sort s left join com_pss_sort ts on ts.id = ? limit ? , ?";
 		try {
 			datas = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {
@@ -33,4 +41,14 @@ public class SortDao extends BaseDao {
 		return datas;
 	}
 	
+	
+	public int countSortById() {
+		int count = 0;
+		try {
+			count = this.countTable("com_pss_sort", "id", null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 }

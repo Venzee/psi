@@ -11,7 +11,6 @@ public class DataUtil {
 	private static final String[] UN_SUPPORT_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
 
 	public static Object parseMapToObject(Map<String, Object> data, Class<?> pc) {
-
 		Object obj = null;
 		Class<?> c = null;
 		try {
@@ -28,60 +27,52 @@ public class DataUtil {
 		}
 		Field[] fields = c.getDeclaredFields();
 		for (Field field : fields) {
-			Class<?> oc = null;
-			boolean support = true;
-			Class<?> type = field.getType();
-			String typeName = type.getName();
-			if (!field.getType().isPrimitive()) {
-				for (String str : UN_SUPPORT_TYPE) {
-					if (str.equals(typeName)) {
-						support = false;
-						break;
+			int mod = field.getModifiers();
+			if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
+				if (!field.getType().isPrimitive()) {
+					boolean support = true;
+					Class<?> type = field.getType();
+					String typeName = type.getName();
+					for (String str : UN_SUPPORT_TYPE) {
+						if (str.equals(typeName)) {
+							support = false;
+							break;
+						}
 					}
+					if (support) {
+						Class<?> oc = null;
+						try {
+							oc = Class.forName(typeName);
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+						Field[] fs = oc.getDeclaredFields();
+						Object o = null;
+						try {
+							o = oc.newInstance();
+						} catch (InstantiationException e) {
+							e.printStackTrace();
+						} catch (IllegalAccessException e) {
+							e.printStackTrace();
+						}
+						for (Field f : fs) {
+							setter(f, o, data);
+						}
+						char[] fc = field.getName().toCharArray();
+						StringBuffer lowerCaseFiledName = new StringBuffer();
+						for (char ch : fc) {
+							lowerCaseFiledName.append(Character.toLowerCase(ch));
+						}
+						data.put(lowerCaseFiledName.toString(), o);
+					}
+
 				}
-				if (support) {
-					try {
-						oc = Class.forName(typeName);
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					}
-					Field[] fs = oc.getDeclaredFields();
-					Object o = null;
-					try {
-						o = oc.newInstance();
-					} catch (InstantiationException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					}
-					for (Field f : fs) {
-						setter(f, o, data);
-					}
-				}
-				
+				setter(field, obj, data);
 			}
-			setter(field, obj, data);
 		}
 		return obj;
 	}
-	
-	protected static void setter(Field field, Object obj, Map<String, Object> data){
-		String fieldName = field.getName();
-		int mod = field.getModifiers();
-		Class<?> type = field.getType();
-		if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
-			char[] fc = fieldName.toCharArray();
-			StringBuffer newFiledName = new StringBuffer();
-			StringBuffer lowerCaseFiledName = new StringBuffer();
-			for (char ch : fc) {
-				lowerCaseFiledName.append(Character.toLowerCase(ch));
-			}
-			fc[0] = Character.toUpperCase(fc[0]);
-			newFiledName.append(fc);
-			setter(obj, newFiledName.toString(), data.get(lowerCaseFiledName.toString()), type);
-		}
-	}
-	
+
 	public static Map<String, Object> parseObjectToMap(Object obj, Class<?> oc) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		Class<?> c = null;
@@ -113,6 +104,20 @@ public class DataUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	protected static void setter(Field field, Object obj, Map<String, Object> data) {
+		String fieldName = field.getName();
+		Class<?> type = field.getType();
+		char[] fc = fieldName.toCharArray();
+		StringBuffer newFiledName = new StringBuffer();
+		StringBuffer lowerCaseFiledName = new StringBuffer();
+		for (char ch : fc) {
+			lowerCaseFiledName.append(Character.toLowerCase(ch));
+		}
+		fc[0] = Character.toUpperCase(fc[0]);
+		newFiledName.append(fc);
+		setter(obj, newFiledName.toString(), data.get(lowerCaseFiledName.toString()), type);
 	}
 
 	protected static void setter(Object obj, String attr, Object value, Class<?> type) {

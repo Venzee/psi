@@ -191,6 +191,9 @@ public class BaseDao {
 	 * @throws SQLException
 	 */
 	public int countTable(String tableNameOrSql, String countColumn, Map<String, Object> data) throws SQLException {
+		if (data == null) {
+			data = new HashMap<String, Object>();
+		}
 		String sql = makeCountTableSql(tableNameOrSql, countColumn, data.keySet());
 		List<Object> params = new ArrayList<Object>(data.values());
 		Connection conn = getConnection();
@@ -212,6 +215,22 @@ public class BaseDao {
 		return count;
 	}
 
+	/**
+	 * 更新数据
+	 * 
+	 * @param tableName
+	 * @param data
+	 * @throws SQLException
+	 */
+	public void updateTableById(String tableName, Map<String, Object> data) throws SQLException {
+		String sql = makeUpdateTableSql(tableName, data.keySet());
+		List<Object> params = new ArrayList<Object>(data.values());
+		Object id = params.get(0);
+		params.remove(0);
+		params.add(id);
+		execute(sql, params);
+	}
+	
 	/**
 	 * 新增数据
 	 * 
@@ -345,6 +364,31 @@ public class BaseDao {
 			sql.append("?");
 		}
 		sql.append(")");
+		return sql.toString();
+	}
+	
+	/**
+	 * 生成更新数据SQL
+	 * 
+	 * @param tableName
+	 * @param names
+	 * @return
+	 */
+	public String makeUpdateTableSql(String tableName, Collection<String> names) {
+		StringBuilder sql = new StringBuilder().append("update ").append(tableName).append(" set ");
+		int nameCount = 0;
+		for (String name : names) {
+			if(!name.equals("id")){
+				sql.append(name);
+				if (names.size() > 0 && nameCount < names.size() - 1) {
+					sql.append("= ? ,");
+				}else{
+					sql.append("= ?");
+				}
+			}
+			nameCount++;
+		}
+		sql.append(" where id = ?");
 		return sql.toString();
 	}
 
