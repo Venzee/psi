@@ -244,6 +244,8 @@
 	line-height: 30px;
 	border: 1px solid #dcdcdc;
 	border-bottom: 1px solid #dcdcdc;
+	min-width: 810px;
+	cursor: pointer;
 }
 
 .table .source .source_line:HOVER {

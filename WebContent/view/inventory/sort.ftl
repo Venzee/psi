@@ -13,18 +13,19 @@
 					.find('.close').click(function(){
 						parent.$('#sortForm').slideUp();
 						parent.$('#modal').fadeOut();
+						parent.$('#sortForm .form_value').val('');
 					});
 				parent.$('#sortForm .sub').click(function(){
 					var datas = 'randomNum=' + Math.random();
 					$.each(parent.$('#sortForm .form_value'),function(i,n){
 						datas = datas + "&" + $(this).attr('name') + "=" + $(this).val();
-						$(this).val('');
 					});
 					$.ajax({
 						type: 'POST',
 						url: 'add',
 						data: datas,
 						beforeSend: function(){
+							parent.$('#sortForm .form_value').val('');
 							parent.$('#sortForm').slideUp();
 							parent.loading();
 						},
@@ -48,25 +49,29 @@
 				return valid;
 			}
 			$('.edit').click(function(){
-				var size = $('.table').find('.checked').size();
-				if(size > 0){
-					if(size == 1){
-						$.each($('.table .checked').parents('dl').find('input'), function(i,n){
-							var val = $(this).val();
-							var name = $(this).attr('name');
-							$.each($('#sortForm .form_value'),function(i,n){
-								if(name == $(this).attr('name')){
-									$(this).val(val);
-								}
-							});
-						});
-						$('.add').click();
-					}else{
-						alert("一次只能编辑一个哦,亲！");
-					}
-				}else{
+				var checks = $('.table').find('.checked');
+				var size = checks.size();
+				switch(size){
+				case 0:
 					alert("请选择要编辑的内容,亲！");
+					break;
+				case 1:
+					$.each(checks.parents('dl').find('input'), function(i,n){
+						var val = $(this).val();
+						var name = $(this).attr('name');
+						$.each($('#sortForm .form_value'),function(i,n){
+							if(name == $(this).attr('name')){
+								$(this).val(val);
+							}
+						});
+					});
+					$('.add').click();
+					break;
+				default:
+					alert("一次只能编辑一个哦,亲！");
+					break;
 				}
+				
 			});
 			$('.delete').click(function(){
 				var ids = '';
@@ -82,6 +87,9 @@
 						}
 					}
 				});
+				if(ids == ''){
+					alert('请选择要删除的记录哦，亲！');
+				}
 			});
 			$('.check_all').click(function(){
 				if($(this).text() == '全选'){

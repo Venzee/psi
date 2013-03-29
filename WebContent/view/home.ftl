@@ -13,12 +13,9 @@
 	</head>
 	<script type="text/javascript">
 		function loading(){
-			$('#modal').append('<img id="load" src="style/image/loading.gif" />');
-			$('#load').css('position', 'absolute');
-			$('#load').css('z-index', '1002');
-			$('#load').css('border', 'none');
 			$('#load').css('left', (($(window).width()-$('#load').outerWidth())/2));
 			$('#load').css('top', (($(window).height()-$('#load').outerHeight())/2));
+			$('#load').show();
 		}
 		$(document).ready(function(){
 			$('#title_in').bind({
@@ -39,7 +36,7 @@
 		});
 	</script>
 	<body>
-		<div id="modal"></div>
+		<div id="modal"><img id="load" src="style/image/loading.gif" /></div>
 		<div id="top">
 			<div id="panel">
 				<div id="user">
