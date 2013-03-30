@@ -5,19 +5,19 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.add').click(function(){
-				parent.$('#modal').fadeIn();
-				parent.$('body').prepend($('#sortForm'));
-				var left = (parent.$('body').width() - parent.$('#sortForm').width()) / 2;
-				var top = $('body').height() - parent.$('#sortForm').height() / 2;
-				parent.$('#sortForm').slideDown().css({top:top,left:left})
+				parent.showModal();
+				parent.$('body').prepend($('#sortDialog'));
+				var left = (parent.$('body').width() - parent.$('#sortDialog').width()) / 2;
+				var top = $('body').height() - parent.$('#sortDialog').height() / 2;
+				parent.$('#sortDialog').slideDown().css({top:top,left:left})
 					.find('.close').click(function(){
-						parent.$('#sortForm').slideUp();
-						parent.$('#modal').fadeOut();
-						parent.$('#sortForm .form_value').val('');
+						parent.$('#sortDialog').slideUp();
+						parent.$('#sortDialog .form_value').val('');
+						parent.hideModal();
 					});
-				parent.$('#sortForm .sub').click(function(){
+				parent.$('#sortDialog .sub').click(function(){
 					var datas = 'randomNum=' + Math.random();
-					$.each(parent.$('#sortForm .form_value'),function(i,n){
+					$.each(parent.$('#sortDialog .form_value'),function(i,n){
 						datas = datas + "&" + $(this).attr('name') + "=" + $(this).val();
 					});
 					$.ajax({
@@ -25,14 +25,16 @@
 						url: 'add',
 						data: datas,
 						beforeSend: function(){
-							parent.$('#sortForm .form_value').val('');
-							parent.$('#sortForm').slideUp();
+							parent.$('#sortDialog .form_value').val('');
+							parent.$('#sortDialog').slideUp();
 							parent.loading();
 						},
-						success: function(){
-							parent.$('#sortForm').remove();
-							parent.$('#modal').fadeOut();
-							$('#hideForm').submit();
+						success: function(msg){
+							if(msg == 'true'){
+								parent.$('#sortDialog').remove();
+								parent.hideModal();
+								$('.pageForm').submit();
+							}
 						}
 					});
 				});
@@ -49,48 +51,78 @@
 				return valid;
 			}
 			$('.edit').click(function(){
-				var checks = $('.table').find('.checked');
-				var size = checks.size();
+				var checkedbox = $('.table').find('.checked');
+				var size = checkedbox.size();
 				switch(size){
+				default:
+					alert("一次只能编辑一个哦,亲！");
+					break;
 				case 0:
 					alert("请选择要编辑的内容,亲！");
 					break;
 				case 1:
-					$.each(checks.parents('dl').find('input'), function(i,n){
-						var val = $(this).val();
-						var name = $(this).attr('name');
-						$.each($('#sortForm .form_value'),function(i,n){
-							if(name == $(this).attr('name')){
-								$(this).val(val);
-							}
-						});
+					var id = checkedbox.attr('id');
+					$.ajax({
+						type: 'POST',
+						url: 'info',
+						data: 'randomNum=' + Math.random() + '&id=' + id,
+						dataType: 'json',
+						success: function(data){
+							$('.add').click();
+							$.each(data,function(i){
+								$.each(parent.$('#sortDialog .form_value'),function(){
+									if(i == $(this).attr('name')){
+										$(this).val(data[i]);
+									}
+								});
+							});
+						}
 					});
-					$('.add').click();
-					break;
-				default:
-					alert("一次只能编辑一个哦,亲！");
 					break;
 				}
-				
 			});
 			$('.delete').click(function(){
-				var ids = '';
-				var size = $('.table').find('.checked').size();
+				var checkedbox = $('.table').find('.checked');
+				var size = checkedbox.size();
+				var id = '';
 				var now = 0;
-				$.each($('.table').find('.checked'), function(i,n){
-					if($(this).attr('class') != 'checkbox'){
-						now++;
-						if(now < size){
-							ids = ids + $(this).next().val() + ',';
-						}else{
-							ids = ids + $(this).next().val();
-						}
+				$.each(checkedbox, function(){
+					now++;
+					if(now < size){
+						id = id + $(this).attr('id') + ',';
+					}else{
+						id = id + $(this).attr('id');
 					}
 				});
-				if(ids == ''){
+				if(id == ''){
 					alert('请选择要删除的记录哦，亲！');
+				}else{
+					$.ajax({
+						type: 'POST',
+						url: 'del',
+						data: 'randomNum=' + Math.random() + '&id=' + id,
+						beforeSend: function(){
+							parent.showModal();
+							parent.loading();
+						},
+						success: function(msg){
+							if(msg == 'true'){
+								parent.hideModal();
+								$('.pageForm').submit();
+							}
+						}
+					});
 				}
 			});
+			function checked(){
+				var isCheckAll = true;
+				$.each($('.table').find('.checkbox'), function(i,n){
+					if($(this).attr('class') == 'checkbox'){
+						isCheckAll = false;
+					}
+				});
+				return isCheckAll;
+			}
 			$('.check_all').click(function(){
 				if($(this).text() == '全选'){
 					$('.table').find('.checkbox').addClass('checked');
@@ -116,34 +148,33 @@
 					$('.check_all').text('全选');
 				}
 			});
-			function checked(){
-				var isCheckAll = true;
-				$.each($('.table').find('.checkbox'), function(i,n){
-					if($(this).attr('class') == 'checkbox'){
-						isCheckAll = false;
-					}
-				});
-				return isCheckAll;
-			}
 		});
 	</script>
 	<body>
-		<form action="list" method="post" id="hideForm"></form>
+		<!--<div class="search">
+			<form action="list" method="post" class="searchForm">
+				<dl class="search_line">
+					<dd>类型名称：<input type="text" name="sort.name"/></dd>
+					<dd>备注：<input type="text" name="sort.remark"/></dd>
+				</dl>
+				<div class="search_btn">查询</div>
+			</form>
+		</div> -->
 		<div class="table" id="sortTable">
 			<div class="head">
 				<div class="title">
 					<div class="title_name">商品类型表</div>
 					<div class="operation">
-					<div class="delete">删除</div>
-					<div class="edit">编辑</div>
-					<div class="add">新增</div>
-				</div>
+						<div class="delete">删除</div>
+						<div class="edit">编辑</div>
+						<div class="add">新增</div>
+					</div>
 				</div>
 				<div class="source_head">
 					<dl>
 						<dd class="text_5p">选项</dd>
 						<dd class="text_5p">编号</dd>
-						<dd class="text_35p">分类名称</dd>
+						<dd class="text_35p">类型名称</dd>
 						<dd class="text_20p">父级分类</dd>
 						<dd class="text_35p">备注</dd>
 					</dl>
@@ -153,20 +184,20 @@
 				<#list sortList as sort>
 					<#if sort_index % 2 = 0>
 						<dl class="source_line odd">
-							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.sort.id}" name="id" /></dd>
-							<dd class="text_5p">${sort_index + 1}<input type="hidden" value="${sort.sort.level}" name="level" /></dd>
-							<dd class="text_35p">${sort.sort.name}<input type="hidden" value="${sort.sort.name}" name="name" /></dd>
-							<dd class="text_20p">${sort.topName}<input type="hidden" value="${sort.sort.topId}" name="topId" /></dd>
-							<dd class="text_35p">${sort.sort.remark}<input type="hidden" value="${sort.sort.remark}" name="remark" /></dd>
+							<dd class="text_5p"><span id="${sort.sort.id}" class="checkbox"></span></dd>
+							<dd class="text_5p">${sort_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
+							<dd class="text_35p">${sort.sort.name}</dd>
+							<dd class="text_20p">${sort.topName}</dd>
+							<dd class="text_35p">${sort.sort.remark}</dd>
 						</dl>
 					</#if>
 					<#if sort_index % 2 = 1>
 						<dl class="source_line">
-							<dd class="text_5p"><span class="checkbox"></span><input type="hidden" value="${sort.sort.id}" name="id" /></dd>
-							<dd class="text_5p">${sort_index + 1}<input type="hidden" value="${sort.sort.level}" name="level" /></dd>
-							<dd class="text_35p">${sort.sort.name}<input type="hidden" value="${sort.sort.name}" name="name" /></dd>
-							<dd class="text_20p">${sort.topName}<input type="hidden" value="${sort.sort.topId}" name="topId" /></dd>
-							<dd class="text_35p">${sort.sort.remark}<input type="hidden" value="${sort.sort.remark}" name="remark" /></dd>
+							<dd class="text_5p"><span id="${sort.sort.id}" class="checkbox"></span></dd>
+							<dd class="text_5p">${sort_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
+							<dd class="text_35p">${sort.sort.name}</dd>
+							<dd class="text_20p">${sort.topName}</dd>
+							<dd class="text_35p">${sort.sort.remark}</dd>
 						</dl>
 					</#if>
 				</#list>
@@ -179,24 +210,11 @@
 					</div>
 				</#if>
 				<div class="operation">
-					<dl class="page">
-						<dd class="page_num">当前页&nbsp;：${page.currPage}&nbsp;/&nbsp;${page.totalPage}</dd>
-						<dd class="record_count">总记录：${page.count}</dd>
-						<dd>1</dd>
-						<dd class="active">2</dd>
-						<dd>3</dd>
-						<dd>4</dd>
-						<dd>5</dd>
-						<dd>6</dd>
-						<dd>7</dd>
-						<dd>8</dd>
-						<dd>上一页</dd>
-						<dd>下一页</dd>
-					</dl>
+					<#include "comm/page.ftl">
 				</div>
 			</div>
 		</div>
-		<div class="table form dialog" id="sortForm">
+		<div class="table form dialog" id="sortDialog">
 			<div class="head">
 				<div class="title">
 					<div class="title_name">表单标题</div>

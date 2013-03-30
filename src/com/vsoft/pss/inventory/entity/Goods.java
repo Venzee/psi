@@ -15,7 +15,7 @@ public class Goods implements Serializable {
 	private int sortId;// 类型ID
 	private String barcode; // 商品条码
 	private String unit;// 商品单位
-	private String seasons;// 商品可销售季节 1为春季，2为夏季，3为秋季，4为冬季；可有多个值，已“,”分隔
+	private String seasons;// 商品可销售季节 1为春季，2为夏季，3为秋季，4为冬季；可有多个值，以“,”分隔
 	private String code;// 编码，用于快速搜索，一般为商品简称拼音首字母缩写
 	private String remark;
 	private int creatCompanyId; // 新建商品的公司ID 0为全部(默认)

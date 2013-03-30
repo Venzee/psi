@@ -283,16 +283,6 @@
 	margin: 5px 0;
 }
 
-.table .form_source input,textarea,img,select {
-	border: 2px solid #ccc;
-	font-size: 14px;
-	font-family: "微软雅黑";
-}
-
-.table .form_source input:focus,textarea:focus,img:focus,select:focus {
-	border-color: #1abc9c;
-}
-
 .table .form_source .error {
 	border-color: #E74C3C;
 }
@@ -387,7 +377,8 @@
 
 .table .foot .operation .page dd.active {
 	cursor: text;
-	color: #2980B9;
+	background: #555;
+	color: #fff;
 }
 
 .table .foot .operation .page dd.page_num {

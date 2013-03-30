@@ -6,6 +6,16 @@ body {
 	background-image: url("../../image/body_bg.png");
 }
 
+input,textarea,img,select {
+	border: 2px solid #ccc;
+	font-size: 14px;
+	font-family: "微软雅黑";
+}
+
+input:focus,textarea:focus,img:focus,select:focus {
+	border-color: #1abc9c;
+}
+
 .clear {
 	height: 1px;
 	clear: both;
@@ -21,7 +31,7 @@ body {
 	position: fixed;
 	left: 0;
 	top: 0;
-	filter: alpha(opacity = 50);
+	filter: alpha(opacity =     50);
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
@@ -175,4 +185,135 @@ body {
 #content {
 	width: 80%;
 	margin: 0 auto;
+}
+
+.holder .todo {
+	width: 300px;
+	float: left;
+	margin: 0 20px;
+	text-shadow: 0px 1px 1px #000;
+}
+
+.todo-head {
+	height: 50px;
+	background: #7d8f33;
+	background: -moz-linear-gradient(top, #1ABC9C 0%, #16A085 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1ABC9C), color-stop(100%, #16A085));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1ABC9C', endColorstr='#16A085', GradientType=0);
+}
+
+.todo-head input {
+	background: #1ABC9C;
+	width: 220px;
+	height: 26px;
+	line-height: 26px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.todo dl {
+	width: 300px;
+}
+
+.todo dl .todo-done {
+	color: #fff;
+	width: 300px;
+	height: 50px;
+	line-height: 50px;
+	background: #34495E;
+	border-top: 2px solid #2C3E50;
+}
+
+.todo dl .todo-done div {
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+.todo dl .todo-done .todo-icon {
+	width: 60px;
+	background: url("../../image/todo-2x.png") 10px 5px no-repeat;
+}
+
+.todo dl .todo-done .todo-icon-active {
+	background: url("../../image/done-2x.png") 10px 5px no-repeat;
+}
+
+.todo dl .todo-done .todo-content {
+	width: 240px;
+	font-size: 14px;
+}
+
+.todo dl .todo-done .todo-content div {
+	width: 220px;
+	height: 25px;
+	line-height: 25px;
+	padding-left: 20px;
+}
+
+.todo dl .todo-done .todo-content .todo-name {
+	font-weight: bold;
+}
+
+.todo dl .todo-done .todo-content .todo-remark {
+	font-size: 12px;
+}
+
+.holder .list {
+	width: 300px;
+	float: left;
+	color: #fff;
+	margin: 0 20px;
+}
+
+.holder .list .list-head {
+	width: 300px;
+	height: 40px;
+	background: #1ABC9C;
+}
+
+.holder .list .list-head input{
+	width: 250px;
+	height: 24px;
+	line-height: 24px;
+	margin: 5px;
+}
+
+.holder .list dl {
+	width: 300px;
+}
+
+.holder .list dl .list-item {
+	width: 300px;
+	height: 30px;
+	line-height: 30px;
+	background: #34495E;
+	border-top: 2px solid #2C3E50;
+	cursor: pointer;
+}
+
+.holder .list dl .list-item:hover {
+	color: #1ABC9C;
+	background: #2C3E50;
+}
+
+.holder .list dl .list-item div {
+	float: left;
+}
+.holder .list dl .list-item .item-icon {
+	width: 30px;
+	height: 30px;
+	background: url("../../image/icon-off.png") no-repeat;
+}
+
+.holder .list dl .list-item .item-icon-active {
+	background: url("../../image/icon-on.png") no-repeat;
+}
+
+.holder .list dl .list-item .item-value {
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 35px;
 }

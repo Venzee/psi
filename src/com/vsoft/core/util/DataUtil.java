@@ -3,13 +3,17 @@ package com.vsoft.core.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DataUtil {
 
 	private static final String[] UN_SUPPORT_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
 
+	public static boolean isNum(String str) {
+		return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
+	}
+	
 	public static Object parseMapToObject(Map<String, Object> data, Class<?> pc) {
 		Object obj = null;
 		Class<?> c = null;
@@ -30,19 +34,19 @@ public class DataUtil {
 			int mod = field.getModifiers();
 			if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
 				if (!field.getType().isPrimitive()) {
-					boolean support = true;
+					boolean isBean = true;
 					Class<?> type = field.getType();
-					String typeName = type.getName();
+					String typeSimpleName = type.getSimpleName();
 					for (String str : UN_SUPPORT_TYPE) {
-						if (str.equals(typeName)) {
-							support = false;
+						if (str.equals(typeSimpleName)) {
+							isBean = false;
 							break;
 						}
 					}
-					if (support) {
+					if (isBean) {
 						Class<?> oc = null;
 						try {
-							oc = Class.forName(typeName);
+							oc = Class.forName(type.getName());
 						} catch (ClassNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -65,7 +69,6 @@ public class DataUtil {
 						}
 						data.put(lowerCaseFiledName.toString(), o);
 					}
-
 				}
 				setter(field, obj, data);
 			}
@@ -74,7 +77,7 @@ public class DataUtil {
 	}
 
 	public static Map<String, Object> parseObjectToMap(Object obj, Class<?> oc) {
-		Map<String, Object> data = new HashMap<String, Object>();
+		Map<String, Object> data = new LinkedHashMap<String, Object>();
 		Class<?> c = null;
 		try {
 			c = Class.forName(oc.getName());

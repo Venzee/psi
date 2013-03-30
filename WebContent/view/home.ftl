@@ -15,7 +15,14 @@
 		function loading(){
 			$('#load').css('left', (($(window).width()-$('#load').outerWidth())/2));
 			$('#load').css('top', (($(window).height()-$('#load').outerHeight())/2));
-			$('#load').show();
+			$('#load').fadeIn();
+		}
+		function hideModal(){
+			$('#modal').fadeOut();
+			$('#load').fadeOut();
+		}
+		function showModal(){
+			$('#modal').fadeIn();
 		}
 		$(document).ready(function(){
 			$('#title_in').bind({
@@ -59,7 +66,6 @@
 					<dl>
 						<dd><a href="inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
 						<dd>二级菜单</dd>
-						<dd>二级菜单</dd>
 						<dd class="last">二级菜单</dd>
 					</dl>
 				</div>
@@ -72,7 +78,7 @@
 			</div>
 		</div>
 		<div id="content">
-			<iframe frameborder="0" scrolling="no" width="100%" onload="frameAutoSize(this)" height="100%" src="" id="mainFrame" name="mainFrame"></iframe>
+			<iframe frameborder="0" scrolling="no" width="100%" onload="frameAutoSize(this)" height="100%" src="inventory/sort/select/init?topId=0" id="mainFrame" name="mainFrame"></iframe>
 		</div>
 	</body>
 </html>
