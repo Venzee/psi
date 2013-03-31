@@ -13,19 +13,21 @@
 					data: 'randomNum=' + Math.random() + '&topId=' + topId,
 					dataType: 'json',
 					success: function(data){
-						$('.holder').append('<div class="list"><div class="list-head"><input class="todo-search-field" type="text" value=""/></div><dl></dl></div>');
-						$.each(data,function(i){
-							$('.list:last').find('dl').append('<dd class="list-item" id="'+ data[i].sort.id +'">'
-										+'<div class="item-icon"></div>'
-										+'<div class="item-value">'+'#'+ (i+1) + '&nbsp;--&nbsp;' + data[i].sort.name +'</div>'
-								+'</dd>');
-						});
+						if(data.length > 0){
+							$('.holder').append('<div class="list"><div class="list-head"><input class="todo-search-field" type="text" value=""/></div><dl></dl></div>');
+							$.each(data,function(i){
+								$('.list:last').find('dl').append('<dd class="list-item" id="'+ data[i].sort.id +'">'
+											+'<div class="item-icon"></div>'
+											+'<div class="item-value">'+'#'+ (i+1) + '&nbsp;--&nbsp;' + data[i].sort.name +'</div>'
+									+'</dd>');
+							});
+						}
 					}
 				});
 			});
 		});
 	</script>
-	<body>
+	<body style="height:500px;">
 		<div class="search">
 			<form action="select" method="post" class="searchForm">
 				<input type="hidden" name="topId" value="${topId}" />

@@ -148,7 +148,7 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b75b4', endColorstr='#2980B9', GradientType=0);
 }
 
-.table .head .title,.operation {
+.table .head .title,.table .head .operation {
 	height: 30px;
 }
 
@@ -161,7 +161,7 @@
 	float: left;
 }
 
-.table .head .operation,.operation div {
+.table .head .operation,.table .head .operation div {
 	float: right;
 }
 
@@ -174,7 +174,7 @@
 	cursor: pointer;
 }
 
-.table .head .operation .add:hover,.sub:hover {
+.table .head .operation .add:hover,.table .head .operation .sub:hover {
 	color: #27AE60;
 }
 
@@ -186,33 +186,7 @@
 	color: #E74C3C;
 }
 
-.table .head .operation .close {
-	height: 16px;
-	padding: 0 10px;
-	margin: 7px 5px;
-	line-height: 16px;
-	border-left: 5px solid #95A5A6;
-	color: #dcdcdc;
-	cursor: pointer;
-	float: right;
-}
-
 .table .head .operation .close:hover {
-	color: #E74C3C;
-}
-
-.table .head .close {
-	height: 16px;
-	padding: 0 10px;
-	margin: 7px 5px;
-	line-height: 16px;
-	border-left: 5px solid #95A5A6;
-	color: #dcdcdc;
-	cursor: pointer;
-	float: right;
-}
-
-.table .head .close:hover {
 	color: #E74C3C;
 }
 
@@ -362,7 +336,7 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee', GradientType=0);
 }
 
-.table .foot .btn,.operation,.operation .page {
+.table .foot .btn,.table .foot .operation,.table .foot .operation .page {
 	height: 30px;
 	line-height: 30px;
 }
@@ -391,16 +365,17 @@
 	color: #555;
 }
 
-.table .foot .btn div,.operation div {
+.table .foot .btn div,.table .foot .operation div {
 	width: 50px;
 	height: 24px;
 	line-height: 24px;
 	margin: 3px 5px;
 	text-align: center;
 	cursor: pointer;
+	font-weight: bold;
 }
 
-.table .foot .btn,.btn div,.operation .page,.page dd {
+.table .foot .btn,.table .foot .btn div,.table .foot .operation .page,.table .foot .operation .page dd {
 	float: left;
 }
 
@@ -412,28 +387,28 @@
 	cursor: pointer;
 }
 
-.table .foot .operation,.operation div {
+.table .foot .operation,.table .foot .operation div {
 	float: right;
 }
 
-.table .foot .add:hover,.sub:hover {
+.table .foot .operation .add:hover,.table .foot .operation .sub:hover {
 	color: #27AE60;
 }
 
-.table .foot .edit:hover {
+.table .foot .operation .edit:hover {
 	color: #E67E22;
 }
 
-.table .foot .delete:hover {
+.table .foot .operation .delete:hover {
 	color: #E74C3C;
 }
 
-.table .foot .check_all:hover,.check_invert:hover {
+.table .foot .btn .check_all:hover,.table .foot .btn .check_invert:hover {
 	color: #16A085;
 }
 
 .dialog {
 	display: none;
-	z-index: 1001;
+	z-index: 1002;
 	position: fixed;
 }

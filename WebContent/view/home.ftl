@@ -12,18 +12,6 @@
 		<script type="text/javascript" src="script/js/comm.js"></script>
 	</head>
 	<script type="text/javascript">
-		function loading(){
-			$('#load').css('left', (($(window).width()-$('#load').outerWidth())/2));
-			$('#load').css('top', (($(window).height()-$('#load').outerHeight())/2));
-			$('#load').fadeIn();
-		}
-		function hideModal(){
-			$('#modal').fadeOut();
-			$('#load').fadeOut();
-		}
-		function showModal(){
-			$('#modal').fadeIn();
-		}
 		$(document).ready(function(){
 			$('#title_in').bind({
 				mouseover:function(){
@@ -43,7 +31,7 @@
 		});
 	</script>
 	<body>
-		<div id="modal"><img id="load" src="style/image/loading.gif" /></div>
+		<#include "comm/dialog.ftl">
 		<div id="top">
 			<div id="panel">
 				<div id="user">
@@ -54,19 +42,16 @@
 			<div id="menu">
 				<div id="main">
 					<dl>
-						<dd class="active"></dd>
-						<dd>主菜单</dd>
-						<dd>主菜单</dd>
-						<dd>主菜单</dd>
-						<dd>主菜单</dd>
-						<dd class="last">主菜单</dd>
+						<dd class="active">基本设置</dd>
+						<dd>财务</dd>
+						<dd>人事</dd>
+						<dd class="last">库存</dd>
 					</dl>
 				</div>
 				<div id="second">
 					<dl>
 						<dd><a href="inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
-						<dd>二级菜单</dd>
-						<dd class="last">二级菜单</dd>
+						<dd class="last"><a href="inventory/goods/list" target="mainFrame">商品管理</a></dd>
 					</dl>
 				</div>
 			</div>
