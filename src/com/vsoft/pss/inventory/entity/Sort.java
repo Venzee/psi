@@ -11,6 +11,7 @@ public class Sort implements Serializable {
 	private int id;
 	private String name;
 	private String remark;
+	private int industryId;
 	private int topId;// 上级分类ID
 	private int level;// 分类级别
 
@@ -36,6 +37,14 @@ public class Sort implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public int getIndustryId() {
+		return industryId;
+	}
+
+	public void setIndustryId(int industryId) {
+		this.industryId = industryId;
 	}
 
 	public int getTopId() {
