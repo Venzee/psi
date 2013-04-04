@@ -12,9 +12,9 @@
 				autoOpen : true
 			}, setting);
 			obj.width(config.width);
-			var titleName = obj.find('.title_name');
+			var titleName = obj.find('.ui-title-name');
 			titleName.text(config.title);
-			var sourceName = obj.find('.source_name');
+			var sourceName = obj.find('.form-source-name');
 			$.each(config.label, function(i, n) {
 				var element;
 				if ($.isPlainObject(n)) {
@@ -24,7 +24,7 @@
 				}
 				sourceName.append(element);
 			});
-			var sourceValue = obj.find('.source_value');
+			var sourceValue = obj.find('.form-source-value');
 			$.each(config.source, function(i, n) {
 				sourceValue.append('<dd>' + n + '</dd>');
 			});
@@ -40,7 +40,7 @@
 			if (config.autoOpen) {
 				obj.slideDown();
 			}
-			obj.find('.close').click(function() {
+			obj.find('.btn-close').click(function() {
 				if(config.modal){
 					obj.modal.close();
 				}
@@ -55,7 +55,7 @@
 					obj.clear(sourceValue);
 				});
 			});
-			obj.find('.sub').click(function() {
+			obj.find('.btn-sub').click(function() {
 				var datas = 'randomNum=' + Math.random();
 				$.each($('#dialog .form_value'), function(i, n) {
 					datas = datas + "&" + $(this).attr('name') + "="

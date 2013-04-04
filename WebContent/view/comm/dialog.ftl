@@ -15,23 +15,23 @@
 		<div id="modal">
 			<img id="load" src="style/image/loading.gif" />
 		</div>
-		<div class="table form dialog" id="dialog">
-			<div class="head">
-				<div class="title">
-					<div class="title_name"></div>
-					<div class="operation">
-						<div class="close">关闭</div>					
+		<div class="ui-table ui-form dialog" id="dialog">
+			<div class="ui-head">
+				<div class="ui-title">
+					<div class="ui-title-name"></div>
+					<div class="ui-operation">
+						<div class="ui-btn btn-close">关闭</div>					
 					</div>
 				</div>
 			</div>
-			<div class="form_source">
-				<dl class="source_name"></dl>
-				<dl class="source_value"></dl>
+			<div class="form-source">
+				<dl class="form-source-name"></dl>
+				<dl class="form-source-value"></dl>
 				<div class="clear"></div>
 			</div>
-			<div class="foot">
-				<div class="operation">
-					<div class="sub">提交</div>
+			<div class="ui-foot">
+				<div class="ui-operation">
+					<div class="ui-btn btn-sub">提交</div>
 				</div>
 			</div>
 		</div>

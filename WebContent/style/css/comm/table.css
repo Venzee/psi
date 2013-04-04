@@ -1,145 +1,146 @@
 @CHARSET "UTF-8";
 
-.table .text_10 {
+/* COMM */
+.text_10 {
 	width: 10px;
 }
 
-.table .text_15 {
+.text_15 {
 	width: 15px;
 }
 
-.table .text_20 {
+.text_20 {
 	width: 20px;
 }
 
-.table .text_30 {
+.text_30 {
 	width: 30px;
 }
 
-.table .text_40 {
+.text_40 {
 	width: 40px;
 }
 
-.table .text_50 {
+.text_50 {
 	width: 50px;
 }
 
-.table .text_60 {
+.text_60 {
 	width: 60px;
 }
 
-.table .text_70 {
+.text_70 {
 	width: 70px;
 }
 
-.table .text_80 {
+.text_80 {
 	width: 80px;
 }
 
-.table .text_90 {
+.text_90 {
 	width: 90px;
 }
 
-.table .text_100 {
+.text_100 {
 	width: 100px;
 }
 
-.table .text_120 {
+.text_120 {
 	width: 120px;
 }
 
-.table .text_150 {
+.text_150 {
 	width: 150px;
 }
 
-.table .text_200 {
+.text_200 {
 	width: 200px;
 }
 
-.table .text_300 {
+.text_300 {
 	width: 300px;
 }
 
-.table .text_400 {
+.text_400 {
 	width: 400px;
 }
 
-.table .text_500 {
+.text_500 {
 	width: 500px;
 }
 
-.table .text_5p {
+.text_5p {
 	width: 5%;
 	max-width: 60px;
 	min-width: 40px;
 }
 
-.table .text_10p {
+.text_10p {
 	width: 10%;
 	max-width: 120px;
 	min-width: 80px;
 }
 
-.table .text_15p {
+.text_15p {
 	width: 15%;
 	max-width: 180px;
 	min-width: 120px;
 }
 
-.table .text_20p {
+.text_20p {
 	width: 20%;
 	max-width: 240px;
 	min-width: 160px;
 }
 
-.table .text_25p {
+.text_25p {
 	width: 25%;
 	max-width: 300px;
 	min-width: 200px;
 }
 
-.table .text_30p {
+.text_30p {
 	width: 30%;
 	max-width: 360px;
 	min-width: 240px;
 }
 
-.table .text_35p {
+.text_35p {
 	width: 35%;
 	max-width: 420px;
 	min-width: 280px;
 }
 
-.table .text_45p {
+.text_45p {
 	width: 45%;
 	max-width: 480px;
 	min-width: 320px;
 }
 
-.table .text_50p {
+.text_50p {
 	width: 50%;
 	max-width: 540px;
 	min-width: 360px;
 }
 
-.table .text_55p {
+.text_55p {
 	width: 55%;
 	max-width: 560px;
 	min-width: 400px;
 }
 
-.table {
+/* UI */
+.ui-table {
 	width: 100%;
 }
 
-.form {
+.ui-form{
 	width: 700px;
 	margin: 0 auto;
 }
 
-.table .head {
+.ui-head {
 	color: #eee;
-	font-weight: bold;
 	text-shadow: 0px 1px 1px #000;
 	border: 1px solid #2980B9;
 	background: #2980B9;
@@ -148,72 +149,74 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b75b4', endColorstr='#2980B9', GradientType=0);
 }
 
-.table .head .title,.table .head .operation {
+.ui-head .ui-title, .ui-operation {
 	height: 30px;
 }
 
-.table .head .title_name {
+.ui-head .ui-title-name {
 	height: 16px;
 	padding: 0 10px;
 	margin: 7px 10px;
 	line-height: 16px;
+	font-weight: bold;
 	border-left: 5px solid #2C3E50;
 	float: left;
 }
 
-.table .head .operation,.table .head .operation div {
+.ui-operation,.ui-operation div {
 	float: right;
 }
 
-.table .head .operation div {
+.ui-btn {
 	width: 50px;
 	height: 24px;
 	line-height: 24px;
+	font-weight: bold;
 	margin: 3px 5px;
 	text-align: center;
 	cursor: pointer;
 }
 
-.table .head .operation .add:hover,.table .head .operation .sub:hover {
+.ui-operation .btn-add:hover,.ui-operation .btn-sub:hover {
 	color: #27AE60;
 }
 
-.table .head .operation .edit:hover {
+.ui-operation .btn-edit:hover {
 	color: #E67E22;
 }
 
-.table .head .operation .delete:hover {
+.ui-operation .btn-delete:hover {
 	color: #E74C3C;
 }
 
-.table .head .operation .close:hover {
+.ui-operation .btn-close:hover {
 	color: #E74C3C;
 }
 
-.table .head .source_head {
+.table-source-head {
 	height: 28px;
 	line-height: 28px;
 }
 
-.table .source_head dl dd {
+.table-source-head dl dd {
 	float: left;
 	text-align: center;
 }
 
-.table .source {
+.table-source {
 	width: 100%;
 }
 
-.table .source .odd {
+.table-source .odd {
 	background-color: #f3f3f3;
 }
 
-.table .source dl dd {
+.table-source dl dd {
 	float: left;
 	text-align: center;
 }
 
-.table .source .source_line {
+.table-source-line {
 	height: 30px;
 	line-height: 30px;
 	border: 1px solid #dcdcdc;
@@ -222,17 +225,17 @@
 	cursor: pointer;
 }
 
-.table .source .source_line:HOVER {
+.table-source-line:HOVER {
 	background-color: #fff;
 }
 
-.table .source .source_line dd {
+.table-source-line dd {
 	height: 30px;
 	line-height: 30px;
 	text-shadow: 0px 1px 1px #555;
 }
 
-.table .source .source_line dd .checkbox {
+.table-source-line dd .checkbox {
 	display: block;
 	height: 20px;
 	width: 20px;
@@ -240,92 +243,92 @@
 	background: url("../../image/checkbox.png") -90px 0px no-repeat;
 }
 
-.table .source .source_line dd .checked {
+.table-source-line dd .checked {
 	background: url("../../image/checkbox.png") -60px -30px no-repeat;
 }
 
-.table .form_source {
+.form-source {
 	background-color: #fff;
 }
 
-.table .form_source dl {
+.form-source dl {
 	float: left;
 	margin: 5px 0;
 }
 
-.table .form_source dl dd {
+.form-source dl dd {
 	margin: 5px 0;
 }
 
-.table .form_source .error {
+.form-source .error {
 	border-color: #E74C3C;
 }
 
-.table .form_source .source_name {
+.form-source .form-source-name {
 	width: 120px;
 	text-align: center;
 }
 
-.table .form_source .source_name dd {
+.form-source .form-source-name dd {
 	height: 34px;
 	line-height: 34px;
 }
 
-.table .form_source .source_name .high {
+.form-source .form-source-name .high {
 	height: 89px;
 	line-height: 89px;
 }
 
-.table .form_source .source_name .img_150 {
+.form-source .form-source-name .img_150 {
 	height: 150px;
 	line-height: 150px;
 }
 
-.table .form_source .source_value {
+.form-source .form-source-value {
 	width: 70%;
 	text-align: left;
 }
 
-.table .form_source .source_value input {
+.form-source .form-source-value input {
 	height: 20px;
 	line-height: 20px;
 	padding: 5px;
 }
 
-.table .form_source .source_value textarea {
+.form-source .form-source-value textarea {
 	height: 75px;
 	padding: 5px;
 	overflow-y: auto;
 }
 
-.table .form_source .source_value select {
+.form-source .form-source-value select {
 	height: 34px;
 	line-height: 34px;
 	margin-right: 2px;
 	padding: 5px;
 }
 
-.table .form_source .source_value .img_150 {
+.form-source .form-source-value .img_150 {
 	height: 150px;
 }
 
-.table .form_source .source_value dd {
+.form-source .form-source-value dd {
 	width: 100%;
 }
 
-.table .form_source .source_value dd input.done {
+.form-source .form-source-value dd input.done {
 	background: url("../../image/done.png") 99% 5px no-repeat;
 }
 
-.table .form_source .source_value dd textarea.done {
+.form-source .form-source-value dd textarea.done {
 	background: url("../../image/done.png") 99% 35px no-repeat;
 }
 
-.table .form_source .source_value dd img.done {
+.form-source .form-source-value dd img.done {
 	background: url("../../image/done.png") 50% 65px no-repeat;
 }
 
-.table .foot {
+.ui-foot {
 	height: 30px;
 	color: #555;
 	border: 1px solid #dcdcdc;
@@ -336,36 +339,36 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee', GradientType=0);
 }
 
-.table .foot .btn,.table .foot .operation,.table .foot .operation .page {
+.ui-foot .btn,.ui-operation .page {
 	height: 30px;
 	line-height: 30px;
 }
 
-.table .foot .operation .page{
+.ui-operation .page{
 	margin-right: 10px;
 }
 
-.table .foot .operation .page dd:hover {
+.ui-operation .page dd:hover {
 	color: #3498DB;
 }
 
-.table .foot .operation .page dd.active {
+.ui-operation .page dd.active {
 	cursor: text;
 	background: #555;
 	color: #fff;
 }
 
-.table .foot .operation .page dd.page_num {
+.ui-operation .page dd.page_num {
 	cursor: text;
 	color: #555;
 }
 
-.table .foot .operation .page dd.record_count {
+.ui-operation .page dd.record_count {
 	cursor: text;
 	color: #555;
 }
 
-.table .foot .btn div,.table .foot .operation div {
+.ui-foot .btn div{
 	width: 50px;
 	height: 24px;
 	line-height: 24px;
@@ -375,11 +378,11 @@
 	font-weight: bold;
 }
 
-.table .foot .btn,.table .foot .btn div,.table .foot .operation .page,.table .foot .operation .page dd {
+.ui-foot .btn,.ui-foot .btn div,.ui-operation .page,.ui-operation .page dd {
 	float: left;
 }
 
-.table .foot .operation .page dd {
+.ui-operation .page dd {
 	padding: 0 10px;
 	height: 20px;
 	line-height: 20px;
@@ -387,23 +390,7 @@
 	cursor: pointer;
 }
 
-.table .foot .operation,.table .foot .operation div {
-	float: right;
-}
-
-.table .foot .operation .add:hover,.table .foot .operation .sub:hover {
-	color: #27AE60;
-}
-
-.table .foot .operation .edit:hover {
-	color: #E67E22;
-}
-
-.table .foot .operation .delete:hover {
-	color: #E74C3C;
-}
-
-.table .foot .btn .check_all:hover,.table .foot .btn .check_invert:hover {
+.ui-foot .btn .btn-check-all:hover,.ui-foot .btn .btn-check-invert:hover {
 	color: #16A085;
 }
 

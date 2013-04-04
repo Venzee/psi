@@ -25,7 +25,7 @@
 						url: 'add',
 						data: datas,
 						beforeSend: function(){
-							parent.$('#sortDialog .form_value').val('');
+							parent.$('#sortDialog .form-value').val('');
 							parent.$('#sortDialog').slideUp();
 							parent.loading();
 						},
@@ -70,7 +70,7 @@
 						success: function(data){
 							$('.add').click();
 							$.each(data,function(i){
-								$.each(parent.$('#sortDialog .form_value'),function(){
+								$.each(parent.$('#sortDialog .form-value'),function(){
 									if(i == $(this).attr('name')){
 										$(this).val(data[i]);
 									}
@@ -125,10 +125,10 @@
 			}
 			$('.check_all').click(function(){
 				if($(this).text() == '全选'){
-					$('.table').find('.checkbox').addClass('checked');
+					$('.ui-table').find('.checkbox').addClass('checked');
 					$(this).text('不全选');
 				}else{
-					$('.table').find('.checkbox').removeClass('checked');
+					$('.ui-table').find('.checkbox').removeClass('checked');
 					$(this).text('全选');
 				}
 			});
@@ -140,7 +140,7 @@
 					$('.check_all').text('全选');
 				}
 			});
-			$('.source_line').click(function(){
+			$('.form-source-line').click(function(){
 				$(this).find('.checkbox').toggleClass('checked');
 				if(checked()){
 					$('.check_all').text('不全选');
@@ -160,17 +160,17 @@
 				<div class="search_btn">查询</div>
 			</form>
 		</div> -->
-		<div class="table" id="sortTable">
-			<div class="head">
-				<div class="title">
-					<div class="title_name">商品类型表</div>
-					<div class="operation">
-						<div class="delete">删除</div>
-						<div class="edit">编辑</div>
-						<div class="add">新增</div>
+		<div class="ui-table" id="sortTable">
+			<div class="ui-head">
+				<div class="ui-title">
+					<div class="ui-title-name">商品类型表</div>
+					<div class="ui-operation">
+						<div class="ui-btn btn-delete">删除</div>
+						<div class="ui-btn btn-edit">编辑</div>
+						<div class="ui-btn btn-add">新增</div>
 					</div>
 				</div>
-				<div class="source_head">
+				<div class="table-source-head">
 					<dl>
 						<dd class="text_5p">选项</dd>
 						<dd class="text_5p">编号</dd>
@@ -180,10 +180,10 @@
 					</dl>
 				</div>
 			</div>
-			<div class="source">
+			<div class="table-source">
 				<#list sortList as sort>
 					<#if sort_index % 2 = 0>
-						<dl class="source_line odd">
+						<dl class="table-source-line odd">
 							<dd class="text_5p"><span id="${sort.sort.id}" class="checkbox"></span></dd>
 							<dd class="text_5p">${sort_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
 							<dd class="text_35p">${sort.sort.name}</dd>
@@ -192,7 +192,7 @@
 						</dl>
 					</#if>
 					<#if sort_index % 2 = 1>
-						<dl class="source_line">
+						<dl class="table-source-line">
 							<dd class="text_5p"><span id="${sort.sort.id}" class="checkbox"></span></dd>
 							<dd class="text_5p">${sort_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
 							<dd class="text_35p">${sort.sort.name}</dd>
@@ -202,55 +202,55 @@
 					</#if>
 				</#list>
 			</div>
-			<div class="foot">
+			<div class="ui-foot">
 				<#if (sortList?size>1) >
 					<div class="btn">
-						<div class="check_all">全选</div>
-						<div class="check_invert">反选</div>
+						<div class="ui-btn btn-check-all">全选</div>
+						<div class="ui-btn btn-check-invert">反选</div>
 					</div>
 				</#if>
-				<div class="operation">
+				<div class="ui-operation">
 					<#include "comm/page.ftl">
 				</div>
 			</div>
 		</div>
-		<div class="table form dialog" id="sortDialog">
-			<div class="head">
-				<div class="title">
-					<div class="title_name">表单标题</div>
-					<div class="operation">
-						<div class="close">关闭</div>					
+		<div class="ui-table ui-form dialog" id="sortDialog">
+			<div class="ui-head">
+				<div class="ui-title">
+					<div class="ui-title-name">表单标题</div>
+					<div class="ui-operation">
+						<div class="ui-btn btn-close">关闭</div>					
 					</div>
 				</div>
 			</div>
-			<div class="form_source">
-				<dl class="source_name">
+			<div class="form-source">
+				<dl class="form-source-name">
 					<dd>分类名称:</dd>
 					<dd>父级分类:</dd>
 					<dd class="high">备注:</dd>
 				</dl>
-				<dl class="source_value">
-					<dd><input type="text" class="text_500 not_null form_value" name="name" /></dd>
+				<dl class="form-source-value">
+					<dd><input type="text" class="text_500 not_null form-value" name="name" /></dd>
 					<dd>
-						<input type="hidden" class="form_value" name="id" value="0" />
-						<select class="text_150 form_value" name="topId">
+						<input type="hidden" class="form-value" name="id" value="0" />
+						<select class="text_150 form-value" name="topId">
 							<option value="1">分类1</option>
 							<option value="2">分类2</option>
 							<option value="3">分类3</option>
 						</select>
-						<select class="text_150 form_value" name="level">
+						<select class="text_150 form-value" name="level">
 							<option value="1">分类1</option>
 							<option value="1">分类2</option>
 							<option value="1">分类3</option>
 						</select>
 					</dd>
-					<dd><textarea class="text_500 not_null form_value" name="remark"></textarea></dd>
+					<dd><textarea class="text_500 not_null form-value" name="remark"></textarea></dd>
 				</dl>
 				<div class="clear"></div>
 			</div>
-			<div class="foot">
-				<div class="operation">
-					<div class="sub">提交</div>
+			<div class="ui-foot">
+				<div class="ui-operation">
+					<div class="btn-sub">提交</div>
 				</div>
 			</div>
 		</div>
