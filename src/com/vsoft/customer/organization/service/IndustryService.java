@@ -17,9 +17,9 @@ public class IndustryService {
 	@Autowired
 	private IndustryDao industryDao;
 
-	public void addIndustry(Industry industry) {
+	public boolean addIndustry(Industry industry) {
 		Map<String, Object> data = DataUtil.parseObjectToMap(industry, Industry.class);
-		industryDao.addIndustry(data);
+		return industryDao.addIndustry(data);
 	}
 
 	public List<Industry> queryAllIndustry() {

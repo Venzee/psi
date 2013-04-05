@@ -57,11 +57,11 @@
 			});
 			obj.find('.btn-sub').click(function() {
 				var datas = 'randomNum=' + Math.random();
-				$.each($('#dialog .form_value'), function(i, n) {
+				$.each($('#dialog .form-value'), function(i, n) {
 					datas = datas + "&" + $(this).attr('name') + "="
 							+ $(this).val();
 				});
-				var delf = {
+				var params = $.extend({
 					type : 'POST',
 					url : 'add',
 					data : datas,
@@ -69,16 +69,17 @@
 					},
 					success : function(msg) {
 						if (msg == 'true') {
-							obj.modal.close();
-							obj.slideUp();
-							obj.clear(sourceName);
-							obj.clear(sourceValue);
 							$(document).find('#mainFrame').contents().find('.pageForm').submit();
 						}
-					}
-				};
-				delf = $.extend(delf, config.data);
-				$.ajax(delf);
+					},
+					complete : function(){
+						obj.modal.close();
+						obj.slideUp();
+						obj.clear(sourceName);
+						obj.clear(sourceValue);
+					} 
+				}, config.data);
+				$.ajax(params);
 			});
 		},
 		loading : {

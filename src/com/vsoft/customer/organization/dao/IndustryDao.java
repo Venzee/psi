@@ -14,13 +14,15 @@ public class IndustryDao extends BaseDao {
 
 	private static final Logger LOG = Logger.getLogger(IndustryDao.class);
 
-	public void addIndustry(Map<String, Object> data) {
+	public boolean addIndustry(Map<String, Object> data) {
 		try {
 			this.insertToTable("com_customer_industry", data);
 			LOG.info("新增行业成功");
+			return true;
 		} catch (SQLException e) {
 			LOG.error("新增行业时出错", e);
 			e.printStackTrace();
+			return false;
 		}
 	}
 

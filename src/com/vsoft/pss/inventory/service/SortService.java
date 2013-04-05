@@ -36,8 +36,8 @@ public class SortService {
 		params.add(page.getPageRecord());
 		List<Map<String, Object>> datas = sortDao.queryAllSort(params);
 		for (Map<String, Object> data : datas) {
-			SortForm sort = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
-			list.add(sort);
+			SortForm sortForm = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
+			list.add(sortForm);
 		}
 		return list;
 	}
@@ -46,8 +46,8 @@ public class SortService {
 		List<SortForm> list = new ArrayList<SortForm>();
 		List<Map<String, Object>> datas = sortDao.queryAllSortByTopId(Arrays.asList(topId));
 		for (Map<String, Object> data : datas) {
-			SortForm sort = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
-			list.add(sort);
+			SortForm entity = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
+			list.add(entity);
 		}
 		return list;
 	}

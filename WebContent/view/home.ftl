@@ -52,6 +52,8 @@
 					<dl>
 						<dd><a href="inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
 						<dd class="last"><a href="inventory/goods/list" target="mainFrame">商品管理</a></dd>
+						<dd class="last"><a href="customer/organization/industry/list" target="mainFrame">行业管理</a></dd>
+						<dd class="last"><a href="inventory/goods/list" target="mainFrame">商品管理</a></dd>
 					</dl>
 				</div>
 			</div>

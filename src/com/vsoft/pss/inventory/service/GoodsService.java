@@ -32,16 +32,16 @@ public class GoodsService {
 		params.add(page.getPageRecord());
 		List<Map<String, Object>> datas = goodsDao.queryAllGoods(params);
 		for (Map<String, Object> data : datas) {
-			GoodsForm Goods = (GoodsForm) DataUtil.parseMapToObject(data, GoodsForm.class);
-			list.add(Goods);
+			GoodsForm goodsForm = (GoodsForm) DataUtil.parseMapToObject(data, GoodsForm.class);
+			list.add(goodsForm);
 		}
 		return list;
 	}
 	
 	public Goods queryOneGoods(Object id) {
 		Map<String, Object> data = goodsDao.queryOneGoods(Arrays.asList(id));
-		Goods Goods = (Goods) DataUtil.parseMapToObject(data, Goods.class);
-		return Goods;
+		Goods goods = (Goods) DataUtil.parseMapToObject(data, Goods.class);
+		return goods;
 	}
 
 	public boolean deleteGoods(String id) {

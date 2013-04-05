@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
+
 import com.vsoft.core.base.dao.BaseDao;
 
+@Repository
 public class BrandDao extends BaseDao {
 
 	private final static Logger LOG = Logger.getLogger(BrandDao.class);
@@ -22,9 +25,9 @@ public class BrandDao extends BaseDao {
 		}
 	}
 	
-	public boolean updateGoodsById(Map<String, Object> data) {
+	public boolean updateBrandById(Map<String, Object> data) {
 		try {
-			this.updateTableById("com_pss_goods", data);
+			this.updateTableById("com_pss_brand", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -32,9 +35,9 @@ public class BrandDao extends BaseDao {
 		return true;
 	}
 
-	public List<Map<String, Object>> queryAllGoods(List<Object> params) {
+	public List<Map<String, Object>> queryAllBrand(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select * from com_pss_goods s order by s.id desc limit ? , ?";
+		String sql = "select * from com_pss_brand s order by s.id desc limit ? , ?";
 		try {
 			datas = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {
@@ -43,9 +46,20 @@ public class BrandDao extends BaseDao {
 		return datas;
 	}
 	
-	public Map<String, Object> queryOneGoods(List<Object> params) {
+	public List<Map<String, Object>> queryBrandByIndustry(List<Object> params) {
+		List<Map<String, Object>> datas = null;
+		String sql = "select * from com_pss_brand s where s.industryId = ? or s.createCompanyId = ? order by s.id desc";
+		try {
+			datas = this.executeQueryWithMultiple(sql, params);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datas;
+	}
+	
+	public Map<String, Object> queryOneBrand(List<Object> params) {
 		Map<String, Object> data = null;
-		String sql = "select * from com_pss_goods s where s.id = ?";
+		String sql = "select * from com_pss_brand s where s.id = ?";
 		try {
 			data = this.executeQueryWithSingle(sql, params);
 		} catch (SQLException e) {
@@ -54,8 +68,8 @@ public class BrandDao extends BaseDao {
 		return data;
 	}
 	
-	public boolean deleteGoods(String id) {
-		StringBuffer sql = new StringBuffer("delete from com_pss_goods where id in (");
+	public boolean deleteBrand(String id) {
+		StringBuffer sql = new StringBuffer("delete from com_pss_brand where id in (");
 		sql.append(id).append(")");
 		try {
 			this.execute(sql.toString());
@@ -66,10 +80,10 @@ public class BrandDao extends BaseDao {
 		return true;
 	}
 
-	public int countGoodsById() {
+	public int countBrandById() {
 		int count = 0;
 		try {
-			count = this.countTable("com_pss_goods", "id", null);
+			count = this.countTable("com_pss_brand", "id", null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
