@@ -8,7 +8,7 @@ import com.vsoft.pss.relationship.entity.Contacts;
 import com.vsoft.pss.relationship.service.ContactsService;
 
 @Controller
-@RequestMapping("/relation")
+@RequestMapping("/pss/relation")
 public class ContactsController {
 
 	@Autowired

@@ -10,8 +10,8 @@ import com.vsoft.core.util.DataUtil;
 import com.vsoft.pss.receipt.dao.ReceiptDao;
 import com.vsoft.pss.receipt.dao.RecordDao;
 import com.vsoft.pss.receipt.entity.Receipt;
-import com.vsoft.pss.receipt.entity.ReceiptForm;
 import com.vsoft.pss.receipt.entity.Record;
+import com.vsoft.pss.receipt.entity.form.ReceiptForm;
 
 @Service
 public class ReceiptService {

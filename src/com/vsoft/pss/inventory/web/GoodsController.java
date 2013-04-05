@@ -15,7 +15,7 @@ import com.vsoft.pss.inventory.entity.form.GoodsForm;
 import com.vsoft.pss.inventory.service.GoodsService;
 
 @Controller
-@RequestMapping("/inventory/goods")
+@RequestMapping("/pss/inventory/goods")
 public class GoodsController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class GoodsController {
 		List<GoodsForm> list = goodsService.queryAllGoods(page);
 		map.put("page", page);
 		map.put("goodsList", list);
-		return "inventory/goods";
+		return "pss/inventory/goods";
 	}
 	
 	@ResponseBody

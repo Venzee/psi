@@ -1,7 +1,10 @@
-package com.vsoft.pss.receipt.entity;
+package com.vsoft.pss.receipt.entity.form;
 
 import java.io.Serializable;
 import java.util.List;
+
+import com.vsoft.pss.receipt.entity.Receipt;
+import com.vsoft.pss.receipt.entity.Record;
 
 public class ReceiptForm implements Serializable {
 

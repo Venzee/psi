@@ -8,13 +8,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.vsoft.core.base.entity.Page;
 import com.vsoft.pss.inventory.entity.Brand;
 import com.vsoft.pss.inventory.service.BrandService;
 
 @Controller
-@RequestMapping("/inventory/brand")
+@RequestMapping("/pss/inventory/brand")
 public class BrandController {
 
 	@Autowired
@@ -34,13 +33,6 @@ public class BrandController {
 		brandService.buildPage(page);
 		List<Brand> list = brandService.queryAllBrand(page);
 		map.put("brandList", list);
-		return "inventory/brand";
-	}
-
-	@ResponseBody
-	@RequestMapping("/list/industry")
-	public String queryAllBrand(Brand form) {
-		List<Brand> list = brandService.queryBrandByIndustry(form);
-		return JSON.toJSONString(list);
+		return "pss/inventory/brand";
 	}
 }

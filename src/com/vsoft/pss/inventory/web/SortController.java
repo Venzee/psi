@@ -16,7 +16,7 @@ import com.vsoft.pss.inventory.entity.form.SortForm;
 import com.vsoft.pss.inventory.service.SortService;
 
 @Controller
-@RequestMapping("/inventory/sort")
+@RequestMapping("/pss/inventory/sort")
 public class SortController {
 
 	@Autowired
@@ -40,7 +40,7 @@ public class SortController {
 		List<SortForm> list = sortService.queryAllSort(page);
 		map.put("page", page);
 		map.put("sortList", list);
-		return "inventory/sort";
+		return "pss/inventory/sort";
 	}
 	
 	@RequestMapping("/select/init")
@@ -50,7 +50,7 @@ public class SortController {
 		}
 		List<SortForm> list = sortService.queryAllSortByTopId(topId);
 		map.put("sortList", list);
-		return "inventory/sort2";
+		return "pss/inventory/sort2";
 	}
 	
 	@ResponseBody
