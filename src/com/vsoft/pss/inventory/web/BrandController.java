@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vsoft.core.base.entity.Page;
 import com.vsoft.pss.inventory.entity.Brand;
+import com.vsoft.pss.inventory.entity.form.BrandFrom;
 import com.vsoft.pss.inventory.service.BrandService;
 
 @Controller
@@ -31,7 +32,7 @@ public class BrandController {
 			page = new Page();
 		}
 		brandService.buildPage(page);
-		List<Brand> list = brandService.queryAllBrand(page);
+		List<BrandFrom> list = brandService.queryAllBrand(page);
 		map.put("brandList", list);
 		return "pss/inventory/brand";
 	}

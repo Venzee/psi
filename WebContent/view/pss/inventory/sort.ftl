@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
-	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../../style/css/pss.css">
+	<script type="text/javascript" src="../../../script/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.add').click(function(){

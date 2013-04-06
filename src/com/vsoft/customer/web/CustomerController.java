@@ -48,6 +48,6 @@ public class CustomerController {
 
 	@RequestMapping("/home")
 	public String home() {
-		return "home";
+		return "pss/home";
 	}
 }

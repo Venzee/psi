@@ -11,6 +11,7 @@ import com.vsoft.core.base.entity.Page;
 import com.vsoft.core.util.DataUtil;
 import com.vsoft.pss.inventory.dao.BrandDao;
 import com.vsoft.pss.inventory.entity.Brand;
+import com.vsoft.pss.inventory.entity.form.BrandFrom;
 
 @Service
 public class BrandService {
@@ -23,15 +24,15 @@ public class BrandService {
 		return brandDao.addBrand(data);
 	}
 
-	public List<Brand> queryAllBrand(Page page) {
-		List<Brand> list = new ArrayList<Brand>();
+	public List<BrandFrom> queryAllBrand(Page page) {
+		List<BrandFrom> list = new ArrayList<BrandFrom>();
 		List<Object> params = new ArrayList<Object>();
 		params.add(page.getStartRecord());
 		params.add(page.getPageRecord());
 		List<Map<String, Object>> datas = brandDao.queryAllBrand(params);
 		for (Map<String, Object> data : datas) {
-			Brand brand = (Brand) DataUtil.parseMapToObject(data, Brand.class);
-			list.add(brand);
+			BrandFrom brandFrom = (BrandFrom) DataUtil.parseMapToObject(data, BrandFrom.class);
+			list.add(brandFrom);
 		}
 		return list;
 	}

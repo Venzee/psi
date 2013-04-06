@@ -77,7 +77,7 @@
 						<dd class="text_5p">选项</dd>
 						<dd class="text_5p">编号</dd>
 						<dd class="text_35p">商品名称</dd>
-						<dd class="text_35p">备注</dd>
+						<dd class="text_55p">备注</dd>
 					</dl>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 							<dd class="text_5p"><span id="${industry.id}" class="checkbox"></span></dd>
 							<dd class="text_5p">${industry_index + 1}</dd>
 							<dd class="text_35p">${industry.name}</dd>
-							<dd class="text_35p">${industry.description}</dd>
+							<dd class="text_55p">${industry.description}</dd>
 						</dl>
 					</#if>
 					<#if industry_index % 2 = 1>
@@ -96,7 +96,7 @@
 							<dd class="text_5p"><span id="${industry.id}" class="checkbox"></span></dd>
 							<dd class="text_5p">${industry_index + 1}</dd>
 							<dd class="text_35p">${industry.name}</dd>
-							<dd class="text_35p">${industry.description}</dd>
+							<dd class="text_55p">${industry.description}</dd>
 						</dl>
 					</#if>
 				</#list>

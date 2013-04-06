@@ -6,19 +6,12 @@
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
 				parent.dialog({
-					title: '新增商品',
-					label: ['名称','简称','品牌','类型','单位','条码','可销售季节','搜索编码',{style: 'high', name:'备注'}],
-					data: {url:'inventory/goods/add'},
+					title: '新增品牌',
+					label: ['品牌名称','品牌所属行业'],
+					data: {url:'pss/inventory/brand/add'},
 					source: [
 						'<input type="text" class="text_500 not_null form-value" name="name" />',
-						'<input type="text" class="text_500 not_null form-value" name="shortName" />',
-						'<select class="text_150 form-value" name="sortId"><option value="1">请选择</option></select>',
-						'<select class="text_150 form-value" name="brandId"><option value="1">请选择</option></select>',
-						'<input type="text" class="text_500 not_null form-value" name="unit" />',
-						'<input type="text" class="text_500 not_null form-value" name="barcode" />',
-						'<input type="text" class="text_500 not_null form-value" name="seasons" />',
-						'<input type="text" class="text_500 not_null form-value" name="code" />',
-						'<textarea class="text_500 not_null form-value" name="remark"></textarea>'
+						'<select class="text_150 form-value" name="industryId"><option value="1">请选择</option></select>'
 					]
 				});
 			});
@@ -72,7 +65,7 @@
 		<div class="ui-table" id="sortTable">
 			<div class="ui-head">
 				<div class="ui-title">
-					<div class="ui-title-name">商品表</div>
+					<div class="ui-title-name">品牌信息</div>
 					<div class="ui-operation">
 						<div class="ui-btn btn-delete">删除</div>
 						<div class="ui-btn btn-edit">编辑</div>
@@ -83,44 +76,38 @@
 					<dl>
 						<dd class="text_5p">选项</dd>
 						<dd class="text_5p">编号</dd>
-						<dd class="text_35p">商品名称</dd>
-						<dd class="text_20p">商品分类</dd>
-						<dd class="text_35p">备注</dd>
+						<dd class="text_35p">品牌名称</dd>
+						<dd class="text_55p">所属行业</dd>
 					</dl>
 				</div>
 			</div>
 			<div class="table-source">
-				<#list goodsList as goods>
-					<#if goods_index % 2 = 0>
+				<#list brandList as brand>
+					<#if brand_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${goods.goods.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${goods_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
-							<dd class="text_35p">${goods.goods.name}</dd>
-							<dd class="text_20p">${goods.sortName}</dd>
-							<dd class="text_35p">${goods.goods.remark}</dd>
+							<dd class="text_5p"><span id="${brand.id}" class="checkbox"></span></dd>
+							<dd class="text_5p">${brand_index + 1}</dd>
+							<dd class="text_35p">${brand.brand.name}</dd>
+							<dd class="text_55p">${brand.industryName}</dd>
 						</dl>
 					</#if>
-					<#if goods_index % 2 = 1>
+					<#if brand_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${goods.goods.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${goods_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
-							<dd class="text_35p">${goods.goods.name}</dd>
-							<dd class="text_20p">${goods.sortName}</dd>
-							<dd class="text_35p">${goods.goods.remark}</dd>
+							<dd class="text_5p"><span id="${brand.id}" class="checkbox"></span></dd>
+							<dd class="text_5p">${brand_index + 1}</dd>
+							<dd class="text_35p">${brand.brand.name}</dd>
+							<dd class="text_55p">${brand.industryName}</dd>
 						</dl>
 					</#if>
 				</#list>
 			</div>
 			<div class="ui-foot">
-				<#if (goodsList?size>1) >
+				<#if (brandList?size>1) >
 					<div class="btn">
 						<div class="ui-btn btn-check-all">全选</div>
 						<div class="ui-btn btn-check-invert">反选</div>
 					</div>
 				</#if>
-				<div class="ui-operation">
-					<#include "comm/page.ftl">
-				</div>
 			</div>
 		</div>
 	</body>

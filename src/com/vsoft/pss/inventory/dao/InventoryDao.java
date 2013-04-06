@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.vsoft.core.base.dao.BaseDao;
 
+@Repository
 public class InventoryDao extends BaseDao {
 	private final static Logger LOG = Logger.getLogger(InventoryDao.class);
 

@@ -50,10 +50,10 @@
 				</div>
 				<div id="second">
 					<dl>
-						<dd><a href="inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
-						<dd class="last"><a href="inventory/goods/list" target="mainFrame">商品管理</a></dd>
+						<dd><a href="pss/inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
+						<dd><a href="pss/inventory/goods/list" target="mainFrame">商品管理</a></dd>
+						<dd><a href="pss/inventory/brand/list" target="mainFrame">品牌管理</a></dd>
 						<dd class="last"><a href="customer/organization/industry/list" target="mainFrame">行业管理</a></dd>
-						<dd class="last"><a href="inventory/goods/list" target="mainFrame">商品管理</a></dd>
 					</dl>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 		<div id="content">
-			<iframe frameborder="0" scrolling="no" width="100%" onload="frameAutoSize(this)" height="100%" src="inventory/sort/select/init?topId=0" id="mainFrame" name="mainFrame"></iframe>
+			<iframe frameborder="0" scrolling="no" width="100%" onload="frameAutoSize(this)" height="100%" src="pss/inventory/sort/select/init?topId=0" id="mainFrame" name="mainFrame"></iframe>
 		</div>
 	</body>
 </html>

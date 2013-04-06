@@ -24,7 +24,7 @@ public class BrandDao extends BaseDao {
 			return false;
 		}
 	}
-	
+
 	public boolean updateBrandById(Map<String, Object> data) {
 		try {
 			this.updateTableById("com_pss_brand", data);
@@ -37,7 +37,7 @@ public class BrandDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllBrand(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select * from com_pss_brand s order by s.id desc limit ? , ?";
+		String sql = "select b.*,i.name as industryname from com_pss_brand b left join com_customer_industry i on i.id = b.industryid order by b.id desc limit ? , ?";
 		try {
 			datas = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {
@@ -45,10 +45,10 @@ public class BrandDao extends BaseDao {
 		}
 		return datas;
 	}
-	
+
 	public List<Map<String, Object>> queryBrandByIndustry(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select * from com_pss_brand s where s.industryId = ? or s.createCompanyId = ? order by s.id desc";
+		String sql = "select b.id,b.name from com_pss_brand b where b.industryId = ? or b.createCompanyId = ? order by b.id desc";
 		try {
 			datas = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {
@@ -56,7 +56,7 @@ public class BrandDao extends BaseDao {
 		}
 		return datas;
 	}
-	
+
 	public Map<String, Object> queryOneBrand(List<Object> params) {
 		Map<String, Object> data = null;
 		String sql = "select * from com_pss_brand s where s.id = ?";
@@ -67,7 +67,7 @@ public class BrandDao extends BaseDao {
 		}
 		return data;
 	}
-	
+
 	public boolean deleteBrand(String id) {
 		StringBuffer sql = new StringBuffer("delete from com_pss_brand where id in (");
 		sql.append(id).append(")");
