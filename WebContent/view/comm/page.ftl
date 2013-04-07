@@ -27,7 +27,7 @@
 		<dl class="page">
 			<dd class="page_num">当前页&nbsp;：${page.currPage}&nbsp;/&nbsp;${page.totalPage}</dd>
 			<dd class="record_count">总记录：${page.count}&nbsp;条</dd>
-			<#if page.totalPage gt 0 >
+			<#if page.count gt 0 >
 				<#list 1..page.totalPage as i>
 					<#if i == page.currPage>
 						<dd class="pageNum active">${i}</dd>

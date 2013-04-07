@@ -1,6 +1,7 @@
 package com.vsoft.pss.receipt.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -23,5 +24,16 @@ public class ReceiptDao extends BaseDao {
 			e.printStackTrace();
 		}
 		return id;
+	}
+	
+	public List<Map<String, Object>> queryAllReceipt(List<Object> params) {
+		List<Map<String, Object>> datas = null;
+		String sql = "select * from com_pss_receipt r order by r.id desc limit ? , ?";
+		try {
+			datas = this.executeQueryWithMultiple(sql, params);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datas;
 	}
 }

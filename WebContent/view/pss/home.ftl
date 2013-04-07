@@ -53,6 +53,7 @@
 						<dd><a href="pss/inventory/sort/list" target="mainFrame">商品类型管理</a></dd>
 						<dd><a href="pss/inventory/goods/list" target="mainFrame">商品管理</a></dd>
 						<dd><a href="pss/inventory/brand/list" target="mainFrame">品牌管理</a></dd>
+						<dd><a href="pss/receipt/list" target="mainFrame">单据管理</a></dd>
 						<dd class="last"><a href="customer/organization/industry/list" target="mainFrame">行业管理</a></dd>
 					</dl>
 				</div>

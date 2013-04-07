@@ -21,7 +21,7 @@ public class Menu implements Serializable {
 	private int id;
 	private String name;
 	private String url;
-	private int ascriptionId;
+	private int topId;
 
 	public int getId() {
 		return id;
@@ -47,12 +47,12 @@ public class Menu implements Serializable {
 		this.url = url;
 	}
 
-	public int getAscriptionId() {
-		return ascriptionId;
+	public int getTopId() {
+		return topId;
 	}
 
-	public void setAscriptionId(int ascriptionId) {
-		this.ascriptionId = ascriptionId;
+	public void setTopId(int topId) {
+		this.topId = topId;
 	}
 
 }
