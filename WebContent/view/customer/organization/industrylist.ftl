@@ -6,7 +6,7 @@
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
 				parent.dialog({
-					title: '新增商品',
+					title: '新增行业',
 					label: ['名称',{style: 'high', name:'备注'}],
 					data: {url:'customer/organization/industry/add'},
 					source: [

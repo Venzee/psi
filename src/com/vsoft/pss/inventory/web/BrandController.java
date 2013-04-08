@@ -34,6 +34,6 @@ public class BrandController {
 		brandService.buildPage(page);
 		List<BrandFrom> list = brandService.queryAllBrand(page);
 		map.put("brandList", list);
-		return "pss/inventory/brand";
+		return "pss/inventory/brandlist";
 	}
 }

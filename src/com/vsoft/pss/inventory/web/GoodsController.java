@@ -39,7 +39,7 @@ public class GoodsController {
 		List<GoodsForm> list = goodsService.queryAllGoods(page);
 		map.put("page", page);
 		map.put("goodsList", list);
-		return "pss/inventory/goods";
+		return "pss/inventory/goodslist";
 	}
 	
 	@ResponseBody

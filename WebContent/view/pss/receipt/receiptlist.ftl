@@ -38,6 +38,9 @@
 				});
 				return isCheckAll;
 			}
+			$('.btn-add').click(function(){
+				
+			});
 		});
 	</script>
 	<body>
@@ -46,6 +49,7 @@
 				<div class="ui-title">
 					<div class="ui-title-name">单据信息</div>
 					<div class="ui-operation">
+						<div class="ui-btn btn-add">查看</div>
 					</div>
 				</div>
 				<div class="table-source-head">
@@ -90,5 +94,6 @@
 				</div>
 			</div>
 		</div>
+		<#include "pss/receipt/receipt.ftl">
 	</body>
 </html>
