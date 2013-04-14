@@ -43,13 +43,12 @@ input:focus,textarea:focus,img:focus,select:focus {
 	display: none;
 }
 
-#top {
+#head {
 	width: 100%;
-	margin-bottom: 20px;
 }
 
 #panel {
-	height: 55px;
+	height: 63px;
 	color: #eee;
 	text-shadow: 0px 1px 1px #555;
 	background: #34495E;
@@ -60,133 +59,109 @@ input:focus,textarea:focus,img:focus,select:focus {
 }
 
 #panel #user {
-	height: 45px;
+	height: 50px;
 	float: right;
 	margin: 5px;
 }
 
-#menu {
-	height: 60px;
-	background-color: #dcdcdc;
+#content{
+	width: 100%;
 }
 
-#menu dl dd {
+#menu {
+	width: 182px;
+	background: #fff;
 	float: left;
 }
 
-#menu dl .last {
-	border-right: none;
-}
-
-#menu #main {
-	height: 36px;
-	color: #fff;
-	font-size: 14px;
-	font-weight: bold;
-	background: #7d8f33;
-	text-shadow: 0px 1px 1px #000;
-	background: -moz-linear-gradient(top, #1ABC9C 0%, #16A085 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1ABC9C), color-stop(100%, #16A085));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1ABC9C', endColorstr='#16A085', GradientType=0);
-}
-
-#menu #main dd {
-	height: 36px;
-	padding: 0 30px;
-	line-height: 36px;
+#menuList {
 	cursor: pointer;
+	text-align: center;
 }
 
-#menu #main dd:HOVER {
-	
-}
-
-#menu #main dd.active {
-	
-}
-
-#menu #second {
-	height: 30px;
-	color: #000;
-	font-weight: bold;
-	background: #ddd;
-	text-shadow: 0px 1px 1px #555;
-	background: -moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #dddddd));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd', GradientType=0);
-}
-
-#menu #second dd {
-	height: 24px;
-	margin: 3px 0;
-	padding: 0 30px;
-	line-height: 24px;
-	cursor: pointer;
-}
-
-#menu #second dd:HOVER {
-	
-}
-
-/* FASTNAVI */
-#fastnavi {
-	width: 100%;
-	position: absolute;
-	display: none;
-}
-
-#fastnavi #title {
-	width: 100%;
+#menuList #menu-head {
 	height: 35px;
-}
-
-#fastnavi #title_in {
-	border: 1px solid #ccc;
-	font-weight: bold;
-	cursor: pointer;
-	float: right;
-	color: #555;
-	text-shadow: 1px 1px 0px #000;
 	background: #ddd;
+	text-shadow: 0px 1px 1px #000;
 	background: -moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #dddddd));
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd', GradientType=0);
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
 }
 
-#fastnavi #title_in:HOVER {
-	color: #000;
-	background: #eee;
-	background: -moz-linear-gradient(top, #dddddd 0%, #eeeeee 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #eeeeee));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee', GradientType=0);
+#menuList .menu-title {
+	height: 30px;
+	line-height: 30px;
+	font-weight: bold;
+	/*background: #ddd;
+	text-shadow: 0px 1px 1px #000;
+	background: -moz-linear-gradient(top, #eeeeee 0%, #dddddd 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #dddddd));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#dddddd', GradientType=0);*/
+	background: url("../../image/menu-title-bg.gif") top left no-repeat;
 }
 
-#fastnavi #naviButton {
-	height: 17px;
-	line-height: 17px;
-	margin: 7px 10px;
-	padding: 0 15px;
-	border-left: 5px solid blue;
+#menuList .open {
+	/*background: url("../images/app/second-menu-open-bg.gif") top left no-repeat;*/
 }
 
-#fastnavi #navi {
-	width: 111px;
+#menuList .menu-item {
 	display: none;
-	border: 1px solid #dcdcdc;
-	border-top: none;
-	background-color: #fff;
-	float: right;
+}
+
+.menu-item span {
+	display: block;
+	width: 100%;
+	height: 26px;
+	line-height: 26px;
+	background: url("../../image/menu-item-bg.gif") top left no-repeat;
+}
+
+.menu-item span:hover {
+	background: url("../../image/menu-item-hover-bg.gif") top left no-repeat;
+}
+
+.menu-item span.active {
+	color: #2475b9;
+}
+
+.menu-item span.active:hover {
+	color: #2475b9;
+	cursor: text;
+}
+
+.top-line {
+	display: none;
+	height: 5px;
+	background: url("../../image/menu-topline.gif") top left no-repeat
+}
+
+#main {
+	float: left;
+}
+
+#menu-navi {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 20px;
+}
+
+#navi-title {
+	padding-left: 15px;
+	font-weight: bold;
+	border-bottom: 5px solid #808080;
+}
+
+#frame {
+	
+}
+
+#frame iframe {
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 /* CONTENT COMM */
-#content {
-	width: 80%;
-	margin: 0 auto;
-}
-
 .holder .todo {
 	width: 300px;
 	float: left;

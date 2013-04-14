@@ -40,7 +40,7 @@ public class SortController {
 		List<SortForm> list = sortService.queryAllSort(page);
 		map.put("page", page);
 		map.put("sortList", list);
-		return "pss/inventory/sort";
+		return "pss/inventory/sortlist";
 	}
 	
 	@RequestMapping("/select/init")

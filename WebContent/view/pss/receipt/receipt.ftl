@@ -164,7 +164,7 @@
 		height: 25px;
 	}
 	.receipt-foot dl dd{
-		width: 30%;
+		width: 33%;
 		float: left;
 		line-height: 25px;
 	}
@@ -174,7 +174,7 @@
 	<div class="receipt">
 		<div class="receipt-head">
 			<div class="receipt-info">
-				<div class="info-name">某某公司</div>
+				<div class="info-name">深圳市某某某某公司</div>
 				<div class="info-address">深圳市某某某地区某某路某某号某某栋</div>
 				<div class="info-contact">电话：0755-00000000 传真：0755-8888888</div>
 			</div>

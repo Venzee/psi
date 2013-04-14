@@ -17,6 +17,12 @@ a {
 	text-decoration: none;
 	color: #000;
 }
+
+#menu {
+	width: 180px;
+	float: left;
+}
+
 #menuList {
 	cursor: pointer;
 	text-align: center;

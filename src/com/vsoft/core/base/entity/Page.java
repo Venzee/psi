@@ -11,7 +11,7 @@ public class Page implements Serializable {
 	private int currPage = 1;// 当前页码,默认1
 	private int totalPage = 1;// 总页数
 	private int count = 0;// 总记录数
-	private int pageRecord = 12;// 每页记录数
+	private int pageRecord = 10;// 每页记录数
 	private int startRecord = 1;// 开始记录数
 
 	/**
