@@ -2,10 +2,11 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="../../../style/css/pss.css">
 	<script type="text/javascript" src="../../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
-				parent.dialog({
+				$.dialog({
 					title: '新增商品',
 					label: ['名称','简称','品牌','类型','单位','条码','可销售季节','搜索编码',{style: 'high', name:'备注'}],
 					data: {url:'inventory/goods/add'},

@@ -41,7 +41,7 @@ public class CustomerController {
 			result = SessionUtil.putSession(sessionId, user);
 		}
 		if (result) {
-			return "redirect:home";
+			return "redirect:index";
 		}
 		return "";
 	}
@@ -49,5 +49,20 @@ public class CustomerController {
 	@RequestMapping("/home")
 	public String home() {
 		return "pss/home";
+	}
+	
+	@RequestMapping("/index")
+	public String index() {
+		return "pss/index";
+	}
+	
+	@RequestMapping("/head")
+	public String head() {
+		return "pss/head";
+	}
+	
+	@RequestMapping("/menu")
+	public String menu() {
+		return "pss/menu";
 	}
 }

@@ -12,34 +12,22 @@
 		<script type="text/javascript" src="script/js/comm.js"></script>
 	</head>
 	<script type="text/javascript">
+		var isIE6 = navigator.userAgent.indexOf("MSIE 6.0") > 0 ? true : false;
 		function iframeAutoHeight(){
-			if($("#frame iframe").contents().find('body').height() > $('#frame').height()){
+			if(getChildFrame('body').height() > $('#frame').height()){
 				$('#frame').css('padding-right', '0');
 			}else{
 				$('#frame').css('padding', '0 15px');
 			}
-			$('#frame iframe').height($('#frame').height());
+			$('#frame').height($('#main').height() - 55);
+			$('#ui-iframe').height($('#frame').height());
+			if(isIE6){
+				$('#ui-iframe').width($('#frame').width() - 182);
+			}else{
+				$('#ui-iframe').width($('#frame').width());
+			}
 		}
 		$(document).ready(function(){
-			$('#menu').height($(document).height() - $('#head').height() -1);
-			$('#main').width($(document).width() - $('#menu').width());
-			$('#main').height($(document).height() - $('#head').height() -1);
-			$('#frame').height($('#main').height() - $('#menu-navi').height() - 40);
-			$('#title_in').bind({
-				mouseover:function(){
-					$('#navi').show('fast');
-					$('#navi').bind({
-						mouseout:function(){$(this).hide('fast');}
-					})
-				}
-			})
-			$(window).scroll(function(){
-				if($(window).scrollTop() > $('#top').height()){
-					$('#fastnavi').css('margin-top', $(window).scrollTop() - $('#top').height());
-				}else{
-					$('#fastnavi').css('margin-top', 0);
-				}
-			})
 			/* 菜单控制 */
 			$('#menuList .menu-title').click(function() {
 				if ($(this).hasClass('active')) {
@@ -61,7 +49,11 @@
 					var title = $(this).parents('dl').find('.menu-title').text() + ' >> ' + $(this).text();
 					$('#navi-title').text(title);
 					var url = $(this).attr('title') + '?randomNum=' + Math.random();
-					$('#mainFrame').attr('src', url);
+					//$('#mainFrame').attr('src', url);
+					$('#frame').html('<iframe onload="iframeAutoHeight()" frameborder="0" scrolling="yes" width="100%" id="ui-iframe" name="mainFrame" src="' + url + '"></iframe>');
+					/*$.get(url, function(data){
+						$('#frame').html(data);
+					});*/
 				}
 			});
 		});
@@ -99,12 +91,11 @@
 			    </div>
 		    </div>
 		    <div id="main">
-		    	<div id="menu-navi"><div id="navi-title">首页</div></div>
+		    	<div id="menu-navi"><span id="navi-title">首页</span></div>
 			    <div id="frame">
-					<iframe onload="iframeAutoHeight()" frameborder="0" scrolling="yes" width="100%" src="pss/inventory/sort/select/init?topId=0" id="mainFrame" name="mainFrame"></iframe>
-				</div>
+			    	<!-- <iframe onload="iframeAutoHeight()" frameborder="0" scrolling="yes" width="100%" src="pss/inventory/sort/select/init?topId=0" id="mainFrame" name="mainFrame"></iframe> -->
+			    </div>
 			</div>
-			<div class="clear"></div>
 		</div>
 	</body>
 </html>
