@@ -11,7 +11,7 @@ public class Brand implements Serializable {
 	private int id;
 	private String name; // 品牌名称
 	private int industryId; // 品牌所属行业ID
-	private int creatCompanyId; // 新建品牌的公司ID 0为全部可见(默认)
+	private int companyId; // 新建品牌的公司ID 0为全部可见(默认)
 
 	public int getId() {
 		return id;
@@ -37,12 +37,12 @@ public class Brand implements Serializable {
 		this.industryId = industryId;
 	}
 
-	public int getCreatCompanyId() {
-		return creatCompanyId;
+	public int getCompanyId() {
+		return companyId;
 	}
 
-	public void setCreatCompanyId(int creatCompanyId) {
-		this.creatCompanyId = creatCompanyId;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 
 }

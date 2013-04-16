@@ -15,7 +15,7 @@ import com.vsoft.pss.inventory.entity.form.GoodsForm;
 import com.vsoft.pss.inventory.service.GoodsService;
 
 @Controller
-@RequestMapping("/pss/inventory/goods")
+@RequestMapping("/inventory/goods")
 public class GoodsController {
 
 	@Autowired

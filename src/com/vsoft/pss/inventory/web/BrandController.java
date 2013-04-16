@@ -14,7 +14,7 @@ import com.vsoft.pss.inventory.entity.form.BrandFrom;
 import com.vsoft.pss.inventory.service.BrandService;
 
 @Controller
-@RequestMapping("/pss/inventory/brand")
+@RequestMapping("/inventory/brand")
 public class BrandController {
 
 	@Autowired

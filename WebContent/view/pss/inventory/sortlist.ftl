@@ -1,7 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<link rel="stylesheet" type="text/css" href="../../../style/css/pss.css">
-	<script type="text/javascript" src="../../../script/js/jquery-1.9.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
+	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.add').click(function(){
@@ -114,40 +115,7 @@
 					});
 				}
 			});
-			function checked(){
-				var isCheckAll = true;
-				$.each($('.table').find('.checkbox'), function(i,n){
-					if($(this).attr('class') == 'checkbox'){
-						isCheckAll = false;
-					}
-				});
-				return isCheckAll;
-			}
-			$('.check_all').click(function(){
-				if($(this).text() == '全选'){
-					$('.ui-table').find('.checkbox').addClass('checked');
-					$(this).text('不全选');
-				}else{
-					$('.ui-table').find('.checkbox').removeClass('checked');
-					$(this).text('全选');
-				}
-			});
-			$('.check_invert').click(function(){
-				$('.table').find('.checkbox').toggleClass('checked');
-				if(checked()){
-					$('.check_all').text('不全选');
-				}else{
-					$('.check_all').text('全选');
-				}
-			});
-			$('.form-source-line').click(function(){
-				$(this).find('.checkbox').toggleClass('checked');
-				if(checked()){
-					$('.check_all').text('不全选');
-				}else{
-					$('.check_all').text('全选');
-				}
-			});
+			
 		});
 	</script>
 	<body>

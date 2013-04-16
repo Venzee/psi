@@ -33,8 +33,9 @@
 					$(this).addClass('active');
 					//var title = $(this).parents('dl').find('.menu-title').text() + ' >> ' + $(this).text();
 					//$('#navi-title').text(title);
+					//$(top.document).find('body').append(<div style='z-index: 9998; width: 100%; height:100%;background-color: #000;position: absolute;left:0; top:0;filter:alpha(opacity=50);-moz-opacity: 0.5; opacity: 0.5; '></div>);
 					var url = $(this).attr('title') + '?randomNum=' + Math.random();
-					self.parent.frames['mainFrame'].src = url;
+					parent.frames['mainFrame'].location = url;
 					//$('#mainFrame').attr('src', url);
 				}
 			});

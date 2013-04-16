@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -9,11 +11,12 @@
 	<!-- <context:annotation-config /> -->
 	<context:component-scan base-package="com" />
 
-	<!-- <mvc:resources location="/style/" mapping="/style/*" />
-		<mvc:resources location="/script/" mapping="/script/*" /> -->
+	<!-- <mvc:resources location="/style/" mapping="/style/*" /> <mvc:resources 
+		location="/script/" mapping="/script/*" /> -->
 
 	<!-- Freemarker的视图配置 -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="cache" value="true" />
 		<property name="suffix" value=".ftl" />
 		<property name="contentType" value="text/html;charset=UTF-8" />
@@ -23,7 +26,8 @@
 		<property name="exposeSessionAttributes" value="true" />
 	</bean>
 
-	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="templateLoaderPath" value="/view/" />
 		<property name="freemarkerSettings">
 			<props>
@@ -38,9 +42,11 @@
 	</bean>
 
 	<!-- Druid 数据连接池 -->
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
-		<property name="url" value="jdbc:mysql://localhost:3306/vsoft?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/vsoft?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 		<!-- 配置初始化大小、最小、最大 -->
@@ -59,8 +65,9 @@
 		<property name="testOnReturn" value="false" />
 		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
 		<property name="poolPreparedStatements" value="true" />
-		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20" />
 		<!-- 配置监控统计拦截的filters -->
-		<property name="filters" value="stat" />
+		<property name="filters" value="wall,stat" />
 	</bean>
 </beans>

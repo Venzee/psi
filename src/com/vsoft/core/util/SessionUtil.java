@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
-import com.vsoft.customer.user.entity.User;
+import com.vsoft.pss.user.entity.User;
 
 public class SessionUtil {
 

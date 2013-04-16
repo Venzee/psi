@@ -40,7 +40,7 @@ public class BrandService {
 	public List<Brand> queryBrandByIndustry(Brand form) {
 		List<Brand> list = new ArrayList<Brand>();
 		List<Object> params = new ArrayList<Object>();
-		params.add(form.getCreatCompanyId());
+		params.add(form.getCompanyId());
 		params.add(form.getIndustryId());
 		List<Map<String, Object>> datas = brandDao.queryAllBrand(params);
 		for (Map<String, Object> data : datas) {

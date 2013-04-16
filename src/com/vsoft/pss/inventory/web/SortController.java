@@ -16,7 +16,7 @@ import com.vsoft.pss.inventory.entity.form.SortForm;
 import com.vsoft.pss.inventory.service.SortService;
 
 @Controller
-@RequestMapping("/pss/inventory/sort")
+@RequestMapping("/inventory/sort")
 public class SortController {
 
 	@Autowired

@@ -37,7 +37,7 @@ public class BrandDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllBrand(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select b.*,i.name as industryname from com_pss_brand b left join com_customer_industry i on i.id = b.industryid order by b.id desc limit ? , ?";
+		String sql = "select b.*,i.name as industryname from com_pss_brand b left join com_pss_industry i on i.id = b.industryid order by b.id desc limit ? , ?";
 		try {
 			datas = this.executeQueryWithMultiple(sql, params);
 		} catch (SQLException e) {

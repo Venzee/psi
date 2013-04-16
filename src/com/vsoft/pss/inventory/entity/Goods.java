@@ -18,7 +18,7 @@ public class Goods implements Serializable {
 	private String seasons;// 商品可销售季节 1为春季，2为夏季，3为秋季，4为冬季；可有多个值，以“,”分隔
 	private String code;// 编码，用于快速搜索，一般为商品简称拼音首字母缩写
 	private String remark;
-	private int creatCompanyId; // 新建商品的公司ID 0为全部(默认)
+	private int companyId; // 新建商品的公司ID 0为全部(默认)
 
 	public int getId() {
 		return id;
@@ -100,12 +100,12 @@ public class Goods implements Serializable {
 		this.remark = remark;
 	}
 
-	public int getCreatCompanyId() {
-		return creatCompanyId;
+	public int getCompanyId() {
+		return companyId;
 	}
 
-	public void setCreatCompanyId(int creatCompanyId) {
-		this.creatCompanyId = creatCompanyId;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 
 }

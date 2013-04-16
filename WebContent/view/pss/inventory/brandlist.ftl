@@ -1,13 +1,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<link rel="stylesheet" type="text/css" href="../../../style/css/pss.css">
-	<script type="text/javascript" src="../../../script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="../../../script/js/ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
+	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/js/ui.js"></script>
+	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
 				$.dialog({
 					title: '新增品牌',
+					target: parent.$('body'),
 					label: ['品牌名称','品牌所属行业'],
 					data: {url:'pss/inventory/brand/add'},
 					source: [
@@ -109,6 +111,9 @@
 						<div class="ui-btn btn-check-invert">反选</div>
 					</div>
 				</#if>
+				<div class="ui-operation">
+					<#include "comm/page.ftl">
+				</div>
 			</div>
 		</div>
 	</body>

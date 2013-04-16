@@ -1,9 +1,10 @@
 @CHARSET "UTF-8";
 
-body {
-	font: normal 14px "微软雅黑";
+body,html {
+	font: 14px "Microsoft Yahei", sans-serif;
 	background-color: #eee;
 	background-image: url("../../image/body_bg.png");
+	overflow: hidden;
 }
 
 input,textarea,img,select {
@@ -17,21 +18,28 @@ input:focus,textarea:focus,img:focus,select:focus {
 }
 
 .clear {
-	height: 1px;
+	display: block;
+	width: 0;
+	height: 0;
+	font-size: 0;
 	clear: both;
+	visibility: hidden;
+	background: none;
+	border: none;
 	float: none;
+	overflow: none;
 }
 
-#modal {
+#cover {
 	left: 0;
 	top: 0;
 	z-index: 1000;
 	width: 100%;
-	display: none;
 	height: 100%;
+	display: none;
 	background-color: #000;
 	position: fixed;
-	filter: alpha(opacity =     50);
+	filter: alpha(opacity =           50);
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
@@ -65,23 +73,6 @@ input:focus,textarea:focus,img:focus,select:focus {
 	margin: 5px;
 }
 
-#content{
-	position: absolute;
-	width: 100%;
-	left: 0;
-	right: 0;
-	top: 65px;
-	bottom: 0;
-}
-
-#main {
-	position: absolute;
-	left: 182px;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
 #menu-navi {
 	height: 30px;
 	line-height: 30px;
@@ -94,18 +85,17 @@ input:focus,textarea:focus,img:focus,select:focus {
 	font-weight: bold;
 }
 
-#frame {
-	overflow-x: hidden;
-	overflow-y: auto;
+#menu,#menu-navi,#content {
+	float: left;
+	display: inline;
 }
 
-#ui-iframe {
-	position: absolute;
+#content {
+	margin: 0 20px;
 }
 
 /* MENU */
 #menu {
-	position: absolute;
 	width: 182px;
 	background: #808080;
 	left: 0;
@@ -257,7 +247,7 @@ input:focus,textarea:focus,img:focus,select:focus {
 	background: #1ABC9C;
 }
 
-.holder .list .list-head input{
+.holder .list .list-head input {
 	width: 250px;
 	height: 24px;
 	line-height: 24px;
@@ -285,6 +275,7 @@ input:focus,textarea:focus,img:focus,select:focus {
 .holder .list dl .list-item div {
 	float: left;
 }
+
 .holder .list dl .list-item .item-icon {
 	width: 30px;
 	height: 30px;

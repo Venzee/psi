@@ -13,7 +13,7 @@ import com.vsoft.pss.receipt.entity.form.ReceiptForm;
 import com.vsoft.pss.receipt.service.ReceiptService;
 
 @Controller
-@RequestMapping("/pss/receipt")
+@RequestMapping("/receipt")
 public class ReceiptController {
 
 	@Autowired
