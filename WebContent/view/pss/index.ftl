@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="style/css/pss.css">
 <script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="script/js/comm.js"></script>
+<script type="text/javascript" src="script/js/ui.js"></script>
 </head>
 	<body>
         <div id="popupmenu" style="display: none;">
@@ -87,12 +88,16 @@
 		});
 		$('.menu-item span').click(function(){
 			if (!$(this).hasClass('active')) {
+				$.showCover($('body'));
+				$.showLoading($('body'));
 				$('.menu-item span').removeClass('active');
 				$(this).addClass('active');
 				var title = $(this).parents('dl').find('.menu-title').text() + ' >> ' + $(this).text();
 				$('#navi-title').text(title);
 				var url = $(this).attr('title') + '?randomNum=' + Math.random();
 				$('#mainFrame').attr('src', url);
+				$.hideLoading($('body'));
+				$.hideCover($('body'));
 			}
 		});
 		</script>
