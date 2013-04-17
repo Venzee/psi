@@ -11,7 +11,6 @@
 					title: '新增商品',
 					target: parent.$('body'),
 					label: ['名称','简称','品牌','类型','单位','条码','可销售季节','搜索编码',{style: 'high', name:'备注'}],
-					data: {url:'inventory/goods/add'},
 					source: [
 						'<input type="text" class="text_500 not_null form-value" name="name" />',
 						'<input type="text" class="text_500 not_null form-value" name="shortName" />',

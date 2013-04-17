@@ -11,7 +11,6 @@
 					title: '新增行业',
 					target: parent.$('body'),
 					label: ['名称',{style: 'high', name:'备注'}],
-					data: {url:'organization/industry/add'},
 					source: [
 						'<input type="text" class="text_500 not_null form-value" name="name" />',
 						'<textarea class="text_500 not_null form-value" name="description"></textarea>'

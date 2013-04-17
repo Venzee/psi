@@ -32,4 +32,15 @@ public class IndustryService {
 		}
 		return list;
 	}
+
+	public List<Industry> queryAllIndustryWithoutDescription() {
+		List<Industry> list = new ArrayList<Industry>();
+		List<Object> params = new ArrayList<Object>();
+		List<Map<String, Object>> data = industryDao.queryAllIndustryWithoutDescription(params);
+		for (Map<String, Object> map : data) {
+			Industry industry = (Industry) DataUtil.parseMapToObject(map, Industry.class);
+			list.add(industry);
+		}
+		return list;
+	}
 }

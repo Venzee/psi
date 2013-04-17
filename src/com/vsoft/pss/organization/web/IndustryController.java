@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.vsoft.pss.organization.entity.Industry;
 import com.vsoft.pss.organization.service.IndustryService;
 
@@ -22,6 +23,13 @@ public class IndustryController {
 	@RequestMapping("/add")
 	public String addindustry(Industry industry) {
 		return String.valueOf(industryService.addIndustry(industry));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ajaxlist", produces = "text/html;charset=UTF-8")
+	public String queryAllIndustry() {
+		List<Industry> list = industryService.queryAllIndustryWithoutDescription();
+		return JSON.toJSONString(list);
 	}
 	
 	@RequestMapping("/list")

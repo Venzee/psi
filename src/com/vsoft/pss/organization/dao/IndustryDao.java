@@ -38,4 +38,15 @@ public class IndustryDao extends BaseDao {
 		return list;
 	}
 
+	public List<Map<String, Object>> queryAllIndustryWithoutDescription(List<Object> params) {
+		List<Map<String, Object>> list = null;
+		String sql = "select t.id,t.name from com_pss_industry t";
+		try {
+			list = this.executeQueryWithMultiple(sql, params);
+		} catch (SQLException e) {
+			LOG.error("查询多个行业时出错", e);
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

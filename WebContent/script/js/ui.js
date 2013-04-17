@@ -58,6 +58,41 @@
 				$(this).remove();
 			});
 		});
+		config.target.find('.btn-sub').on('click', function() {
+			var datas = 'randomNum=' + Math.random();
+			$.each(config.target.find('.form-value'), function(i, n) {
+				datas = datas + "&" + $(this).attr('name') + "="
+						+ $(this).val();
+			});
+			var params = $.extend({
+				type : 'POST',
+				url : 'add',
+				data : datas,
+				beforeSend : function() {
+					config.target.find('.dialog').slideUp('fast', function() {
+						$(this).remove();
+					});
+					$.showLoading(config.target);
+				},
+				success : function(msg) {
+					if (msg == 'true') {
+						var form = config.target.find('#mainFrame').contents().find('.pageForm');
+						if(form != undefined){
+							form.submit();
+						} else {
+							var src = config.target.find('#mainFrame').attr('src');
+							src = src.substring(0, src.indexOf('randomNum')) + '=' + Math.random();
+							config.target.find('#mainFrame').attr('src', src);
+						}
+					}
+				},
+				complete : function(){
+					$.hideLoading(config.target);
+					$.hideCover(config.target);
+				} 
+			}, config.data);
+			$.ajax(params);
+		});
 		if (config.cover) {
 			$.showCover(config.target);
 		}
