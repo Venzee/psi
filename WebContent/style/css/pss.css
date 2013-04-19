@@ -1,17 +1,5 @@
-/* -----------------------------------------------
-
-	* Screen Style Sheet
-
-	* Name: Transdmin Light
-	
-	* Coded by: Perspectived
-	  http://www.perspectived.com
-
------------------------------------------------ */
-
-/* CSS reset by Eric Meyer */
 @import url("comm/reset.css");
 
-@import url("comm/table.css");
+@import url("comm/ui.css");
 
 @import url("pss/web.css");

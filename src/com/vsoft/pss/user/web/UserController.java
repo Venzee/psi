@@ -46,11 +46,6 @@ public class UserController {
 		return "";
 	}
 
-	@RequestMapping("/home")
-	public String home() {
-		return "pss/home";
-	}
-	
 	@RequestMapping("/index")
 	public String index() {
 		return "pss/index";

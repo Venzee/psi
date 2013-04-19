@@ -139,6 +139,11 @@
 	margin: 0 auto;
 }
 
+.ui-tip {
+	width: 300px;
+	margin: 0 auto;
+}
+
 .ui-head {
 	color: #eee;
 	text-shadow: 0px 1px 1px #000;
@@ -155,12 +160,23 @@
 
 .ui-head .ui-title-name {
 	height: 16px;
-	padding: 0 10px;
+	padding: 0 0 0 20px;
 	margin: 7px 10px;
 	line-height: 16px;
 	font-weight: bold;
-	border-left: 5px solid #2C3E50;
 	float: left;
+}
+
+.ui-table-title-name {
+	background: url("../../image/ui-table-title-bg.png") left top no-repeat;
+}
+
+.ui-form-title-name {
+	background: url("../../image/ui-from-title-bg.png") left top no-repeat;
+}
+
+.ui-tip-title-name {
+	background: url("../../image/ui-tip-title-bg.png") left top no-repeat;
 }
 
 .ui-operation,.ui-operation div {
@@ -177,7 +193,7 @@
 	cursor: pointer;
 }
 
-.ui-operation .btn-add:hover,.ui-operation .btn-sub:hover {
+.ui-operation .btn-add:hover,.ui-operation .btn-sub:hover,.ui-operation .btn-view:hover {
 	color: #27AE60;
 }
 
@@ -394,8 +410,42 @@
 	color: #16A085;
 }
 
-.dialog {
+.ui-dialog {
 	z-index: 1003;
 	position: fixed;
 	display: none;
+}
+
+.tip-body {
+	padding: 10px 0;
+	background: #fff;
+}
+
+.tip-msg {
+	height: 32px;
+	line-height: 32px;
+}
+
+.tip-msg span {
+	display: block;
+	height: 32px;
+	line-height: 32px;
+	margin: 0 20px;
+	padding-left: 40px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.tip-info {
+	background: url("../../image/tip-info-bg.png") left top no-repeat;
+}
+
+.tip-error {
+	color: #e60000;
+	background: url("../../image/tip-info-error.png") left top no-repeat;
+}
+
+.tip-warning {
+	color: #d35400;
+	background: url("../../image/tip-info-warning.png") left top no-repeat;
 }

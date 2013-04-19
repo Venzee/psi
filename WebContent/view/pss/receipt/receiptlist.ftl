@@ -3,18 +3,27 @@
 	<link rel="stylesheet" type="text/css" href="../style/css/pss.css">
 	<script type="text/javascript" src="../script/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="../script/js/comm.js"></script>
+	<script type="text/javascript" src="../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			$('.btn-view').click(function(){
+				$.dialog({
+					type : 'tip',
+					level : 'error',
+					width : 300,
+					msg : '这是一个小提示',
+					target : parent.$('body')
+				});
+			});
 		});
 	</script>
 	<body>
 		<div class="ui-table">
 			<div class="ui-head">
 				<div class="ui-title">
-					<div class="ui-title-name">单据信息</div>
+					<div class="ui-title-name ui-table-title-name">单据信息</div>
 					<div class="ui-operation">
-						<div class="ui-btn btn-add">查看</div>
+						<div class="ui-btn btn-view">查看</div>
 					</div>
 				</div>
 				<div class="table-source-head">

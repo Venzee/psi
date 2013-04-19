@@ -1,4 +1,5 @@
 (function($) {
+	/* 对话层 */
 	$.dialog = function(setting) {
 		var config = $.extend({
 			width : 700,
@@ -8,6 +9,10 @@
 			data : {},
 			cover : true,
 			autoOpen : true,
+			autoClose : false,
+			msg : '提示',
+			level: 'info', //info,warning,error
+			time : 1,
 			target : $('body'),
 			type : 'form'
 		}, setting);
@@ -25,10 +30,10 @@
 			$.each(config.source, function(i, n) {
 				sourceValue = sourceValue + '<dd>' + n + '</dd>';
 			});
-			html = '<div class="ui-table ui-form dialog" id="dialog" style="width: '
+			html = '<div class="ui-table ui-form ui-dialog" id="dialog" style="width: '
 					+ config.width
 					+ 'px;">'
-					+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name">'
+					+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-form-title-name">'
 					+ config.title
 					+ '</div>'
 					+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div><div class="form-source">'
@@ -40,73 +45,97 @@
 					+ '</dl><div class="clear"></div></div>'
 					+ '<div class="ui-foot"><div class="ui-operation"><div class="ui-btn btn-sub">提交</div></div></div></div>';
 		}
-		config.target.append(html);
-		/* 居中 */
-		var left = (config.target.width() - config.width) / 2;
-		var top = (config.target.height() - config.target.find('.dialog').height()) / 2;
-		config.target.find('.dialog').css({
-			left : left,
-			top : top
-		});
-
-		config.target.find('.dialog').slideDown();
-		config.target.find('.btn-close').on('click', function() {
-			if (config.cover) {
-				$.hideCover(config.target);
-			}
-			$(this).parents('.dialog').slideUp(function() {
-				$(this).remove();
-			});
-		});
-		config.target.find('.btn-sub').on('click', function() {
-			var datas = 'randomNum=' + Math.random();
-			$.each(config.target.find('.form-value'), function(i, n) {
-				datas = datas + "&" + $(this).attr('name') + "="
-						+ $(this).val();
-			});
-			var params = $.extend({
-				type : 'POST',
-				url : 'add',
-				data : datas,
-				beforeSend : function() {
-					config.target.find('.dialog').slideUp('fast', function() {
-						$(this).remove();
-					});
-					$.showLoading(config.target);
-				},
-				success : function(msg) {
-					if (msg == 'true') {
-						var form = config.target.find('#mainFrame').contents().find('.pageForm');
-						if(form != undefined){
-							form.submit();
-						} else {
-							var src = config.target.find('#mainFrame').attr('src');
-							src = src.substring(0, src.indexOf('randomNum')) + '=' + Math.random();
-							config.target.find('#mainFrame').attr('src', src);
-						}
+		if (config.type == 'tip') {
+			html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+				+ config.width
+				+ 'px;">'
+				+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
+				+ config.title
+				+ '</div>'
+				+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div><div class="tip-body">'
+				+ '<div class="tip-msg"><span class="tip-' + config.level + '">'
+				+ config.msg
+				+ '</span></div>'
+				+ '<div class="clear"></div></div></div>';
+			
+			if(config.autoClose){
+				var autoTime = null , maxLoad = function(){
+					config.time--;
+					if(config.time === 0){
+						dialogClose(config);
 					}
-				},
-				complete : function(){
-					$.hideLoading(config.target);
-					$.hideCover(config.target);
-				} 
-			}, config.data);
-			$.ajax(params);
+					clearInterval(autoTime);
+				};
+				autoTime = setInterval(maxLoad , 1000);
+			}
+		}
+		config.target.append(html);
+		
+		/* 居中 */
+		autoCenter(config.target, config.width);
+		config.target.find('.ui-dialog').slideDown();
+		/* 取消&关闭 */
+		config.target.find('.btn-close').on('click', function() {
+			dialogClose(config);
 		});
+		if (config.type == 'form') {
+			/* 提交 */
+			config.target.find('.btn-sub').on('click', function() {
+				var datas = 'randomNum=' + Math.random();
+				$.each(config.target.find('.form-value'), function(i, n) {
+					datas = datas + "&" + $(this).attr('name') + "="
+							+ $(this).val();
+				});
+				var params = $.extend({
+					type : 'POST',
+					url : 'add',
+					data : datas,
+					beforeSend : function() {
+						config.target.find('.ui-dialog').slideUp('fast', function() {
+							$(this).remove();
+						});
+						$.showLoading(config.target);
+					},
+					success : function(msg) {
+						if (msg == 'true') {
+							var form = config.target.find('#mainFrame').contents().find('.pageForm');
+							if(form != undefined){
+								form.submit();
+							} else {
+								var src = config.target.find('#mainFrame').attr('src');
+								src = src.substring(0, src.indexOf('randomNum')) + '=' + Math.random();
+								config.target.find('#mainFrame').attr('src', src);
+							}
+						}
+					},
+					complete : function(){
+						$.hideLoading(config.target);
+						$.hideCover(config.target);
+					} 
+				}, config.data);
+				$.ajax(params);
+			});
+		}
 		if (config.cover) {
 			$.showCover(config.target);
 		}
 	};
+	
+	/* 显示覆盖层 */
 	$.showCover = function(obj) {
 		var cover = '<div id="cover"></div>';
 		obj.append(cover);
 		obj.find('#cover').fadeIn();
 	};
+	
+	/* 隐藏覆盖层 */
 	$.hideCover = function(obj) {
 		obj.find('#cover').fadeOut(function() {
 			$(this).remove();
 		});
 	};
+	
+	/* 显示loading层 */
 	$.showLoading = function(obj) {
 		var left = (obj.width() - 32) / 2;
 		var top = (obj.height() - 32) / 2;
@@ -114,9 +143,31 @@
 		obj.append(loading);
 		obj.find('#load').fadeIn();
 	};
+	
+	/* 隐藏loading层 */
 	$.hideLoading = function(obj) {
 		obj.find('#load').fadeOut(function() {
 			$(this).remove();
 		});
 	};
+	
+	/* 居中 */
+	function autoCenter(obj, width){
+		var left = (obj.width() - width) / 2;
+		var top = (obj.height() - obj.find('.ui-dialog').height()) / 2;
+		obj.find('.ui-dialog').css({
+			left : left,
+			top : top
+		});
+	}
+	
+	/* 关闭弹出层 */
+	function dialogClose(config){
+		if (config.cover) {
+			$.hideCover(config.target);
+		}
+		config.target.find('.ui-dialog').slideUp(function() {
+			$(this).remove();
+		});
+	}
 })(jQuery);

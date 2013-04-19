@@ -23,7 +23,7 @@
 		<div class="ui-table" id="sortTable">
 			<div class="ui-head">
 				<div class="ui-title">
-					<div class="ui-title-name">行业信息</div>
+					<div class="ui-title-name ui-table-title-name">行业信息</div>
 					<div class="ui-operation">
 						<div class="ui-btn btn-delete">删除</div>
 						<div class="ui-btn btn-edit">编辑</div>
