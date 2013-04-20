@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
-				var industrys = '<select class="text_150 form-value" name="industryId">';
+				var industrys = '';
 				$.ajax({
 					type : 'POST',
 					url : '../../organization/industry/ajaxlist',
@@ -17,15 +17,14 @@
 						$.each(data, function(i,n){
 							industrys = industrys + '<option value="' + n.id + '">' + n.name + '</option>'
 						});
+						$.dialog({
+							title: '新增品牌',
+							target: parent.$('body'),
+							label: ['品牌名称','品牌所属行业'],
+							source: ['<input type="text" class="text_500 not_null form-value" name="name" />',
+								'<select class="text_150 form-value" name="industryId">' + industrys + '</select>']
+						});
 					}
-				});
-				industrys = industrys  + '</select>';
-				alert(industrys)
-				$.dialog({
-					title: '新增品牌',
-					target: parent.$('body'),
-					label: ['品牌名称','品牌所属行业'],
-					source: ['<input type="text" class="text_500 not_null form-value" name="name" />', industrys]
 				});
 			});
 			
