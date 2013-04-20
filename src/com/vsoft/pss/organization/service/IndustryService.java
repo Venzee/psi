@@ -43,4 +43,8 @@ public class IndustryService {
 		}
 		return list;
 	}
+
+	public boolean deleteIndustry(String idStr) {
+		return industryDao.deleteIndustry(idStr);
+	}
 }

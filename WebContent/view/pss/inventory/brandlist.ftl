@@ -2,8 +2,8 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
 	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
+	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
@@ -19,48 +19,12 @@
 						});
 						$.dialog({
 							title: '新增品牌',
-							target: parent.$('body'),
 							label: ['品牌名称','品牌所属行业'],
 							source: ['<input type="text" class="text_500 not_null form-value" name="name" />',
 								'<select class="text_150 form-value" name="industryId">' + industrys + '</select>']
 						});
 					}
 				});
-			});
-			
-			function checked(){
-				var isCheckAll = true;
-				$.each($('.ui-table').find('.checkbox'), function(i,n){
-					if($(this).attr('class') == 'checkbox'){
-						isCheckAll = false;
-					}
-				});
-				return isCheckAll;
-			}
-			$('.btn-check-all').click(function(){
-				if($(this).text() == '全选'){
-					$('.ui-table').find('.checkbox').addClass('checked');
-					$(this).text('不全选');
-				}else{
-					$('.ui-table').find('.checkbox').removeClass('checked');
-					$(this).text('全选');
-				}
-			});
-			$('.btn-check-invert').click(function(){
-				$('.ui-table').find('.checkbox').toggleClass('checked');
-				if(checked()){
-					$('.btn-check-all').text('不全选');
-				}else{
-					$('.btn-check-all').text('全选');
-				}
-			});
-			$('.table-source-line').click(function(){
-				$(this).find('.checkbox').toggleClass('checked');
-				if(checked()){
-					$('.btn-check-all').text('不全选');
-				}else{
-					$('.btn-check-all').text('全选');
-				}
 			});
 		});
 	</script>
@@ -97,7 +61,7 @@
 				<#list brandList as brand>
 					<#if brand_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${brand.id}" class="checkbox"></span></dd>
+							<dd class="text_5p"><span id="${brand.brand.id}" class="checkbox"></span></dd>
 							<dd class="text_5p">${brand_index + 1}</dd>
 							<dd class="text_35p">${brand.brand.name}</dd>
 							<dd class="text_55p">${brand.industryName}</dd>
@@ -105,7 +69,7 @@
 					</#if>
 					<#if brand_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${brand.id}" class="checkbox"></span></dd>
+							<dd class="text_5p"><span id="${brand.brand.id}" class="checkbox"></span></dd>
 							<dd class="text_5p">${brand_index + 1}</dd>
 							<dd class="text_35p">${brand.brand.name}</dd>
 							<dd class="text_55p">${brand.industryName}</dd>

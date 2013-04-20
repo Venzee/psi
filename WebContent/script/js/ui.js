@@ -12,10 +12,28 @@
 			autoClose : false,
 			msg : '提示',
 			level: 'info', //info,warning,error
-			time : 1,
-			target : $('body'),
-			type : 'form'
+			time : 1500,
+			position : 'center',
+			target : top.$('body'),
+			type : 'form',
+			callBack : function(){}
 		}, setting);
+		if(config.type == 'confirm' || config.type == 'tip'){
+			switch (config.level) {
+			case 'info':
+				config.title = '提示';
+				break;
+			case 'warning':
+				config.title = '警告';
+				break;
+			case 'error':
+				config.title = '错误';
+				break;
+			}
+			if(setting.width == undefined || setting.width == ''){
+				config.width = 300;
+			}
+		}
 		var html = '';
 		if (config.type == 'form') {
 			var sourceName = '';
@@ -45,6 +63,19 @@
 					+ '</dl><div class="clear"></div></div>'
 					+ '<div class="ui-foot"><div class="ui-operation"><div class="ui-btn btn-sub">提交</div></div></div></div>';
 		}
+		if (config.type == 'confirm') {
+			html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+				+ config.width
+				+ 'px;">'
+				+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
+				+ config.title
+				+ '</div></div></div><div class="tip-body">'
+				+ '<div class="tip-msg"><span class="tip-' + config.level + '">'
+				+ config.msg
+				+ '</span></div>'
+				+ '<div class="clear"></div></div>'
+				+ '<div class="ui-foot"><div class="ui-operation"><div class="ui-btn btn-close">取消</div><div class="ui-btn btn-sub">确定</div></div></div></div>';
+		}
 		if (config.type == 'tip') {
 			html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
 				+ config.width
@@ -59,21 +90,14 @@
 				+ '<div class="clear"></div></div></div>';
 			
 			if(config.autoClose){
-				var autoTime = null , maxLoad = function(){
-					config.time--;
-					if(config.time === 0){
-						dialogClose(config);
-					}
-					clearInterval(autoTime);
-				};
-				autoTime = setInterval(maxLoad , 1000);
+				top.setTimeout(function(){dialogClose(config);}, config.time);
 			}
 		}
 		config.target.append(html);
 		
-		/* 居中 */
-		autoCenter(config.target, config.width);
-		config.target.find('.ui-dialog').slideDown();
+		/* 定位 */
+		autoPosition(config);
+		config.target.find('.ui-dialog').slideDown('fast');
 		/* 取消&关闭 */
 		config.target.find('.btn-close').on('click', function() {
 			dialogClose(config);
@@ -83,15 +107,14 @@
 			config.target.find('.btn-sub').on('click', function() {
 				var datas = 'randomNum=' + Math.random();
 				$.each(config.target.find('.form-value'), function(i, n) {
-					datas = datas + "&" + $(this).attr('name') + "="
-							+ $(this).val();
+					datas = datas + "&" + $(this).attr('name') + "=" + $(this).val();
 				});
 				var params = $.extend({
 					type : 'POST',
 					url : 'add',
 					data : datas,
 					beforeSend : function() {
-						config.target.find('.ui-dialog').slideUp('fast', function() {
+						config.target.find('.ui-dialog').fadeOut('fast', function() {
 							$(this).remove();
 						});
 						$.showLoading(config.target);
@@ -99,11 +122,11 @@
 					success : function(msg) {
 						if (msg == 'true') {
 							var form = config.target.find('#mainFrame').contents().find('.pageForm');
-							if(form != undefined){
+							if(form != undefined && form.hasClass('pageForm')){
 								form.submit();
 							} else {
 								var src = config.target.find('#mainFrame').attr('src');
-								src = src.substring(0, src.indexOf('randomNum')) + '=' + Math.random();
+								src = src.substring(0, src.indexOf('=')) + '=' + Math.random();
 								config.target.find('#mainFrame').attr('src', src);
 							}
 						}
@@ -115,6 +138,12 @@
 				}, config.data);
 				$.ajax(params);
 			});
+		} else if (config.type == 'confirm') {
+			config.target.find('.btn-sub').on('click', function() {
+				config.cover = false;
+				dialogClose(config);
+				config.callBack();
+			});
 		}
 		if (config.cover) {
 			$.showCover(config.target);
@@ -125,12 +154,12 @@
 	$.showCover = function(obj) {
 		var cover = '<div id="cover"></div>';
 		obj.append(cover);
-		obj.find('#cover').fadeIn();
+		obj.find('#cover').fadeIn('fast');
 	};
 	
 	/* 隐藏覆盖层 */
 	$.hideCover = function(obj) {
-		obj.find('#cover').fadeOut(function() {
+		obj.find('#cover').fadeOut('fast', function() {
 			$(this).remove();
 		});
 	};
@@ -141,24 +170,48 @@
 		var top = (obj.height() - 32) / 2;
 		var loading = '<img id="load" style="left: ' + left + 'px; top: ' + top + 'px" src="style/image/loading.gif" />';
 		obj.append(loading);
-		obj.find('#load').fadeIn();
+		obj.find('#load').fadeIn('fast');
 	};
 	
 	/* 隐藏loading层 */
 	$.hideLoading = function(obj) {
-		obj.find('#load').fadeOut(function() {
+		obj.find('#load').fadeOut('fast', function() {
 			$(this).remove();
 		});
 	};
 	
-	/* 居中 */
-	function autoCenter(obj, width){
-		var left = (obj.width() - width) / 2;
-		var top = (obj.height() - obj.find('.ui-dialog').height()) / 2;
-		obj.find('.ui-dialog').css({
-			left : left,
-			top : top
-		});
+	/* 自动定位 */
+	function autoPosition(config){
+		var left = (config.target.width() - config.width) / 2;
+		var top = (config.target.height() - config.target.find('.ui-dialog').height()) / 2;
+		switch (config.position) {
+		case 'center':
+			config.target.find('.ui-dialog').css({
+				left : left,
+				top : top
+			});
+			break;
+		case 'center-top':
+			config.target.find('.ui-dialog').css({
+				left : left
+			});
+			break;
+		case 'left-top':
+			config.target.find('.ui-dialog').css({
+				
+			});
+			break;
+		case 'left-center':
+			config.target.find('.ui-dialog').css({
+				top : top
+			});
+			break;
+		case '':
+			config.target.find('.ui-dialog').css({
+				
+			});
+			break;
+		}
 	}
 	
 	/* 关闭弹出层 */
@@ -166,7 +219,7 @@
 		if (config.cover) {
 			$.hideCover(config.target);
 		}
-		config.target.find('.ui-dialog').slideUp(function() {
+		config.target.find('.ui-dialog').fadeOut('fast', function() {
 			$(this).remove();
 		});
 	}

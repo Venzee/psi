@@ -23,7 +23,6 @@
 				alert(industrys)
 				$.dialog({
 					title: '新增品牌',
-					target: parent.$('body'),
 					label: ['品牌名称','品牌所属行业'],
 					source: ['<input type="text" class="text_500 not_null form-value" name="name" />', industrys]
 				});

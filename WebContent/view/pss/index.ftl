@@ -69,8 +69,8 @@
 			document.getElementById("mainFrame").style.height = (document.documentElement["clientHeight"] - 120) +'px';
 		}
 		$(window).bind({
-			load: function(){autoSize();},
-			resize: function(){autoSize();}
+			load: function(){autoSize2();},
+			resize: function(){autoSize2();}
 		});
 		/* 菜单控制 */
 		$('#menuList .menu-title').click(function() {

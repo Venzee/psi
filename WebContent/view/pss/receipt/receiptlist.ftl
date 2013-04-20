@@ -7,13 +7,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-view').click(function(){
-				$.dialog({
-					type : 'tip',
-					level : 'error',
-					width : 300,
-					msg : '这是一个小提示',
-					target : parent.$('body')
-				});
+				
 			});
 		});
 	</script>

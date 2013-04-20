@@ -49,4 +49,16 @@ public class IndustryDao extends BaseDao {
 		}
 		return list;
 	}
+
+	public boolean deleteIndustry(String idStr) {
+		StringBuffer sql = new StringBuffer("delete from com_pss_industry where id in (");
+		sql.append(idStr).append(")");
+		try {
+			this.execute(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }
