@@ -2,8 +2,8 @@
 <html>
 	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
 	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
+	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-add').click(function(){

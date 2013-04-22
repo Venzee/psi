@@ -51,7 +51,7 @@ public class GoodsController {
 
 	@ResponseBody
 	@RequestMapping("/del")
-	public String deleteGoods(@RequestParam String id) {
-		return String.valueOf(goodsService.deleteGoods(id));
+	public String deleteGoods(@RequestParam String idStr) {
+		return String.valueOf(goodsService.deleteGoods(idStr));
 	}
 }

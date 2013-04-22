@@ -55,9 +55,9 @@ public class GoodsDao extends BaseDao {
 		return data;
 	}
 	
-	public boolean deleteGoods(String id) {
+	public boolean deleteGoods(String idStr) {
 		StringBuffer sql = new StringBuffer("delete from com_pss_goods where id in (");
-		sql.append(id).append(")");
+		sql.append(idStr).append(")");
 		try {
 			this.execute(sql.toString());
 		} catch (SQLException e) {

@@ -54,4 +54,8 @@ public class BrandService {
 		int count = brandDao.countBrandById();
 		page.init(count);
 	}
+
+	public boolean deleteBrand(String idStr) {
+		return brandDao.deleteBrand(idStr);
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vsoft.core.base.entity.Page;
@@ -35,5 +36,11 @@ public class BrandController {
 		List<BrandFrom> list = brandService.queryAllBrand(page);
 		map.put("brandList", list);
 		return "pss/inventory/brandlist";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/del")
+	public String deleteBrand(@RequestParam String idStr) {
+		return String.valueOf(brandService.deleteBrand(idStr));
 	}
 }

@@ -68,9 +68,9 @@ public class BrandDao extends BaseDao {
 		return data;
 	}
 
-	public boolean deleteBrand(String id) {
+	public boolean deleteBrand(String idStr) {
 		StringBuffer sql = new StringBuffer("delete from com_pss_brand where id in (");
-		sql.append(id).append(")");
+		sql.append(idStr).append(")");
 		try {
 			this.execute(sql.toString());
 		} catch (SQLException e) {

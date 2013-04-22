@@ -44,8 +44,8 @@ public class GoodsService {
 		return goods;
 	}
 
-	public boolean deleteGoods(String id) {
-		return goodsDao.deleteGoods(id);
+	public boolean deleteGoods(String idStr) {
+		return goodsDao.deleteGoods(idStr);
 	}
 
 	public void buildPage(Page page) {

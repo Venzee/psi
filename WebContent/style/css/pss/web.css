@@ -39,7 +39,7 @@ input:focus,textarea:focus,img:focus,select:focus {
 	display: none;
 	background-color: #000;
 	position: fixed;
-	filter: alpha(opacity =           50);
+	filter: alpha(opacity = 50);
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
