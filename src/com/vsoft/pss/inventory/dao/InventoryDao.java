@@ -27,7 +27,7 @@ public class InventoryDao extends BaseDao {
 		List<Map<String, Object>> datas = null;
 		String sql = "com_pss_inventory";
 		try {
-			datas = this.executeQueryWithMultiple(sql, params);
+			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

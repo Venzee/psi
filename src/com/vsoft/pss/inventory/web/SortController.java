@@ -29,7 +29,7 @@ public class SortController {
 	}
 
 	@RequestMapping("/list")
-	public String queryAllSort(ModelMap map, Page page, SortForm sortForm) {
+	public String querySort(ModelMap map, Page page, SortForm sortForm) {
 		if (page == null) {
 			page = new Page();
 		}
@@ -37,42 +37,29 @@ public class SortController {
 			sortForm = new SortForm();
 		}
 		sortService.buildPage(page);
-		List<SortForm> list = sortService.queryAllSort(page);
+		List<SortForm> list = sortService.querySort(page);
 		map.put("page", page);
 		map.put("sortList", list);
 		return "pss/inventory/sortlist";
 	}
 	
-	@RequestMapping("/select/init")
-	public String queryAllSortByTopId(ModelMap map, @RequestParam String topId) {
-		if (topId == null) {
-			topId = "0";
-		}
-		List<SortForm> list = sortService.queryAllSortByTopId(topId);
-		map.put("sortList", list);
-		return "pss/inventory/sort2";
-	}
-	
 	@ResponseBody
-	@RequestMapping(value = "/select", produces = "text/html;charset=UTF-8")
-	public String queryAllSortByTopId(@RequestParam String topId) {
-		if (topId == null) {
-			topId = "0";
-		}
-		List<SortForm> list = sortService.queryAllSortByTopId(topId);
+	@RequestMapping(value = "/ajaxlist", produces = "text/html;charset=UTF-8")
+	public String querySort() {
+		List<Sort> list = sortService.querySort();
 		return JSON.toJSONString(list);
 	}
-
-	@ResponseBody
+	
+	/*@ResponseBody
 	@RequestMapping(value = "/info", produces = "text/html;charset=UTF-8")
-	public String queryOneSort(@RequestParam String id) {
-		Sort sort = sortService.queryOneSort(id);
+	public String querySort(@RequestParam String id) {
+		Sort sort = sortService.querySort(id);
 		return JSON.toJSONString(sort);
-	}
+	}*/
 
 	@ResponseBody
 	@RequestMapping("/del")
-	public String deleteSort(@RequestParam String id) {
-		return String.valueOf(sortService.deleteSort(id));
+	public String deleteSort(@RequestParam String idStr) {
+		return String.valueOf(sortService.deleteSort(idStr));
 	}
 }

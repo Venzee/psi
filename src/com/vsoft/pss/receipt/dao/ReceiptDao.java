@@ -30,7 +30,7 @@ public class ReceiptDao extends BaseDao {
 		List<Map<String, Object>> datas = null;
 		String sql = "select * from com_pss_receipt r order by r.id desc limit ? , ?";
 		try {
-			datas = this.executeQueryWithMultiple(sql, params);
+			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

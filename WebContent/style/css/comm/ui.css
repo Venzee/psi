@@ -71,61 +71,51 @@
 
 .text_5p {
 	width: 5%;
-	max-width: 60px;
 	min-width: 40px;
 }
 
 .text_10p {
 	width: 10%;
-	max-width: 120px;
 	min-width: 80px;
 }
 
 .text_15p {
 	width: 15%;
-	max-width: 180px;
 	min-width: 120px;
 }
 
 .text_20p {
 	width: 20%;
-	max-width: 240px;
 	min-width: 160px;
 }
 
 .text_25p {
 	width: 25%;
-	max-width: 300px;
 	min-width: 200px;
 }
 
 .text_30p {
 	width: 30%;
-	max-width: 360px;
 	min-width: 240px;
 }
 
 .text_35p {
 	width: 35%;
-	max-width: 420px;
 	min-width: 280px;
 }
 
 .text_45p {
 	width: 45%;
-	max-width: 480px;
 	min-width: 320px;
 }
 
 .text_50p {
 	width: 50%;
-	max-width: 540px;
 	min-width: 360px;
 }
 
 .text_55p {
 	width: 55%;
-	max-width: 560px;
 	min-width: 400px;
 }
 
@@ -433,6 +423,8 @@
 	padding-left: 40px;
 	font-weight: bold;
 	display: inline-block;
+	*display: inline;
+	*zoom: 1;
 }
 
 .tip-info {

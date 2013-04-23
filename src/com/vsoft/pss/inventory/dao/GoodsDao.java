@@ -37,7 +37,7 @@ public class GoodsDao extends BaseDao {
 		List<Map<String, Object>> datas = null;
 		String sql = "select * from com_pss_goods s order by s.id desc limit ? , ?";
 		try {
-			datas = this.executeQueryWithMultiple(sql, params);
+			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +48,7 @@ public class GoodsDao extends BaseDao {
 		Map<String, Object> data = null;
 		String sql = "select * from com_pss_goods s where s.id = ?";
 		try {
-			data = this.executeQueryWithSingle(sql, params);
+			data = this.executeQuerySingle(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

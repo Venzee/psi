@@ -39,7 +39,7 @@ public class UserDao extends BaseDao {
 	public Map<String, Object> queryUserForLogin(List<Object> params) {
 		String sql = "select u.id,u.username,u.password,u.groupId,u.employeeId,u.companyId from com_customer_user u where u.username = ? and u.password = ?";
 		try {
-			return this.executeQueryWithSingle(sql, params);
+			return this.executeQuerySingle(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

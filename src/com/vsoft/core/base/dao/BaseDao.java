@@ -152,7 +152,7 @@ public class BaseDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Map<String, Object> executeQueryWithSingle(String sql, List<Object> params) throws SQLException {
+	public Map<String, Object> executeQuerySingle(String sql, List<Object> params) throws SQLException {
 		Connection conn = getConnection();
 		Map<String, Object> row = null;
 		PreparedStatement stmt = null;
@@ -172,7 +172,43 @@ public class BaseDao {
 					row.put(columName, value);
 				}
 			}else{
-				LOG.warn("参数错误，查询结果有多个，请使用[executeQueryWithMultiple]方法！");
+				LOG.debug("参数错误，查询结果有多个，请使用[executeQueryMultiple]方法！");
+			}
+		} finally {
+			close(rs);
+			close(stmt);
+			close(conn);
+		}
+		return row;
+	}
+	
+	/**
+	 * 查询单个结果
+	 * 
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Object> executeQuerySingle(String sql) throws SQLException {
+		Connection conn = getConnection();
+		Map<String, Object> row = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			rs.last();
+			int rowSize = rs.getRow();
+			if (rowSize == 1) {
+				ResultSetMetaData rsMeta = rs.getMetaData();
+				row = new HashMap<String, Object>();
+				for (int i = 0, size = rsMeta.getColumnCount(); i < size; ++i) {
+					String columName = rsMeta.getColumnLabel(i + 1).toLowerCase();
+					Object value = rs.getObject(i + 1);
+					row.put(columName, value);
+				}
+			}else{
+				LOG.debug("参数错误，查询结果有多个，请使用[executeQueryMultiple]方法！");
 			}
 		} finally {
 			close(rs);
@@ -190,7 +226,7 @@ public class BaseDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List<Map<String, Object>> executeQueryWithMultiple(String sql, List<Object> params) throws SQLException {
+	public List<Map<String, Object>> executeQueryMultiple(String sql, List<Object> params) throws SQLException {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Connection conn = getConnection();
 		PreparedStatement stmt = null;
@@ -198,6 +234,39 @@ public class BaseDao {
 		try {
 			stmt = conn.prepareStatement(sql);
 			setParamValues(stmt, params);
+			rs = stmt.executeQuery();
+			ResultSetMetaData rsMeta = rs.getMetaData();
+			while (rs.next()) {
+				Map<String, Object> row = new HashMap<String, Object>();
+				for (int i = 0, size = rsMeta.getColumnCount(); i < size; ++i) {
+					String columName = rsMeta.getColumnLabel(i + 1).toLowerCase();
+					Object value = rs.getObject(i + 1);
+					row.put(columName, value);
+				}
+				rows.add(row);
+			}
+		} finally {
+			close(rs);
+			close(stmt);
+			close(conn);
+		}
+		return rows;
+	}
+	
+	/**
+	 * 查询多个结果
+	 * 
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> executeQueryMultiple(String sql) throws SQLException {
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		Connection conn = getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			ResultSetMetaData rsMeta = rs.getMetaData();
 			while (rs.next()) {
@@ -235,7 +304,7 @@ public class BaseDao {
 	 * 
 	 * @param tableNameOrSql
 	 * @param countColumn
-	 * @param data 类型必须为LinkedHashMap
+	 * @param data
 	 * @return
 	 * @throws SQLException
 	 */
@@ -268,7 +337,7 @@ public class BaseDao {
 	 * 更新数据
 	 * 
 	 * @param tableName
-	 * @param data 类型必须为LinkedHashMap
+	 * @param data
 	 * @throws SQLException
 	 */
 	public void updateTableById(String tableName, Map<String, Object> data) throws SQLException {
@@ -284,7 +353,7 @@ public class BaseDao {
 	 * 新增数据
 	 * 
 	 * @param tableName
-	 * @param data 类型必须为LinkedHashMap
+	 * @param data
 	 * @throws SQLException
 	 */
 	public void insertToTable(String tableName, Map<String, Object> data) throws SQLException {
@@ -297,7 +366,7 @@ public class BaseDao {
 	 * 新增数据并返回对象主键ID
 	 * 
 	 * @param tableName
-	 * @param data 类型必须为LinkedHashMap
+	 * @param data
 	 * @return
 	 * @throws SQLException
 	 */
@@ -328,7 +397,7 @@ public class BaseDao {
 	 * 新增对象并返回对象全部内容
 	 * 
 	 * @param tableName
-	 * @param data 类型必须为LinkedHashMap
+	 * @param data
 	 * @return
 	 * @throws SQLException
 	 */
@@ -345,7 +414,7 @@ public class BaseDao {
 		}
 		sql.append(" from ").append(tableName).append(" where t.id = ?");
 		Object primaryId = insertAndReturnPrimaryId(tableName, data);
-		Map<String, Object> returnData = executeQueryWithSingle(sql.toString(), Arrays.asList(primaryId));
+		Map<String, Object> returnData = executeQuerySingle(sql.toString(), Arrays.asList(primaryId));
 		return returnData;
 	}
 
@@ -354,13 +423,13 @@ public class BaseDao {
 	 * 
 	 * @param sql
 	 * @param tableName
-	 * @param data 类型必须为LinkedHashMap
+	 * @param data
 	 * @return
 	 * @throws SQLException
 	 */
 	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data) throws SQLException {
 		Object primaryId = insertAndReturnPrimaryId(tableName, data);
-		Map<String, Object> returnData = executeQueryWithSingle(sql, Arrays.asList(primaryId));
+		Map<String, Object> returnData = executeQuerySingle(sql, Arrays.asList(primaryId));
 		return returnData;
 	}
 

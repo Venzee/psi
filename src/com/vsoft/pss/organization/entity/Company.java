@@ -16,7 +16,7 @@ public class Company implements Serializable {
 	private String fax;// 传真
 	private String address;// 联系地址
 	private int organizationId;// 所属机构
-	private boolean isPrimary;// 是否是总公司 默认false
+	private boolean primary;// 是否是总公司 默认false
 
 	public int getId() {
 		return id;
@@ -75,11 +75,11 @@ public class Company implements Serializable {
 	}
 
 	public boolean isPrimary() {
-		return isPrimary;
+		return primary;
 	}
 
-	public void setPrimary(boolean isPrimary) {
-		this.isPrimary = isPrimary;
+	public void setPrimary(boolean primary) {
+		this.primary = primary;
 	}
 
 }

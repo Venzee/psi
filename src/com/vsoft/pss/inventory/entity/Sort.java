@@ -9,11 +9,9 @@ public class Sort implements Serializable {
 	 */
 	private static final long serialVersionUID = -1161754471073887807L;
 	private int id;
-	private String name;
-	private String remark;
-	private String industrys;
-	private int topId;// 上级分类ID 默认0
-	private int level;// 分类级别   默认0
+	private String name; // 类别名称
+	private int parentId; // 父级ID
+	private boolean parent; // 是否是父级
 
 	public int getId() {
 		return id;
@@ -31,36 +29,20 @@ public class Sort implements Serializable {
 		this.name = name;
 	}
 
-	public String getRemark() {
-		return remark;
+	public int getParentId() {
+		return parentId;
 	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 
-	public String getIndustrys() {
-		return industrys;
+	public boolean isParent() {
+		return parent;
 	}
 
-	public void setIndustrys(String industrys) {
-		this.industrys = industrys;
-	}
-
-	public int getTopId() {
-		return topId;
-	}
-
-	public void setTopId(int topId) {
-		this.topId = topId;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
+	public void setParent(boolean parent) {
+		this.parent = parent;
 	}
 
 }

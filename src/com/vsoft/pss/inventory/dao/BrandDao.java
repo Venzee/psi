@@ -39,7 +39,7 @@ public class BrandDao extends BaseDao {
 		List<Map<String, Object>> datas = null;
 		String sql = "select b.*,i.name as industryname from com_pss_brand b left join com_pss_industry i on i.id = b.industryid order by b.id desc limit ? , ?";
 		try {
-			datas = this.executeQueryWithMultiple(sql, params);
+			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,7 +50,7 @@ public class BrandDao extends BaseDao {
 		List<Map<String, Object>> datas = null;
 		String sql = "select b.id,b.name from com_pss_brand b where b.industryId = ? or b.createCompanyId = ? order by b.id desc";
 		try {
-			datas = this.executeQueryWithMultiple(sql, params);
+			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +61,7 @@ public class BrandDao extends BaseDao {
 		Map<String, Object> data = null;
 		String sql = "select * from com_pss_brand s where s.id = ?";
 		try {
-			data = this.executeQueryWithSingle(sql, params);
+			data = this.executeQuerySingle(sql, params);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

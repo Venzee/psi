@@ -93,6 +93,20 @@
 				top.setTimeout(function(){dialogClose(config);}, config.time);
 			}
 		}
+		if (config.type == 'custom') {
+			html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+				+ config.width
+				+ 'px;">'
+				+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
+				+ config.title
+				+ '</div>'
+				+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div><div class="tip-body">'
+				+ '<div class="tip-msg"><span class="tip-' + config.level + '">'
+				+ config.msg
+				+ '</span></div>'
+				+ '<div class="clear"></div></div></div>';
+			
+		}
 		config.target.append(html);
 		
 		/* 定位 */

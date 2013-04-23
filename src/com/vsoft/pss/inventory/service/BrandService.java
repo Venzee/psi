@@ -41,7 +41,7 @@ public class BrandService {
 		List<Brand> list = new ArrayList<Brand>();
 		List<Object> params = new ArrayList<Object>();
 		params.add(form.getCompanyId());
-		params.add(form.getIndustryId());
+		params.add(form.getSortId());
 		List<Map<String, Object>> datas = brandDao.queryAllBrand(params);
 		for (Map<String, Object> data : datas) {
 			Brand brand = (Brand) DataUtil.parseMapToObject(data, Brand.class);

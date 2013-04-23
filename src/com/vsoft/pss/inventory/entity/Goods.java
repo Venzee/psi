@@ -14,11 +14,9 @@ public class Goods implements Serializable {
 	private int brandId;// 品牌ID
 	private int sortId;// 类型ID
 	private String barcode; // 商品条码
-	private String unit;// 商品单位
-	private String seasons;// 商品可销售季节 1为春季，2为夏季，3为秋季，4为冬季；可有多个值，以“,”分隔
 	private String code;// 编码，用于快速搜索，一般为商品简称拼音首字母缩写
 	private String remark;
-	private int companyId; // 新建商品的公司ID 0为全部(默认)
+	private int companyId; // 新建商品的公司ID (默认0)
 
 	public int getId() {
 		return id;
@@ -66,22 +64,6 @@ public class Goods implements Serializable {
 
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
-	}
-
-	public String getUnit() {
-		return unit;
-	}
-
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-
-	public String getSeasons() {
-		return seasons;
-	}
-
-	public void setSeasons(String seasons) {
-		this.seasons = seasons;
 	}
 
 	public String getCode() {

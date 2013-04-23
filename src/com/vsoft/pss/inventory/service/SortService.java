@@ -1,7 +1,6 @@
 package com.vsoft.pss.inventory.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,45 +24,40 @@ public class SortService {
 		if (sort.getId() == 0) {
 			return sortDao.addSort(data);
 		} else {
-			return sortDao.updateSortById(data);
+			return sortDao.updateSort(data);
 		}
 	}
 
-	public List<SortForm> queryAllSort(Page page) {
+	public List<SortForm> querySort(Page page) {
 		List<SortForm> list = new ArrayList<SortForm>();
 		List<Object> params = new ArrayList<Object>();
 		params.add(page.getStartRecord());
 		params.add(page.getPageRecord());
-		List<Map<String, Object>> datas = sortDao.queryAllSort(params);
+		List<Map<String, Object>> datas = sortDao.querySort(params);
 		for (Map<String, Object> data : datas) {
 			SortForm sortForm = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
 			list.add(sortForm);
 		}
 		return list;
 	}
-	
-	public List<SortForm> queryAllSortByTopId(Object topId) {
-		List<SortForm> list = new ArrayList<SortForm>();
-		List<Map<String, Object>> datas = sortDao.queryAllSortByTopId(Arrays.asList(topId));
+
+	public List<Sort> querySort() {
+		List<Sort> list = new ArrayList<Sort>();
+		List<Map<String, Object>> datas = sortDao.querySort();
 		for (Map<String, Object> data : datas) {
-			SortForm entity = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
-			list.add(entity);
+			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
+			list.add(sort);
 		}
 		return list;
 	}
-
-	public Sort queryOneSort(Object id) {
-		Map<String, Object> data = sortDao.queryOneSort(Arrays.asList(id));
-		Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
-		return sort;
-	}
-
-	public boolean deleteSort(String id) {
-		return sortDao.deleteSort(id);
+	
+	public boolean deleteSort(String idStr) {
+		return sortDao.deleteSort(idStr);
 	}
 
 	public void buildPage(Page page) {
-		int count = sortDao.countSortById();
+		int count = sortDao.countSort();
 		page.init(count);
 	}
+
 }

@@ -11,7 +11,7 @@ public class SortForm implements Serializable {
 	 */
 	private static final long serialVersionUID = 8823889129386956953L;
 	private Sort sort;
-	private String topName;
+	private String parentName;
 
 	public Sort getSort() {
 		return sort;
@@ -21,12 +21,12 @@ public class SortForm implements Serializable {
 		this.sort = sort;
 	}
 
-	public String getTopName() {
-		return topName;
+	public String getParentName() {
+		return parentName;
 	}
 
-	public void setTopName(String topName) {
-		this.topName = topName;
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 
 }

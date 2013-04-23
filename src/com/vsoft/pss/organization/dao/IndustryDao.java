@@ -30,7 +30,7 @@ public class IndustryDao extends BaseDao {
 		List<Map<String, Object>> list = null;
 		String sql = "select t.id,t.name,t.description from com_pss_industry t";
 		try {
-			list = this.executeQueryWithMultiple(sql, params);
+			list = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			LOG.error("查询多个行业时出错", e);
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class IndustryDao extends BaseDao {
 		List<Map<String, Object>> list = null;
 		String sql = "select t.id,t.name from com_pss_industry t";
 		try {
-			list = this.executeQueryWithMultiple(sql, params);
+			list = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
 			LOG.error("查询多个行业时出错", e);
 			e.printStackTrace();

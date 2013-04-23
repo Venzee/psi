@@ -93,15 +93,21 @@ public class DataUtil {
 				fc[0] = Character.toUpperCase(fc[0]);
 				StringBuffer newFiledName = new StringBuffer();
 				newFiledName.append(fc);
-				data.put(fields[i].getName(), getter(obj, newFiledName.toString()));
+				data.put(fields[i].getName(), getter(obj, fields[i].getType().getName(), newFiledName.toString()));
 			}
 		}
 		return data;
 	}
 
-	protected static Object getter(Object obj, String attr) {
+	protected static Object getter(Object obj, String type, String attr) {
 		try {
-			Method method = obj.getClass().getMethod("get" + attr);
+			Class<?> c = obj.getClass();
+			Method method = null;
+			if (type.equals("boolean")) {
+				method = c.getMethod("is" + attr);
+			}else{
+				method = c.getMethod("get" + attr);
+			}
 			return method.invoke(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,7 +151,6 @@ public class DataUtil {
 						value = Long.parseLong(value.toString());
 					} else if (name.equals("boolean")) {
 						value = Boolean.parseBoolean(value.toString());
-						methodHead = "is";
 					}
 				}
 				Method method = obj.getClass().getMethod(methodHead + attr, type);

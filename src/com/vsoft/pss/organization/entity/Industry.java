@@ -11,6 +11,7 @@ public class Industry implements Serializable {
 	private int id;//
 	private String name;// 行业名称
 	private String description; // 行业描述
+	private String sorts; // 行业默认可销售商品类目
 
 	public int getId() {
 		return id;
@@ -34,6 +35,14 @@ public class Industry implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getSorts() {
+		return sorts;
+	}
+
+	public void setSorts(String sorts) {
+		this.sorts = sorts;
 	}
 
 }
