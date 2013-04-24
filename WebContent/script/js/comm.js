@@ -37,7 +37,7 @@ function checked() {
 }
 
 $(document).ready(function() {
-	$('.btn-edit').click(function(){
+	$('.btn-edit').on('click', function(){
 		var idArray = getCheckedArray(), size;
 		if(idArray == '' || idArray == null){
 			size = 0;
@@ -46,7 +46,7 @@ $(document).ready(function() {
 		}
 		switch(size){
 		default:
-			$.dialog({
+			$.dgtip({
 				target: parent.$('body'),
 				level : 'info',
 				type : 'tip',
@@ -55,7 +55,7 @@ $(document).ready(function() {
 			});
 			break;
 		case 0:
-			$.dialog({
+			$.dgtip({
 				target: parent.$('body'),
 				level : 'info',
 				type : 'tip',
@@ -68,10 +68,10 @@ $(document).ready(function() {
 			break;
 		}
 	});
-	$('.btn-delete').click(function(){
+	$('.btn-delete').on('click', function(){
 		var idStr = getCheckedStr();
 		if(idStr == null || idStr == ''){
-			$.dialog({
+			$.dgtip({
 				target: parent.$('body'),
 				level : 'info',
 				type : 'tip',
@@ -79,7 +79,7 @@ $(document).ready(function() {
 				msg : '请选择需要删除的数据！'
 			});
 		}else{
-			$.dialog({
+			$.dgconfirm({
 				target: parent.$('body'),
 				level : 'warning',
 				width : 300,
@@ -96,7 +96,7 @@ $(document).ready(function() {
 						},
 						error : function(){
 							$.hideLoading(parent.$('body'));
-							$.dialog({
+							$.dgtip({
 								target: parent.$('body'),
 								level : 'error',
 								type : 'tip',
@@ -106,7 +106,7 @@ $(document).ready(function() {
 						success : function(msg){
 							$.hideLoading(parent.$('body'));
 							if(msg == 'true'){
-								$.dialog({
+								$.dgtip({
 									target: parent.$('body'),
 									level : 'info',
 									type : 'tip',
@@ -122,7 +122,7 @@ $(document).ready(function() {
 									parent.$('body').find('#mainFrame').attr('src', src);
 								}
 							}else{
-								$.dialog({
+								$.dgtip({
 									target: parent.$('body'),
 									level : 'error',
 									type : 'tip',
@@ -135,7 +135,7 @@ $(document).ready(function() {
 			});
 		}
 	});
-	$('.btn-check-all').click(function() {
+	$('.btn-check-all').on('click', function(){
 		if ($(this).text() == '全选') {
 			$('.ui-table').find('.checkbox').addClass('checked');
 			$(this).text('不全选');
@@ -144,7 +144,7 @@ $(document).ready(function() {
 			$(this).text('全选');
 		}
 	});
-	$('.btn-check-invert').click(function() {
+	$('.btn-check-invert').on('click', function(){
 		$('.ui-table').find('.checkbox').toggleClass('checked');
 		if (checked()) {
 			$('.btn-check-all').text('不全选');
@@ -152,7 +152,7 @@ $(document).ready(function() {
 			$('.btn-check-all').text('全选');
 		}
 	});
-	$('.table-source-line').click(function() {
+	$('.table-source-line').on('click', function(){
 		$(this).find('.checkbox').toggleClass('checked');
 		if (checked()) {
 			$('.btn-check-all').text('不全选');

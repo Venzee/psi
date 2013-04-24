@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.btn-add').click(function(){
-				$.dialog({
+				$.dg({
 					title: '新增行业',
 					label: ['名称',{style: 'high', name:'备注'}],
 					source: [

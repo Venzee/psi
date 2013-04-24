@@ -5,8 +5,8 @@
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn-add').click(function(){
+		$(function(){
+			$('.btn-add').on('click', function(){
 				var industrys = '';
 				$.ajax({
 					type : 'POST',
@@ -17,7 +17,7 @@
 						$.each(data, function(i,n){
 							industrys = industrys + '<option value="' + n.id + '">' + n.name + '</option>'
 						});
-						$.dialog({
+						$.dgform({
 							title: '新增品牌',
 							label: ['品牌名称','品牌所属行业'],
 							source: ['<input type="text" class="text_500 not_null form-value" name="name" />',

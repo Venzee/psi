@@ -5,9 +5,9 @@
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn-add').click(function(){
-				$.dialog({
+		$(function(){
+			$('.btn-add').on('click', function(){
+				$.dgform({
 					title: '新增商品',
 					label: ['名称','简称','品牌','类型','单位','条码','可销售季节','搜索编码',{style: 'high', name:'备注'}],
 					source: [

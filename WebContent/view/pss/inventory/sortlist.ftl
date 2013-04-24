@@ -5,8 +5,8 @@
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.btn-add').click(function(){
+		$(function(){
+			$('.btn-add').on('click', function(){
 				var sorts = '';
 				$.ajax({
 					type : 'POST',
@@ -17,7 +17,7 @@
 						$.each(data, function(i,n){
 							sorts = sorts + '<option value="' + n.id + '">' + n.name + '</option>'
 						});
-						$.dialog({
+						$.dgform({
 							title: '新增商品类型',
 							label: ['名称','是否父级类别','所属类别'],
 							source: [
