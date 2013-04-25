@@ -75,48 +75,57 @@
 }
 
 .text_10p {
-	width: 10%;
-	min-width: 80px;
+	width: 8%;
+	padding: 0 5px;
+	min-width: 60px;
 }
 
 .text_15p {
-	width: 15%;
-	min-width: 120px;
+	width: 13%;
+	padding: 0 5px;
+	min-width: 100px;
 }
 
 .text_20p {
-	width: 20%;
-	min-width: 160px;
+	width: 18%;
+	padding: 0 5px;
+	min-width: 140px;
 }
 
 .text_25p {
-	width: 25%;
-	min-width: 200px;
+	width: 23%;
+	padding: 0 5px;
+	min-width: 180px;
 }
 
 .text_30p {
-	width: 30%;
-	min-width: 240px;
+	width: 28%;
+	padding: 0 5px;
+	min-width: 220px;
 }
 
 .text_35p {
-	width: 35%;
-	min-width: 280px;
+	width: 33%;
+	padding: 0 5px;
+	min-width: 260px;
 }
 
 .text_45p {
-	width: 45%;
-	min-width: 320px;
+	width: 43%;
+	padding: 0 5px;
+	min-width: 300px;
 }
 
 .text_50p {
-	width: 50%;
-	min-width: 360px;
+	width: 48%;
+	padding: 0 5px;
+	min-width: 340px;
 }
 
 .text_55p {
-	width: 55%;
-	min-width: 400px;
+	width: 53%;
+	padding: 0 5px;
+	min-width: 380px;
 }
 
 /* UI */
@@ -199,7 +208,7 @@
 	color: #E74C3C;
 }
 
-.table-source-head {
+.table-source-head,.table-source-head dl {
 	height: 28px;
 	line-height: 28px;
 }
@@ -227,7 +236,7 @@
 	line-height: 30px;
 	border: 1px solid #dcdcdc;
 	border-bottom: 1px solid #dcdcdc;
-	min-width: 810px;
+	min-width: 790px;
 	cursor: pointer;
 }
 

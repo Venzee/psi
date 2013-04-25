@@ -1,10 +1,34 @@
 (function($) {
 	$.fn.dg = function(settings) {
-		//var config = $.extend(def, settings);
+		var config = initConfig(settings);
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+			+ config.width
+			+ 'px;">'
+			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
+			+ config.title
+			+ '</div>'
+			+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div>'
+			
+			+ '</div></div>';
+		initComm(config, html);
 	};
 	
 	$.dg = function(settings){
 		
+	};
+	
+	$.dgframe = function(settings){
+		var config = initConfig(settings);
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+			+ config.width
+			+ 'px;">'
+			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
+			+ config.title
+			+ '</div>'
+			+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div>'
+			+ '<iframe src=""></iframe>'
+			+ '</div></div>';
+		initComm(config, html);
 	};
 	
 	$.dgform = function(settings){
@@ -75,6 +99,7 @@
 	
 	$.dgtable = function(settings){
 		//var config = initConfig(settings);
+		
 	};
 	
 	$.dgconfirm = function(settings){
