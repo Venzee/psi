@@ -1,7 +1,8 @@
 (function($) {
+	var odg = null;
 	$.fn.dg = function(settings) {
 		var config = initConfig(settings);
-		var html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dg" style="width: '
 			+ config.width
 			+ 'px;">'
 			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
@@ -10,7 +11,7 @@
 			+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div>'
 			
 			+ '</div></div>';
-		initComm(config, html);
+		tissueDG(config, html);
 	};
 	
 	$.dg = function(settings){
@@ -19,7 +20,7 @@
 	
 	$.dgframe = function(settings){
 		var config = initConfig(settings);
-		var html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dg" style="width: '
 			+ config.width
 			+ 'px;">'
 			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
@@ -28,7 +29,7 @@
 			+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div>'
 			+ '<iframe src=""></iframe>'
 			+ '</div></div>';
-		initComm(config, html);
+		tissueDG(config, html);
 	};
 	
 	$.dgform = function(settings){
@@ -45,7 +46,7 @@
 		$.each(config.source, function(i, n) {
 			sourceValue = sourceValue + '<dd>' + n + '</dd>';
 		});
-		var html = '<div class="ui-table ui-form ui-dialog" id="dialog" style="width: '
+		var html = '<div class="ui-table ui-form ui-dialog" id="dg" style="width: '
 				+ config.width
 				+ 'px;">'
 				+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-form-title-name">'
@@ -59,11 +60,11 @@
 				+ sourceValue
 				+ '</dl><div class="clear"></div></div>'
 				+ '<div class="ui-foot"><div class="ui-operation"><div class="ui-btn btn-sub">提交</div></div></div></div>';
-		initComm(config, html);
+		tissueDG(config, html);
 		/* 提交 */
-		config.target.find('.btn-sub').on('click', function() {
+		odg.find('div.btn-sub').on('click', function() {
 			var datas = 'randomNum=' + Math.random();
-			$.each(config.target.find('.form-value'), function(i, n) {
+			$.each(odg.find('dd').find('.form-value'), function(i, n) {
 				datas = datas + "&" + $(this).attr('name') + "=" + $(this).val();
 			});
 			var params = $.extend({
@@ -71,15 +72,15 @@
 				url : 'add',
 				data : datas,
 				beforeSend : function() {
-					config.target.find('.ui-dialog').fadeOut('fast', function() {
+					odg.fadeOut('fast', function() {
 						$(this).remove();
 					});
 					$.showLoading(config.target);
 				},
 				success : function(msg) {
-					if (msg == 'true') {
-						var form = config.target.find('#mainFrame').contents().find('.pageForm');
-						if(form != undefined && form.hasClass('pageForm')){
+					if (msg === 'true') {
+						var form = config.target.find('#mainFrame').contents().find('form.pageForm');
+						if(form !== undefined && form.hasClass('pageForm')){
 							form.submit();
 						} else {
 							var src = config.target.find('#mainFrame').attr('src');
@@ -115,10 +116,10 @@
 			config.title = '错误';
 			break;
 		}
-		if(settings.width == undefined || settings.width == '' || config.width < 200){
+		if(settings.width === undefined || settings.width === '' || config.width < 200){
 			config.width = 300;
 		}
-		var html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dg" style="width: '
 			+ config.width
 			+ 'px;">'
 			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
@@ -129,8 +130,8 @@
 			+ '</span></div>'
 			+ '<div class="clear"></div></div>'
 			+ '<div class="ui-foot"><div class="ui-operation"><div class="ui-btn btn-close">取消</div><div class="ui-btn btn-sub">确定</div></div></div></div>';
-		initComm(config, html);
-		config.target.find('.btn-sub').on('click', function() {
+		tissueDG(config, html);
+		odg.find('div.btn-sub').on('click', function() {
 			config.cover = false;
 			dialogClose(config);
 			config.callBack();
@@ -151,10 +152,10 @@
 			config.title = '错误';
 			break;
 		}
-		if(settings.width == undefined || settings.width == '' || config.width < 200){
+		if(settings.width === undefined || settings.width === '' || config.width < 200){
 			config.width = 300;
 		}
-		var html = '<div class="ui-table ui-tip ui-dialog" id="dialog" style="width: '
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dg" style="width: '
 			+ config.width
 			+ 'px;">'
 			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
@@ -166,7 +167,7 @@
 			+ '</span></div>'
 			+ '<div class="clear"></div></div></div>';
 		
-		initComm(config, html);
+		tissueDG(config, html);
 		if(config.autoClose){
 			top.setTimeout(function(){dialogClose(config);}, config.time);
 		}
@@ -222,14 +223,14 @@
 		}, settings);
 	}
 	
-	/* 初始化公共数据 */
-	function initComm(config, html){
+	/* 组织公共数据 */
+	function tissueDG(config, html){
 		config.target.append(html);
+		odg = config.target.find('#dg');
 		/* 定位 */
 		autoPosition(config);
-		config.target.find('.ui-dialog').slideDown('fast');
-		/* 取消&关闭 */
-		config.target.find('.btn-close').on('click', function() {
+		/* 显示，绑定取消&关闭事件 */
+		odg.slideDown('fast').find('div.btn-close').on('click', function() {
 			dialogClose(config);
 		});
 		if (config.cover) {
@@ -240,31 +241,31 @@
 	/* 自动定位 */
 	function autoPosition(config){
 		var left = (config.target.width() - config.width) / 2;
-		var top = (config.target.height() - config.target.find('.ui-dialog').height()) / 2;
+		var top = (config.target.height() - odg.height()) / 2;
 		switch (config.position) {
 		case 'center':
-			config.target.find('.ui-dialog').css({
+			odg.css({
 				left : left,
 				top : top
 			});
 			break;
 		case 'center-top':
-			config.target.find('.ui-dialog').css({
+			odg.css({
 				left : left
 			});
 			break;
 		case 'left-top':
-			config.target.find('.ui-dialog').css({
+			odg.css({
 				
 			});
 			break;
 		case 'left-center':
-			config.target.find('.ui-dialog').css({
+			odg.css({
 				top : top
 			});
 			break;
 		case '':
-			config.target.find('.ui-dialog').css({
+			odg.css({
 				
 			});
 			break;
@@ -276,7 +277,7 @@
 		if (config.cover) {
 			$.hideCover(config.target);
 		}
-		config.target.find('.ui-dialog').fadeOut('fast', function() {
+		odg.fadeOut('fast', function() {
 			$(this).remove();
 		});
 	}

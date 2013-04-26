@@ -13,7 +13,7 @@ function getChildFrame(selector) {
 
 function getCheckedStr(){
 	var checkedStr = '';
-	$.each($('.ui-table').find('.checkbox'), function(i, n) {
+	$.each($('div.ui-table').find('span.checkbox'), function(i, n) {
 		if ($(this).hasClass('checked')) {
 			checkedStr = checkedStr + $(this).attr('id') + ',';
 		}
@@ -28,8 +28,8 @@ function getCheckedArray(){
 
 function checked() {
 	var isCheckAll = true;
-	$.each($('.ui-table').find('.checkbox'), function(i, n) {
-		if ($(this).attr('class') == 'checkbox') {
+	$.each($('div.ui-table').find('span.checkbox'), function(i, n) {
+		if (!$(this).hasClass('checked')) {
 			isCheckAll = false;
 		}
 	});
@@ -37,9 +37,9 @@ function checked() {
 }
 
 $(document).ready(function() {
-	$('.btn-edit').on('click', function(){
+	$('div.btn-edit').on('click', function(){
 		var idArray = getCheckedArray(), size;
-		if(idArray == '' || idArray == null){
+		if(idArray === '' || idArray === null){
 			size = 0;
 		}else{
 			size = idArray.length;
@@ -68,9 +68,9 @@ $(document).ready(function() {
 			break;
 		}
 	});
-	$('.btn-delete').on('click', function(){
+	$('div.btn-delete').on('click', function(){
 		var idStr = getCheckedStr();
-		if(idStr == null || idStr == ''){
+		if(idStr === null || idStr === ''){
 			$.dgtip({
 				target: parent.$('body'),
 				level : 'info',
@@ -105,7 +105,7 @@ $(document).ready(function() {
 						},
 						success : function(msg){
 							$.hideLoading(parent.$('body'));
-							if(msg == 'true'){
+							if(msg === 'true'){
 								$.dgtip({
 									target: parent.$('body'),
 									level : 'info',
@@ -113,8 +113,8 @@ $(document).ready(function() {
 									autoClose : true,
 									msg : '删除成功！'
 								});
-								var form = parent.$('body').find('#mainFrame').contents().find('.pageForm');
-								if(form != undefined && form.hasClass('pageForm')){
+								var form = parent.$('body').find('#mainFrame').contents().find('form.pageForm');
+								if(form !== undefined && form.hasClass('pageForm')){
 									form.submit();
 								} else {
 									var src = parent.$('body').find('#mainFrame').attr('src');
@@ -135,29 +135,29 @@ $(document).ready(function() {
 			});
 		}
 	});
-	$('.btn-check-all').on('click', function(){
-		if ($(this).text() == '全选') {
-			$('.ui-table').find('.checkbox').addClass('checked');
+	$('div.btn-check-all').on('click', function(){
+		if ($(this).text() === '全选') {
+			$('div.ui-table').find('span.checkbox').addClass('checked');
 			$(this).text('不全选');
 		} else {
-			$('.ui-table').find('.checkbox').removeClass('checked');
+			$('div.ui-table').find('span.checkbox').removeClass('checked');
 			$(this).text('全选');
 		}
 	});
-	$('.btn-check-invert').on('click', function(){
-		$('.ui-table').find('.checkbox').toggleClass('checked');
+	$('div.btn-check-invert').on('click', function(){
+		$('div.ui-table').find('span.checkbox').toggleClass('checked');
 		if (checked()) {
-			$('.btn-check-all').text('不全选');
+			$('div.btn-check-all').text('不全选');
 		} else {
-			$('.btn-check-all').text('全选');
+			$('div.btn-check-all').text('全选');
 		}
 	});
-	$('.table-source-line').on('click', function(){
-		$(this).find('.checkbox').toggleClass('checked');
+	$('dl.table-source-line').on('click', function(){
+		$(this).find('span.checkbox').toggleClass('checked');
 		if (checked()) {
-			$('.btn-check-all').text('不全选');
+			$('div.btn-check-all').text('不全选');
 		} else {
-			$('.btn-check-all').text('全选');
+			$('div.btn-check-all').text('全选');
 		}
 	});
 });
