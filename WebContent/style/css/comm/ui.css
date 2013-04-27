@@ -363,8 +363,20 @@
 	margin-right: 10px;
 }
 
+.ui-operation .page dd {
+	padding: 0 10px;
+	height: 20px;
+	line-height: 20px;
+	margin: 5px 0;
+	cursor: pointer;
+}
+
 .ui-operation .page dd:hover {
 	color: #3498DB;
+}
+
+.ui-operation .page dd.pageNum {
+	
 }
 
 .ui-operation .page dd.active {
@@ -373,12 +385,12 @@
 	color: #fff;
 }
 
-.ui-operation .page dd.page_num {
+.ui-operation .page dd.pageCount {
 	cursor: text;
 	color: #555;
 }
 
-.ui-operation .page dd.record_count {
+.ui-operation .page dd.recordCount {
 	cursor: text;
 	color: #555;
 }
@@ -395,14 +407,6 @@
 
 .ui-foot .btn,.ui-foot .btn div,.ui-operation .page,.ui-operation .page dd {
 	float: left;
-}
-
-.ui-operation .page dd {
-	padding: 0 10px;
-	height: 20px;
-	line-height: 20px;
-	margin: 5px 0;
-	cursor: pointer;
 }
 
 .ui-foot .btn .btn-check-all:hover,.ui-foot .btn .btn-check-invert:hover {

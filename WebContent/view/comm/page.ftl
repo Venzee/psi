@@ -2,8 +2,8 @@
 	<input type="hidden" id="currPage" name="currPage" value="${page.currPage }" />
 </form>
 <dl class="page">
-	<dd class="page_num">当前页&nbsp;：${page.currPage }&nbsp;/&nbsp;${page.totalPage }</dd>
-	<dd class="record_count">总记录：${page.count }&nbsp;条</dd>
+	<dd class="pageCount">当前页&nbsp;：${page.currPage }&nbsp;/&nbsp;${page.totalPage }</dd>
+	<dd class="recordCount">总记录：${page.count }&nbsp;条</dd>
 	<#if page.count gt 0 >
 		<#list 1..page.totalPage as i>
 			<#if i == page.currPage>
@@ -21,18 +21,18 @@
 	</#if>
 </dl>
 <script type="text/javascript">
-	$('.pageNum').click(function(){
+	$('dd.pageNum').click(function(){
 		$('#currPage').val($(this).text());
-		$('.pageForm').submit();
+		$('form.pageForm').submit();
 	});
-	$('.pre').click(function(){
-		var pageNum = parseInt($('.page .active').text()) - 1;
+	$('dd.pre').click(function(){
+		var pageNum = parseInt($('dl.page').find('dd.active').text()) - 1;
 		$('#currPage').val(pageNum);
-		$('.pageForm').submit();
+		$('form.pageForm').submit();
 	});
-	$('.next').click(function(){
-		var pageNum = parseInt($('.page .active').text()) + 1;
+	$('dd.next').click(function(){
+		var pageNum = parseInt($('dl.page').find('dd.active').text()) + 1;
 		$('#currPage').val(pageNum);
-		$('.pageForm').submit();
+		$('form.pageForm').submit();
 	});
 </script>

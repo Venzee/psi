@@ -1,16 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
-	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="../../script/js/comm.js"></script>
-	<script type="text/javascript" src="../../script/js/ui.js"></script>
+	<base href="${request.contextPath + '/' }" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>品牌管理</title>
+	<link rel="stylesheet" type="text/css" href="style/css/pss.css">
+	<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="script/js/comm.js"></script>
+	<script type="text/javascript" src="script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('.btn-add').on('click', function(){
+			$('form.pageForm').attr('action', 'inventory/brand/list');
+			$('div.btn-add').on('click', function(){
 				var industrys = '';
 				$.ajax({
 					type : 'POST',
-					url : '../../organization/industry/ajaxlist',
+					url : 'organization/industry/ajaxlist',
 					data : 'randomNum=' + Math.random(),
 					dataType: 'json',
 					success : function(data) {
@@ -18,6 +22,7 @@
 							industrys = industrys + '<option value="' + n.id + '">' + n.name + '</option>'
 						});
 						$.dgform({
+							url: 'inventory/brand/add',
 							title: '新增品牌',
 							label: ['品牌名称','品牌所属行业'],
 							source: ['<input type="text" class="text_500 not_null form-value" name="name" />',
@@ -26,6 +31,8 @@
 					}
 				});
 			});
+			$('div.btn-edit').on('click', function(){editSource('inventory/brand/edit');});
+			$('div.btn-delete').on('click', function(){delSource('inventory/brand/del');});
 		});
 	</script>
 	<body>

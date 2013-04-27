@@ -69,7 +69,7 @@
 			});
 			var params = $.extend({
 				type : 'POST',
-				url : 'add',
+				url : config.url,
 				data : datas,
 				beforeSend : function() {
 					odg.fadeOut('fast', function() {
@@ -219,6 +219,7 @@
 			position : 'center',
 			target : top.$('body'),
 			type : 'form',
+			url : '',
 			callBack : function(){}
 		}, settings);
 	}
