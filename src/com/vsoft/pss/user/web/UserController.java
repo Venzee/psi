@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.vsoft.core.base.entity.SessionUser;
 import com.vsoft.core.util.SessionUtil;
 import com.vsoft.pss.organization.entity.Company;
 import com.vsoft.pss.organization.entity.Organization;
@@ -33,31 +34,26 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, User user) {
 		boolean result = false;
+		SessionUser sessionUser = new SessionUser();
+		String sessionId = request.getSession().getId();
 		if (user.getId() == 0) {
 			user = userService.login(user);
 		}
-		if (user.getId() != 0) {
-			String sessionId = request.getSession().getId();
-			result = SessionUtil.putSession(sessionId, user);
-		}
+		sessionUser.setUsername(user.getUsername());
+		result = SessionUtil.putSession(sessionId, sessionUser);
 		if (result) {
 			return "redirect:index";
 		}
-		return "";
+		return "pss/login";
 	}
 
 	@RequestMapping("/index")
-	public String index() {
+	public String index(HttpServletRequest request) {
+		String sessionId = request.getSession().getId();
+		SessionUser sessionUser = SessionUtil.getUserBySessionId(sessionId);
+		if (sessionUser == null) {
+			return "pss/login";
+		}
 		return "pss/index";
-	}
-	
-	@RequestMapping("/head")
-	public String head() {
-		return "pss/head";
-	}
-	
-	@RequestMapping("/menu")
-	public String menu() {
-		return "pss/menu";
 	}
 }

@@ -1,6 +1,7 @@
 package com.vsoft.pss.sys.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -21,5 +22,17 @@ public class MenuDao extends BaseDao {
 			LOG.error("新增菜单时出错", e);
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Map<String, Object>> queryAllMenu(List<Object> params) {
+		List<Map<String, Object>> list = null;
+		String sql = "select t.id,t.name,t.url,t.right,t.parentId,t.parent from com_pss_menu t";
+		try {
+			list = this.executeQueryMultiple(sql, params);
+		} catch (SQLException e) {
+			LOG.error("查询多个菜单时出错", e);
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
