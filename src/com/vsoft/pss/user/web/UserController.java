@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vsoft.core.base.entity.SessionUser;
@@ -26,7 +27,15 @@ public class UserController {
 	}
 
 	@RequestMapping("/register")
-	public String register(HttpServletRequest request, User user) {
+	public String register(HttpServletRequest request, User user, ModelMap map) {
+		if ("".equals(user.getUsername()) || null == user.getUsername()) {
+			map.put("tip", "用户名不能为空！");
+			return "pss/register";
+		}
+		if ("".equals(user.getPassword()) || null == user.getPassword()) {
+			map.put("tip", "密码不能为空！");
+			return "pss/register";
+		}
 		user = userService.register(user);
 		return login(request, user);
 	}
