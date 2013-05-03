@@ -65,7 +65,7 @@
 		odg.find('div.btn-sub').on('click', function() {
 			var datas = 'randomNum=' + Math.random();
 			$.each(odg.find('dd').find('.form-value'), function(i, n) {
-				datas = datas + "&" + $(this).attr('name') + "=" + $(this).val();
+				datas = datas + '&' + $(this).attr('name') + '=' + $(this).val();
 			});
 			var params = $.extend({
 				type : 'POST',

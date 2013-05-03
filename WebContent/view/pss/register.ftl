@@ -9,22 +9,15 @@
 <script type="text/javascript" src="script/js/comm.js"></script>
 <script type="text/javascript" src="script/js/ui.js"></script>
 <style type="text/css">
-	body,div,ul,li {
-		margin: 0;
-		padding: 0;
-		font: 14px "微软雅黑";
-	}
-	body {
-		background-color: #eee;
-	}
 	#register-box {
-		width: 985px;
+		width: 979px;
 		margin: 0 auto;
 	}
 	#head {
 		height: 80px;
 	}
 	#navi {
+		height: 50px;
 		border-left: 1px solid #dcdcdc;
 		border-top: 1px solid #dcdcdc;
 	}
@@ -36,41 +29,72 @@
 	#navi ul li {
 		color: #808080;
 		float: left;
-		width: 245px;
+		width: 325px;
 		height: 50px;
 		line-height: 50px;
 		text-align: center;
-		cursor: pointer;
 		font-weight: bold;
 		border-right: 1px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc;
 	}
 	#navi ul li.active {
 		color: #000;
 		background: #fff;
-	}
-	.step {
-		border: 1px solid #dcdcdc;
+		border-bottom: none;
 	}
 	.step {
 		display: none;
+		border-left: 1px solid #dcdcdc;
+		border-right: 1px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc;
 		background: #fff;
 		height: 400px;
 	}
 	.step.active {
 		display: block;
 	}
-	.clear {
-		clear: both;
+	.step-foot {
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+	}
+	.step-foot .ui-btn {
+		margin: 3px 20px;
+	}
+	.step-foot #btn-next {
+		float: right;
+	}
+	.step-foot #btn-pre {
+		float: left;
 	}
 </style>
 <script type="text/javascript">
 $(function(){
-	$('#navi').find('li').on('click', function(){
-		$('#navi').find('li').removeClass('active');
-		$(this).addClass('active');
-		var index = $(this).index();
+	$.ajax({
+		type : 'POST',
+		url : 'organization/industry/ajaxlist',
+		data : 'randomNum=' + Math.random(),
+		dataType: 'json',
+		success : function(data) {
+			var industrys = '';
+			$.each(data, function(i,n){
+				industrys = industrys + '<option value="' + n.id + '">' + n.name + '</option>'
+			});
+			$('#industry').append(industrys);
+		}
+	});
+	$('#btn-next').on('click', function(){
+		var index = $('#navi').find('li[class="active"]').removeClass('active').index() + 1;
+		$('#navi').find('li:eq('+index+')').addClass('active');
 		$('#tab').find('div.step').removeClass('active');
 		$('#tab').find('div.step:eq('+index+')').addClass('active');
+	});
+	$('#btn-sub').on('click', function(){
+		var datas = 'randomNum=' + Math.random();
+		$.each($('#tab').find('dd').find('.form-value'), function(){
+			datas = datas + '&' + $(this).attr('name') + "=" + $(this).val();
+		});
+		alert(datas)
 	});
 });
 </script>
@@ -105,10 +129,11 @@ $(function(){
 						<dd><input type="text" class="text_500 form-value" name="fax" /></dd>
 						<dd><input type="text" class="text_500 form-value" name="email" /></dd>
 						<dd><input type="text" class="text_500 form-value" name="address" /></dd>
-						<dd><select class="text_150 not_null form-value" name="industryId"></select></dd>
+						<dd><select class="text_150 not_null form-value" id="industry" name="industryId"></select></dd>
 					</dl>
-					<div class="clear">
+					<div class="clear"></div>
 				</div>
+				<div class="step-foot"><div class="ui-btn" id="btn-pre">上一步</div><div class="ui-btn" id="btn-next">下一步</div></div>
 			</div>
 			<div class="step">
 				<div class="form-source">
@@ -120,10 +145,11 @@ $(function(){
 					<dl class="form-source-value">
 						<dd><input type="text" class="text_500 not_null form-value" name="username" /></dd>
 						<dd><input type="text" class="text_500 not_null form-value" name="password" /></dd>
-						<dd><input type="text" class="text_500 not_null form-value" id="re-password" /></dd>
+						<dd><input type="text" class="text_500 not_null" id="re-password" /></dd>
 					</dl>
-					<div class="clear">
+					<div class="clear"></div>
 				</div>
+				<div class="step-foot"><div class="ui-btn" id="btn-sub">提交</div></div>
 			</div>
 			<div class="step">
 				

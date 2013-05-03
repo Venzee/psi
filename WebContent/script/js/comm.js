@@ -8,7 +8,7 @@ function frameAutoSize(oIframe) {
 }
 
 function getChildFrame(selector) {
-	return $("#ui-iframe").contents().find(selector);
+	return $('#ui-iframe').contents().find(selector);
 };
 
 function getCheckedStr(){

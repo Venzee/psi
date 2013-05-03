@@ -153,11 +153,11 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3b75b4', endColorstr='#2980B9', GradientType=0);
 }
 
-.ui-head .ui-title,.ui-operation {
+.ui-title,.ui-operation {
 	height: 30px;
 }
 
-.ui-head .ui-title-name {
+.ui-title-name {
 	height: 16px;
 	padding: 0 0 0 20px;
 	margin: 7px 10px;
@@ -178,7 +178,7 @@
 	background: url("../../image/ui-tip-title-bg.png") left top no-repeat;
 }
 
-.ui-operation,.ui-operation div {
+.ui-operation,.ui-operation > div {
 	float: right;
 }
 
@@ -192,28 +192,28 @@
 	cursor: pointer;
 }
 
-.ui-operation .btn-add:hover,.ui-operation .btn-sub:hover,.ui-operation .btn-view:hover {
+.btn-add:hover,.btn-sub:hover,.btn-view:hover {
 	color: #27AE60;
 }
 
-.ui-operation .btn-edit:hover {
+.btn-edit:hover {
 	color: #E67E22;
 }
 
-.ui-operation .btn-delete:hover {
+.btn-delete:hover {
 	color: #E74C3C;
 }
 
-.ui-operation .btn-close:hover {
+.btn-close:hover {
 	color: #E74C3C;
 }
 
-.table-source-head,.table-source-head dl {
+.table-source-head,.table-source-head > dl {
 	height: 28px;
 	line-height: 28px;
 }
 
-.table-source-head dl dd {
+.table-source-head > dl > dd {
 	float: left;
 	text-align: center;
 }
@@ -222,11 +222,11 @@
 	width: 100%;
 }
 
-.table-source .odd {
+.table-source > .odd {
 	background-color: #f3f3f3;
 }
 
-.table-source dl dd {
+.table-source > dl > dd {
 	float: left;
 	text-align: center;
 }
@@ -244,13 +244,13 @@
 	background-color: #fff;
 }
 
-.table-source-line dd {
+.table-source-line > dd {
 	height: 30px;
 	line-height: 30px;
 	text-shadow: 0px 1px 1px #555;
 }
 
-.table-source-line dd .checkbox {
+.table-source-line > dd > .checkbox {
 	display: block;
 	height: 20px;
 	width: 20px;
@@ -258,7 +258,7 @@
 	background: url("../../image/checkbox.png") -90px 0px no-repeat;
 }
 
-.table-source-line dd .checked {
+.table-source-line > dd > .checked {
 	background: url("../../image/checkbox.png") -60px -30px no-repeat;
 }
 
@@ -266,80 +266,80 @@
 	background-color: #fff;
 }
 
-.form-source dl {
+.form-source > dl {
 	float: left;
 	margin: 5px 0;
 }
 
-.form-source dl dd {
+.form-source > dl > dd {
 	margin: 5px 0;
 }
 
-.form-source .error {
+.form-source > .error {
 	border-color: #E74C3C;
 }
 
-.form-source .form-source-name {
+.form-source-name {
 	width: 120px;
 	text-align: center;
 }
 
-.form-source .form-source-name dd {
+.form-source-name > dd {
 	height: 34px;
 	line-height: 34px;
 }
 
-.form-source .form-source-name .high {
+.form-source-name > .high {
 	height: 89px;
 	line-height: 89px;
 }
 
-.form-source .form-source-name .img_150 {
+.form-source-name > .img_150 {
 	height: 150px;
 	line-height: 150px;
 }
 
-.form-source .form-source-value {
+.form-source-value {
 	width: 70%;
 	text-align: left;
 }
 
-.form-source .form-source-value input {
+.form-source-value > dd > input {
 	height: 20px;
 	line-height: 20px;
 	padding: 5px;
 }
 
-.form-source .form-source-value textarea {
+.form-source-value > dd > textarea {
 	height: 75px;
 	padding: 5px;
 	overflow-y: auto;
 }
 
-.form-source .form-source-value select {
+.form-source-value > dd > select {
 	height: 34px;
 	line-height: 34px;
 	margin-right: 2px;
 	padding: 5px;
 }
 
-.form-source .form-source-value .img_150 {
+.form-source-value > .img_150 {
 	height: 150px;
 }
 
-.form-source .form-source-value dd {
+.form-source-value > dd {
 	width: 100%;
 }
 
-.form-source .form-source-value dd input.done {
+.form-source-value > dd > input.done {
 	background: url("../../image/done.png") 99% 5px no-repeat;
 }
 
-.form-source .form-source-value dd textarea.done {
+.form-source-value > dd > textarea.done {
 	background: url("../../image/done.png") 99% 35px no-repeat;
 }
 
-.form-source .form-source-value dd img.done {
+.form-source-value > dd > img.done {
 	background: url("../../image/done.png") 50% 65px no-repeat;
 }
 
@@ -354,16 +354,16 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#eeeeee', GradientType=0);
 }
 
-.ui-foot .btn,.ui-operation .page {
+.btn,.page {
 	height: 30px;
 	line-height: 30px;
 }
 
-.ui-operation .page {
+.page {
 	margin-right: 10px;
 }
 
-.ui-operation .page dd {
+.page dd {
 	padding: 0 10px;
 	height: 20px;
 	line-height: 20px;
@@ -371,31 +371,31 @@
 	cursor: pointer;
 }
 
-.ui-operation .page dd:hover {
+.page > dd:hover {
 	color: #3498DB;
 }
 
-.ui-operation .page dd.pageNum {
+.page > dd.pageNum {
 	
 }
 
-.ui-operation .page dd.active {
+.page > dd.active {
 	cursor: text;
 	background: #555;
 	color: #fff;
 }
 
-.ui-operation .page dd.pageCount {
+.page > dd.pageCount {
 	cursor: text;
 	color: #555;
 }
 
-.ui-operation .page dd.recordCount {
+.page > dd.recordCount {
 	cursor: text;
 	color: #555;
 }
 
-.ui-foot .btn div {
+.btn > div {
 	width: 50px;
 	height: 24px;
 	line-height: 24px;
@@ -405,11 +405,11 @@
 	font-weight: bold;
 }
 
-.ui-foot .btn,.ui-foot .btn div,.ui-operation .page,.ui-operation .page dd {
+.btn,.btn > div,.page,.page > dd {
 	float: left;
 }
 
-.ui-foot .btn .btn-check-all:hover,.ui-foot .btn .btn-check-invert:hover {
+.btn-check-all:hover,.btn-check-invert:hover {
 	color: #16A085;
 }
 
