@@ -17,7 +17,7 @@ public class ReceiptDao extends BaseDao {
 	public int addReceiptReturnId(Map<String, Object> data) {
 		int id = 0;
 		try {
-			id = this.insertAndReturnPrimaryId("com_pss_receipt", data);
+			id = this.insertAndReturnPrimaryId("pss_receipt", data);
 			LOG.info("新增单据成功");
 		} catch (SQLException e) {
 			LOG.error("新增单据时出错", e);
@@ -28,7 +28,7 @@ public class ReceiptDao extends BaseDao {
 	
 	public List<Map<String, Object>> queryAllReceipt(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select * from com_pss_receipt r order by r.id desc limit ? , ?";
+		String sql = "select * from pss_receipt r order by r.id desc limit ? , ?";
 		try {
 			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {

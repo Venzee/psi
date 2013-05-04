@@ -23,7 +23,7 @@ public class SortDao extends BaseDao {
 	 */
 	public boolean addSort(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_pss_sort", data);
+			this.insertToTable("pss_sort", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -39,7 +39,7 @@ public class SortDao extends BaseDao {
 	 */
 	public boolean updateSort(Map<String, Object> data) {
 		try {
-			this.updateTableById("com_pss_sort", data);
+			this.updateTableById("pss_sort", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -55,7 +55,7 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.parentId,s.parent,ts.name as parentname from com_pss_sort s left join com_pss_sort ts on s.parentId = ts.id order by s.parentId asc, s.id desc limit ? , ?";
+		String sql = "select s.id,s.name,s.parentId,s.parent,ts.name as parentname from pss_sort s left join pss_sort ts on s.parentId = ts.id order by s.parentId asc, s.id desc limit ? , ?";
 		try {
 			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
@@ -71,7 +71,7 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort() {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name from com_pss_sort s where s.parent = true order by s.parentId asc, s.id desc";
+		String sql = "select s.id,s.name from pss_sort s where s.parent = true order by s.parentId asc, s.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {
@@ -88,7 +88,7 @@ public class SortDao extends BaseDao {
 	 * @return
 	 */
 	public boolean deleteSort(String idStr) {
-		StringBuffer sql = new StringBuffer("delete from com_pss_sort where id in (");
+		StringBuffer sql = new StringBuffer("delete from pss_sort where id in (");
 		sql.append(idStr).append(")");
 		try {
 			this.execute(sql.toString());
@@ -102,7 +102,7 @@ public class SortDao extends BaseDao {
 	public int countSort() {
 		int count = 0;
 		try {
-			count = this.countTable("com_pss_sort", "id", null);
+			count = this.countTable("pss_sort", "id", null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

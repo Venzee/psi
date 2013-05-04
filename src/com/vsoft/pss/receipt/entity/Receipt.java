@@ -14,7 +14,7 @@ public class Receipt implements Serializable {
 	private Date createDate;// 创建时间
 	private Date checkDate;// 审核时间
 	private Date postedDate;// 过账时间
-	private Double totalPrice;// 总价
+	private Double totalMoney;// 总金额
 	private int customerId;// 客户ID
 	private int supplierId;// 供应商ID
 	private int outWarehouseId; // 出货仓库
@@ -25,6 +25,7 @@ public class Receipt implements Serializable {
 	private int status;// 单据状态 1为等待审核，2为已审核等待过账，3为已过帐未收款，4为已收款
 	private int type;// 单据类型 1为进货单，2为销售单，3为销售退货单，4为进货退货单，5为调拨单，0为无效
 	private int companyId;// 单据所属公司ID
+	private String remark;// 备注
 
 	public int getId() {
 		return id;
@@ -66,12 +67,12 @@ public class Receipt implements Serializable {
 		this.postedDate = postedDate;
 	}
 
-	public Double getTotalPrice() {
-		return totalPrice;
+	public Double getTotalMoney() {
+		return totalMoney;
 	}
 
-	public void setTotalPrice(Double totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setTotalMoney(Double totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
 	public int getCustomerId() {
@@ -152,6 +153,14 @@ public class Receipt implements Serializable {
 
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

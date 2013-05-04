@@ -12,7 +12,7 @@ public class EmployeeDao extends BaseDao {
 
 	public void addEmployee(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_customer_employee", data);
+			this.insertToTable("pss_employee", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

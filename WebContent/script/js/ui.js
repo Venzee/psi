@@ -279,7 +279,7 @@
 			$.hideCover(config.target);
 		}
 		odg.fadeOut('fast', function() {
-			$(this).remove();
+			odg.remove();
 		});
 	}
 })(jQuery);

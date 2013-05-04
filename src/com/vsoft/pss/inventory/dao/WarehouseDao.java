@@ -14,7 +14,7 @@ public class WarehouseDao extends BaseDao {
 
 	public boolean addWarehouse(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_pss_warehouse", data);
+			this.insertToTable("pss_warehouse", data);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

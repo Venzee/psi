@@ -14,7 +14,7 @@ public class RecordDao extends BaseDao {
 
 	public void addRecord(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_pss_record", data);
+			this.insertToTable("pss_record", data);
 			LOG.info("新增记录成功");
 		} catch (SQLException e) {
 			LOG.error("新增记录失败", e);

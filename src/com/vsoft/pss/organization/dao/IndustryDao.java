@@ -16,7 +16,7 @@ public class IndustryDao extends BaseDao {
 
 	public boolean addIndustry(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_pss_industry", data);
+			this.insertToTable("pss_industry", data);
 			LOG.info("新增行业成功");
 			return true;
 		} catch (SQLException e) {
@@ -28,7 +28,7 @@ public class IndustryDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllIndustry(List<Object> params) {
 		List<Map<String, Object>> list = null;
-		String sql = "select t.id,t.name,t.description from com_pss_industry t";
+		String sql = "select t.id,t.name,t.description from pss_industry t";
 		try {
 			list = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
@@ -40,7 +40,7 @@ public class IndustryDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllIndustryWithoutDescription(List<Object> params) {
 		List<Map<String, Object>> list = null;
-		String sql = "select t.id,t.name from com_pss_industry t";
+		String sql = "select t.id,t.name from pss_industry t";
 		try {
 			list = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
@@ -51,7 +51,7 @@ public class IndustryDao extends BaseDao {
 	}
 
 	public boolean deleteIndustry(String idStr) {
-		StringBuffer sql = new StringBuffer("delete from com_pss_industry where id in (");
+		StringBuffer sql = new StringBuffer("delete from pss_industry where id in (");
 		sql.append(idStr).append(")");
 		try {
 			this.execute(sql.toString());

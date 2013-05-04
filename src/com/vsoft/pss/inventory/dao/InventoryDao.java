@@ -15,7 +15,7 @@ public class InventoryDao extends BaseDao {
 
 	public boolean addInventory(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_pss_inventory", data);
+			this.insertToTable("pss_inventory", data);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -25,7 +25,7 @@ public class InventoryDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllInventory(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "com_pss_inventory";
+		String sql = "pss_inventory";
 		try {
 			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {

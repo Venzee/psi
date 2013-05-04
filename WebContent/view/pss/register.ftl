@@ -61,7 +61,7 @@
 	.step-foot .ui-btn {
 		margin: 3px 20px;
 	}
-	.step-foot #btn-next {
+	.step-foot #btn-next,.step-foot #btn-sub {
 		float: right;
 	}
 	.step-foot #btn-pre {
@@ -84,17 +84,34 @@ $(function(){
 		}
 	});
 	$('#btn-next').on('click', function(){
-		var index = $('#navi').find('li[class="active"]').removeClass('active').index() + 1;
-		$('#navi').find('li:eq('+index+')').addClass('active');
-		$('#tab').find('div.step').removeClass('active');
-		$('#tab').find('div.step:eq('+index+')').addClass('active');
+		var steps = $('#register-form').find('div.step'), valid = true;
+		$.each(steps, function(){
+			if($(this).hasClass('active')){
+				$.each($(this).find('dd').find('.form-value'), function(){
+					if($(this).hasClass('not-null')){
+						if($(this).val() != null && $(this).val() != ''){
+							$(this).addClass('done');
+						}else{
+							valid = false;
+						}
+					}
+				});
+			}
+		});
+		if(valid){
+			var index = $('#navi').find('li[class="active"]').removeClass('active').index() + 1;
+			$('#navi').find('li:eq(' + index + ')').addClass('active');
+			steps.removeClass('active');
+			$(steps[index]).addClass('active');
+		}
 	});
 	$('#btn-sub').on('click', function(){
-		var datas = 'randomNum=' + Math.random();
 		$.each($('#tab').find('dd').find('.form-value'), function(){
-			datas = datas + '&' + $(this).attr('name') + "=" + $(this).val();
+			if($(this).hasClass('not-null') && $(this).val() != null && $(this).val() != ''){
+				$(this).addClass('done');
+			}
 		});
-		alert(datas)
+		$('#register-form').submit();
 	});
 });
 </script>
@@ -111,49 +128,51 @@ $(function(){
 				</ul>
 				<div class="clear"></div>
 			</div>
-			<div class="step active">
-				<div class="form-source">
-					<dl class="form-source-name">
-						<dd>公司名称：</dd>
-						<dd>公司电话：</dd>
-						<dd>公司传真：</dd>
-						<dd>公司联系人：</dd>
-						<dd>公司邮箱：</dd>
-						<dd>公司地址：</dd>
-						<dd>行业：</dd>
-					</dl>
-					<dl class="form-source-value">
-						<dd><input type="text" class="text_500 not_null form-value" name="name" /></dd>
-						<dd><input type="text" class="text_500 not_null form-value" name="contact" /></dd>
-						<dd><input type="text" class="text_500 not_null form-value" name="phone" /></dd>
-						<dd><input type="text" class="text_500 form-value" name="fax" /></dd>
-						<dd><input type="text" class="text_500 form-value" name="email" /></dd>
-						<dd><input type="text" class="text_500 form-value" name="address" /></dd>
-						<dd><select class="text_150 not_null form-value" id="industry" name="industryId"></select></dd>
-					</dl>
-					<div class="clear"></div>
+			<form method="post" action="register/init" id="register-form">
+				<div class="step active">
+					<div class="form-source">
+						<dl class="form-source-name">
+							<dd>*公司名称：</dd>
+							<dd>*公司联系人：</dd>
+							<dd>*公司电话：</dd>
+							<dd>公司传真：</dd>
+							<dd>公司邮箱：</dd>
+							<dd>公司地址：</dd>
+							<dd>行业：</dd>
+						</dl>
+						<dl class="form-source-value">
+							<dd><input type="text" class="text_500 not-null form-value" name="name" /></dd>
+							<dd><input type="text" class="text_500 not-null form-value" name="contact" /></dd>
+							<dd><input type="text" class="text_500 not-null form-value" name="tel" /></dd>
+							<dd><input type="text" class="text_500 form-value" name="fax" /></dd>
+							<dd><input type="text" class="text_500 form-value" name="email" /></dd>
+							<dd><input type="text" class="text_500 form-value" name="address" /></dd>
+							<dd><select class="text_150 not_null form-value" id="industry" name="industryId"></select></dd>
+						</dl>
+						<div class="clear"></div>
+					</div>
+					<div class="step-foot"><div class="ui-btn" id="btn-next">下一步</div></div>
 				</div>
-				<div class="step-foot"><div class="ui-btn" id="btn-pre">上一步</div><div class="ui-btn" id="btn-next">下一步</div></div>
-			</div>
-			<div class="step">
-				<div class="form-source">
-					<dl class="form-source-name">
-						<dd>用户名：</dd>
-						<dd>密码：</dd>
-						<dd>确认密码：</dd>
-					</dl>
-					<dl class="form-source-value">
-						<dd><input type="text" class="text_500 not_null form-value" name="username" /></dd>
-						<dd><input type="text" class="text_500 not_null form-value" name="password" /></dd>
-						<dd><input type="text" class="text_500 not_null" id="re-password" /></dd>
-					</dl>
-					<div class="clear"></div>
+				<div class="step">
+					<div class="form-source">
+						<dl class="form-source-name">
+							<dd>用户名：</dd>
+							<dd>密码：</dd>
+							<dd>确认密码：</dd>
+						</dl>
+						<dl class="form-source-value">
+							<dd><input type="text" class="text_500 not-null form-value" name="username" /></dd>
+							<dd><input type="text" class="text_500 not-null form-value" name="password" /></dd>
+							<dd><input type="text" class="text_500 not-null" id="re-password" /></dd>
+						</dl>
+						<div class="clear"></div>
+					</div>
+					<div class="step-foot"><div class="ui-btn" id="btn-pre">上一步</div><div class="ui-btn" id="btn-sub">提交</div></div>
 				</div>
-				<div class="step-foot"><div class="ui-btn" id="btn-sub">提交</div></div>
-			</div>
-			<div class="step">
-				
-			</div>
+				<div class="step">
+					
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

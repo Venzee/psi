@@ -12,7 +12,7 @@ public class DepartmentDao extends BaseDao {
 	
 	public void addDepartment(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_customer_department", data);
+			this.insertToTable("pss_department", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

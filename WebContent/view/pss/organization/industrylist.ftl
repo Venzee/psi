@@ -9,8 +9,8 @@
 	<script type="text/javascript" src="script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('div.btn-add').click(function(){
-				$.dg({
+			$('div.btn-add').on('click', function(){
+				$.dgform({
 					url : 'organization/industry/add',
 					title: '新增行业',
 					label: ['名称',{style: 'high', name:'备注'}],
@@ -20,8 +20,8 @@
 					]
 				});
 			});
-			$('div.btn-edit').on('click', editSource('organization/industry/edit'));
-			$('div.btn-delete').on('click', delSource('organization/industry/del'));
+			$('div.btn-edit').on('click', function(){editSource('organization/industry/edit');});
+			$('div.btn-delete').on('click', function(){delSource('organization/industry/del');});
 		});
 	</script>
 	<body>

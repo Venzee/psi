@@ -15,6 +15,7 @@ public class Record implements Serializable {
 	private Double price;// 销售价格
 	private Double totalPrice;// 总价
 	private int receiptId;// 单据编号
+	private String remark;// 备注
 
 	public int getId() {
 		return id;
@@ -70,6 +71,14 @@ public class Record implements Serializable {
 
 	public void setReceiptId(int receiptId) {
 		this.receiptId = receiptId;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

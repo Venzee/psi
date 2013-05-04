@@ -54,7 +54,7 @@ public class BaseDao {
 		}
 		return updateCounts;
 	}
-	
+
 	/**
 	 * 批量执行
 	 * 
@@ -98,7 +98,7 @@ public class BaseDao {
 			close(conn);
 		}
 	}
-	
+
 	/**
 	 * 执行SQL
 	 * 
@@ -111,7 +111,7 @@ public class BaseDao {
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(sql);
-			if(params != null){
+			if (params != null) {
 				setParamValues(stmt, params);
 			}
 			stmt.executeUpdate();
@@ -171,7 +171,7 @@ public class BaseDao {
 					Object value = rs.getObject(i + 1);
 					row.put(columName, value);
 				}
-			}else{
+			} else {
 				LOG.debug("参数错误，查询结果有多个，请使用[executeQueryMultiple]方法！");
 			}
 		} finally {
@@ -181,7 +181,7 @@ public class BaseDao {
 		}
 		return row;
 	}
-	
+
 	/**
 	 * 查询单个结果
 	 * 
@@ -207,7 +207,7 @@ public class BaseDao {
 					Object value = rs.getObject(i + 1);
 					row.put(columName, value);
 				}
-			}else{
+			} else {
 				LOG.debug("参数错误，查询结果有多个，请使用[executeQueryMultiple]方法！");
 			}
 		} finally {
@@ -252,7 +252,7 @@ public class BaseDao {
 		}
 		return rows;
 	}
-	
+
 	/**
 	 * 查询多个结果
 	 * 
@@ -348,7 +348,7 @@ public class BaseDao {
 		params.add(id);
 		execute(sql, params);
 	}
-	
+
 	/**
 	 * 新增数据
 	 * 
@@ -377,13 +377,13 @@ public class BaseDao {
 		PreparedStatement stmt = null;
 		int primaryId = 0;
 		try {
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			setParamValues(stmt, params);
 			int upadteCount = stmt.executeUpdate();
 			if (upadteCount != 0) {
 				ResultSet rs = stmt.getGeneratedKeys();
 				while (rs.next()) {
-					primaryId = rs.getInt(0);
+					primaryId = rs.getInt(1);
 				}
 			}
 		} finally {
@@ -427,7 +427,8 @@ public class BaseDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data) throws SQLException {
+	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data)
+			throws SQLException {
 		Object primaryId = insertAndReturnPrimaryId(tableName, data);
 		Map<String, Object> returnData = executeQuerySingle(sql, Arrays.asList(primaryId));
 		return returnData;
@@ -442,7 +443,8 @@ public class BaseDao {
 	 * @return
 	 */
 	public String makeCountTableSql(String tableNameOrSql, String countColumn, Collection<String> paramNames) {
-		StringBuilder sql = new StringBuilder().append("select count(").append(countColumn).append(") as count from ").append(tableNameOrSql);
+		StringBuilder sql = new StringBuilder().append("select count(").append(countColumn).append(") as count from ")
+				.append(tableNameOrSql);
 		if (paramNames != null && paramNames.size() > 0) {
 			int nameCount = 0;
 			sql.append(" where ");
@@ -484,7 +486,7 @@ public class BaseDao {
 		sql.append(")");
 		return sql.toString();
 	}
-	
+
 	/**
 	 * 生成更新数据SQL
 	 * 
@@ -496,11 +498,11 @@ public class BaseDao {
 		StringBuilder sql = new StringBuilder().append("update ").append(tableName).append(" set ");
 		int nameCount = 0;
 		for (String name : names) {
-			if(!name.equals("id")){
+			if (!name.equals("id")) {
 				sql.append(name);
 				if (names.size() > 0 && nameCount < names.size() - 1) {
 					sql.append("= ? ,");
-				}else{
+				} else {
 					sql.append("= ?");
 				}
 			}

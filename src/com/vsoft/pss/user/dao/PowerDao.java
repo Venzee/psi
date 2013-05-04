@@ -7,12 +7,12 @@ import org.apache.log4j.Logger;
 
 import com.vsoft.core.base.dao.BaseDao;
 
-public class RightDao extends BaseDao {
-	private static final Logger LOG = Logger.getLogger(RightDao.class);
+public class PowerDao extends BaseDao {
+	private static final Logger LOG = Logger.getLogger(PowerDao.class);
 
 	public void addRight(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_customer_right", data);
+			this.insertToTable("pss_power", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

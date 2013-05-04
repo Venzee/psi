@@ -1,6 +1,7 @@
 package com.vsoft.pss.user.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,12 +27,15 @@ public class UserService {
 	private UserDao userDao;
 
 	public User register(Organization organization, Company company, User user) {
+		organization.setJoinDate(new Date());
+		organization.setExpireDate(new Date());
 		Map<String, Object> organizationData = DataUtil.parseObjectToMap(organization, Organization.class);
 		int organizationId = organizationDao.addOrganizationReturnId(organizationData);
 		company.setOrganizationId(organizationId);
 		Map<String, Object> companyData = DataUtil.parseObjectToMap(company, Company.class);
 		int companyId = companyDao.addCompanyReturnId(companyData);
 		user.setCompanyId(companyId);
+		user.setCreateDate(new Date());
 		return register(user);
 	}
 

@@ -16,7 +16,7 @@ public class RelationDao extends BaseDao {
 
 	public void addContacts(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_pss_relation", data);
+			this.insertToTable("pss_relation", data);
 			LOG.info("新增往来单位成功");
 		} catch (SQLException e) {
 			LOG.error("新增往来单位时出错", e);

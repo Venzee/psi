@@ -12,7 +12,7 @@ public class UserGroupDao extends BaseDao {
 
 	public void addUserGroup(Map<String, Object> data) {
 		try {
-			this.insertToTable("com_customer_usergroup", data);
+			this.insertToTable("pss_usergroup", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

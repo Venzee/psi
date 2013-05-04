@@ -9,7 +9,6 @@ public class Employee implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5349739869324485892L;
-
 	private int id;
 	private int age;// 年龄
 	private Date birth;// 生日
@@ -19,6 +18,7 @@ public class Employee implements Serializable {
 	private String address;// 联系地址
 	private int status;// 状态 1为正常，2为离职，3为已删除
 	private int companyId;// 所属公司ID
+	private int departmentId;// 所属部门
 
 	public int getId() {
 		return id;
@@ -90,6 +90,14 @@ public class Employee implements Serializable {
 
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 
 }

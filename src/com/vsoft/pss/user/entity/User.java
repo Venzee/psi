@@ -1,6 +1,7 @@
 package com.vsoft.pss.user.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
 
@@ -14,6 +15,8 @@ public class User implements Serializable {
 	private int groupId; // 用户组ID
 	private int employeeId; // 用户对应的员工ID 首次注册管理员为0
 	private int companyId;// 用户归属公司ID
+	private String powers;// 权限串
+	private Date createDate;// 创建时间
 
 	public int getId() {
 		return id;
@@ -61,6 +64,22 @@ public class User implements Serializable {
 
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
+	}
+
+	public String getPowers() {
+		return powers;
+	}
+
+	public void setPowers(String powers) {
+		this.powers = powers;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 }

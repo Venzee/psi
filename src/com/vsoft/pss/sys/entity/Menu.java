@@ -1,13 +1,3 @@
-/*-------------------------------------------------
- * Project:　　  test
- * FileName:    Menu.java
- * PackageName: com.vsoft.jxc.sys.entity
- * Company:     Sentree
- * Copyright:   ©2013 Sentree Co.
- * Version:     1.0
- * History:     Mar 18, 2013 12:14:27 PM (zw) Create
- *------------------------------------------------*/
-
 package com.vsoft.pss.sys.entity;
 
 import java.io.Serializable;
@@ -21,7 +11,9 @@ public class Menu implements Serializable {
 	private int id;
 	private String name;
 	private String url;
-	private int topId;
+	private int parentId;
+	private boolean parent;
+	private String power;
 
 	public int getId() {
 		return id;
@@ -47,12 +39,28 @@ public class Menu implements Serializable {
 		this.url = url;
 	}
 
-	public int getTopId() {
-		return topId;
+	public int getParentId() {
+		return parentId;
 	}
 
-	public void setTopId(int topId) {
-		this.topId = topId;
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
+	}
+
+	public boolean isParent() {
+		return parent;
+	}
+
+	public void setParent(boolean parent) {
+		this.parent = parent;
+	}
+
+	public String getPower() {
+		return power;
+	}
+
+	public void setPower(String power) {
+		this.power = power;
 	}
 
 }

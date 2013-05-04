@@ -27,15 +27,15 @@
 							label: ['名称','是否父级类别','所属类别'],
 							source: [
 								'<input type="text" class="text_500 not_null form-value" name="name" />',
-								'<select class="text_150 form-value" name="parent"><option value="true">是</option><option value="false">否</option></select>',
+								'<div class="radio-group"><input type="hidden" class="radio-value" name="parent" value="true" /><span id="true" class="radio checked">是</span><span id="false" class="radio">否</span></lable></div>',
 								'<select class="text_150 form-value" name="parentId">' + sorts + '</select>'
 							]
 						});
 					}
 				});
 			});
-			$('div.btn-edit').on('click', editSource('inventory/sort/edit'));
-			$('div.btn-delete').on('click', delSource('inventory/sort/del'));
+			$('div.btn-edit').on('click', function(){editSource('inventory/sort/edit');});
+			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 		});
 	</script>
 	<body>

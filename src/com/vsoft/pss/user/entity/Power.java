@@ -2,7 +2,7 @@ package com.vsoft.pss.user.entity;
 
 import java.io.Serializable;
 
-public class Right implements Serializable {
+public class Power implements Serializable {
 
 	/**
 	 * 

@@ -250,7 +250,7 @@
 	text-shadow: 0px 1px 1px #555;
 }
 
-.table-source-line > dd > .checkbox {
+.checkbox {
 	display: block;
 	height: 20px;
 	width: 20px;
@@ -258,8 +258,31 @@
 	background: url("../../image/checkbox.png") -90px 0px no-repeat;
 }
 
-.table-source-line > dd > .checked {
+.checkbox.checked {
 	background: url("../../image/checkbox.png") -60px -30px no-repeat;
+}
+
+.radio-group {
+	height: 34px;
+	line-height: 34px;
+}
+
+.radio-group > .radio {
+	float: left;
+}
+
+.radio {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	width: 30px;
+	margin: 6px;
+	padding-left: 25px;
+	background: url("../../image/radio.png") -90px 0px no-repeat;
+}
+
+.radio.checked {
+	background: url("../../image/radio.png") -60px -30px no-repeat;
 }
 
 .form-source {

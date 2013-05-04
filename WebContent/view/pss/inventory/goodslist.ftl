@@ -28,8 +28,8 @@
 					]
 				});
 			});
-			$('div.btn-edit').on('click', editSource('inventory/goods/edit'));
-			$('div.btn-delete').on('click', delSource('inventory/goods/del'));
+			$('div.btn-edit').on('click', function(){editSource('inventory/goods/edit');});
+			$('div.btn-delete').on('click', function(){delSource('inventory/goods/del');});
 		});
 	</script>
 	<body>

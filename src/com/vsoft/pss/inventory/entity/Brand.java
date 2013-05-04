@@ -16,7 +16,7 @@ public class Brand implements Serializable {
 	private String remark; // 备注&描述
 	private int status; // 状态
 	private Date createDate; // 创建时间
-	private int sortId; // 品牌所属行业ID
+	private int sortId; // 品牌所属类目ID
 	private int companyId; // 新建品牌的公司ID (默认0)
 
 	public int getId() {

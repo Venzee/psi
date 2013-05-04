@@ -21,9 +21,9 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping("/register/init")
-	public String initRegister(HttpServletRequest request, Organization organization, Company company, User user) {
+	public String initRegister(HttpServletRequest request, ModelMap map, Organization organization, Company company, User user) {
 		user = userService.register(organization, company, user);
-		return login(request, user);
+		return login(request, map, user);
 	}
 
 	@RequestMapping("/register")
@@ -37,11 +37,11 @@ public class UserController {
 			return "pss/register";
 		}
 		user = userService.register(user);
-		return login(request, user);
+		return login(request, map, user);
 	}
 
 	@RequestMapping("/login")
-	public String login(HttpServletRequest request, User user) {
+	public String login(HttpServletRequest request, ModelMap map, User user) {
 		boolean result = false;
 		SessionUser sessionUser = new SessionUser();
 		String sessionId = request.getSession().getId();
@@ -51,8 +51,9 @@ public class UserController {
 		sessionUser.setUsername(user.getUsername());
 		result = SessionUtil.putSession(sessionId, sessionUser);
 		if (result) {
-			return "redirect:index";
+			return "redirect:/index";
 		}
+		map.put("tip", "系统不允许两个用户同时在线！");
 		return "pss/login";
 	}
 
