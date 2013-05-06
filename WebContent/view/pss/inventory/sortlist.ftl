@@ -1,12 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<base href="${request.contextPath + '/' }" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>商品类目管理</title>
-	<link rel="stylesheet" type="text/css" href="style/css/pss.css">
-	<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="script/js/comm.js"></script>
-	<script type="text/javascript" src="script/js/ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
+	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/js/comm.js"></script>
+	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('form.pageForm').attr('action', 'inventory/sort/list');
@@ -14,7 +13,7 @@
 				var sorts = '';
 				$.ajax({
 					type : 'POST',
-					url : 'inventory/sort/ajaxlist',
+					url : 'ajaxlist',
 					data : 'randomNum=' + Math.random(),
 					dataType: 'json',
 					success : function(data) {
@@ -22,7 +21,7 @@
 							sorts = sorts + '<option value="' + n.id + '">' + n.name + '</option>'
 						});
 						$.dgform({
-							url : 'inventory/sort/add',
+							url : 'add',
 							title: '新增商品类型',
 							label: ['名称','是否父级类别','所属类别'],
 							source: [

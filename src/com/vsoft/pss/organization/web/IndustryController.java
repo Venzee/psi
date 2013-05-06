@@ -14,7 +14,7 @@ import com.vsoft.pss.organization.entity.Industry;
 import com.vsoft.pss.organization.service.IndustryService;
 
 @Controller
-@RequestMapping("/organization/industry")
+@RequestMapping("/org/industry")
 public class IndustryController {
 
 	@Autowired

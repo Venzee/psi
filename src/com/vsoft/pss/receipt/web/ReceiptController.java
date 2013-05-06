@@ -25,7 +25,7 @@ public class ReceiptController {
 		return "";
 	}
 
-	@RequestMapping("/list")
+	@RequestMapping("/all/list")
 	public String queryAllReceipt(ModelMap map, ReceiptForm form, Page page) {
 		List<Receipt> list = receiptService.queryAllReceipt(form, page);
 		map.put("receiptList", list);

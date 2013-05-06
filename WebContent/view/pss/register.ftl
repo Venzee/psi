@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<base href="${request.contextPath + '/' }" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>注册</title>
 <link rel="stylesheet" type="text/css" href="style/css/pss.css">
@@ -122,8 +121,8 @@ $(function(){
 		<div id="tab">
 			<div id="navi">
 				<ul>
-					<li class="active">第一步</li>
-					<li>第二步</li>
+					<li class="active">第一步 > 基础信息</li>
+					<li>第二步 > 管理员信息</li>
 					<li>完成注册</li>
 				</ul>
 				<div class="clear"></div>
@@ -132,13 +131,13 @@ $(function(){
 				<div class="step active">
 					<div class="form-source">
 						<dl class="form-source-name">
-							<dd>*公司名称：</dd>
-							<dd>*公司联系人：</dd>
-							<dd>*公司电话：</dd>
-							<dd>公司传真：</dd>
-							<dd>公司邮箱：</dd>
-							<dd>公司地址：</dd>
-							<dd>行业：</dd>
+							<dd>公司名称：</dd>
+							<dd>联系人：</dd>
+							<dd>联系电话：</dd>
+							<dd>联系传真：</dd>
+							<dd>联系邮箱：</dd>
+							<dd>联系地址：</dd>
+							<dd>经营行业：</dd>
 						</dl>
 						<dl class="form-source-value">
 							<dd><input type="text" class="text_500 not-null form-value" name="name" /></dd>
@@ -147,7 +146,7 @@ $(function(){
 							<dd><input type="text" class="text_500 form-value" name="fax" /></dd>
 							<dd><input type="text" class="text_500 form-value" name="email" /></dd>
 							<dd><input type="text" class="text_500 form-value" name="address" /></dd>
-							<dd><select class="text_150 not_null form-value" id="industry" name="industryId"></select></dd>
+							<dd><select class="text_150 form-value" id="industry" name="industryId"></select></dd>
 						</dl>
 						<div class="clear"></div>
 					</div>

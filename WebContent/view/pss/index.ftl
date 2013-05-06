@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<base href="${request.contextPath + '/' }" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>首页</title>
 <link rel="stylesheet" type="text/css" href="style/css/pss.css">
@@ -27,19 +26,36 @@
 	    		<dl class="menu-items">
 	    			<dt class="menu-title">仓库中心</dt>
 	    			<dt class="top-line"></dt>
-	   				<dd class="menu-item"><span id="A00" title="inventory/brand/list">品牌管理</span></dd>
-	   				<dd class="menu-item"><span id="A01" title="inventory/sort/list">商品类型</span></dd>
-                  	<dd class="menu-item"><span id="A02" title="inventory/goods/list">商品管理</span></dd>
+	   				<dd class="menu-item"><span title="inventory/brand/list">品牌管理</span></dd>
+	   				<dd class="menu-item"><span title="inventory/sort/list">商品类型</span></dd>
+                  	<dd class="menu-item"><span title="inventory/goods/list">商品管理</span></dd>
                 </dl>
 				<dl class="menu-items">
 	    			<dt class="menu-title">单据中心</dt>
 	    			<dt class="top-line"></dt>
-               		<dd class="menu-item"><span id="B00" title="receipt/list">单据管理</span></dd>
+               		<dd class="menu-item"><span title="receipt/all/list">单据汇总</span></dd>
+               		<dd class="menu-item"><span title="receipt/all/list">销售单据</span></dd>
+               		<dd class="menu-item"><span title="receipt/all/list">进货单据</span></dd>
+               	</dl>
+               	<dl class="menu-items">
+                    <dt class="menu-title">用户中心</dt>
+                    <dt class="top-line"></dt>
+               	</dl>
+               	<dl class="menu-items">
+                    <dt class="menu-title">客户中心</dt>
+                    <dt class="top-line"></dt>
+                    <dd class="menu-item"><span title="org//list">行业管理</span></dd>
                	</dl>
             	<dl class="menu-items">
                     <dt class="menu-title">基础设置</dt>
                     <dt class="top-line"></dt>
-               		<dd class="menu-item"><span id="C00" title="organization/industry/list">行业管理</span></dd>
+               		<dd class="menu-item"><span title="relation/all/list">往来单位</span></dd>
+               	</dl>
+               	<dl class="menu-items">
+                    <dt class="menu-title">系统设置</dt>
+                    <dt class="top-line"></dt>
+               		<dd class="menu-item"><span title="sys/menu/list">菜单管理</span></dd>
+               		<dd class="menu-item"><span title="org/industry/list">行业管理</span></dd>
                	</dl>
 		    </div>
 	    </div>

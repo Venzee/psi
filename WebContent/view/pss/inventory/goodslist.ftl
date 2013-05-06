@@ -1,18 +1,17 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<base href="${request.contextPath + '/' }" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>商品管理</title>
-	<link rel="stylesheet" type="text/css" href="style/css/pss.css">
-	<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="script/js/comm.js"></script>
-	<script type="text/javascript" src="script/js/ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
+	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/js/comm.js"></script>
+	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('form.pageForm').attr('action', 'inventory/goods/list');
 			$('div.btn-add').on('click', function(){
 				$.dgform({
-					url: 'inventory/goods/add',
+					url: 'add',
 					title: '新增商品',
 					label: ['名称','简称','品牌','类型','单位','条码','可销售季节','搜索编码',{style: 'high', name:'备注'}],
 					source: [
