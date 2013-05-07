@@ -51,7 +51,9 @@ public class UserService {
 		params.add(user.getUsername());
 		params.add(user.getPassword());
 		Map<String, Object> data = userDao.queryUserForLogin(params);
-		user = (User) DataUtil.parseMapToObject(data, User.class);
+		if(null != data){
+			user = (User) DataUtil.parseMapToObject(data, User.class);
+		}
 		return user;
 	}
 }

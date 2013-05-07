@@ -44,12 +44,8 @@
                	<dl class="menu-items">
                     <dt class="menu-title">客户中心</dt>
                     <dt class="top-line"></dt>
-                    <dd class="menu-item"><span title="org//list">行业管理</span></dd>
-               	</dl>
-            	<dl class="menu-items">
-                    <dt class="menu-title">基础设置</dt>
-                    <dt class="top-line"></dt>
-               		<dd class="menu-item"><span title="relation/all/list">往来单位</span></dd>
+                    <dd class="menu-item"><span title="org/all/list">客户管理</span></dd>
+                    <dd class="menu-item"><span title="relation/all/list">往来单位</span></dd>
                	</dl>
                	<dl class="menu-items">
                     <dt class="menu-title">系统设置</dt>

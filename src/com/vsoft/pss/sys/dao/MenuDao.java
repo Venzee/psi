@@ -14,13 +14,15 @@ public class MenuDao extends BaseDao {
 
 	private final static Logger LOG = Logger.getLogger(MenuDao.class);
 
-	public void addMenu(Map<String, Object> data) {
+	public boolean addMenu(Map<String, Object> data) {
 		try {
 			this.insertToTable("pss_menu", data);
 			LOG.info("新增菜单时成功");
+			return true;
 		} catch (SQLException e) {
 			LOG.error("新增菜单时出错", e);
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -35,4 +37,27 @@ public class MenuDao extends BaseDao {
 		}
 		return list;
 	}
+
+	public boolean deleteMenu(String idStr) {
+		StringBuffer sql = new StringBuffer("delete from pss_menu where id in (");
+		sql.append(idStr).append(")");
+		try {
+			this.execute(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public int countMenuById() {
+		int count = 0;
+		try {
+			count = this.countTable("pss_menu", "id", null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 }

@@ -43,15 +43,20 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, ModelMap map, User user) {
 		boolean result = false;
-		SessionUser sessionUser = new SessionUser();
 		String sessionId = request.getSession().getId();
-		if (user.getId() == 0) {
+		SessionUser sessionUser = SessionUtil.getUserBySessionId(sessionId);
+		if( sessionUser == null){
+			sessionUser = new SessionUser();
 			user = userService.login(user);
-		}
-		sessionUser.setUsername(user.getUsername());
-		result = SessionUtil.putSession(sessionId, sessionUser);
-		if (result) {
-			return "redirect:/index";
+			if (user.getId() == 0) {
+				map.put("tip", "用户名或密码错误！");
+				return "pss/login";
+			}
+			sessionUser.setUsername(user.getUsername());
+			result = SessionUtil.putSession(sessionId, sessionUser);
+			if (result) {
+				return "redirect:/index";
+			}
 		}
 		map.put("tip", "系统不允许两个用户同时在线！");
 		return "pss/login";
