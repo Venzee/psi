@@ -166,7 +166,7 @@ $(function(){
 			$('div.btn-check-all').text('全选');
 		}
 	});
-	$('div.radio-group').find('.radio').on('click', function(){
+	top.$(document).on('click', $('div.radio-group').find('.radio'), function(){
 		var group = $(this).parents('div.radio-group');
 		group.find('span.radio').removeClass('checked');
 		group.find('input.radio-value').val($(this).attr('id'));
