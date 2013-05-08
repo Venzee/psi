@@ -10,36 +10,19 @@
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('form.pageForm').attr('action', 'inventory/sort/list');
-			$('div.btn-add').on('click', function(){
-				var sorts = '';
-				$.ajax({
-					type : 'POST',
-					url : 'ajaxlist',
-					data : 'randomNum=' + Math.random(),
-					dataType: 'json',
-					success : function(data) {
-						$.each(data, function(i,n){
-							sorts = sorts + '<option value="' + n.id + '">' + n.name + '</option>'
-						});
-						$.dgform({
-							url : 'add',
-							title: '新增商品类型',
-							label: ['名称','是否父级类别','所属类别'],
-							source: [
-								'<input type="text" class="text_500 not_null form-value" name="name" />',
-								'<div class="radio-group"><input type="hidden" class="radio-value" name="parent" value="true" /><span id="true" class="radio checked">是</span><span id="false" class="radio">否</span></lable></div>',
-								'<select class="text_150 form-value" name="parentId">' + sorts + '</select>'
-							]
-						});
-					}
-				});
-			});
-			$('div.btn-edit').on('click', function(){editSource('inventory/sort/edit');});
-			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 			var setting = {
+				async: {
+					enable: true,
+					url: 'childlist',
+					dataType: 'json',
+					autoParam: ['id=parentId']
+				},
+				check: {
+					enable: true
+				},
 				view: {
-					dblClickExpand: false
+					dblClickExpand: false,
+					expandSpeed: ''
 				},
 				edit: {
 					drag: {
@@ -64,24 +47,96 @@
 					onDrag: onDrag,
 					onDrop: onDrop,
 					onExpand: onExpand,
-					onClick: onClick
+					onClick: onClick,
+					beforeExpand: beforeExpand,
+					onAsyncSuccess: onAsyncSuccess,
+					onAsyncError: onAsyncError
 				}
 			};
 	
-			var zNodes =[
-				{ id:1, pId:0, name:"随意拖拽 1"},
-				{ id:11, pId:1, name:"随意拖拽 1-1",dropInner:false, dropRoot:false},
-				{ id:12, pId:1, name:"随意拖拽 1-2",dropInner:false, dropRoot:false},
-				{ id:121, pId:1, name:"随意拖拽 1-2-1",dropInner:false, dropRoot:false},
-				{ id:122, pId:1, name:"随意拖拽 1-2-2",dropInner:false, dropRoot:false},
-				{ id:123, pId:1, name:"随意拖拽 1-2-3" ,dropInner:false, dropRoot:false},
-				{ id:2, pId:0, name:"子节点移走 2"},
-				{ id:21, pId:2, name:"我不想成为父节点 2-1", dropInner:false, dropRoot:false},
-				{ id:22, pId:2, name:"我不要成为根节点 2-2", dropInner:false, dropRoot:false},
-			];
-	
+			var zNodes = ${sortList};
+
+			$.fn.zTree.init($("#sortTree"), setting, zNodes);
+			var zTree = $.fn.zTree.getZTreeObj("sortTree");
+
+			$('div.btn-add').on('click', function(){
+				var nodes = zTree.getSelectedNodes(), treeNode, isParent;
+				treeNode = nodes[0];
+				if(treeNode === undefined){
+					$.dgform({
+						url : 'addre',
+						title: '新增商品类别',
+						label: ['类目名称'],
+						source: [
+							'<input type="text" class="text-500 not-null form-value" name="name" />'
+						],
+						data: {success: function(data){addSort(data);}}
+					});
+				}else{
+					isParent = treeNode.isParent;
+					if (isParent) {
+						$.dgform({
+							url : 'addre',
+							title: '新增商品类目',
+							label: ['名称','所属类目'],
+							source: [
+								'<input type="text" class="text-500 not-null form-value" name="name" />',
+								'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.id + '"/>',
+								'<span>' + treeNode.name + '</span>'
+							],
+							data: {
+								dataType: 'json',
+								success: function(data){addSort(data, nodes[0]);}
+							}
+						});
+					}else{
+						$.dgtip({
+							level : 'info',
+							autoClose : true,
+							msg : '选择的类目不能添加子类目！'
+						});
+					};
+				}
+			});
+
+			$('div.btn-edit').on('click', function(){
+				var nodes = zTree.getSelectedNodes(), size;
+				if(nodes === null){
+					size = 0;
+				}else{
+					size = nodes.length;
+				}
+				alert(size)
+				editSource(size, function(){editSort(nodes[0]);});
+			});
+
+			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
+
+			function addSort(data, treeNode){
+				if (treeNode === undefined) {
+					zTree.addNodes(treeNode, {id:(data.id), pId:0, name:data.name});
+				}else{
+					zTree.addNodes(treeNode, {id:(data.id), pId:data.parentId, name:data.name});
+				}
+			}
+
+			function editSort(treeNode){
+				$.dgform({
+					url : 'add',
+					title: '编辑商品类目',
+					label: ['名称'],
+					source: [
+						'<input type="text" class="text-500 not-null form-value" name="name" value="' + treeNode.name + '"/>',
+						'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.parentId + '"/>',
+						'<input type="hidden" class="form-value" name="id" value="' + treeNode.id + '"/>'
+					],
+					data: {
+						success: function(data){}
+					}
+				});
+			}
+
 			function onClick(e,treeId, treeNode) {
-				var zTree = $.fn.zTree.getZTreeObj("sortTree");
 				zTree.expandNode(treeNode);
 			}
 	
@@ -99,6 +154,7 @@
 				}
 				return true;
 			}
+
 			function dropInner(treeId, nodes, targetNode) {
 				if (targetNode && targetNode.dropInner === false) {
 					return false;
@@ -113,6 +169,7 @@
 				}
 				return true;
 			}
+
 			function dropNext(treeId, nodes, targetNode) {
 				var pNode = targetNode.getParentNode();
 				if (pNode && pNode.dropInner === false) {
@@ -128,7 +185,8 @@
 				return true;
 			}
 	
-			var log, className = "dark", curDragNodes, autoExpandNode;
+			var className = "dark", startTime = 0, endTime = 0, perCount = 100, perTime = 100, curDragNodes, autoExpandNode;
+
 			function beforeDrag(treeId, treeNodes) {
 				className = (className === "dark" ? "":"dark");
 				for (var i=0,l=treeNodes.length; i<l; i++) {
@@ -169,11 +227,62 @@
 			}
 			
 			function setTrigger() {
-				var zTree = $.fn.zTree.getZTreeObj("sortTree");
 				zTree.setting.edit.drag.autoExpandTrigger = true;
 			}
+
+			function beforeExpand(treeId, treeNode) {
+				if (!treeNode.isAjaxing) {
+					startTime = new Date();
+					treeNode.times = 1;
+					ajaxGetNodes(treeNode, "refresh");
+					return true;
+				} else {
+					$.dgtip({
+						level : 'info',
+						autoClose : true,
+						msg : '正在下载数据中，请稍后！'
+					});
+					return false;
+				}
+			}
+
+			function onAsyncSuccess(event, treeId, treeNode, msg) {
+				if (!msg || msg.length == 0) {
+					return;
+				}
+				var zTree = $.fn.zTree.getZTreeObj("sortTree"),
+				totalCount = treeNode.count;
+				if (treeNode.children.length < totalCount) {
+					setTimeout(function() {ajaxGetNodes(treeNode);}, perTime);
+				} else {
+					treeNode.icon = "";
+					zTree.updateNode(treeNode);
+					zTree.selectNode(treeNode.children[0]);
+					endTime = new Date();
+					className = (className === "dark" ? "":"dark");
+				}
+			}
+
+			function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+				var zTree = $.fn.zTree.getZTreeObj("sortTree");
+				$.dgtip({
+					level : 'error',
+					msg : '获取数据出现异常！'
+				});
+				treeNode.icon = "";
+				zTree.updateNode(treeNode);
+			}
+
+			function ajaxGetNodes(treeNode, reloadType) {
+				var zTree = $.fn.zTree.getZTreeObj("sortTree");
+				if (reloadType == "refresh") {
+					treeNode.icon = "../style/zTreeStyle/img/loading.gif";
+					zTree.updateNode(treeNode);
+				}
+				zTree.reAsyncChildNodes(treeNode, reloadType, true);
+			}
 			
-			$.fn.zTree.init($("#sortTree"), setting, zNodes);
+			
 		});
 	</script>
 	<body>
@@ -194,62 +303,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- 
-		<div class="ui-table" id="sortTable">
-			<div class="ui-head">
-				<div class="ui-title">
-					<div class="ui-title-name ui-table-title-name">商品类型表</div>
-					<div class="ui-operation">
-						<div class="ui-btn btn-delete">删除</div>
-						<div class="ui-btn btn-edit">编辑</div>
-						<div class="ui-btn btn-add">新增</div>
-					</div>
-				</div>
-				<div class="table-source-head">
-					<dl>
-						<dd class="text_5p">选项</dd>
-						<dd class="text_5p">编号</dd>
-						<dd class="text_45p">类型名称</dd>
-						<dd class="text_45p">父级分类</dd>
-					</dl>
-				</div>
-			</div>
-			<div class="table-source">
-				<#list sortList as source>
-					<#if source_index % 2 = 0>
-						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${source.sort.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${source_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
-							<dd class="text_45p">
-								${source.sort.parent ? string('<a href="javascript:;">${source.sort.name}</a>', '${source.sort.name}')}
-							</dd>
-							<dd class="text_45p">${source.parentName}</dd>
-						</dl>
-					</#if>
-					<#if source_index % 2 = 1>
-						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${source.sort.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${source_index + 1 + (page.currPage - 1) * page.pageRecord}</dd>
-							<dd class="text_45p">
-								${source.sort.parent ? string('<a href="javascript:;">${source.sort.name}</a>', '${source.sort.name}')}
-							</dd>
-							<dd class="text_45p">${source.parentName}</dd>
-						</dl>
-					</#if>
-				</#list>
-			</div>
-			<div class="ui-foot">
-				<#if (sortList?size>1) >
-					<div class="btn">
-						<div class="ui-btn btn-check-all">全选</div>
-						<div class="ui-btn btn-check-invert">反选</div>
-					</div>
-				</#if>
-				<div class="ui-operation">
-					<#include "comm/page.ftl">
-				</div>
-			</div>
-		</div>
-			-->
 	</body>
 </html>

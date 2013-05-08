@@ -1,7 +1,7 @@
 package com.vsoft.pss.inventory.dao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +25,27 @@ public class SortDao extends BaseDao {
 		try {
 			this.insertToTable("pss_sort", data);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.error("添加商品类目时出错", e);
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * 添加商品类别并返回
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public Map<String, Object> addSortAndReturn(Map<String, Object> data) {
+		try {
+			int id = this.insertAndReturnPrimaryId("pss_sort", data);
+			data.put("id", id);
+			LOG.debug("添加商品类目成功！ ID = " + id);
+		} catch (SQLException e) {
+			LOG.error("添加商品类目时出错", e);
+		}
+		return data;
 	}
 
 	/**
@@ -41,7 +58,7 @@ public class SortDao extends BaseDao {
 		try {
 			this.updateTableById("pss_sort", data);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.error("更新商品类目时出错", e);
 			return false;
 		}
 		return true;
@@ -65,20 +82,36 @@ public class SortDao extends BaseDao {
 	}
 	
 	/**
+	 * 查询对应父级商品类别的所有子类别
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	public List<Map<String, Object>> querySort(Object parentId) {
+		List<Map<String, Object>> datas = null;
+		String sql = "select s.id,s.name,s.parentId from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
+		try {
+			datas = this.executeQueryMultiple(sql, Arrays.asList(parentId));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datas;
+	}
+	
+	/**
 	 * 查询所有父级商品类别
 	 * 
 	 * @return
 	 */
 	public List<Map<String, Object>> querySort() {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name from pss_sort s where s.parent = true order by s.parentId asc, s.id desc";
+		String sql = "select s.id,s.name,s.parent from pss_sort s where s.parent = true";
 		try {
 			datas = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return datas;
-		
 	}
 	
 	/**

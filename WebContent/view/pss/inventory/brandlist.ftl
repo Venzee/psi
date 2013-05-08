@@ -24,8 +24,8 @@
 							url: 'add',
 							title: '新增品牌',
 							label: ['品牌名称','品牌所属行业'],
-							source: ['<input type="text" class="text_500 not_null form-value" name="name" />',
-								'<select class="text_150 form-value" name="industryId">' + industrys + '</select>']
+							source: ['<input type="text" class="text-500 not-null form-value" name="name" />',
+								'<select class="text-150 form-value" name="industryId">' + industrys + '</select>']
 						});
 					}
 				});
@@ -56,10 +56,10 @@
 				</div>
 				<div class="table-source-head">
 					<dl>
-						<dd class="text_5p">选项</dd>
-						<dd class="text_5p">编号</dd>
-						<dd class="text_35p">品牌名称</dd>
-						<dd class="text_55p">所属行业</dd>
+						<dd class="text-5p">选项</dd>
+						<dd class="text-5p">编号</dd>
+						<dd class="text-35p">品牌名称</dd>
+						<dd class="text-55p">所属行业</dd>
 					</dl>
 				</div>
 			</div>
@@ -67,18 +67,18 @@
 				<#list brandList as brand>
 					<#if brand_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${brand.brand.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${brand_index + 1}</dd>
-							<dd class="text_35p">${brand.brand.name}</dd>
-							<dd class="text_55p">${brand.industryName}</dd>
+							<dd class="text-5p"><span id="${brand.brand.id}" class="checkbox"></span></dd>
+							<dd class="text-5p">${brand_index + 1}</dd>
+							<dd class="text-35p">${brand.brand.name}</dd>
+							<dd class="text-55p">${brand.industryName}</dd>
 						</dl>
 					</#if>
 					<#if brand_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${brand.brand.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${brand_index + 1}</dd>
-							<dd class="text_35p">${brand.brand.name}</dd>
-							<dd class="text_55p">${brand.industryName}</dd>
+							<dd class="text-5p"><span id="${brand.brand.id}" class="checkbox"></span></dd>
+							<dd class="text-5p">${brand_index + 1}</dd>
+							<dd class="text-35p">${brand.brand.name}</dd>
+							<dd class="text-55p">${brand.industryName}</dd>
 						</dl>
 					</#if>
 				</#list>

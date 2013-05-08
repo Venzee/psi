@@ -40,28 +40,26 @@ function checked() {
 	return isCheckAll;
 }
 
-function editSource(url, callBack){
-	var idArray = getCheckedArray(), size;
-	if(idArray === null){
-		size = 0;
-	}else{
-		size = idArray.length;
+function editSource(size, callBack){
+	if(size === undefined){
+		var idArray = getCheckedArray();
+		if(idArray === null){
+			size = 0;
+		}else{
+			size = idArray.length;
+		}
 	}
 	switch(size){
 	default:
 		$.dgtip({
-			target: parent.$('body'),
 			level : 'info',
-			type : 'tip',
 			autoClose : true,
 			msg : '一次只能编辑一条数据！'
 		});
 		break;
 	case 0:
 		$.dgtip({
-			target: parent.$('body'),
 			level : 'info',
-			type : 'tip',
 			autoClose : true,
 			msg : '请选择需要编辑的数据！'
 		});
@@ -76,15 +74,12 @@ function delSource(url){
 	var idStr = getCheckedStr();
 	if(idStr === null || idStr === ''){
 		$.dgtip({
-			target: parent.$('body'),
 			level : 'info',
-			type : 'tip',
 			autoClose : true,
 			msg : '请选择需要删除的数据！'
 		});
 	}else{
 		$.dgconfirm({
-			target: parent.$('body'),
 			level : 'warning',
 			width : 300,
 			type : 'confirm',
@@ -96,22 +91,19 @@ function delSource(url){
 					data : 'randomNum=' + Math.random() + '&idStr=' + idStr,
 					timeout: 30000,
 					beforeSend : function(){
-						$.showLoading(parent.$('body'));
+						$.showLoading();
 					},
 					error : function(){
-						$.hideLoading(parent.$('body'));
+						$.hideLoading();
 						$.dgtip({
-							target: parent.$('body'),
 							level : 'error',
-							type : 'tip',
 							msg : '系统异常，请联系管理员！'
 						});
 					},
 					success : function(msg){
-						$.hideLoading(parent.$('body'));
+						$.hideLoading();
 						if(msg === 'true'){
 							$.dgtip({
-								target: parent.$('body'),
 								level : 'info',
 								type : 'tip',
 								autoClose : true,
@@ -127,9 +119,7 @@ function delSource(url){
 							}
 						}else{
 							$.dgtip({
-								target: parent.$('body'),
 								level : 'error',
-								type : 'tip',
 								msg : '删除失败！'
 							});
 						}

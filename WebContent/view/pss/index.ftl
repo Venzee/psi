@@ -101,16 +101,16 @@
 		});
 		$('.menu-item span').click(function(){
 			if (!$(this).hasClass('active')) {
-				$.showCover($('body'));
-				$.showLoading($('body'));
+				$.showCover();
+				$.showLoading();
 				$('.menu-item span').removeClass('active');
 				$(this).addClass('active');
 				var title = $(this).parents('dl').find('.menu-title').text() + ' >> ' + $(this).text();
 				$('#navi-title').text(title);
 				var url = $(this).attr('title') + '?randomNum=' + Math.random();
 				$('#mainFrame').attr('src', url);
-				$.hideLoading($('body'));
-				$.hideCover($('body'));
+				$.hideLoading();
+				$.hideCover();
 			}
 		});
 		</script>

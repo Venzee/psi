@@ -93,9 +93,9 @@ $(function(){
 						<dd>验证码：</dd>
 					</dl>
 					<dl class="form-source-value">
-						<dd><input type="text" class="text_500 not-null form-value" name="username" /></dd>
-						<dd><input type="text" class="text_500 not-null form-value" name="password" /></dd>
-						<dd><input type="text" class="text_300 not-null" id="kapache" /></dd>
+						<dd><input type="text" class="text-500 not-null form-value" name="username" /></dd>
+						<dd><input type="text" class="text-500 not-null form-value" name="password" /></dd>
+						<dd><input type="text" class="text-300 not-null" id="kapache" /></dd>
 					</dl>
 					<div class="clear"></div>
 				</div>

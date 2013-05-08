@@ -77,8 +77,8 @@
 					});
 					$.showLoading(config.target);
 				},
-				success : function(msg) {
-					if (msg === 'true') {
+				success : function(data) {
+					if (data === 'true') {
 						var form = config.target.find('#mainFrame').contents().find('form.pageForm');
 						if(form !== undefined && form.hasClass('pageForm')){
 							form.submit();
@@ -175,6 +175,7 @@
 	
 	/* 显示覆盖层 */
 	$.showCover = function(obj) {
+		obj = initObj(obj);
 		var cover = '<div id="cover"></div>';
 		obj.append(cover);
 		obj.find('#cover').fadeIn('fast');
@@ -182,6 +183,7 @@
 	
 	/* 隐藏覆盖层 */
 	$.hideCover = function(obj) {
+		obj = initObj(obj);
 		obj.find('#cover').fadeOut('fast', function() {
 			$(this).remove();
 		});
@@ -189,6 +191,7 @@
 	
 	/* 显示loading层 */
 	$.showLoading = function(obj) {
+		obj = initObj(obj);
 		var left = (obj.width() - 32) / 2;
 		var top = (obj.height() - 32) / 2;
 		var loading = '<img id="load" style="left: ' + left + 'px; top: ' + top + 'px" src="style/image/loading.gif" />';
@@ -198,10 +201,18 @@
 	
 	/* 隐藏loading层 */
 	$.hideLoading = function(obj) {
+		obj = initObj(obj);
 		obj.find('#load').fadeOut('fast', function() {
 			$(this).remove();
 		});
 	};
+	
+	function initObj(obj){
+		if(obj === null || obj === '' || obj === undefined){
+			obj = top.$('body');
+		}
+		return obj;
+	}
 	
 	function initConfig(settings){
 		return $.extend({
@@ -218,7 +229,6 @@
 			time : 1500,
 			position : 'center',
 			target : top.$('body'),
-			type : 'form',
 			url : '',
 			callBack : function(){}
 		}, settings);

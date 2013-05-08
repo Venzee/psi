@@ -27,6 +27,13 @@ public class SortService {
 			return sortDao.updateSort(data);
 		}
 	}
+	
+	public Sort addSortReturn(Sort sort) {
+		Map<String, Object> data = DataUtil.parseObjectToMap(sort, Sort.class);
+		data = sortDao.addSortAndReturn(data);
+		sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
+		return sort;
+	}
 
 	public List<SortForm> querySort(Page page) {
 		List<SortForm> list = new ArrayList<SortForm>();
@@ -41,6 +48,16 @@ public class SortService {
 		return list;
 	}
 
+	public Object querySort(String parentId) {
+		List<Sort> list = new ArrayList<Sort>();
+		List<Map<String, Object>> datas = sortDao.querySort(parentId);
+		for (Map<String, Object> data : datas) {
+			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
+			list.add(sort);
+		}
+		return list;
+	}
+	
 	public List<Sort> querySort() {
 		List<Sort> list = new ArrayList<Sort>();
 		List<Map<String, Object>> datas = sortDao.querySort();

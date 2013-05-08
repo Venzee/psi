@@ -150,7 +150,11 @@ public class DataUtil {
 					} else if (name.equals("long")) {
 						value = Long.parseLong(value.toString());
 					} else if (name.equals("boolean")) {
-						value = Boolean.parseBoolean(value.toString());
+						if(value.toString().equals("1")){
+							value = Boolean.TRUE;
+						}else{
+							value = Boolean.FALSE;
+						}
 					}
 				}
 				Method method = obj.getClass().getMethod(methodHead + attr, type);

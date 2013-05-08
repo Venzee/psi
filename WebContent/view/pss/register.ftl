@@ -140,13 +140,13 @@ $(function(){
 							<dd>经营行业：</dd>
 						</dl>
 						<dl class="form-source-value">
-							<dd><input type="text" class="text_500 not-null form-value" name="name" /></dd>
-							<dd><input type="text" class="text_500 not-null form-value" name="contact" /></dd>
-							<dd><input type="text" class="text_500 not-null form-value" name="tel" /></dd>
-							<dd><input type="text" class="text_500 form-value" name="fax" /></dd>
-							<dd><input type="text" class="text_500 form-value" name="email" /></dd>
-							<dd><input type="text" class="text_500 form-value" name="address" /></dd>
-							<dd><select class="text_150 form-value" id="industry" name="industryId"></select></dd>
+							<dd><input type="text" class="text-500 not-null form-value" name="name" /></dd>
+							<dd><input type="text" class="text-500 not-null form-value" name="contact" /></dd>
+							<dd><input type="text" class="text-500 not-null form-value" name="tel" /></dd>
+							<dd><input type="text" class="text-500 form-value" name="fax" /></dd>
+							<dd><input type="text" class="text-500 form-value" name="email" /></dd>
+							<dd><input type="text" class="text-500 form-value" name="address" /></dd>
+							<dd><select class="text-150 form-value" id="industry" name="industryId"></select></dd>
 						</dl>
 						<div class="clear"></div>
 					</div>
@@ -160,9 +160,9 @@ $(function(){
 							<dd>确认密码：</dd>
 						</dl>
 						<dl class="form-source-value">
-							<dd><input type="text" class="text_500 not-null form-value" name="username" /></dd>
-							<dd><input type="text" class="text_500 not-null form-value" name="password" /></dd>
-							<dd><input type="text" class="text_500 not-null" id="re-password" /></dd>
+							<dd><input type="text" class="text-500 not-null form-value" name="username" /></dd>
+							<dd><input type="text" class="text-500 not-null form-value" name="password" /></dd>
+							<dd><input type="text" class="text-500 not-null" id="re-password" /></dd>
 						</dl>
 						<div class="clear"></div>
 					</div>

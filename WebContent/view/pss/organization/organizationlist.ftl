@@ -38,10 +38,10 @@
 				</div>
 				<div class="table-source-head">
 					<dl>
-						<dd class="text_5p">选项</dd>
-						<dd class="text_5p">编号</dd>
-						<dd class="text_35p">客户名称</dd>
-						<dd class="text_55p">所属行业</dd>
+						<dd class="text-5p">选项</dd>
+						<dd class="text-5p">编号</dd>
+						<dd class="text-35p">客户名称</dd>
+						<dd class="text-55p">所属行业</dd>
 					</dl>
 				</div>
 			</div>
@@ -49,18 +49,18 @@
 				<#list organizationList as org>
 					<#if org_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${org.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${org_index + 1}</dd>
-							<dd class="text_35p">${org.name}</dd>
-							<dd class="text_55p">${org.industryName}</dd>
+							<dd class="text-5p"><span id="${org.id}" class="checkbox"></span></dd>
+							<dd class="text-5p">${org_index + 1}</dd>
+							<dd class="text-35p">${org.name}</dd>
+							<dd class="text-55p">${org.industryName}</dd>
 						</dl>
 					</#if>
 					<#if org_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${org.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${org_index + 1}</dd>
-							<dd class="text_35p">${org.name}</dd>
-							<dd class="text_55p">${org.industryName}</dd>
+							<dd class="text-5p"><span id="${org.id}" class="checkbox"></span></dd>
+							<dd class="text-5p">${org_index + 1}</dd>
+							<dd class="text-35p">${org.name}</dd>
+							<dd class="text-55p">${org.industryName}</dd>
 						</dl>
 					</#if>
 				</#list>

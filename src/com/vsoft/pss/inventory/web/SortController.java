@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.vsoft.core.base.entity.Page;
 import com.vsoft.pss.inventory.entity.Sort;
-import com.vsoft.pss.inventory.entity.form.SortForm;
 import com.vsoft.pss.inventory.service.SortService;
 
 @Controller
@@ -27,36 +25,35 @@ public class SortController {
 	public String addSort(Sort sort) {
 		return String.valueOf(sortService.addSort(sort));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/addre", produces = "application/json;charset=utf-8")
+	public String addSortReturn(Sort sort) {
+		return JSON.toJSONString(sortService.addSortReturn(sort));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/childlist", produces = "application/json;charset=utf-8")
+	public String querySort(String parentId) {
+		return JSON.toJSONString(sortService.querySort(parentId));
+	}
 
 	@RequestMapping("/list")
-	public String querySort(ModelMap map, Page page, SortForm sortForm) {
-		if (page == null) {
-			page = new Page();
-		}
-		if (sortForm == null) {
-			sortForm = new SortForm();
-		}
-		sortService.buildPage(page);
-		List<SortForm> list = sortService.querySort(page);
-		map.put("page", page);
-		map.put("sortList", list);
+	public String querySort(ModelMap map) {
+		List<Sort> list = sortService.querySort();
+		String jsonStr = JSON.toJSONString(list).replaceAll("parent", "isParent");
+		jsonStr = jsonStr.replaceAll("isParentId", "parentId");
+		map.put("sortList", jsonStr);
 		return "pss/inventory/sortlist";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/ajaxlist", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/ajaxlist", produces = "application/json;charset=utf-8")
 	public String querySort() {
 		List<Sort> list = sortService.querySort();
 		return JSON.toJSONString(list);
 	}
 	
-	/*@ResponseBody
-	@RequestMapping(value = "/info", produces = "text/html;charset=UTF-8")
-	public String querySort(@RequestParam String id) {
-		Sort sort = sortService.querySort(id);
-		return JSON.toJSONString(sort);
-	}*/
-
 	@ResponseBody
 	@RequestMapping("/del")
 	public String deleteSort(@RequestParam String idStr) {

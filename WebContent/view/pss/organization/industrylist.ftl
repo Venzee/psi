@@ -14,8 +14,8 @@
 					title: '新增行业',
 					label: ['名称',{style: 'high', name:'备注'}],
 					source: [
-						'<input type="text" class="text_500 not_null form-value" name="name" />',
-						'<textarea class="text_500 not_null form-value" name="description"></textarea>'
+						'<input type="text" class="text-500 not-null form-value" name="name" />',
+						'<textarea class="text-500 not-null form-value" name="description"></textarea>'
 					]
 				});
 			});
@@ -36,10 +36,10 @@
 				</div>
 				<div class="table-source-head">
 					<dl>
-						<dd class="text_5p">选项</dd>
-						<dd class="text_5p">编号</dd>
-						<dd class="text_35p">商品名称</dd>
-						<dd class="text_55p">备注</dd>
+						<dd class="text-5p">选项</dd>
+						<dd class="text-5p">编号</dd>
+						<dd class="text-35p">商品名称</dd>
+						<dd class="text-55p">备注</dd>
 					</dl>
 				</div>
 			</div>
@@ -47,18 +47,18 @@
 				<#list industryList as industry>
 					<#if industry_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${industry.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${industry_index + 1}</dd>
-							<dd class="text_35p">${industry.name}</dd>
-							<dd class="text_55p">${industry.description}</dd>
+							<dd class="text-5p"><span id="${industry.id}" class="checkbox"></span></dd>
+							<dd class="text-5p">${industry_index + 1}</dd>
+							<dd class="text-35p">${industry.name}</dd>
+							<dd class="text-55p">${industry.description}</dd>
 						</dl>
 					</#if>
 					<#if industry_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${industry.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${industry_index + 1}</dd>
-							<dd class="text_35p">${industry.name}</dd>
-							<dd class="text_55p">${industry.description}</dd>
+							<dd class="text-5p"><span id="${industry.id}" class="checkbox"></span></dd>
+							<dd class="text-5p">${industry_index + 1}</dd>
+							<dd class="text-35p">${industry.name}</dd>
+							<dd class="text-55p">${industry.description}</dd>
 						</dl>
 					</#if>
 				</#list>
