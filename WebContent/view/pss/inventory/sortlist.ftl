@@ -1,305 +1,302 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>商品类目管理</title>
 	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
-	<link rel="stylesheet" type="text/css" href="../../style/zTreeStyle/zTreeStyle.css">
 	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="../../script/js/jquery.ztree.all-3.5.min.js"></script>
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			var setting = {
-				async: {
-					enable: true,
-					url: 'childlist',
-					dataType: 'json',
-					autoParam: ['id=parentId']
-				},
-				check: {
-					enable: true
-				},
-				view: {
-					dblClickExpand: false,
-					expandSpeed: ''
-				},
-				edit: {
-					drag: {
-						autoExpandTrigger: true,
-						prev: dropPrev,
-						inner: dropInner,
-						next: dropNext
-					},
-					showRemoveBtn : false,
-					showRenameBtn : false,
-					enable: true
-				},
-				data: {
-					simpleData: {
-						enable: true
-					}
-				},
-				callback: {
-					beforeDrag: beforeDrag,
-					beforeDrop: beforeDrop,
-					beforeDragOpen: beforeDragOpen,
-					onDrag: onDrag,
-					onDrop: onDrop,
-					onExpand: onExpand,
-					onClick: onClick,
-					beforeExpand: beforeExpand,
-					onAsyncSuccess: onAsyncSuccess,
-					onAsyncError: onAsyncError
-				}
-			};
-	
-			var zNodes = ${sortList};
-
-			$.fn.zTree.init($("#sortTree"), setting, zNodes);
-			var zTree = $.fn.zTree.getZTreeObj("sortTree");
-
 			$('div.btn-add').on('click', function(){
-				var nodes = zTree.getSelectedNodes(), treeNode, isParent;
-				treeNode = nodes[0];
-				if(treeNode === undefined){
-					$.dgform({
-						url : 'addre',
-						title: '新增商品类别',
-						label: ['类目名称'],
-						source: [
-							'<input type="text" class="text-500 not-null form-value" name="name" />'
-						],
-						data: {success: function(data){addSort(data);}}
-					});
-				}else{
-					isParent = treeNode.isParent;
-					if (isParent) {
-						$.dgform({
-							url : 'addre',
-							title: '新增商品类目',
-							label: ['名称','所属类目'],
-							source: [
-								'<input type="text" class="text-500 not-null form-value" name="name" />',
-								'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.id + '"/>',
-								'<span>' + treeNode.name + '</span>'
-							],
-							data: {
-								dataType: 'json',
-								success: function(data){addSort(data, nodes[0]);}
-							}
-						});
-					}else{
-						$.dgtip({
-							level : 'info',
-							autoClose : true,
-							msg : '选择的类目不能添加子类目！'
-						});
-					};
-				}
+				
 			});
 
 			$('div.btn-edit').on('click', function(){
-				var nodes = zTree.getSelectedNodes(), size;
-				if(nodes === null){
-					size = 0;
-				}else{
-					size = nodes.length;
-				}
-				alert(size)
-				editSource(size, function(){editSort(nodes[0]);});
+				
 			});
 
 			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 
-			function addSort(data, treeNode){
-				if (treeNode === undefined) {
-					zTree.addNodes(treeNode, {id:(data.id), pId:0, name:data.name});
-				}else{
-					zTree.addNodes(treeNode, {id:(data.id), pId:data.parentId, name:data.name});
-				}
-			}
-
-			function editSort(treeNode){
-				$.dgform({
-					url : 'add',
-					title: '编辑商品类目',
-					label: ['名称'],
-					source: [
-						'<input type="text" class="text-500 not-null form-value" name="name" value="' + treeNode.name + '"/>',
-						'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.parentId + '"/>',
-						'<input type="hidden" class="form-value" name="id" value="' + treeNode.id + '"/>'
-					],
-					data: {
-						success: function(data){}
-					}
-				});
-			}
-
-			function onClick(e,treeId, treeNode) {
-				zTree.expandNode(treeNode);
-			}
-	
-			function dropPrev(treeId, nodes, targetNode) {
-				var pNode = targetNode.getParentNode();
-				if (pNode && pNode.dropInner === false) {
-					return false;
-				} else {
-					for (var i=0,l=curDragNodes.length; i<l; i++) {
-						var curPNode = curDragNodes[i].getParentNode();
-						if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
-							return false;
-						}
-					}
-				}
-				return true;
-			}
-
-			function dropInner(treeId, nodes, targetNode) {
-				if (targetNode && targetNode.dropInner === false) {
-					return false;
-				} else {
-					for (var i=0,l=curDragNodes.length; i<l; i++) {
-						if (!targetNode && curDragNodes[i].dropRoot === false) {
-							return false;
-						} else if (curDragNodes[i].parentTId && curDragNodes[i].getParentNode() !== targetNode && curDragNodes[i].getParentNode().childOuter === false) {
-							return false;
-						}
-					}
-				}
-				return true;
-			}
-
-			function dropNext(treeId, nodes, targetNode) {
-				var pNode = targetNode.getParentNode();
-				if (pNode && pNode.dropInner === false) {
-					return false;
-				} else {
-					for (var i=0,l=curDragNodes.length; i<l; i++) {
-						var curPNode = curDragNodes[i].getParentNode();
-						if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
-							return false;
-						}
-					}
-				}
-				return true;
-			}
-	
-			var className = "dark", startTime = 0, endTime = 0, perCount = 100, perTime = 100, curDragNodes, autoExpandNode;
-
-			function beforeDrag(treeId, treeNodes) {
-				className = (className === "dark" ? "":"dark");
-				for (var i=0,l=treeNodes.length; i<l; i++) {
-					if (treeNodes[i].drag === false) {
-						curDragNodes = null;
-						return false;
-					} else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag === false) {
-						curDragNodes = null;
-						return false;
-					}
-				}
-				curDragNodes = treeNodes;
-				return true;
-			}
-			
-			function beforeDragOpen(treeId, treeNode) {
-				autoExpandNode = treeNode;
-				return true;
-			}
-			
-			function beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
-				className = (className === "dark" ? "":"dark");
-				return true;
-			}
-			
-			function onDrag(event, treeId, treeNodes) {
-				className = (className === "dark" ? "":"dark");
-			}
-			
-			function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
-				className = (className === "dark" ? "":"dark");
-			}
-			
-			function onExpand(event, treeId, treeNode) {
-				if (treeNode === autoExpandNode) {
-					className = (className === "dark" ? "":"dark");
-				}
-			}
-			
-			function setTrigger() {
-				zTree.setting.edit.drag.autoExpandTrigger = true;
-			}
-
-			function beforeExpand(treeId, treeNode) {
-				if (!treeNode.isAjaxing) {
-					startTime = new Date();
-					treeNode.times = 1;
-					ajaxGetNodes(treeNode, "refresh");
-					return true;
-				} else {
-					$.dgtip({
-						level : 'info',
-						autoClose : true,
-						msg : '正在下载数据中，请稍后！'
-					});
-					return false;
-				}
-			}
-
-			function onAsyncSuccess(event, treeId, treeNode, msg) {
-				if (!msg || msg.length == 0) {
-					return;
-				}
-				var zTree = $.fn.zTree.getZTreeObj("sortTree"),
-				totalCount = treeNode.count;
-				if (treeNode.children.length < totalCount) {
-					setTimeout(function() {ajaxGetNodes(treeNode);}, perTime);
-				} else {
-					treeNode.icon = "";
-					zTree.updateNode(treeNode);
-					zTree.selectNode(treeNode.children[0]);
-					endTime = new Date();
-					className = (className === "dark" ? "":"dark");
-				}
-			}
-
-			function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
-				var zTree = $.fn.zTree.getZTreeObj("sortTree");
-				$.dgtip({
-					level : 'error',
-					msg : '获取数据出现异常！'
-				});
-				treeNode.icon = "";
-				zTree.updateNode(treeNode);
-			}
-
-			function ajaxGetNodes(treeNode, reloadType) {
-				var zTree = $.fn.zTree.getZTreeObj("sortTree");
-				if (reloadType == "refresh") {
-					treeNode.icon = "../style/zTreeStyle/img/loading.gif";
-					zTree.updateNode(treeNode);
-				}
-				zTree.reAsyncChildNodes(treeNode, reloadType, true);
-			}
-			
-			
 		});
 	</script>
+	<style type="text/css">
+		.cate-container {
+			height: 300px;
+			overflow: hidden;
+		}
+		.cate-container {
+			width: 950px;
+			overflow: hidden;
+			position: relative;
+			border: 1px solid #d5e4fa;
+			background-color: #F5F9FF;
+		}
+		.cate-main {
+			float: left;
+			padding-top: 10px;
+			border-right: 1px solid #d5e4fa;
+			width: 725px;
+		}
+		#cate-cascading {
+			padding: 0 24px;
+			height: 290px;
+			position: relative;
+			z-index: 11;
+		}
+		.search-result {
+		background-color: #F5F9FF;
+		height: 298px;
+		position: relative;
+		top: -300px;
+		left: 0;
+		z-index: 12;
+		}
+		element.style {
+visibility: hidden;
+}
+Matched CSS Rules
+#cate-cascading .cc-prev {
+left: 0;
+background-position: 0 -60px;
+}
+a:link, a:visited {
+color: #36c;
+}
+a:link, a:visited {
+color: #36c;
+}
+.cc-nav {
+visibility: hidden;
+position: absolute;
+top: 50%;
+margin-top: -41px;
+height: 80px;
+width: 24px;
+display: inline-block;
+line-height: 99em;
+overflow: hidden;
+}.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
+height: 100%;
+}
+.cc-listwrap {
+border-left: 1px solid #d5e4fa;
+border-right: 1px solid #d5e4fa;
+border-top: 1px solid #d5e4fa;
+position: relative;
+overflow: hidden;
+}.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
+height: 100%;
+}
+.cc-list {
+width: 2000em;
+position: absolute;
+left: 0;
+top: 0;
+}
+ul, ol {
+list-style: none;
+}.cc-list-item {
+float: left;
+width: 223px;
+border-right: 2px solid #d5e4fa;
+background: #fff;
+}
+.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
+height: 100%;
+}.cc-cbox-filter {
+padding: 2px 3px;
+background: #f5f9ff;
+position: absolute;
+top: 0;
+z-index: 10;
+}.cc-cbox-filter label {
+color: #AAA;
+padding-left: 29px;
+position: absolute;
+top: 3px;
+}.cc-cbox-filter input {
+background-color: #fff;
+background-position: -239px -89px;
+border: 1px solid #D9E5F6;
+height: 20px;
+padding-left: 23px;
+width: 176px;
+}.cc-tree, .cc-cbox {
+overflow-x: hidden;
+overflow-y: auto;
+position: relative;
+left: 0;
+top: 0;
+}.cc-tree-cont, .cc-cbox-cont {
+padding: 0 3px;
+margin-top: 26px;
+}.cc-tree-group {
+padding: 3px 0;
+border-bottom: 1px dashed #ccc;
+zoom: 1;
+}.cc-tree-gname, .cc-tree-item, .cc-listbox-item {
+padding: 0 16px 0 14px;
+}
+.cc-tree-gname {
+color: #36c;
+background-position: right -107px;
+display: inline-block;
+margin: 2px 0;
+cursor: default;
+}li.cc-hasChild-item {
+background-position: right -137px;
+}
+.cc-tree-gname, .cc-tree-item, .cc-listbox-item {
+padding: 0 16px 0 14px;
+}
+.cc-cbox-item, .cc-tree-item, .cc-listbox-item {
+background-color: #FFF;
+border: 1px solid #FFF;
+height: 20px;
+line-height: 20px;
+overflow: hidden;
+cursor: pointer;
+padding-left: 41px;
+}.cc-cbox-gname {
+float: left;
+background: none repeat scroll 0 0 #AAA;
+color: #FFF;
+display: inline-block;
+font-style: normal;
+height: 13px;
+line-height: 13px;
+text-align: center;
+text-transform: uppercase;
+width: 13px;
+position: absolute;
+margin-left: 16px;
+margin-top: 5px;
+overflow: hidden;
+}li.cc-hasChild-item {
+background-position: right -137px;
+}
+li.cc-focused {
+border: 1px dotted #82bce0;
+}
+li.cc-selected {
+border: 1px solid #9cd7fc;
+background-color: #dff1fb;
+}
+.cc-cbox-item {
+padding-right: 16px;
+}
+	</style>
 	<body>
-		<div class="ui-table ui-form" id="sortForm">
-			<div class="ui-head">
-				<div class="ui-title">
-					<div class="ui-title-name ui-title-name ui-table-title-name">商品类目列表</div>
+		<div class="cate-container" data-spm="1000796">
+			<div class="cate-main">
+				<div id="cate-cascading">
+					<a href="#" class="cc-prev cc-nav" title="上一级" id="J_LinkPrev" style="visibility: hidden;"><span>上一级</span></a>
+					<div class="cc-listwrap">
+						<ol id="J_OlCascadingList" class="cc-list">
+							<li class="cc-list-item" tabindex="-1" style="">
+								<div class="cc-cbox-filter">
+									<label for="cc-cbox-filter248" style="">输入名称/拼音首字母</label>
+									<input role="textbox" autocomplete="off" id="cc-cbox-filter248" style="width: 176px;">
+								</div>
+								<div role="tree" class="cc-tree" aria-activedescendant="cc-tree-item289">
+									<ul role="listbox" tabindex="0" hidefocus="-1" unselectable="on" class="cc-tree-cont">
+										<li class="cc-tree-group" aria-expanded="false" role="treeitem" style="">
+											<div class="cc-tree-gname" id="cc-tree-gname263">服装鞋包</div>
+											<ul class="cc-tree-gcont" role="group">
+												<li role="treeitem" id="cc-tree-item275" class="cc-tree-item cc-hasChild-item" style="">女士内衣/男士内衣/家居服</li>
+												<li role="treeitem" id="cc-tree-item277" class="cc-tree-item cc-hasChild-item" style="">服饰配件/皮带/帽子/围巾</li>
+											</ul>
+										</li>
+										<li class="cc-tree-group cc-tree-expanded" aria-expanded="true" role="treeitem" style="">
+											<div class="cc-tree-gname" id="cc-tree-gname279">手机数码</div>
+											<ul class="cc-tree-gcont" role="group">
+												<li role="treeitem" id="cc-tree-item289" class="cc-tree-item cc-hasChild-item cc-selected cc-focused" style="" aria-selected="true">笔记本电脑</li>
+												<li role="treeitem" id="cc-tree-item291" class="cc-tree-item cc-hasChild-item" style="">平板电脑/MID</li>
+												<li role="treeitem" id="cc-tree-item293" class="cc-tree-item cc-hasChild-item" style="">台式机/一体机/服务器</li>
+												<li role="treeitem" id="cc-tree-item295" class="cc-tree-item cc-hasChild-item" style="">电脑硬件/显示器/电脑周边</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="cc-list-item" tabindex="-1" style="">
+								<div class="cc-cbox-filter">
+									<label for="cc-cbox-filter1523">输入名称/拼音首字母</label>
+									<input role="textbox" autocomplete="off" id="cc-cbox-filter1523" style="width: 176px;">
+								</div>
+								<div role="combobox" class="cc-cbox" aria-activedescendant="cc-cbox-item1536">
+									<ul role="listbox" tabindex="0" hidefocus="-1" unselectable="on" class="cc-cbox-cont">
+										<li class="cc-cbox-group " role="treeitem">
+											<div class="cc-cbox-gname" id="cc-cbox-gname1526">a</div>
+											<ul class="cc-cbox-gcont" role="group">
+												<li role="option" id="cc-cbox-item1528" class="cc-cbox-item cc-hasChild-item">Acer/宏碁</li>
+												<li role="option" id="cc-cbox-item1530" class="cc-cbox-item cc-hasChild-item">Apple/苹果</li>
+												<li role="option" id="cc-cbox-item1532" class="cc-cbox-item cc-hasChild-item">Asus/华硕</li>
+											</ul>
+										</li>
+										<li class="cc-cbox-group " role="treeitem">
+											<div class="cc-cbox-gname" id="cc-cbox-gname1534">b</div>
+											<ul class="cc-cbox-gcont" role="group">
+												<li role="option" id="cc-cbox-item1536" class="cc-cbox-item cc-hasChild-item cc-selected cc-focused" aria-selected="true">Benq/明基</li>
+											</ul>
+										</li>
+										<li class="cc-cbox-group " role="treeitem">
+											<div class="cc-cbox-gname" id="cc-cbox-gname1538">d</div>
+											<ul class="cc-cbox-gcont" role="group">
+												<li role="option" id="cc-cbox-item1540" class="cc-cbox-item cc-hasChild-item">Dell/戴尔</li>
+											</ul>
+										</li>
+									</ul>
+								</div></li>
+							<li class="cc-list-item" tabindex="-1" style="">
+								<div class="cc-cbox-filter">
+									<label for="cc-cbox-filter1621">输入名称/拼音首字母</label>
+									<input role="textbox" autocomplete="off" id="cc-cbox-filter1621" style="width: 176px;">
+								</div>
+								<div role="combobox" class="cc-cbox">
+									<ul role="listbox" tabindex="0" hidefocus="-1" unselectable="on" class="cc-cbox-cont">
+										<li class="cc-cbox-group " role="treeitem">
+											<div class="cc-cbox-gname" id="cc-cbox-gname1624">a</div>
+											<ul class="cc-cbox-gcont" role="group">
+												<li role="option" id="cc-cbox-item1626" class="cc-cbox-item cc-hasChild-item">A53</li>
+											</ul>
+										</li>
+										<li class="cc-cbox-group " role="treeitem">
+											<div class="cc-cbox-gname" id="cc-cbox-gname1640">r</div>
+											<ul class="cc-cbox-gcont" role="group">
+												<li role="option" id="cc-cbox-item1642" class="cc-cbox-item cc-hasChild-item">R43</li>
+												<li role="option" id="cc-cbox-item1644" class="cc-cbox-item cc-hasChild-item">R47</li>
+												<li role="option" id="cc-cbox-item1646" class="cc-cbox-item cc-hasChild-item">R48</li>
+												<li role="option" id="cc-cbox-item1648" class="cc-cbox-item cc-hasChild-item">R4B</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ol>
+					</div>
+					<a href="#" class="cc-next cc-nav" title="下一级" id="J_LinkNext" style="visibility: hidden;"><span>下一级</span></a>
 				</div>
-			</div>
-			<div class="form-source">
-				<ul id="sortTree" class="ztree"></ul>
-			</div>
-			<div class="ui-foot">
-				<div class="ui-operation">
-					<div class="ui-btn btn-delete">删除</div>
-					<div class="ui-btn btn-edit">编辑</div>
-					<div class="ui-btn btn-add">新增</div>
+				<div id="J_SearchResult" class="search-result" style="display: none;">
+					<div class="result-note">
+						<strong>匹配到<em class="J_RecordCount">0</em>个类目</strong>
+						<span class="note">(双击直接发布，括号中为该类目下相关宝贝的数量)</span>
+						<a class="J_TriggerExit trigger-exit" href="#exit"><i></i>关闭，返回类目</a>
+					</div>
+					<div class="result-list">
+						<ol></ol>
+						<a class="J_FlexTrigger trigger-expand" href="#expand">展开更多<i></i></a>
+						<a class="J_FlexTrigger trigger-close" href="#close">收起更多<i></i></a>
+					</div>
+				</div>
+				<div class="cc-loading">
+					<div class="cc-loading-content">
+						<div class="cc-loading-icon">
+							<img src="http://img03.taobaocdn.com/tps/i3/T1jBamXj4fXXXXXXXX-16-16.gif">
+						</div>
+						<span class="cc-loading-text">加载中，请稍候...</span>
+					</div>
 				</div>
 			</div>
 		</div>

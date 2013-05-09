@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta charset="utf-8" />
@@ -59,10 +59,10 @@ body {
 </style>
 <script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-		var $navcur,$navact,$nav,current,itemW,defLeftW,leftW;
+	$(document).ready(function() {
+		var $navcur, $navact, $nav, current, itemW, defLeftW, leftW;
 		init();
-		function init(){
+		function init() {
 			$navcur = $(".nav-current");
 			$navact = $(".nav-active");
 			$nav = $("#nav");
@@ -90,12 +90,12 @@ $(document).ready(function(){
 				left : defLeftW,
 				width : itemW
 			}, 300)
-		}).click(function(){
+		}).click(function() {
 			$nav.find("a").removeClass('current');
 			$(this).addClass('current');
 			init();
 		})
-});
+	});
 </script>
 </head>
 <body>

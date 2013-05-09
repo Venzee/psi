@@ -322,6 +322,13 @@
 	line-height: 150px;
 }
 
+.from-text {
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	padding: 5px;
+}
+
 .form-source-value {
 	width: 70%;
 	text-align: left;
