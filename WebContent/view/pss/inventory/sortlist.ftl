@@ -18,6 +18,22 @@
 
 			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 
+			$('div.cc-tree-gname').on('click', function(){
+				if(!$(this).hasClass('selected')) {
+					$('ul.cc-tree-gcont').slideUp('fast').prev('div.cc-tree-gname').removeClass('selected');
+					$(this).addClass('selected').next('ul.cc-tree-gcont').slideDown('fast');
+				}
+			});
+
+			$('li.cc-tree-item').on('click', function(){
+				if(!$(this).hasClass('cc-selected')) {
+					$('li.cc-tree-item').removeClass('cc-selected');
+					$(this).addClass('cc-selected');
+					if ($(this).hasClass('cc-hasChild-item')) {
+
+					};
+				}
+			});
 		});
 	</script>
 	<style type="text/css">
@@ -45,260 +61,256 @@
 			z-index: 11;
 		}
 		.search-result {
-		background-color: #F5F9FF;
-		height: 298px;
-		position: relative;
-		top: -300px;
-		left: 0;
-		z-index: 12;
+			background-color: #F5F9FF;
+			height: 298px;
+			position: relative;
+			top: -300px;
+			left: 0;
+			z-index: 12;
 		}
-		element.style {
-visibility: hidden;
-}
-Matched CSS Rules
-#cate-cascading .cc-prev {
-left: 0;
-background-position: 0 -60px;
-}
-a:link, a:visited {
-color: #36c;
-}
-a:link, a:visited {
-color: #36c;
-}
-.cc-nav {
-visibility: hidden;
-position: absolute;
-top: 50%;
-margin-top: -41px;
-height: 80px;
-width: 24px;
-display: inline-block;
-line-height: 99em;
-overflow: hidden;
-}.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
-height: 100%;
-}
-.cc-listwrap {
-border-left: 1px solid #d5e4fa;
-border-right: 1px solid #d5e4fa;
-border-top: 1px solid #d5e4fa;
-position: relative;
-overflow: hidden;
-}.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
-height: 100%;
-}
-.cc-list {
-width: 2000em;
-position: absolute;
-left: 0;
-top: 0;
-}
-ul, ol {
-list-style: none;
-}.cc-list-item {
-float: left;
-width: 223px;
-border-right: 2px solid #d5e4fa;
-background: #fff;
-}
-.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
-height: 100%;
-}.cc-cbox-filter {
-padding: 2px 3px;
-background: #f5f9ff;
-position: absolute;
-top: 0;
-z-index: 10;
-}.cc-cbox-filter label {
-color: #AAA;
-padding-left: 29px;
-position: absolute;
-top: 3px;
-}.cc-cbox-filter input {
-background-color: #fff;
-background-position: -239px -89px;
-border: 1px solid #D9E5F6;
-height: 20px;
-padding-left: 23px;
-width: 176px;
-}.cc-tree, .cc-cbox {
-overflow-x: hidden;
-overflow-y: auto;
-position: relative;
-left: 0;
-top: 0;
-}.cc-tree-cont, .cc-cbox-cont {
-padding: 0 3px;
-margin-top: 26px;
-}.cc-tree-group {
-padding: 3px 0;
-border-bottom: 1px dashed #ccc;
-zoom: 1;
-}.cc-tree-gname, .cc-tree-item, .cc-listbox-item {
-padding: 0 16px 0 14px;
-}
-.cc-tree-gname {
-color: #36c;
-background-position: right -107px;
-display: inline-block;
-margin: 2px 0;
-cursor: default;
-}li.cc-hasChild-item {
-background-position: right -137px;
-}
-.cc-tree-gname, .cc-tree-item, .cc-listbox-item {
-padding: 0 16px 0 14px;
-}
-.cc-cbox-item, .cc-tree-item, .cc-listbox-item {
-background-color: #FFF;
-border: 1px solid #FFF;
-height: 20px;
-line-height: 20px;
-overflow: hidden;
-cursor: pointer;
-padding-left: 41px;
-}.cc-cbox-gname {
-float: left;
-background: none repeat scroll 0 0 #AAA;
-color: #FFF;
-display: inline-block;
-font-style: normal;
-height: 13px;
-line-height: 13px;
-text-align: center;
-text-transform: uppercase;
-width: 13px;
-position: absolute;
-margin-left: 16px;
-margin-top: 5px;
-overflow: hidden;
-}li.cc-hasChild-item {
-background-position: right -137px;
-}
-li.cc-focused {
-border: 1px dotted #82bce0;
-}
-li.cc-selected {
-border: 1px solid #9cd7fc;
-background-color: #dff1fb;
-}
-.cc-cbox-item {
-padding-right: 16px;
-}
+		#cate-cascading .cc-prev {
+			left: 0;
+			background-position: 0 -60px;
+		}
+		a:link, a:visited {
+			color: #36c;
+		}
+		.cc-nav {
+			visibility: hidden;
+			position: absolute;
+			top: 50%;
+			margin-top: -41px;
+			height: 80px;
+			width: 24px;
+			display: inline-block;
+			line-height: 99em;
+			overflow: hidden;
+		}
+		.cc-listwrap, .cc-list, .cc-list-item, .cc-tree, .cc-cbox {
+			height: 100%;
+		}
+		.cc-listwrap {
+			border-left: 1px solid #d5e4fa;
+			border-right: 1px solid #d5e4fa;
+			border-top: 1px solid #d5e4fa;
+			position: relative;
+			overflow: hidden;
+		}
+		.cc-list {
+			width: 2000em;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		ul, ol {
+			list-style: none;
+		}
+		.cc-list-item {
+			float: left;
+			width: 223px;
+			border-right: 2px solid #d5e4fa;
+			background: #fff;
+		}
+		.cc-tree-gcont {
+			display: none;
+		}
+		.cc-cbox-filter {
+			padding: 2px 3px;
+			background: #f5f9ff;
+			position: absolute;
+			top: 0;
+			z-index: 10;
+		}
+		.cc-cbox-filter label {
+			color: #AAA;
+			padding-left: 29px;
+			position: absolute;
+			top: 3px;
+		}
+		.cc-cbox-filter input {
+			background-color: #fff;
+			background-position: -239px -89px;
+			border: 1px solid #D9E5F6;
+			height: 20px;
+			padding-left: 23px;
+			width: 176px;
+		}
+		.cc-tree, .cc-cbox {
+			overflow-x: hidden;
+			overflow-y: auto;
+			position: relative;
+			left: 0;
+			top: 0;
+		}
+		.cc-tree-cont, .cc-cbox-cont {
+			padding: 0 3px;
+			margin-top: 26px;
+		}
+		.cc-tree-group {
+			padding: 3px 0;
+			border-bottom: 1px dashed #ccc;
+			zoom: 1;
+		}
+		.cc-tree-gname, .cc-tree-item, .cc-listbox-item {
+			padding: 0 16px 0 14px;
+		}
+		.cc-tree-gname {
+			color: #36c;
+			background-position: right -107px;
+			display: inline-block;
+			margin: 2px 0;
+			cursor: default;
+		}
+		li.cc-hasChild-item {
+			background-position: right -137px;
+		}
+		.cc-cbox-item, .cc-tree-item, .cc-listbox-item {
+			background-color: #FFF;
+			border: 1px solid #FFF;
+			height: 20px;
+			line-height: 20px;
+			overflow: hidden;
+			cursor: pointer;
+			padding-left: 41px;
+		}
+		.cc-cbox-gname {
+			float: left;
+			background: none repeat scroll 0 0 #AAA;
+			color: #FFF;
+			display: inline-block;
+			font-style: normal;
+			height: 13px;
+			line-height: 13px;
+			text-align: center;
+			text-transform: uppercase;
+			width: 13px;
+			position: absolute;
+			margin-left: 16px;
+			margin-top: 5px;
+			overflow: hidden;
+		}
+		li.cc-selected {
+			border: 1px solid #82bce0;
+			background-color: #dff1fb;
+		}
+		.cc-cbox-item {
+			padding-right: 16px;
+		}
 	</style>
-	<body>
-		<div class="cate-container" data-spm="1000796">
-			<div class="cate-main">
-				<div id="cate-cascading">
-					<a href="#" class="cc-prev cc-nav" title="上一级" id="J_LinkPrev" style="visibility: hidden;"><span>上一级</span></a>
-					<div class="cc-listwrap">
-						<ol id="J_OlCascadingList" class="cc-list">
-							<li class="cc-list-item" tabindex="-1" style="">
-								<div class="cc-cbox-filter">
-									<label for="cc-cbox-filter248" style="">输入名称/拼音首字母</label>
-									<input role="textbox" autocomplete="off" id="cc-cbox-filter248" style="width: 176px;">
-								</div>
-								<div role="tree" class="cc-tree" aria-activedescendant="cc-tree-item289">
-									<ul role="listbox" tabindex="0" hidefocus="-1" unselectable="on" class="cc-tree-cont">
-										<li class="cc-tree-group" aria-expanded="false" role="treeitem" style="">
-											<div class="cc-tree-gname" id="cc-tree-gname263">服装鞋包</div>
-											<ul class="cc-tree-gcont" role="group">
-												<li role="treeitem" id="cc-tree-item275" class="cc-tree-item cc-hasChild-item" style="">女士内衣/男士内衣/家居服</li>
-												<li role="treeitem" id="cc-tree-item277" class="cc-tree-item cc-hasChild-item" style="">服饰配件/皮带/帽子/围巾</li>
-											</ul>
-										</li>
-										<li class="cc-tree-group cc-tree-expanded" aria-expanded="true" role="treeitem" style="">
-											<div class="cc-tree-gname" id="cc-tree-gname279">手机数码</div>
-											<ul class="cc-tree-gcont" role="group">
-												<li role="treeitem" id="cc-tree-item289" class="cc-tree-item cc-hasChild-item cc-selected cc-focused" style="" aria-selected="true">笔记本电脑</li>
-												<li role="treeitem" id="cc-tree-item291" class="cc-tree-item cc-hasChild-item" style="">平板电脑/MID</li>
-												<li role="treeitem" id="cc-tree-item293" class="cc-tree-item cc-hasChild-item" style="">台式机/一体机/服务器</li>
-												<li role="treeitem" id="cc-tree-item295" class="cc-tree-item cc-hasChild-item" style="">电脑硬件/显示器/电脑周边</li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="cc-list-item" tabindex="-1" style="">
-								<div class="cc-cbox-filter">
-									<label for="cc-cbox-filter1523">输入名称/拼音首字母</label>
-									<input role="textbox" autocomplete="off" id="cc-cbox-filter1523" style="width: 176px;">
-								</div>
-								<div role="combobox" class="cc-cbox" aria-activedescendant="cc-cbox-item1536">
-									<ul role="listbox" tabindex="0" hidefocus="-1" unselectable="on" class="cc-cbox-cont">
-										<li class="cc-cbox-group " role="treeitem">
-											<div class="cc-cbox-gname" id="cc-cbox-gname1526">a</div>
-											<ul class="cc-cbox-gcont" role="group">
-												<li role="option" id="cc-cbox-item1528" class="cc-cbox-item cc-hasChild-item">Acer/宏碁</li>
-												<li role="option" id="cc-cbox-item1530" class="cc-cbox-item cc-hasChild-item">Apple/苹果</li>
-												<li role="option" id="cc-cbox-item1532" class="cc-cbox-item cc-hasChild-item">Asus/华硕</li>
-											</ul>
-										</li>
-										<li class="cc-cbox-group " role="treeitem">
-											<div class="cc-cbox-gname" id="cc-cbox-gname1534">b</div>
-											<ul class="cc-cbox-gcont" role="group">
-												<li role="option" id="cc-cbox-item1536" class="cc-cbox-item cc-hasChild-item cc-selected cc-focused" aria-selected="true">Benq/明基</li>
-											</ul>
-										</li>
-										<li class="cc-cbox-group " role="treeitem">
-											<div class="cc-cbox-gname" id="cc-cbox-gname1538">d</div>
-											<ul class="cc-cbox-gcont" role="group">
-												<li role="option" id="cc-cbox-item1540" class="cc-cbox-item cc-hasChild-item">Dell/戴尔</li>
-											</ul>
-										</li>
-									</ul>
-								</div></li>
-							<li class="cc-list-item" tabindex="-1" style="">
-								<div class="cc-cbox-filter">
-									<label for="cc-cbox-filter1621">输入名称/拼音首字母</label>
-									<input role="textbox" autocomplete="off" id="cc-cbox-filter1621" style="width: 176px;">
-								</div>
-								<div role="combobox" class="cc-cbox">
-									<ul role="listbox" tabindex="0" hidefocus="-1" unselectable="on" class="cc-cbox-cont">
-										<li class="cc-cbox-group " role="treeitem">
-											<div class="cc-cbox-gname" id="cc-cbox-gname1624">a</div>
-											<ul class="cc-cbox-gcont" role="group">
-												<li role="option" id="cc-cbox-item1626" class="cc-cbox-item cc-hasChild-item">A53</li>
-											</ul>
-										</li>
-										<li class="cc-cbox-group " role="treeitem">
-											<div class="cc-cbox-gname" id="cc-cbox-gname1640">r</div>
-											<ul class="cc-cbox-gcont" role="group">
-												<li role="option" id="cc-cbox-item1642" class="cc-cbox-item cc-hasChild-item">R43</li>
-												<li role="option" id="cc-cbox-item1644" class="cc-cbox-item cc-hasChild-item">R47</li>
-												<li role="option" id="cc-cbox-item1646" class="cc-cbox-item cc-hasChild-item">R48</li>
-												<li role="option" id="cc-cbox-item1648" class="cc-cbox-item cc-hasChild-item">R4B</li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ol>
-					</div>
-					<a href="#" class="cc-next cc-nav" title="下一级" id="J_LinkNext" style="visibility: hidden;"><span>下一级</span></a>
+<body>
+	<div class="cate-container" data-spm="1000796">
+		<div class="cate-main">
+			<div id="cate-cascading">
+				<a href="#" class="cc-prev cc-nav" title="上一级" id="J_LinkPrev" style="visibility: hidden;">
+					<span>上一级</span>
+				</a>
+				<div class="cc-listwrap">
+					<ol id="J_OlCascadingList" class="cc-list">
+						<li class="cc-list-item">
+							<div class="cc-cbox-filter">
+								<label>输入名称/拼音首字母</label>
+								<input style="width: 176px;"></div>
+							<div class="cc-tree">
+								<ul class="cc-tree-cont">
+									<li class="cc-tree-group">
+										<div class="cc-tree-gname">服装鞋包</div>
+										<ul class="cc-tree-gcont expanded" role="group">
+											<li role="treeitem" class="cc-tree-item cc-hasChild-item">女士内衣/男士内衣/家居服</li>
+											<li role="treeitem" class="cc-tree-item cc-hasChild-item">服饰配件/皮带/帽子/围巾</li>
+										</ul>
+									</li>
+									<li class="cc-tree-group">
+										<div class="cc-tree-gname">手机数码</div>
+										<ul class="cc-tree-gcont" role="group">
+											<li role="treeitem" class="cc-tree-item cc-hasChild-item">笔记本电脑</li>
+											<li role="treeitem" class="cc-tree-item cc-hasChild-item">平板电脑/MID</li>
+											<li role="treeitem" class="cc-tree-item cc-hasChild-item">台式机/一体机/服务器</li>
+											<li role="treeitem" class="cc-tree-item cc-hasChild-item">电脑硬件/显示器/电脑周边</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="cc-list-item">
+							<div class="cc-cbox-filter">
+								<label>输入名称/拼音首字母</label>
+								<input style="width: 176px;"></div>
+							<div class="cc-cbox">
+								<ul class="cc-cbox-cont">
+									<li class="cc-cbox-group">
+										<div class="cc-cbox-gname">a</div>
+										<ul class="cc-cbox-gcont">
+											<li class="cc-cbox-item cc-hasChild-item">Acer/宏碁</li>
+											<li class="cc-cbox-item cc-hasChild-item">Apple/苹果</li>
+											<li class="cc-cbox-item cc-hasChild-item">Asus/华硕</li>
+										</ul>
+									</li>
+									<li class="cc-cbox-group " role="treeitem">
+										<div class="cc-cbox-gname">b</div>
+										<ul class="cc-cbox-gcont">
+											<li class="cc-cbox-item cc-hasChild-item">Benq/明基</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="cc-list-item">
+							<div class="cc-cbox-filter">
+								<label>输入名称/拼音首字母</label>
+								<input style="width: 176px;"></div>
+							<div class="cc-cbox">
+								<ul class="cc-cbox-cont">
+									<li class="cc-cbox-group">
+										<div class="cc-cbox-gname">a</div>
+										<ul class="cc-cbox-gcont">
+											<li class="cc-cbox-item cc-hasChild-item">A53</li>
+										</ul>
+									</li>
+									<li class="cc-cbox-group">
+										<div class="cc-cbox-gname">r</div>
+										<ul class="cc-cbox-gcont">
+											<li class="cc-cbox-item cc-hasChild-item">R43</li>
+											<li class="cc-cbox-item cc-hasChild-item">R47</li>
+											<li class="cc-cbox-item cc-hasChild-item">R48</li>
+											<li class="cc-cbox-item cc-hasChild-item">R4B</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ol>
 				</div>
-				<div id="J_SearchResult" class="search-result" style="display: none;">
-					<div class="result-note">
-						<strong>匹配到<em class="J_RecordCount">0</em>个类目</strong>
-						<span class="note">(双击直接发布，括号中为该类目下相关宝贝的数量)</span>
-						<a class="J_TriggerExit trigger-exit" href="#exit"><i></i>关闭，返回类目</a>
-					</div>
-					<div class="result-list">
-						<ol></ol>
-						<a class="J_FlexTrigger trigger-expand" href="#expand">展开更多<i></i></a>
-						<a class="J_FlexTrigger trigger-close" href="#close">收起更多<i></i></a>
-					</div>
+				<a href="#" class="cc-next cc-nav" title="下一级" id="J_LinkNext" style="visibility: hidden;">
+					<span>下一级</span>
+				</a>
+			</div>
+			<div id="J_SearchResult" class="search-result" style="display: none;">
+				<div class="result-note"> <strong>匹配到 <em class="J_RecordCount">0</em>
+						个类目</strong> 
+					<span class="note">(双击直接发布，括号中为该类目下相关宝贝的数量)</span>
+					<a class="J_TriggerExit trigger-exit" href="#exit"> <i></i>
+						关闭，返回类目
+					</a>
 				</div>
-				<div class="cc-loading">
-					<div class="cc-loading-content">
-						<div class="cc-loading-icon">
-							<img src="http://img03.taobaocdn.com/tps/i3/T1jBamXj4fXXXXXXXX-16-16.gif">
-						</div>
-						<span class="cc-loading-text">加载中，请稍候...</span>
-					</div>
+				<div class="result-list">
+					<ol></ol>
+					<a class="J_FlexTrigger trigger-expand" href="#expand">
+						展开更多 <i></i>
+					</a>
+					<a class="J_FlexTrigger trigger-close" href="#close">
+						收起更多
+						<i></i>
+					</a>
+				</div>
+			</div>
+			<div class="cc-loading">
+				<div class="cc-loading-content">
+					<div class="cc-loading-icon">
+						<img src="http://img03.taobaocdn.com/tps/i3/T1jBamXj4fXXXXXXXX-16-16.gif"></div>
+					<span class="cc-loading-text">加载中，请稍候...</span>
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>
