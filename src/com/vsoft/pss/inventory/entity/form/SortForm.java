@@ -1,6 +1,7 @@
 package com.vsoft.pss.inventory.entity.form;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.vsoft.pss.inventory.entity.Sort;
 
@@ -11,7 +12,7 @@ public class SortForm implements Serializable {
 	 */
 	private static final long serialVersionUID = 8823889129386956953L;
 	private Sort sort;
-	private String parentName;
+	private List<Sort> childList;
 
 	public Sort getSort() {
 		return sort;
@@ -21,12 +22,12 @@ public class SortForm implements Serializable {
 		this.sort = sort;
 	}
 
-	public String getParentName() {
-		return parentName;
+	public List<Sort> getChildList() {
+		return childList;
 	}
 
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
+	public void setChildList(List<Sort> childList) {
+		this.childList = childList;
 	}
 
 }

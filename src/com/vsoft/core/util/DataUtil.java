@@ -1,33 +1,50 @@
 package com.vsoft.core.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 public class DataUtil {
 
-	private static final String[] UN_SUPPORT_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
+	private final static Logger LOG = Logger.getLogger(DataUtil.class);
+	private static final String[] BASE_CLASS_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
 
+	/**
+	 * 判断字符串是否是数字
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public static boolean isNum(String str) {
 		return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
 	}
-	
+
+	/**
+	 * Map转换成对象
+	 * 
+	 * @param data
+	 * @param pc
+	 * @return
+	 */
 	public static Object parseMapToObject(Map<String, Object> data, Class<?> pc) {
 		Object obj = null;
 		Class<?> c = null;
 		try {
 			c = Class.forName(pc.getName());
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOG.error("未找到类" + pc.getName(), e);
 		}
 		try {
 			obj = c.newInstance();
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			LOG.error("实例化" + pc.getName() + "时异常", e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			LOG.error("非法访问异常", e);
 		}
 		Field[] fields = c.getDeclaredFields();
 		for (Field field : fields) {
@@ -37,7 +54,7 @@ public class DataUtil {
 					boolean isBean = true;
 					Class<?> type = field.getType();
 					String typeSimpleName = type.getSimpleName();
-					for (String str : UN_SUPPORT_TYPE) {
+					for (String str : BASE_CLASS_TYPE) {
 						if (str.equals(typeSimpleName)) {
 							isBean = false;
 							break;
@@ -48,16 +65,16 @@ public class DataUtil {
 						try {
 							oc = Class.forName(type.getName());
 						} catch (ClassNotFoundException e) {
-							e.printStackTrace();
+							LOG.error("未找到类" + type.getName(), e);
 						}
 						Field[] fs = oc.getDeclaredFields();
 						Object o = null;
 						try {
 							o = oc.newInstance();
 						} catch (InstantiationException e) {
-							e.printStackTrace();
+							LOG.error("非法访问异常", e);
 						} catch (IllegalAccessException e) {
-							e.printStackTrace();
+							LOG.error("实例化" + oc.getName() + "时异常", e);
 						}
 						for (Field f : fs) {
 							setter(f, o, data);
@@ -76,13 +93,20 @@ public class DataUtil {
 		return obj;
 	}
 
+	/**
+	 * 对象转换成Map
+	 * 
+	 * @param obj
+	 * @param oc
+	 * @return
+	 */
 	public static Map<String, Object> parseObjectToMap(Object obj, Class<?> oc) {
 		Map<String, Object> data = new LinkedHashMap<String, Object>();
 		Class<?> c = null;
 		try {
 			c = Class.forName(oc.getName());
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOG.error("未找到类" + oc.getName(), e);
 		}
 		Field[] fields = c.getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
@@ -100,21 +124,29 @@ public class DataUtil {
 	}
 
 	protected static Object getter(Object obj, String type, String attr) {
-		try {
-			Class<?> c = obj.getClass();
-			Method method = null;
-			if (type.equals("boolean")) {
+		Class<?> c = obj.getClass();
+		Method method = null;
+		if (type.equals("boolean")) {
+			try {
 				method = c.getMethod("is" + attr);
-			}else{
-				method = c.getMethod("get" + attr);
+			} catch (NoSuchMethodException | SecurityException e) {
+				LOG.error("没有这个方法is" + attr + "或者因为安全问题无法访问", e);
 			}
-			return method.invoke(obj);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			try {
+				method = c.getMethod("get" + attr);
+			} catch (NoSuchMethodException | SecurityException e) {
+				LOG.error("没有这个方法get" + attr + "或者因为安全问题无法访问", e);
+			}
 		}
-		return null;
+		try {
+			obj = method.invoke(obj);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			LOG.error("调用方法" + method.getName() + "时发生异常", e);
+		}
+		return obj;
 	}
-	
+
 	protected static void setter(Field field, Object obj, Map<String, Object> data) {
 		String fieldName = field.getName();
 		Class<?> type = field.getType();
@@ -130,38 +162,42 @@ public class DataUtil {
 	}
 
 	protected static void setter(Object obj, String attr, Object value, Class<?> type) {
-		try {
-			String methodHead = "set";
-			if (value != null) {
-				if (type.isPrimitive()) {
-					String name = type.getName();
-					if (name.equals("int")) {
-						value = Integer.parseInt(value.toString());
-					} else if (name.equals("float")) {
-						value = Float.parseFloat(value.toString());
-					} else if (name.equals("double")) {
-						value = Double.parseDouble(value.toString());
-					} else if (name.equals("byte")) {
-						value = Byte.parseByte(value.toString());
-					} else if (name.equals("short")) {
-						value = Short.parseShort(value.toString());
-					} else if (name.equals("char")) {
+		if (value != null) {
+			if (type.isPrimitive()) {
+				String name = type.getName();
+				if (name.equals("int")) {
+					value = Integer.parseInt(value.toString());
+				} else if (name.equals("float")) {
+					value = Float.parseFloat(value.toString());
+				} else if (name.equals("double")) {
+					value = Double.parseDouble(value.toString());
+				} else if (name.equals("byte")) {
+					value = Byte.parseByte(value.toString());
+				} else if (name.equals("short")) {
+					value = Short.parseShort(value.toString());
+				} else if (name.equals("char")) {
 
-					} else if (name.equals("long")) {
-						value = Long.parseLong(value.toString());
-					} else if (name.equals("boolean")) {
-						if(value.toString().equals("1")){
-							value = Boolean.TRUE;
-						}else{
-							value = Boolean.FALSE;
-						}
+				} else if (name.equals("long")) {
+					value = Long.parseLong(value.toString());
+				} else if (name.equals("boolean")) {
+					if (value.toString().equals("1")) {
+						value = Boolean.TRUE;
+					} else {
+						value = Boolean.FALSE;
 					}
 				}
-				Method method = obj.getClass().getMethod(methodHead + attr, type);
-				method.invoke(obj, value);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			Method method = null;
+			try {
+				method = obj.getClass().getMethod("set" + attr, type);
+			} catch (NoSuchMethodException | SecurityException e) {
+				LOG.error("没有这个方法set" + attr + "或者因为安全问题无法访问", e);
+			}
+			try {
+				method.invoke(obj, value);
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				LOG.error("调用方法" + method.getName() + "时发生异常", e);
+			}
 		}
 	}
 

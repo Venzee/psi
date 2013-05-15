@@ -1,9 +1,15 @@
 @CHARSET "UTF-8";
 
-body,html {
+html,body {
 	font: 14px "Microsoft Yahei", sans-serif;
 	background-color: #eee;
 	background-image: url("../../image/body_bg.png");
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+html {
+	height: 100%;
 }
 
 input,textarea,img,select {
@@ -35,10 +41,11 @@ input:focus,textarea:focus,img:focus,select:focus {
 	z-index: 1000;
 	width: 100%;
 	height: 100%;
+	float: none;
 	display: none;
 	background-color: #000;
-	position: fixed;
-	filter: alpha(opacity = 50);
+	position: absolute;
+	filter: alpha(opacity =   50);
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
@@ -47,13 +54,14 @@ input:focus,textarea:focus,img:focus,select:focus {
 	position: absolute;
 	z-index: 1002;
 	border: none;
+	float: none;
 	display: none;
 }
 
 #head {
 	width: 100%;
 	height: 65px;
-	overflow:hidden;
+	overflow: hidden;
 }
 
 #panel {
@@ -89,14 +97,14 @@ input:focus,textarea:focus,img:focus,select:focus {
 #menu {
 	width: 182px;
 	background: #808080;
-	position:absolute;
-	top:65px;
+	position: absolute;
+	top: 65px;
 	left: 0;
 	right: 0;
-	bottom:0;
+	bottom: 0;
 	border-left: 0 none;
-	height:auto;
-	_height:expression(document.body.offsetHeight - 66 + 'px');
+	height: auto;
+	_height: expression(document.body.offsetHeight -   66 +   'px');
 }
 
 #menuList {
@@ -153,6 +161,34 @@ input:focus,textarea:focus,img:focus,select:focus {
 	display: none;
 	height: 5px;
 	background: url("../../image/menu-topline.gif") top left no-repeat
+}
+
+.frame_class {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#mainFrameContainer {
+	position: absolute;
+	top: 110px;
+	left: 192px;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	z-index: 4;
+}
+
+#mainFrame {
+	position: absolute;
+	_position: relative;
+	width: 100%;
+	_width: expression(document.body.offsetWidth -   192 +   'px');
+	height: 100%;
+	*height: expression(document.body.offsetHeight -   110 +   'px');
+	z-index: 5;
 }
 
 /* CONTENT COMM */

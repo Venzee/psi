@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.vsoft.pss.inventory.entity.Sort;
+import com.vsoft.pss.inventory.entity.form.SortForm;
 import com.vsoft.pss.inventory.service.SortService;
 
 @Controller
@@ -40,17 +41,15 @@ public class SortController {
 
 	@RequestMapping("/list")
 	public String querySort(ModelMap map) {
-		List<Sort> list = sortService.querySort();
-		String jsonStr = JSON.toJSONString(list).replaceAll("parent", "isParent");
-		jsonStr = jsonStr.replaceAll("isParentId", "parentId");
-		map.put("sortList", jsonStr);
+		List<SortForm> list = sortService.querySort();
+		map.put("sortList", list);
 		return "pss/inventory/sortlist";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/ajaxlist", produces = "application/json;charset=utf-8")
 	public String querySort() {
-		List<Sort> list = sortService.querySort();
+		List<SortForm> list = sortService.querySort();
 		return JSON.toJSONString(list);
 	}
 	

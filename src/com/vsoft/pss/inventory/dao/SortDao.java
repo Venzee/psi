@@ -89,7 +89,7 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort(Object parentId) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.parentId from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
+		String sql = "select s.id,s.name,s.parentId,s.level from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql, Arrays.asList(parentId));
 		} catch (SQLException e) {
@@ -99,13 +99,13 @@ public class SortDao extends BaseDao {
 	}
 	
 	/**
-	 * 查询所有父级商品类别
+	 * 查询前2级商品类别
 	 * 
 	 * @return
 	 */
 	public List<Map<String, Object>> querySort() {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.parent from pss_sort s where s.parent = true";
+		String sql = "select s.id,s.name,s.level,s.parentId from pss_sort s where s.level = 0 or s.level = 1";
 		try {
 			datas = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {
@@ -130,16 +130,6 @@ public class SortDao extends BaseDao {
 			return false;
 		}
 		return true;
-	}
-
-	public int countSort() {
-		int count = 0;
-		try {
-			count = this.countTable("pss_sort", "id", null);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
 	}
 
 }

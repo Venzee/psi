@@ -26,11 +26,11 @@ public class MenuDao extends BaseDao {
 		}
 	}
 	
-	public List<Map<String, Object>> queryAllMenu(List<Object> params) {
+	public List<Map<String, Object>> queryAllMenu() {
 		List<Map<String, Object>> list = null;
-		String sql = "select t.id,t.name,t.url,t.right,t.parentId,t.parent from pss_menu t";
+		String sql = "select t.id,t.name,t.url,t.power,t.parentId,t.parent from pss_menu t";
 		try {
-			list = this.executeQueryMultiple(sql, params);
+			list = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {
 			LOG.error("查询多个菜单时出错", e);
 			e.printStackTrace();
@@ -50,14 +50,4 @@ public class MenuDao extends BaseDao {
 		return true;
 	}
 	
-	public int countMenuById() {
-		int count = 0;
-		try {
-			count = this.countTable("pss_menu", "id", null);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return count;
-	}
-
 }

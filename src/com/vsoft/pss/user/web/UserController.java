@@ -1,5 +1,7 @@
 package com.vsoft.pss.user.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import com.vsoft.core.base.entity.SessionUser;
 import com.vsoft.core.util.SessionUtil;
 import com.vsoft.pss.organization.entity.Company;
 import com.vsoft.pss.organization.entity.Organization;
+import com.vsoft.pss.sys.entity.form.MenuForm;
+import com.vsoft.pss.sys.service.MenuService;
 import com.vsoft.pss.user.entity.User;
 import com.vsoft.pss.user.service.UserService;
 
@@ -19,6 +23,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MenuService menuService;
 
 	@RequestMapping("/register/init")
 	public String initRegister(HttpServletRequest request, ModelMap map, Organization organization, Company company, User user) {
@@ -63,12 +70,14 @@ public class UserController {
 	}
 
 	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
+	public String index(HttpServletRequest request, ModelMap map) {
 		String sessionId = request.getSession().getId();
 		SessionUser sessionUser = SessionUtil.getUserBySessionId(sessionId);
 		if (sessionUser == null) {
 			return "pss/login";
 		}
+		List<MenuForm> menuList = menuService.queryAllMenu();
+		map.put("menuList", menuList);
 		return "pss/index";
 	}
 }

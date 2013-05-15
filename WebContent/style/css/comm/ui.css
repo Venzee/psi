@@ -129,6 +129,12 @@
 }
 
 /* UI */
+.ui-dialog {
+	z-index: 1003;
+	position: absolute;
+	display: none;
+}
+
 .ui-table {
 	width: 100%;
 }
@@ -441,12 +447,6 @@
 
 .btn-check-all:hover,.btn-check-invert:hover {
 	color: #16A085;
-}
-
-.ui-dialog {
-	z-index: 1003;
-	position: fixed;
-	display: none;
 }
 
 .tip-body {

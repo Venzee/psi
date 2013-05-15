@@ -53,6 +53,276 @@
 					<dd class="text-10p">进货单</dd>
 					<dd class="text-10p">未审核</dd>
 				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line odd">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">1</dd>
+					<dd class="text-25p">VS-XS-1304060000001</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
+				<dl class="table-source-line">
+					<dd class="text-5p"><span id="" class="checkbox"></span></dd>
+					<dd class="text-5p">2</dd>
+					<dd class="text-25p">VS-XS-1304060000002</dd>
+					<dd class="text-25p">联想科技</dd>
+					<dd class="text-20p">2013年4月6日12:56:57</dd>
+					<dd class="text-10p">进货单</dd>
+					<dd class="text-10p">未审核</dd>
+				</dl>
 			</div>
 			<div class="ui-foot">
 					<div class="btn">

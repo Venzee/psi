@@ -1,15 +1,17 @@
 package com.vsoft.pss.sys.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.vsoft.core.base.entity.Page;
+
 import com.vsoft.core.util.DataUtil;
 import com.vsoft.pss.sys.dao.MenuDao;
 import com.vsoft.pss.sys.entity.Menu;
-import com.vsoft.pss.sys.entity.form.MenuFrom;
+import com.vsoft.pss.sys.entity.form.MenuForm;
 
 @Service
 public class MenuService {
@@ -22,37 +24,31 @@ public class MenuService {
 		return menuDao.addMenu(data);
 	}
 
-	public List<MenuFrom> queryAllMenu(Page page) {
-		List<MenuFrom> list = new ArrayList<MenuFrom>();
-		List<Object> params = new ArrayList<Object>();
-		params.add(page.getStartRecord());
-		params.add(page.getPageRecord());
-		List<Map<String, Object>> datas = menuDao.queryAllMenu(params);
+	public List<MenuForm> queryAllMenu() {
+		List<MenuForm> list = new ArrayList<MenuForm>();
+		List<Map<String, Object>> datas = menuDao.queryAllMenu();
+		Map<Integer, MenuForm> tempMap = new HashMap<Integer, MenuForm>();
 		for (Map<String, Object> data : datas) {
-			MenuFrom MenuFrom = (MenuFrom) DataUtil.parseMapToObject(data, MenuFrom.class);
-			list.add(MenuFrom);
+			Menu menu = (Menu) DataUtil.parseMapToObject(data, Menu.class);
+			if (menu.getParentId() == 0) {
+				MenuForm menuForm = (MenuForm) tempMap.get(menu.getId());
+				if (menuForm == null) {
+					menuForm = new MenuForm();
+				}
+				menuForm.setMenu(menu);
+				tempMap.put(menu.getId(), menuForm);
+			}else{
+				MenuForm menuForm = (MenuForm) tempMap.get(menu.getParentId());
+				menuForm.getChildMenu().add(menu);
+				tempMap.put(menu.getParentId(), menuForm);
+			}
 		}
+		list.addAll(tempMap.values());
 		return list;
-	}
-	
-	public List<Menu> queryMenuByIndustry(Menu form) {
-		List<Menu> list = new ArrayList<Menu>();
-		List<Object> params = new ArrayList<Object>();
-		List<Map<String, Object>> datas = menuDao.queryAllMenu(params);
-		for (Map<String, Object> data : datas) {
-			Menu Menu = (Menu) DataUtil.parseMapToObject(data, Menu.class);
-			list.add(Menu);
-		}
-		return list;
-	}
-	
-	public void buildPage(Page page) {
-		int count = menuDao.countMenuById();
-		page.init(count);
 	}
 
 	public boolean deleteMenu(String idStr) {
 		return menuDao.deleteMenu(idStr);
 	}
-	
+
 }

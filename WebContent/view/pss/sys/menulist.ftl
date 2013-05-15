@@ -19,15 +19,14 @@
 					]
 				});
 			});
-			$('div.btn-edit').on('click', editSource('organization/industry/edit'));
-			$('div.btn-delete').on('click', delSource('organization/industry/del'));
+			
 		});
 	</script>
 	<body>
 		<div class="ui-table" id="sortTable">
 			<div class="ui-head">
 				<div class="ui-title">
-					<div class="ui-title-name ui-table-title-name">行业信息</div>
+					<div class="ui-title-name ui-table-title-name">菜单信息</div>
 					<div class="ui-operation">
 						<div class="ui-btn btn-delete">删除</div>
 						<div class="ui-btn btn-edit">编辑</div>
@@ -39,32 +38,32 @@
 						<dd class="text_5p">选项</dd>
 						<dd class="text_5p">编号</dd>
 						<dd class="text_35p">菜单名称</dd>
-						<dd class="text_55p">备注</dd>
+						<dd class="text_35p">链接地址</dd>
 					</dl>
 				</div>
 			</div>
 			<div class="table-source">
-				<#list industryList as industry>
-					<#if industry_index % 2 = 0>
+				<#list menuList as menu>
+					<#if menu_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="text_5p"><span id="${industry.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${industry_index + 1}</dd>
-							<dd class="text_35p">${industry.name}</dd>
-							<dd class="text_55p">${industry.description}</dd>
+							<dd class="text_5p"><span id="${menu.id}" class="checkbox"></span></dd>
+							<dd class="text_5p">${menu_index + 1}</dd>
+							<dd class="text_35p">${menu.name}</dd>
+							<dd class="text_35p">${menu.url}</dd>
 						</dl>
 					</#if>
-					<#if industry_index % 2 = 1>
+					<#if menu_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="text_5p"><span id="${industry.id}" class="checkbox"></span></dd>
-							<dd class="text_5p">${industry_index + 1}</dd>
-							<dd class="text_35p">${industry.name}</dd>
-							<dd class="text_55p">${industry.description}</dd>
+							<dd class="text_5p"><span id="${menu.id}" class="checkbox"></span></dd>
+							<dd class="text_5p">${menu_index + 1}</dd>
+							<dd class="text_35p">${menu.name}</dd>
+							<dd class="text_35p">${menu.url}</dd>
 						</dl>
 					</#if>
 				</#list>
 			</div>
 			<div class="ui-foot">
-				<#if (industryList?size>1) >
+				<#if (menuList?size>1) >
 					<div class="btn">
 						<div class="ui-btn btn-check-all">全选</div>
 						<div class="ui-btn btn-check-invert">反选</div>

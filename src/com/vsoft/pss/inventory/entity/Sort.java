@@ -11,7 +11,7 @@ public class Sort implements Serializable {
 	private int id;
 	private String name; // 类别名称
 	private int parentId; // 父级ID
-	private boolean parent; // 是否是父级
+	private int level; // 分类层级
 
 	public int getId() {
 		return id;
@@ -37,12 +37,12 @@ public class Sort implements Serializable {
 		this.parentId = parentId;
 	}
 
-	public boolean isParent() {
-		return parent;
+	public int getLevel() {
+		return level;
 	}
 
-	public void setParent(boolean parent) {
-		this.parent = parent;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 }

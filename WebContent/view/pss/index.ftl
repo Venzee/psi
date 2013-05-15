@@ -7,41 +7,48 @@
 	<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="script/js/comm.js"></script>
 	<script type="text/javascript" src="script/js/ui.js"></script>
-	<style type="text/css">
-		html,body {
-			overflow: auto;
-			overflow-x: hidden;
-		}
-		html {
-			height: 100%;
-		}
-		#mainFrame{
-			position: absolute;
-			_position: relative;
-		}
-		.frame_class{padding:0;
-			margin: 0;
-			width: 100%;
-			height: 100%;
-			overflow: hidden;
-		}
-		#mainFrameContainer{
-			position: absolute;
-			top: 100px;
-			left: 182px;
-			bottom: 0;
-			right: 0;
-			overflow: hidden;
-			z-index: 4;
-		}
-		#mainFrame{
-			width: 100%;
-			_width: expression(document.body.offsetWidth - 182 + 'px');
-			height: 100%;
-			*height: expression(document.body.offsetHeight - 100 + 'px');
-			z-index: 5;
-		}
-	</style>
+	<script type="text/javascript">
+		$(function(){
+			/* 菜单控制 */
+			$('#menuList dt.menu-title').on('click', function() {
+				if ($(this).hasClass('active')) {
+					$(this).nextAll('dd.menu-item').slideUp();
+					$(this).next('dt.top-line').slideUp('fast');
+					$('#menuList dt.menu-title').removeClass('active');
+				}else{
+					$('#menuList dt.top-line').slideUp('fast');
+					$('#menuList dd.menu-item').slideUp('fast');
+					$('#menuList dt.menu-title').removeClass('active');
+					$(this).next('dt.top-line').slideDown('fast');
+					$(this).addClass('active').nextAll('dd.menu-item').slideDown('fast');
+				}
+			});
+			$('dd.menu-item').find('span').on('click', function(){
+				if (!$(this).hasClass('active')) {
+					$.showCover();
+					$.showLoading();
+					$('dd.menu-item').find('span').removeClass('active');
+					$(this).addClass('active');
+					var title = $(this).parents('dl').find('dt.menu-title').text() + ' >> ' + $(this).text();
+					$('#navi-title').text(title);
+					var url = $(this).attr('title') + '?randomNum=' + Math.random();
+					$('#mainFrame').attr('src', url);
+					if ($('#mainFrame').get(0).attachEvent){  
+					    $('#mainFrame').get(0).attachEvent("onload", function(){  
+					        $.hideLoading();
+							$.hideCover();
+					    });  
+					} else {  
+					    $('#mainFrame').get(0).onload = function(){  
+					        $.hideLoading();
+							$.hideCover();
+					    };  
+					} 
+					
+				}
+			});
+		});
+	</script>
 </head>
 <body class="frame_class">
 	<div id="head">
@@ -90,35 +97,5 @@
 	<div id="mainFrameContainer">
 		<iframe src="" name="mainFrame" id="mainFrame" frameborder="no" scrolling="yes" hidefocus></iframe>
 	</div>
-	<script type="text/javascript">
-		/* 菜单控制 */
-		$('#menuList .menu-title').click(function() {
-			if ($(this).hasClass('active')) {
-				$(this).nextAll('.menu-item').slideUp();
-				$(this).next('.top-line').slideUp('fast');
-				$('#menuList .menu-title').removeClass('active');
-			}else{
-				$('#menuList .top-line').slideUp('fast');
-				$('#menuList .menu-item').slideUp('fast');
-				$('#menuList .menu-title').removeClass('active');
-				$(this).next('.top-line').slideDown('fast');
-				$(this).addClass('active').nextAll('.menu-item').slideDown('fast');
-			}
-		});
-		$('.menu-item span').click(function(){
-			if (!$(this).hasClass('active')) {
-				$.showCover();
-				$.showLoading();
-				$('.menu-item span').removeClass('active');
-				$(this).addClass('active');
-				var title = $(this).parents('dl').find('.menu-title').text() + ' >> ' + $(this).text();
-				$('#navi-title').text(title);
-				var url = $(this).attr('title') + '?randomNum=' + Math.random();
-				$('#mainFrame').attr('src', url);
-				$.hideLoading();
-				$.hideCover();
-			}
-		});
-	</script>
 </body>
 </html>
