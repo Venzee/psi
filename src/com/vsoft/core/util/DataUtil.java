@@ -6,7 +6,12 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.apache.log4j.Logger;
 
 public class DataUtil {
@@ -24,6 +29,42 @@ public class DataUtil {
 		return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
 	}
 
+	/**
+	 * 中文字符串转拼音码
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String toPinYinStr(String str) {
+		String pystr = "";
+		String[] t = new String[str.length()];
+		
+		char [] hanzi=new char[str.length()];
+        for(int i=0;i<str.length();i++){
+            hanzi[i]=str.charAt(i);
+        }
+		
+		HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+		format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+		format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+		format.setVCharType(HanyuPinyinVCharType.WITH_V);
+        
+		try {
+			for (int i = 0; i < str.length(); i++) {
+				if ((str.charAt(i) >= 'a' && str.charAt(i) < 'z') || (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') || (str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
+					pystr += str.charAt(i);
+				} else {
+		            t = PinyinHelper.toHanyuPinyinStringArray(hanzi[i], format);
+		            pystr = pystr + t[0];
+		        }
+			}
+		} catch (BadHanyuPinyinOutputFormatCombination e) {
+			e.printStackTrace();
+		}
+		
+		return pystr.trim().toString();
+	}
+	
 	/**
 	 * Map转换成对象
 	 * 
