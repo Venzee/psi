@@ -49,13 +49,26 @@ public class SortService {
 		return list;
 	}
 
-	public Object querySort(String parentId) {
-		List<Sort> list = new ArrayList<Sort>();
+	public List<SortForm> querySort(String parentId) {
+		List<SortForm> list = new ArrayList<SortForm>();
 		List<Map<String, Object>> datas = sortDao.querySort(parentId);
+		Map<String, SortForm> tempMap = new HashMap<String, SortForm>();
+		SortForm sortForm = null;
 		for (Map<String, Object> data : datas) {
 			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
-			list.add(sort);
+			String code = sort.getCode();
+			sortForm = tempMap.get(code);
+			if (null == sortForm) {
+				sortForm = new SortForm();
+				sortForm.setCode(code);
+			}
+			if (null == sortForm.getChildList()) {
+				sortForm.setChildList(new ArrayList<Sort>());
+			}
+			sortForm.getChildList().add(sort);
+			tempMap.put(code, sortForm);
 		}
+		list.addAll(tempMap.values());
 		return list;
 	}
 
@@ -66,7 +79,7 @@ public class SortService {
 		SortForm sortForm = null;
 		for (Map<String, Object> data : datas) {
 			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
-			if (0 == sort.getLevel()) {
+			if (sort.isPrimary() && 0 == sort.getParentId()) {
 				sortForm = tempMap.get(sort.getId());
 				if (null == sortForm) {
 					sortForm = new SortForm();
@@ -74,7 +87,7 @@ public class SortService {
 				sortForm.setSort(sort);
 				tempMap.put(sort.getId(), sortForm);
 			} else {
-				sortForm = tempMap.get(sort.getId());
+				sortForm = tempMap.get(sort.getParentId());
 				if (null == sortForm) {
 					sortForm = new SortForm();
 				}
@@ -84,8 +97,8 @@ public class SortService {
 				sortForm.getChildList().add(sort);
 				tempMap.put(sort.getParentId(), sortForm);
 			}
-			list.addAll(tempMap.values());
 		}
+		list.addAll(tempMap.values());
 		return list;
 	}
 

@@ -11,8 +11,17 @@ public class SortForm implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 8823889129386956953L;
+	private String code;
 	private Sort sort;
 	private List<Sort> childList;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public Sort getSort() {
 		return sort;

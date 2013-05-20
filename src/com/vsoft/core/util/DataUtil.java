@@ -221,7 +221,7 @@ public class DataUtil {
 				} else if (name.equals("long")) {
 					value = Long.parseLong(value.toString());
 				} else if (name.equals("boolean")) {
-					if (value.toString().equals("1")) {
+					if ("1".equals(value.toString()) || "true".equals(value) || Boolean.valueOf((boolean) value)) {
 						value = Boolean.TRUE;
 					} else {
 						value = Boolean.FALSE;

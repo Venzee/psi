@@ -10,8 +10,9 @@ public class Sort implements Serializable {
 	private static final long serialVersionUID = -1161754471073887807L;
 	private int id;
 	private String name; // 类别名称
+	private String code; // 编码(名称首字母)
 	private int parentId; // 父级ID
-	private int level; // 分类层级
+	private boolean primary; // 主要类目(即初始加载类目)
 
 	public int getId() {
 		return id;
@@ -29,6 +30,14 @@ public class Sort implements Serializable {
 		this.name = name;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public int getParentId() {
 		return parentId;
 	}
@@ -37,12 +46,12 @@ public class Sort implements Serializable {
 		this.parentId = parentId;
 	}
 
-	public int getLevel() {
-		return level;
+	public boolean isPrimary() {
+		return primary;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setPrimary(boolean primary) {
+		this.primary = primary;
 	}
 
 }

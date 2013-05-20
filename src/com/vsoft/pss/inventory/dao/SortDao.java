@@ -65,23 +65,6 @@ public class SortDao extends BaseDao {
 	}
 
 	/**
-	 * 分页查询商品类别
-	 * 
-	 * @param params
-	 * @return
-	 */
-	public List<Map<String, Object>> querySort(List<Object> params) {
-		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.parentId,s.parent,ts.name as parentname from pss_sort s left join pss_sort ts on s.parentId = ts.id order by s.parentId asc, s.id desc limit ? , ?";
-		try {
-			datas = this.executeQueryMultiple(sql, params);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return datas;
-	}
-	
-	/**
 	 * 查询对应父级商品类别的所有子类别
 	 * 
 	 * @param parentId
@@ -89,7 +72,7 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort(Object parentId) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.parentId,s.level from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
+		String sql = "select s.id,s.name,s.code,s.parentId,s.primary from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql, Arrays.asList(parentId));
 		} catch (SQLException e) {
@@ -99,13 +82,13 @@ public class SortDao extends BaseDao {
 	}
 	
 	/**
-	 * 查询前2级商品类别
+	 * 查询初级商品类别
 	 * 
 	 * @return
 	 */
 	public List<Map<String, Object>> querySort() {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.level,s.parentId from pss_sort s where s.level = 0 or s.level = 1";
+		String sql = "select s.id,s.name,s.code,s.parentId,s.primary from pss_sort s where s.primary = true";
 		try {
 			datas = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {

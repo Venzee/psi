@@ -19,10 +19,13 @@
 			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 
 			$('div.cc-tree-gname').on('click', function(){
-				if(!$(this).hasClass('selected')) {
+				if($(this).hasClass('selected')) {
+					$(this).removeClass('selected').next('ul.cc-tree-gcont').slideUp('fast');
+				}else{
 					$('ul.cc-tree-gcont').slideUp('fast').prev('div.cc-tree-gname').removeClass('selected');
 					$(this).addClass('selected').next('ul.cc-tree-gcont').slideDown('fast');
 				}
+				$('li.cc-tree-item').removeClass('cc-selected');
 			});
 
 			$('li.cc-tree-item').on('click', function(){
@@ -30,7 +33,26 @@
 					$('li.cc-tree-item').removeClass('cc-selected');
 					$(this).addClass('cc-selected');
 					if ($(this).hasClass('cc-hasChild-item')) {
-
+						$.ajax({
+							url: "childlist",
+							type: 'post',
+							data: 'parentId=' + $(this).attr('id') + '&randomNum=' + Math.random(),
+							dataType: 'json',
+							success: function(datas) {
+								var str = '<li class="cc-list-item"><div class="cc-cbox-filter"><label>输入名称/拼音首字母</label><input style="width: 176px;"></div><div class="cc-cbox"><ul class="cc-cbox-cont">';
+								for (var data in datas) {
+									
+									str += '<li class="cc-cbox-group"><div class="cc-cbox-gname">' + data.code + '</div><ul class="cc-cbox-gcont">';
+									for (var sort in data.childList) {
+										str += '<li id="' + sort.id + '" class="cc-cbox-item cc-hasChild-item">' + sort.name + '</li>'
+									}
+									str += '</ul></li>';
+											
+								};
+								str += + '</ul></div></li>';
+								alert(str);
+							}
+						});
 					};
 				}
 			});
@@ -144,27 +166,25 @@
 		}
 		.cc-tree-cont, .cc-cbox-cont {
 			padding: 0 3px;
-			margin-top: 26px;
+			margin-top: 30px;
 		}
 		.cc-tree-group {
 			padding: 3px 0;
 			border-bottom: 1px dashed #ccc;
 			zoom: 1;
 		}
-		.cc-tree-gname, .cc-tree-item, .cc-listbox-item {
+		.cc-tree-gname, .cc-tree-item {
 			padding: 0 16px 0 14px;
 		}
 		.cc-tree-gname {
 			color: #36c;
+			width: 100%;
 			background-position: right -107px;
 			display: inline-block;
 			margin: 2px 0;
-			cursor: default;
+			cursor: pointer;
 		}
-		li.cc-hasChild-item {
-			background-position: right -137px;
-		}
-		.cc-cbox-item, .cc-tree-item, .cc-listbox-item {
+		.cc-cbox-item, .cc-tree-item {
 			background-color: #FFF;
 			border: 1px solid #FFF;
 			height: 20px;
@@ -172,6 +192,10 @@
 			overflow: hidden;
 			cursor: pointer;
 			padding-left: 41px;
+		}
+		.cc-cbox-item:hover, .cc-tree-item:hover {
+			border: 1px solid #dcdcdc;
+			background-color: #f3f3f3;
 		}
 		.cc-cbox-gname {
 			float: left;
@@ -189,7 +213,7 @@
 			margin-top: 5px;
 			overflow: hidden;
 		}
-		li.cc-selected {
+		li.cc-selected, li.cc-selected:hover {
 			border: 1px solid #82bce0;
 			background-color: #dff1fb;
 		}
@@ -198,36 +222,30 @@
 		}
 	</style>
 <body>
-	<div class="cate-container" data-spm="1000796">
+	<div class="cate-container">
 		<div class="cate-main">
 			<div id="cate-cascading">
-				<a href="#" class="cc-prev cc-nav" title="上一级" id="J_LinkPrev" style="visibility: hidden;">
+				<a href="#" class="cc-prev cc-nav" title="上一级" id="J_LinkPrev">
 					<span>上一级</span>
 				</a>
 				<div class="cc-listwrap">
-					<ol id="J_OlCascadingList" class="cc-list">
+					<ol id="sort-list" class="cc-list">
 						<li class="cc-list-item">
 							<div class="cc-cbox-filter">
 								<label>输入名称/拼音首字母</label>
 								<input style="width: 176px;"></div>
 							<div class="cc-tree">
 								<ul class="cc-tree-cont">
-									<li class="cc-tree-group">
-										<div class="cc-tree-gname">服装鞋包</div>
-										<ul class="cc-tree-gcont expanded" role="group">
-											<li role="treeitem" class="cc-tree-item cc-hasChild-item">女士内衣/男士内衣/家居服</li>
-											<li role="treeitem" class="cc-tree-item cc-hasChild-item">服饰配件/皮带/帽子/围巾</li>
-										</ul>
-									</li>
-									<li class="cc-tree-group">
-										<div class="cc-tree-gname">手机数码</div>
-										<ul class="cc-tree-gcont" role="group">
-											<li role="treeitem" class="cc-tree-item cc-hasChild-item">笔记本电脑</li>
-											<li role="treeitem" class="cc-tree-item cc-hasChild-item">平板电脑/MID</li>
-											<li role="treeitem" class="cc-tree-item cc-hasChild-item">台式机/一体机/服务器</li>
-											<li role="treeitem" class="cc-tree-item cc-hasChild-item">电脑硬件/显示器/电脑周边</li>
-										</ul>
-									</li>
+									<#list sortList as source>
+										<li class="cc-tree-group">
+											<div class="cc-tree-gname">${source.sort.name }</div>
+											<ul class="cc-tree-gcont expanded">
+												<#list source.childList as childSort>
+													<li id="${childSort.id }" class="cc-tree-item cc-hasChild-item">${childSort.name }</li>
+												</#list>
+											</ul>
+										</li>
+									</#list>
 								</ul>
 							</div>
 						</li>
@@ -245,7 +263,7 @@
 											<li class="cc-cbox-item cc-hasChild-item">Asus/华硕</li>
 										</ul>
 									</li>
-									<li class="cc-cbox-group " role="treeitem">
+									<li class="cc-cbox-group ">
 										<div class="cc-cbox-gname">b</div>
 										<ul class="cc-cbox-gcont">
 											<li class="cc-cbox-item cc-hasChild-item">Benq/明基</li>
@@ -280,13 +298,12 @@
 						</li>
 					</ol>
 				</div>
-				<a href="#" class="cc-next cc-nav" title="下一级" id="J_LinkNext" style="visibility: hidden;">
+				<a href="#" class="cc-next cc-nav" title="下一级" id="J_LinkNext">
 					<span>下一级</span>
 				</a>
 			</div>
 			<div id="J_SearchResult" class="search-result" style="display: none;">
-				<div class="result-note"> <strong>匹配到 <em class="J_RecordCount">0</em>
-						个类目</strong> 
+				<div class="result-note"> <strong>匹配到 <em class="J_RecordCount">0</em>个类目</strong> 
 					<span class="note">(双击直接发布，括号中为该类目下相关宝贝的数量)</span>
 					<a class="J_TriggerExit trigger-exit" href="#exit"> <i></i>
 						关闭，返回类目
