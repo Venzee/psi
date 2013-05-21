@@ -12,8 +12,9 @@ public class SortForm implements Serializable {
 	 */
 	private static final long serialVersionUID = 8823889129386956953L;
 	private String code;
+	private String role;
 	private Sort sort;
-	private List<Sort> childList;
+	private List<Object> childList;
 
 	public String getCode() {
 		return code;
@@ -21,6 +22,14 @@ public class SortForm implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Sort getSort() {
@@ -31,11 +40,11 @@ public class SortForm implements Serializable {
 		this.sort = sort;
 	}
 
-	public List<Sort> getChildList() {
+	public List<Object> getChildList() {
 		return childList;
 	}
 
-	public void setChildList(List<Sort> childList) {
+	public void setChildList(List<Object> childList) {
 		this.childList = childList;
 	}
 

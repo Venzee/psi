@@ -1,6 +1,7 @@
 package com.vsoft.pss.inventory.dao;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -68,6 +69,23 @@ public class BrandDao extends BaseDao {
 		return data;
 	}
 
+	/**
+	 * 根据类目ID查询正常状态品牌
+	 * 
+	 * @param sortId
+	 * @return
+	 */
+	public List<Map<String, Object>> queryBrandBySort(Object sortId) {
+		List<Map<String, Object>> datas = null;
+		String sql = "select b.id,b.name,b.englishName,b.code,b.sortId from pss_brand b where b.sortId = ? and b.status = 0 order by b.id desc";
+		try {
+			datas = this.executeQueryMultiple(sql, Arrays.asList(sortId));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datas;
+	}
+	
 	public boolean deleteBrand(String idStr) {
 		StringBuffer sql = new StringBuffer("delete from pss_brand where id in (");
 		sql.append(idStr).append(")");
@@ -80,10 +98,16 @@ public class BrandDao extends BaseDao {
 		return true;
 	}
 
-	public int countBrandById() {
+	/**
+	 * 按条件统计记录数
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public int countBrand(Map<String, Object> data) {
 		int count = 0;
 		try {
-			count = this.countTable("pss_brand", "id", null);
+			count = this.countTable("pss_brand", "id", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

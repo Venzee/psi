@@ -1,6 +1,7 @@
 package com.vsoft.pss.inventory.dao;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,40 @@ public class GoodsDao extends BaseDao {
 		return data;
 	}
 	
+	/**
+	 * 根据类目ID查询正常状态商品
+	 * 
+	 * @param sortId
+	 * @return
+	 */
+	public List<Map<String, Object>> queryGoodsBySort(Object sortId) {
+		List<Map<String, Object>> datas = null;
+		String sql = "select b.id,b.name,b.englishName,b.sortId,b.code from pss_goods b where b.sortId = ? and b.status = 0 order by b.id desc";
+		try {
+			datas = this.executeQueryMultiple(sql, Arrays.asList(sortId));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datas;
+	}
+	
+	/**
+	 * 根据品牌ID查询正常状态商品
+	 * 
+	 * @param brandId
+	 * @return
+	 */
+	public List<Map<String, Object>> queryGoodsByBrand(Object brandId) {
+		List<Map<String, Object>> datas = null;
+		String sql = "select b.id,b.name,b.englishName,b.brandId,b.sortId,b.code from pss_goods b where b.brandId = ? and b.status = 0 order by b.id desc";
+		try {
+			datas = this.executeQueryMultiple(sql, Arrays.asList(brandId));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return datas;
+	}
+	
 	public boolean deleteGoods(String idStr) {
 		StringBuffer sql = new StringBuffer("delete from pss_goods where id in (");
 		sql.append(idStr).append(")");
@@ -67,10 +102,16 @@ public class GoodsDao extends BaseDao {
 		return true;
 	}
 
-	public int countGoodsById() {
+	/**
+	 * 按条件统计记录数
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public int countGoods(Map<String, Object> data) {
 		int count = 0;
 		try {
-			count = this.countTable("pss_goods", "id", null);
+			count = this.countTable("pss_goods", "id", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

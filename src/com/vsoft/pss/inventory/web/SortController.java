@@ -35,8 +35,8 @@ public class SortController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/childlist", produces = "application/json;charset=utf-8")
-	public String querySort(String parentId) {
-		return JSON.toJSONString(sortService.querySort(parentId));
+	public String querySort(String parentId, String role) {
+		return JSON.toJSONString(sortService.querySort(parentId, role));
 	}
 
 	@RequestMapping("/list")

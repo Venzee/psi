@@ -1,6 +1,7 @@
 package com.vsoft.pss.inventory.service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +52,8 @@ public class BrandService {
 	}
 	
 	public void buildPage(Page page) {
-		int count = brandDao.countBrandById();
+		Map<String, Object> params = new LinkedHashMap<String, Object>();
+		int count = brandDao.countBrand(params);
 		page.init(count);
 	}
 

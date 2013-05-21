@@ -2,6 +2,7 @@ package com.vsoft.pss.inventory.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,8 @@ public class GoodsService {
 	}
 
 	public void buildPage(Page page) {
-		int count = goodsDao.countGoodsById();
+		Map<String, Object> params = new LinkedHashMap<String, Object>();
+		int count = goodsDao.countGoods(params);
 		page.init(count);
 	}
 }

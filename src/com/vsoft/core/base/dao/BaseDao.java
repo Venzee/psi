@@ -427,8 +427,7 @@ public class BaseDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data)
-			throws SQLException {
+	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data) throws SQLException {
 		Object primaryId = insertAndReturnPrimaryId(tableName, data);
 		Map<String, Object> returnData = executeQuerySingle(sql, Arrays.asList(primaryId));
 		return returnData;
@@ -443,8 +442,7 @@ public class BaseDao {
 	 * @return
 	 */
 	public String makeCountTableSql(String tableNameOrSql, String countColumn, Collection<String> paramNames) {
-		StringBuilder sql = new StringBuilder().append("select count(").append(countColumn).append(") as count from ")
-				.append(tableNameOrSql);
+		StringBuilder sql = new StringBuilder().append("select count(").append(countColumn).append(") as count from ").append(tableNameOrSql);
 		if (paramNames != null && paramNames.size() > 0) {
 			int nameCount = 0;
 			sql.append(" where ");

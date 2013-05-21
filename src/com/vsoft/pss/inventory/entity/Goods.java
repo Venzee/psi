@@ -11,11 +11,13 @@ public class Goods implements Serializable {
 	private int id;
 	private String shortname; // 商品简称
 	private String name; // 商品全名
+	private String englishName; // 英文名称
 	private int brandId;// 品牌ID
 	private int sortId;// 类型ID
 	private String barcode; // 商品条码
 	private String code;// 编码，用于快速搜索，一般为商品简称拼音首字母缩写
 	private String remark;
+	private int status;// 状态 (默认0)
 	private int companyId; // 新建商品的公司ID (默认0)
 
 	public int getId() {
@@ -40,6 +42,14 @@ public class Goods implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEnglishName() {
+		return englishName;
+	}
+
+	public void setEnglishName(String englishName) {
+		this.englishName = englishName;
 	}
 
 	public int getBrandId() {
@@ -80,6 +90,14 @@ public class Goods implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public int getCompanyId() {

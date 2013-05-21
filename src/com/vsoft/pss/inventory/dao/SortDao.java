@@ -72,7 +72,7 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort(Object parentId) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.code,s.parentId,s.primary from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
+		String sql = "select s.id,s.name,s.code,s.parentId,s.primary,s.hasChild from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql, Arrays.asList(parentId));
 		} catch (SQLException e) {
@@ -88,13 +88,29 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort() {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.code,s.parentId,s.primary from pss_sort s where s.primary = true";
+		String sql = "select s.id,s.name,s.code,s.parentId,s.primary,s.hasChild from pss_sort s where s.primary = true";
 		try {
 			datas = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return datas;
+	}
+	
+	/**
+	 * 按条件统计记录数
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public int countSort(Map<String, Object> data) {
+		int count = 0;
+		try {
+			count = this.countTable("pss_sort", "id", data);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 	
 	/**
