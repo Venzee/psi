@@ -29,6 +29,6 @@ public class ReceiptController {
 	public String queryAllReceipt(ModelMap map, ReceiptForm form, Page page) {
 		List<Receipt> list = receiptService.queryAllReceipt(form, page);
 		map.put("receiptList", list);
-		return "pss/receipt/receiptlist";
+		return "receipt/receiptlist";
 	}
 }

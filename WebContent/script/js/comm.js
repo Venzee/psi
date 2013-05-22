@@ -41,7 +41,8 @@ function checked() {
 }
 
 function editSource(size, callBack){
-	if(size === undefined){
+	if(callBack === undefined){
+		callBack = size;
 		var idArray = getCheckedArray();
 		if(idArray === null){
 			size = 0;

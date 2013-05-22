@@ -31,21 +31,11 @@
 					$('dd.menu-item').find('span').removeClass('active');
 					$(this).addClass('active');
 					var title = $(this).parents('dl').find('dt.menu-title').text() + ' >> ' + $(this).text();
-					$('#navi-title').text(title);
+					$('#navi-title').text('您当前位置：' + title);
 					var url = $(this).attr('title') + '?randomNum=' + Math.random();
 					$('#mainFrame').attr('src', url);
-					if ($('#mainFrame').get(0).attachEvent){  
-					    $('#mainFrame').get(0).attachEvent("onload", function(){  
-					        $.hideLoading();
-							$.hideCover();
-					    });  
-					} else {  
-					    $('#mainFrame').get(0).onload = function(){  
-					        $.hideLoading();
-							$.hideCover();
-					    };  
-					} 
-					
+					$.hideLoading();
+					$.hideCover();
 				}
 			});
 		});
@@ -94,7 +84,7 @@
            	</dl>
 	    </div>
     </div>
-    <div id="menu-navi"><span id="navi-title">首页</span></div>
+    <div id="menu-navi"><span id="navi-title">您当前位置：首页</span></div>
 	<div id="mainFrameContainer">
 		<iframe src="" name="mainFrame" id="mainFrame" frameborder="no" scrolling="yes" hidefocus></iframe>
 	</div>

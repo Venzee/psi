@@ -23,6 +23,6 @@ public class OrganizationController {
 	public String queryAllOrg(ModelMap map, ReceiptForm form, Page page) {
 		List<Organization> list = organizationService.queryAllOrg(form, page);
 		map.put("organizationList", list);
-		return "pss/organization/organizationlist";
+		return "organization/organizationlist";
 	}
 }

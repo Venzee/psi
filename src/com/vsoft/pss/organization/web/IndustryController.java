@@ -43,6 +43,6 @@ public class IndustryController {
 	public String queryAllIndustry(ModelMap map) {
 		List<Industry> list = industryService.queryAllIndustry();
 		map.put("industryList", list);
-		return "pss/organization/industrylist";
+		return "organization/industrylist";
 	}
 }

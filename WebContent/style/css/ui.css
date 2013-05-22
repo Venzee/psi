@@ -69,6 +69,18 @@
 	width: 500px;
 }
 
+.text-600 {
+	width: 600px;
+}
+
+.text-650 {
+	width: 650px;
+}
+
+.text-700 {
+	width: 700px;
+}
+
 .text-5p {
 	width: 5%;
 	min-width: 40px;
@@ -136,7 +148,8 @@
 }
 
 .ui-table {
-	width: 100%;
+	width: 99%;
+	*width: 98%;
 }
 
 .ui-form {
@@ -173,18 +186,18 @@
 }
 
 .ui-table-title-name {
-	background: url("../../image/ui-table-title-bg.png") left top no-repeat;
+	background: url("../image/ui-table-title-bg.png") left top no-repeat;
 }
 
 .ui-form-title-name {
-	background: url("../../image/ui-from-title-bg.png") left top no-repeat;
+	background: url("../image/ui-from-title-bg.png") left top no-repeat;
 }
 
 .ui-tip-title-name {
-	background: url("../../image/ui-tip-title-bg.png") left top no-repeat;
+	background: url("../image/ui-tip-title-bg.png") left top no-repeat;
 }
 
-.ui-operation,.ui-operation > div {
+.ui-operation,.ui-operation div {
 	float: right;
 }
 
@@ -202,6 +215,10 @@
 	color: #27AE60;
 }
 
+.btn-search:hover {
+	color: #E67E22;
+}
+
 .btn-edit:hover {
 	color: #E67E22;
 }
@@ -214,12 +231,12 @@
 	color: #E74C3C;
 }
 
-.table-source-head,.table-source-head > dl {
+.table-source-head,.table-source-head dl {
 	height: 28px;
 	line-height: 28px;
 }
 
-.table-source-head > dl > dd {
+.table-source-head dl dd {
 	float: left;
 	text-align: center;
 }
@@ -228,11 +245,11 @@
 	width: 100%;
 }
 
-.table-source > .odd {
+.table-source .odd {
 	background-color: #f3f3f3;
 }
 
-.table-source > dl > dd {
+.table-source dl dd {
 	float: left;
 	text-align: center;
 }
@@ -250,7 +267,7 @@
 	background-color: #fff;
 }
 
-.table-source-line > dd {
+.table-source-line dd {
 	height: 30px;
 	line-height: 30px;
 	text-shadow: 0px 1px 1px #555;
@@ -258,53 +275,34 @@
 
 .checkbox {
 	display: block;
-	height: 20px;
-	width: 20px;
-	margin: 5px auto;
-	background: url("../../image/checkbox.png") -90px 0px no-repeat;
+	height: 30px;
+	width: 30px;
+	margin: 0 auto;
+	background: url("../image/checkbox.png") 0px 0px no-repeat;
+}
+
+.checkbox:hover {
+	background: url("../image/checkbox.png") -31px 0px no-repeat;
 }
 
 .checkbox.checked {
-	background: url("../../image/checkbox.png") -60px -30px no-repeat;
-}
-
-.radio-group {
-	height: 34px;
-	line-height: 34px;
-}
-
-.radio-group > .radio {
-	float: left;
-}
-
-.radio {
-	display: block;
-	height: 20px;
-	line-height: 20px;
-	width: 30px;
-	margin: 6px;
-	padding-left: 25px;
-	background: url("../../image/radio.png") -90px 0px no-repeat;
-}
-
-.radio.checked {
-	background: url("../../image/radio.png") -60px -30px no-repeat;
+	background: url("../image/checkbox.png") -62px 0px no-repeat;
 }
 
 .form-source {
 	background-color: #fff;
 }
 
-.form-source > dl {
+.form-source dl {
 	float: left;
 	margin: 5px 0;
 }
 
-.form-source > dl > dd {
+.form-source dl dd {
 	margin: 5px 0;
 }
 
-.form-source > .error {
+.form-source .error {
 	border-color: #E74C3C;
 }
 
@@ -313,17 +311,17 @@
 	text-align: center;
 }
 
-.form-source-name > dd {
+.form-source-name dd {
 	height: 34px;
 	line-height: 34px;
 }
 
-.form-source-name > .high {
+.form-source-name .high {
 	height: 89px;
 	line-height: 89px;
 }
 
-.form-source-name > .img_150 {
+.form-source-name .img-150 {
 	height: 150px;
 	line-height: 150px;
 }
@@ -340,43 +338,43 @@
 	text-align: left;
 }
 
-.form-source-value > dd > input {
+.form-source-value dd input {
 	height: 20px;
 	line-height: 20px;
 	padding: 5px;
 }
 
-.form-source-value > dd > textarea {
+.form-source-value dd textarea {
 	height: 75px;
 	padding: 5px;
 	overflow-y: auto;
 }
 
-.form-source-value > dd > select {
+.form-source-value dd select {
 	height: 34px;
 	line-height: 34px;
 	margin-right: 2px;
 	padding: 5px;
 }
 
-.form-source-value > .img_150 {
+.form-source-value .img-150 {
 	height: 150px;
 }
 
-.form-source-value > dd {
+.form-source-value dd {
 	width: 100%;
 }
 
-.form-source-value > dd > input.done {
-	background: url("../../image/done.png") 99% 5px no-repeat;
+.form-source-value dd input.done {
+	background: url("../image/done.png") 99% 5px no-repeat;
 }
 
-.form-source-value > dd > textarea.done {
-	background: url("../../image/done.png") 99% 35px no-repeat;
+.form-source-value dd textarea.done {
+	background: url("../image/done.png") 99% 35px no-repeat;
 }
 
-.form-source-value > dd > img.done {
-	background: url("../../image/done.png") 50% 65px no-repeat;
+.form-source-value dd img.done {
+	background: url("../image/done.png") 50% 65px no-repeat;
 }
 
 .ui-foot {
@@ -407,31 +405,31 @@
 	cursor: pointer;
 }
 
-.page > dd:hover {
+.page dd:hover {
 	color: #3498DB;
 }
 
-.page > dd.pageNum {
+.page dd.pageNum {
 	
 }
 
-.page > dd.active {
+.page dd.active {
 	cursor: text;
 	background: #555;
 	color: #fff;
 }
 
-.page > dd.pageCount {
+.page dd.pageCount {
 	cursor: text;
 	color: #555;
 }
 
-.page > dd.recordCount {
+.page dd.recordCount {
 	cursor: text;
 	color: #555;
 }
 
-.btn > div {
+.btn div {
 	width: 50px;
 	height: 24px;
 	line-height: 24px;
@@ -441,7 +439,7 @@
 	font-weight: bold;
 }
 
-.btn,.btn > div,.page,.page > dd {
+.btn,.btn div,.page,.page dd {
 	float: left;
 }
 
@@ -471,15 +469,15 @@
 }
 
 .tip-info {
-	background: url("../../image/tip-info-bg.png") left top no-repeat;
+	background: url("../image/tip-info-bg.png") left top no-repeat;
 }
 
 .tip-error {
 	color: #e60000;
-	background: url("../../image/tip-error-bg.png") left top no-repeat;
+	background: url("../image/tip-error-bg.png") left top no-repeat;
 }
 
 .tip-warning {
 	color: #d35400;
-	background: url("../../image/tip-warning-bg.png") left top no-repeat;
+	background: url("../image/tip-warning-bg.png") left top no-repeat;
 }

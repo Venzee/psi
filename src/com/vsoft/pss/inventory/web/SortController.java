@@ -43,7 +43,7 @@ public class SortController {
 	public String querySort(ModelMap map) {
 		List<SortForm> list = sortService.querySort();
 		map.put("sortList", list);
-		return "pss/inventory/sortlist";
+		return "inventory/sortlist";
 	}
 	
 	@ResponseBody

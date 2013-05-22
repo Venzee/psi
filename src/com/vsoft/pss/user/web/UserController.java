@@ -37,11 +37,11 @@ public class UserController {
 	public String register(HttpServletRequest request, User user, ModelMap map) {
 		if ("".equals(user.getUsername()) || null == user.getUsername()) {
 			map.put("tip", "用户名不能为空！");
-			return "pss/register";
+			return "register";
 		}
 		if ("".equals(user.getPassword()) || null == user.getPassword()) {
 			map.put("tip", "密码不能为空！");
-			return "pss/register";
+			return "register";
 		}
 		user = userService.register(user);
 		return login(request, map, user);
@@ -57,7 +57,7 @@ public class UserController {
 			user = userService.login(user);
 			if (user.getId() == 0) {
 				map.put("tip", "用户名或密码错误！");
-				return "pss/login";
+				return "login";
 			}
 			sessionUser.setUsername(user.getUsername());
 			result = SessionUtil.putSession(sessionId, sessionUser);
@@ -66,7 +66,7 @@ public class UserController {
 			}
 		}
 		map.put("tip", "系统不允许两个用户同时在线！");
-		return "pss/login";
+		return "login";
 	}
 
 	@RequestMapping("/index")
@@ -74,10 +74,10 @@ public class UserController {
 		String sessionId = request.getSession().getId();
 		SessionUser sessionUser = SessionUtil.getUserBySessionId(sessionId);
 		if (sessionUser == null) {
-			return "pss/login";
+			return "login";
 		}
 		List<MenuForm> menuList = menuService.queryAllMenu();
 		map.put("menuList", menuList);
-		return "pss/index";
+		return "index";
 	}
 }

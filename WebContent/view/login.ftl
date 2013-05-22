@@ -32,6 +32,7 @@
 	#register-link {
 		color: #808080;
 		float: right;
+		*margin-top: -50px;
 		margin-right: 30px;
 	}
 	#tip {

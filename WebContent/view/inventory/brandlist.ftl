@@ -11,7 +11,7 @@
 			$('form.pageForm').attr('action', 'inventory/brand/list');
 			$('div.btn-add').on('click', function(){
 				var industrys = '';
-				$.ajax({
+				/*$.ajax({
 					type : 'POST',
 					url : '../../organization/industry/ajaxlist',
 					data : 'randomNum=' + Math.random(),
@@ -19,19 +19,25 @@
 					success : function(data) {
 						$.each(data, function(i,n){
 							industrys = industrys + '<option value="' + n.id + '">' + n.name + '</option>'
-						});
+						});*/
 						$.dgform({
 							url: 'add',
 							title: '新增品牌',
-							label: ['品牌名称','品牌所属行业'],
+							label: ['品牌名称','英文名称',{style: 'high', name:'备注'},{style: 'img-150', name:'Logo'}],
 							source: ['<input type="text" class="text-500 not-null form-value" name="name" />',
-								'<select class="text-150 form-value" name="industryId">' + industrys + '</select>']
+								'<input type="text" class="text-500 form-value" name="englishName" />',
+								'<textarea class="text-500 not-null form-value" name="remark"></textarea>',
+								'<img class="img-150"/>']
 						});
-					}
-				});
+					/*}
+				});*/
 			});
-			$('div.btn-edit').on('click', function(){editSource('inventory/brand/edit');});
-			$('div.btn-delete').on('click', function(){delSource('inventory/brand/del');});
+			$('div.btn-edit').on('click', function(){
+				editSource('inventory/brand/edit');
+			});
+			$('div.btn-delete').on('click', function(){
+				delSource('inventory/brand/del');
+			});
 		});
 	</script>
 	<body>
@@ -59,7 +65,7 @@
 						<dd class="text-5p">选项</dd>
 						<dd class="text-5p">编号</dd>
 						<dd class="text-35p">品牌名称</dd>
-						<dd class="text-55p">所属行业</dd>
+						<dd class="text-55p">所属类目</dd>
 					</dl>
 				</div>
 			</div>
