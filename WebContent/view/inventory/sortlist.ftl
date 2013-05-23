@@ -13,7 +13,7 @@
 				var item = $('li.cc-selected:last'), id = item.attr('id'), role = item.attr('role');
 				alert(id+role)
 				/*$.dgform({
-					url: 'add',
+					url: 'add', width: '300'
 					title: '新增品牌',
 					label: ['品牌名称','英文名称',{style: 'high', name:'备注'},{style: 'img-150', name:'Logo'}],
 					source: ['<input type="text" class="text-500 not-null form-value" name="name" />',
@@ -49,8 +49,47 @@
 			});
 
 			function editSource(obj){
-				var index = obj.parents('li.cc-list-item').index(), id = obj.attr('id'), role = obj.attr('role');
-				alert(id)
+				var parent = obj.parent(), index = obj.parents('li.cc-list-item').index(), id = parent.attr('id'), text = parent.attr('title'), role = parent.attr('role');
+				if(role === undefined || role === 'sort'){
+					$.dgform({
+						url: 'add',
+						title: '编辑类目',
+						label: ['类目名称'],
+						source: ['<input type="text" class="text-500 not-null form-value" name="name" value="' + text + '"/>']
+					});
+					return;
+				}
+				/*$('#choose').dg({
+					title: '请选择操作',
+					width: '300',
+					target: $('#cate-cascading'),
+					onOpen: function(){
+						$('button.operation-add').on('click', function(){
+							$.dgClose();
+							if(role === undefined || role === 'sort'){
+								$.dgform({
+									url: 'add',
+									width: '300',
+									target: $('#cate-cascading'),
+									title: '新增类目',
+									label: ['类目名称'],
+									source: ['<input type="text" class="text-500 not-null form-value" name="name" />']
+								});
+								return;
+							}
+							
+						});
+						$('button.operation-edit').on('click', function(){
+							
+						});
+						$('button.operation-delete').on('click', function(){
+							alert(3)
+						});
+					},
+					onClose: function(){
+
+					}
+				});*/
 			}
 
 			function getSource(obj){
@@ -81,9 +120,9 @@
 										var data = datas[i].childList;
 										for (var j in data) {
 											if(data[j].hasChild){
-												str += '<li role="' + datas[i].role + '" id="' + data[j].id + '" class="cc-cbox-item cc-hasChild-item">' + data[j].name + '<span class="lab">&nbsp;</span></li>';
+												str += '<li role="' + datas[i].role + '" title="' + data[j].name + '" id="' + data[j].id + '" class="cc-cbox-item cc-hasChild-item">' + data[j].name + '<span class="lab">&nbsp;</span></li>';
 											}else{
-												str += '<li role="' + datas[i].role + '" id="' + data[j].id + '" class="cc-cbox-item">' + data[j].name + '<span class="lab">&nbsp;</span></li>';
+												str += '<li role="' + datas[i].role + '" title="' + data[j].name + '" id="' + data[j].id + '" class="cc-cbox-item">' + data[j].name + '<span class="lab">&nbsp;</span></li>';
 											}
 										}
 										str += '</ul></li>';
@@ -103,9 +142,17 @@
 		});
 	</script>
 	<body>
+		<div class="dialog-box" id="choose">
+			<div class="operation-box">
+				<button class="operation-btn operation-add">增</button>
+				<button class="operation-btn operation-edit">改</button>
+				<button class="operation-btn operation-delete">删</button>
+			</div>
+		</div>
 		<div class="search-panel">
 			<div class="search-source">
-				<label for="keyword">请输入要搜索的类目：</label><input type="text" class="text-650" id="keyword"/>
+				<label for="keyword">请输入要搜索的类目：</label>
+				<input type="text" class="text-650" id="keyword"/>
 				<div class="ui-operation" style="*margin-top: -30px;">
 					<div class="ui-btn btn-search">搜索</div>
 				</div>
@@ -124,20 +171,20 @@
 									<ul class="cc-tree-cont">
 									<#list sortList as source>
 										<li class="cc-tree-group">
-											<div id="${source.sort.id }" class="cc-tree-gname">
+											<div title="${source.sort.name }" id="${source.sort.id }" class="cc-tree-gname">
 												${source.sort.name }
 												<span class="lab">&nbsp;</span>
 											</div>
 											<ul class="cc-tree-gcont">
 											<#list source.childList as childSort>
 												<#if childSort.hasChild == true>
-													<li role="${source.role }" id="${childSort.id }" class="cc-tree-item cc-hasChild-item">
+													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item cc-hasChild-item">
 														${childSort.name }
 														<span class="lab">&nbsp;</span>
 													</li>
 												</#if>
 												<#if childSort.hasChild == false>
-													<li role="${source.role }" id="${childSort.id }" class="cc-tree-item">
+													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item">
 														${childSort.name }
 														<span class="lab">&nbsp;</span>
 													</li>

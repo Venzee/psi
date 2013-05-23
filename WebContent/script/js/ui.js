@@ -2,16 +2,13 @@
 	var odg = null;
 	$.fn.dg = function(settings) {
 		var config = initConfig(settings);
-		var html = '<div class="ui-table ui-tip ui-dialog" id="dg" style="width: '
-			+ config.width
-			+ 'px;">'
-			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">'
-			+ config.title
-			+ '</div>'
-			+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div>'
-			
+		var html = '<div class="ui-table ui-tip ui-dialog" id="dg" style="width: ' + config.width + 'px;">'
+			+ '<div class="ui-head"><div class="ui-title"><div class="ui-title-name ui-tip-title-name">' + config.title + '</div>'
+			+ '<div class="ui-operation"><div class="ui-btn btn-close">关闭</div></div></div></div><div class="source">'
+			+ $(this).html()
 			+ '</div></div>';
 		tissueDG(config, html);
+		//$(this).appendTo('div.form-source');
 	};
 	
 	$.dg = function(settings){
@@ -134,7 +131,7 @@
 		odg.find('div.btn-sub').on('click', function() {
 			config.cover = false;
 			dialogClose(config);
-			config.callBack();
+			config.onSub();
 		});
 		
 	};
@@ -221,28 +218,32 @@
 			label : [],
 			source : [],
 			data : {},
-			cover : true,
-			autoOpen : true,
-			autoClose : false,
-			msg : '提示',
-			level: 'info', //info,warning,error
-			time : 1500,
-			position : 'center',
-			target : top.$('body'),
+			cover : true, // 是否显示遮罩层
+			autoOpen : true, // 自动打开
+			autoClose : false, // 自动关闭
+			msg : '提示', // $.dgconfirm & $.dgtip提示语句
+			level: 'info', //$.dgconfirm & $.dgtip 提示级别 info,warning,error
+			time : 1500, // 当自动关闭为true时此选项生效（毫秒）
+			position : 'center', // 定位
+			target : top.$('body'), // 
 			url : '',
-			callBack : function(){}
+			onOpen : function(){},
+			onSub : function(){},
+			onClose : function(){}
 		}, settings);
 	}
 	
 	/* 组织公共数据 */
 	function tissueDG(config, html){
 		config.target.append(html);
+		config.onOpen();
 		odg = config.target.find('#dg');
 		/* 定位 */
 		autoPosition(config);
 		/* 显示，绑定取消&关闭事件 */
 		odg.slideDown('fast').find('div.btn-close').on('click', function() {
 			dialogClose(config);
+			config.onClose();
 		});
 		if (config.cover) {
 			$.showCover(config.target);
@@ -275,7 +276,8 @@
 				top : top
 			});
 			break;
-		case '':
+		case 'follow':
+			
 			odg.css({
 				
 			});

@@ -231,6 +231,10 @@
 	color: #E74C3C;
 }
 
+.source {
+	background: #fff;
+}
+
 .table-source-head,.table-source-head dl {
 	height: 28px;
 	line-height: 28px;
@@ -480,4 +484,8 @@
 .tip-warning {
 	color: #d35400;
 	background: url("../image/tip-warning-bg.png") left top no-repeat;
+}
+
+.dialog-box {
+	display: none;
 }

@@ -85,7 +85,7 @@ function delSource(url){
 			width : 300,
 			type : 'confirm',
 			msg : '确定删除选中的数据？',
-			callBack : function(){
+			onSub : function(){
 				$.ajax({
 					type : 'POST',
 					url : url,
