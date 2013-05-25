@@ -6,7 +6,7 @@ ol li,ul li {
 
 .search-result .trigger-exit i,.category-search .search-hint i,.cateBtn,.cateBtn button,.cc-cbox-filter input,.cc-tree-gname,.cc-hasChild-item,.cate-path .up,.cc-nav,.b_inputAttention .attention,.cate-tip i,.catePublish
 	{
-	background: url(http://img02.taobaocdn.com/tps/i2/T13PGlXfdfXXXXXXXX-261-188.png) no-repeat -999em -999em transparent
+	background: url(http://img02.taobaocdn.com/tps/i2/T13PGlXfdfXXXXXXXX-261-188.png) no-repeat -999em -999em transparent;
 }
 
 .cate-container {
@@ -15,18 +15,18 @@ ol li,ul li {
 	font-size: 12px;
 	position: relative;
 	border: 1px solid #d5e4fa;
-	background-color: #F5F9FF
+	background-color: #F5F9FF;
 }
 
 .cate-main {
 	float: left;
 	padding-top: 10px;
 	border-right: 1px solid #d5e4fa;
-	width: 725px
+	width: 725px;
 }
 
 .cate-aside {
-	overflow: hidden
+	overflow: hidden;
 }
 
 .cc-loading {
@@ -40,19 +40,19 @@ ol li,ul li {
 	top: 1px;
 	width: 948px;
 	display: none;
-	z-index: 13
+	z-index: 13;
 }
 
 .cc-loading-content {
 	position: relative;
 	width: 150px;
 	height: 21px;
-	margin: 130px auto
+	margin: 130px auto;
 }
 
 .cc-loading-icon {
 	float: left;
-	margin-right: 5px
+	margin-right: 5px;
 }
 
 .cc-loading-text {
@@ -61,16 +61,16 @@ ol li,ul li {
 	float: left;
 	margin-left: 5px;
 	padding-top: 0;
-	color: #f60
+	color: #f60;
 }
 
 .loading .cc-loading {
-	display: block
+	display: block;
 }
 
 .cate-container {
 	height: 300px;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .search-result {
@@ -79,23 +79,23 @@ ol li,ul li {
 	position: relative;
 	top: -300px;
 	left: 0;
-	z-index: 12
+	z-index: 12;
 }
 
 .search-result .result-note {
 	height: 26px;
 	line-height: 26px;
-	margin: 0 25px
+	margin: 0 25px;
 }
 
 .search-result .result-note em {
 	color: #f60;
-	margin: 0 3px
+	margin: 0 3px;
 }
 
 .search-result .result-note .note {
 	color: #aaa;
-	margin-left: 5px
+	margin-left: 5px;
 }
 
 .search-result .trigger-exit {
@@ -108,7 +108,7 @@ ol li,ul li {
 	margin-top: 2px;
 	padding: 4px 4px 2px;
 	height: 14px;
-	line-height: 14px
+	line-height: 14px;
 }
 
 .search-result .trigger-exit i {
@@ -120,7 +120,7 @@ ol li,ul li {
 	line-height: 0;
 	display: inline-block;
 	*display: inline;
-	*zoom: 1
+	*zoom: 1;
 }
 
 .search-result .result-list {
@@ -130,52 +130,52 @@ ol li,ul li {
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 4px 0;
-	margin: 0 25px
+	margin: 0 25px;
 }
 
 .search-result .no-result li {
-	text-align: center
+	text-align: center;
 }
 
 .search-result .no-result a {
-	display: none
+	display: none;
 }
 
 .search-result .result-list ol {
-	margin-bottom: 4px
+	margin-bottom: 4px;
 }
 
 .search-result .result-list li {
 	padding: 1px 0 2px;
 	border: 1px solid #FFF;
 	cursor: pointer;
-	padding-left: 15px
+	padding-left: 15px;
 }
 
 .search-result li .lidx {
 	margin-right: 10px;
 	text-align: right;
 	display: inline-block;
-	width: 20px
+	width: 20px;
 }
 
 .search-result li .rtcount {
 	color: #AAA;
-	margin-left: 3px
+	margin-left: 3px;
 }
 
 .search-result li.selected {
 	border: 1px solid #9CD7FC;
 	border-width: 1px 0;
 	background-color: #DFF1FB;
-	color: #404040
+	color: #404040;
 }
 
 .search-result .result-list a {
 	display: none;
 	margin-left: 15px;
 	border: 1px solid #C4D8F3;
-	padding: 2px 2px 4px 8px
+	padding: 2px 2px 4px 8px;
 }
 
 .search-result .result-list i {
@@ -189,55 +189,55 @@ ol li,ul li {
 	line-height: 0;
 	display: inline-block;
 	*display: inline;
-	*zoom: 1
+	*zoom: 1;
 }
 
 .search-result .trigger-close i {
 	right: 5px;
 	top: -2px;
-	border-color: #FFF #FFF #00E #FFF
+	border-color: #FFF #FFF #00E #FFF;
 }
 
 .search-result .trigger-close:hover i {
-	border-color: #FFF #FFF #F60 #FFF !important
+	border-color: #FFF #FFF #F60 #FFF !important;
 }
 
 .search-result .trigger-expand i {
 	right: 5px;
 	top: 2px;
 	*right: 0;
-	border-color: #00E #FFF #FFF #FFF
+	border-color: #00E #FFF #FFF #FFF;
 }
 
 .search-result .trigger-expand:hover i {
-	border-color: #F60 #FFF #FFF #FFF !important
+	border-color: #F60 #FFF #FFF #FFF !important;
 }
 
 .search-result .flex-display .trigger-expand {
-	display: inline-block
+	display: inline-block;
 }
 
 .search-result li.hidden {
-	display: none
+	display: none;
 }
 
 .search-result .expand .trigger-expand {
-	display: none
+	display: none;
 }
 
 .search-result .expand .trigger-close {
-	display: inline-block
+	display: inline-block;
 }
 
 .search-result .expand li.hidden {
-	display: list-item
+	display: list-item;
 }
 
 #cate-cascading {
 	padding: 0 24px;
 	height: 290px;
 	position: relative;
-	z-index: 11
+	z-index: 11;
 }
 
 .cc-nav {
@@ -249,17 +249,17 @@ ol li,ul li {
 	width: 24px;
 	display: inline-block;
 	line-height: 99em;
-	overflow: hidden
+	overflow: hidden;
 }
 
 #cate-cascading .cc-prev {
 	left: 0;
-	background-position: 0 -60px
+	background-position: 0 -60px;
 }
 
 #cate-cascading .cc-next {
 	right: 0;
-	background-position: -24px -60px
+	background-position: -24px -60px;
 }
 
 .cc-listwrap {
@@ -267,14 +267,14 @@ ol li,ul li {
 	border-right: 1px solid #d5e4fa;
 	border-top: 1px solid #d5e4fa;
 	position: relative;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .cc-list {
 	width: 2000em;
 	position: absolute;
 	left: 0;
-	top: 0
+	top: 0;
 }
 
 .cc-listwrap,.cc-list,.cc-list-item,.cc-tree,.cc-cbox {
@@ -286,28 +286,28 @@ ol li,ul li {
 	overflow-y: auto;
 	position: relative;
 	left: 0;
-	top: 0
+	top: 0;
 }
 
 .cc-list-item {
 	float: left;
 	width: 223px;
 	border-right: 2px solid #d5e4fa;
-	background: #fff
+	background: #fff;
 }
 
 .cc-listbox {
-	padding: 3px
+	padding: 3px;
 }
 
 .cc-tree-cont,.cc-cbox-cont {
 	padding: 0 3px;
-	margin-top: 30px
+	margin-top: 30px;
 }
 
 .cc-cbox-group {
 	position: relative;
-	*zoom: 1
+	*zoom: 1;
 }
 
 .cc-cbox-gname {
@@ -324,17 +324,17 @@ ol li,ul li {
 	position: absolute;
 	margin-left: 16px;
 	margin-top: 5px;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .cc-tree-group {
 	padding: 3px 0;
 	border-bottom: 1px dashed #ccc;
-	zoom: 1
+	zoom: 1;
 }
 
 .cc-tree .cc-tree-last {
-	border: 0
+	border: 0;
 }
 
 .cc-tree-gname {
@@ -348,7 +348,7 @@ ol li,ul li {
 }
 
 .cc-tree-gname.selected {
-	background-position: right -123px
+	background-position: right -123px;
 }
 
 .cc-cbox-item,.cc-tree-item,.cc-listbox-item {
@@ -358,28 +358,28 @@ ol li,ul li {
 	line-height: 20px;
 	overflow: hidden;
 	cursor: pointer;
-	padding-left: 41px
+	padding-left: 41px;
 }
 
 .cc-cbox-item {
-	padding-right: 16px
+	padding-right: 16px;
 }
 
 .cc-tree-gname,.cc-tree-item,.cc-listbox-item {
-	padding: 0 16px 0 14px
+	padding: 0 16px 0 14px;
 }
 
 .cc-tree-gcont {
-	display: none
+	display: none;
 }
 
 li.cc-selected {
 	border: 1px solid #9cd7fc;
-	background-color: #dff1fb
+	background-color: #dff1fb;
 }
 
 li.cc-hasChild-item {
-	background-position: right -137px
+	background-position: right -137px;
 }
 
 .cc-cbox-filter {
@@ -388,7 +388,7 @@ li.cc-hasChild-item {
 	background: #f5f9ff;
 	position: absolute;
 	top: 0;
-	z-index: 10
+	z-index: 10;
 }
 
 .cc-cbox-filter label {
@@ -404,30 +404,30 @@ li.cc-hasChild-item {
 	border: 1px solid #D9E5F6;
 	height: 20px;
 	padding-left: 23px;
-	width: 176px
+	width: 176px;
 }
 
 .cc-cbox-hit {
-	color: red
+	color: red;
 }
 
 .search-mode .cc-tree-group {
 	border-bottom-width: 0;
-	padding: 0 3px
+	padding: 0 3px;
 }
 
 .search-mode .cc-tree-gcont {
-	display: block
+	display: block;
 }
 
 .search-mode .cc-tree-gname {
 	padding: 0;
 	display: none;
-	margin: 0
+	margin: 0;
 }
 
 .search-mode .cc-cbox-gname {
-	display: none
+	display: none;
 }
 
 .cate-aside {
@@ -435,7 +435,7 @@ li.cc-hasChild-item {
 	background-color: #fff;
 	height: 295px;
 	position: relative;
-	_width: 180px
+	_width: 180px;
 }
 
 .search-panel {
@@ -467,11 +467,10 @@ li.cc-hasChild-item {
 	width: 16px;
 	height: 16px;
 	margin: 2px 0;
-	background: url("../image/lab-settings.png") no-repeat;
 }
 
 .lab:hover {
-	background: url("../image/lab-settings-hover.png") no-repeat;
+	
 }
 
 .operation-box {

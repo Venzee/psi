@@ -28,7 +28,7 @@ public class BrandDao extends BaseDao {
 
 	public boolean updateBrandById(Map<String, Object> data) {
 		try {
-			this.updateTableById("pss_brand", data);
+			this.updateSourceById("pss_brand", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

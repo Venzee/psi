@@ -60,43 +60,49 @@
 		tissueDG(config, html);
 		/* 提交 */
 		odg.find('div.btn-sub').on('click', function() {
+			if(null !== config.onSub && $.isFunction(config.onSub)){
+				config.onSub();
+			}
 			var datas = 'randomNum=' + Math.random();
 			$.each(odg.find('dd').find('.form-value'), function(i, n) {
 				datas = datas + '&' + $(this).attr('name') + '=' + $(this).val();
+				odg.data($(this).attr('name'), $(this).val()); // 缓存数据
 			});
-			var params = $.extend({
+			$.ajax({
 				type : 'POST',
 				url : config.url,
 				data : datas,
 				beforeSend : function() {
-					odg.fadeOut('fast', function() {
-						$(this).remove();
-					});
+					odg.fadeOut('fast');
 					$.showLoading(config.target);
 				},
 				success : function(data) {
-					if (data === 'true') {
-						var form = config.target.find('#mainFrame').contents().find('form.pageForm');
-						if(form !== undefined && form.hasClass('pageForm')){
-							form.submit();
-						} else {
-							var src = config.target.find('#mainFrame').attr('src');
-							src = src.substring(0, src.indexOf('=')) + '=' + Math.random();
-							config.target.find('#mainFrame').attr('src', src);
+					if(null !== config.sucSub && $.isFunction(config.sucSub)){
+						config.sucSub();
+					}else{
+						if (data === 'true' || data === true) {
+							var form = config.target.find('#mainFrame').contents().find('form.pageForm');
+							if(form !== undefined && form.hasClass('pageForm')){
+								form.submit();
+							} else {
+								var src = config.target.find('#mainFrame').attr('src');
+								src = src.substring(0, src.indexOf('=')) + '=' + Math.random();
+								config.target.find('#mainFrame').attr('src', src);
+							}
 						}
 					}
 				},
 				complete : function(){
+					odg.remove();
 					$.hideLoading(config.target);
 					$.hideCover(config.target);
 				} 
-			}, config.data);
-			$.ajax(params);
+			});
 		});
 	};
 	
 	$.dgtable = function(settings){
-		//var config = initConfig(settings);
+		var config = initConfig(settings);
 		
 	};
 	
@@ -131,7 +137,9 @@
 		odg.find('div.btn-sub').on('click', function() {
 			config.cover = false;
 			dialogClose(config);
-			config.onSub();
+			if(null !== config.onSub && $.isFunction(config.onSub)){
+				config.onSub();
+			}
 		});
 		
 	};
@@ -170,6 +178,15 @@
 		}
 	};
 	
+	/* 获取缓存的FORM-SOURCE-VALUE */
+	$.getODGSourceVal = function(key){
+		return odg.data(key);
+	};
+	
+	$.dgClose = function(){
+		odg.remove();
+	};
+	
 	/* 显示覆盖层 */
 	$.showCover = function(obj) {
 		obj = initObj(obj);
@@ -204,6 +221,7 @@
 		});
 	};
 	
+	/* 初始化TARGET OBJECT */
 	function initObj(obj){
 		if(obj === null || obj === '' || obj === undefined){
 			obj = top.$('body');
@@ -211,6 +229,7 @@
 		return obj;
 	}
 	
+	/* 初始化配置 */
 	function initConfig(settings){
 		return $.extend({
 			width : 700,
@@ -227,23 +246,28 @@
 			position : 'center', // 定位
 			target : top.$('body'), // 
 			url : '',
-			onOpen : function(){},
-			onSub : function(){},
-			onClose : function(){}
+			onOpen : null,
+			onSub : null,
+			sucSub : null,
+			onClose : null
 		}, settings);
 	}
 	
 	/* 组织公共数据 */
 	function tissueDG(config, html){
 		config.target.append(html);
-		config.onOpen();
+		if(null !== config.onOpen && $.isFunction(config.onOpen)){
+			config.onOpen();
+		}
 		odg = config.target.find('#dg');
 		/* 定位 */
 		autoPosition(config);
 		/* 显示，绑定取消&关闭事件 */
 		odg.slideDown('fast').find('div.btn-close').on('click', function() {
 			dialogClose(config);
-			config.onClose();
+			if(null !== config.onClose && $.isFunction(config.onClose)){
+				config.onClose();
+			}
 		});
 		if (config.cover) {
 			$.showCover(config.target);
@@ -267,9 +291,6 @@
 			});
 			break;
 		case 'left-top':
-			odg.css({
-				
-			});
 			break;
 		case 'left-center':
 			odg.css({
@@ -277,9 +298,11 @@
 			});
 			break;
 		case 'follow':
-			
+			left = event.clientX;
+			top = event.clientY;
 			odg.css({
-				
+				left : left,
+				top : top
 			});
 			break;
 		}

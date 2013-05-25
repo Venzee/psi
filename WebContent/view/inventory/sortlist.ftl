@@ -50,37 +50,46 @@
 
 			function editSource(obj){
 				var parent = obj.parent(), index = obj.parents('li.cc-list-item').index(), id = parent.attr('id'), text = parent.attr('title'), role = parent.attr('role');
-				if(role === undefined || role === 'sort'){
-					$.dgform({
-						url: 'add',
-						title: '编辑类目',
-						label: ['类目名称'],
-						source: ['<input type="text" class="text-500 not-null form-value" name="name" value="' + text + '"/>']
-					});
-					return;
-				}
-				/*$('#choose').dg({
+				$('#choose').dg({
 					title: '请选择操作',
 					width: '300',
-					target: $('#cate-cascading'),
+					cover: false,
+					position: 'follow',
 					onOpen: function(){
 						$('button.operation-add').on('click', function(){
 							$.dgClose();
 							if(role === undefined || role === 'sort'){
 								$.dgform({
 									url: 'add',
-									width: '300',
-									target: $('#cate-cascading'),
+									width: 300,
 									title: '新增类目',
 									label: ['类目名称'],
-									source: ['<input type="text" class="text-500 not-null form-value" name="name" />']
+									source: ['<input type="hidden" class="not-null form-value" name="parentId" value="' + id + '"/>', 
+										'<input type="text" class="text-130 not-null form-value" name="name" value=""/>'],
+									sucSub: function(){
+										var newVal = $.getODGSourceVal('name');
+										parent.attr('title', newVal).html(newVal + '<span class="lab">&nbsp;</span>');
+									}
 								});
-								return;
 							}
 							
 						});
 						$('button.operation-edit').on('click', function(){
-							
+							if(role === undefined || role === 'sort'){
+								$.dgform({
+									url: 'edit',
+									width: 300,
+									position: 'follow',
+									title: '编辑类目',
+									label: ['类目名称'],
+									source: ['<input type="hidden" class="not-null form-value" name="id" value="' + id + '"/>', 
+										'<input type="text" class="text-130 not-null form-value" name="name" value="' + text + '"/>'],
+									sucSub: function(){
+										var newVal = $.getODGSourceVal('name');
+										parent.attr('title', newVal).html(newVal + '<span class="lab">&nbsp;</span>');
+									}
+								});
+							}
 						});
 						$('button.operation-delete').on('click', function(){
 							alert(3)
@@ -89,7 +98,7 @@
 					onClose: function(){
 
 					}
-				});*/
+				});
 			}
 
 			function getSource(obj){
@@ -171,23 +180,14 @@
 									<ul class="cc-tree-cont">
 									<#list sortList as source>
 										<li class="cc-tree-group">
-											<div title="${source.sort.name }" id="${source.sort.id }" class="cc-tree-gname">
-												${source.sort.name }
-												<span class="lab">&nbsp;</span>
-											</div>
+											<div title="${source.sort.name }" id="${source.sort.id }" class="cc-tree-gname">${source.sort.name }<span class="lab">&nbsp;</span></div>
 											<ul class="cc-tree-gcont">
 											<#list source.childList as childSort>
 												<#if childSort.hasChild == true>
-													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item cc-hasChild-item">
-														${childSort.name }
-														<span class="lab">&nbsp;</span>
-													</li>
+													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item cc-hasChild-item">${childSort.name }<span class="lab">&nbsp;</span></li>
 												</#if>
 												<#if childSort.hasChild == false>
-													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item">
-														${childSort.name }
-														<span class="lab">&nbsp;</span>
-													</li>
+													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item">${childSort.name }<span class="lab">&nbsp;</span></li>
 												</#if>
 											</#list>
 											</ul>
@@ -202,7 +202,7 @@
 				</div>
 				<div id="J_SearchResult" class="search-result" style="display: none;">
 					<div class="result-note">
-						<strong>匹配到 <em class="J_RecordCount">0</em>个类目</strong> 
+						<strong>匹配到 <em class="J_RecordCount">0</em>个类目</strong>
 						<span class="note">(双击直接发布，括号中为该类目下相关宝贝的数量)</span>
 						<a class="J_TriggerExit trigger-exit" href="#exit"> <i></i>关闭，返回类目</a>
 					</div>

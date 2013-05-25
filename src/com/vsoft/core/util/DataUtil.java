@@ -30,6 +30,19 @@ public class DataUtil {
 	}
 
 	/**
+	 * 判断字符串是否为空
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static boolean isEmptyStr(String str) {
+		if(null == str || "".equals(str) || str.trim().length() < 1){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * 中文字符串转拼音码
 	 * 
 	 * @param str

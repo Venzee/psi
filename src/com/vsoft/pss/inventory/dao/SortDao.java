@@ -56,7 +56,7 @@ public class SortDao extends BaseDao {
 	 */
 	public boolean updateSort(Map<String, Object> data) {
 		try {
-			this.updateTableById("pss_sort", data);
+			this.updateSourceById("pss_sort", data);
 		} catch (SQLException e) {
 			LOG.error("更新商品类目时出错", e);
 			return false;
@@ -86,7 +86,7 @@ public class SortDao extends BaseDao {
 	 * 
 	 * @return
 	 */
-	public List<Map<String, Object>> querySort() {
+	public List<Map<String, Object>> queryPrimarySort() {
 		List<Map<String, Object>> datas = null;
 		String sql = "select s.id,s.name,s.code,s.parentId,s.primary,s.hasChild from pss_sort s where s.primary = true";
 		try {

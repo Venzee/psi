@@ -26,7 +26,7 @@ public class GoodsDao extends BaseDao {
 	
 	public boolean updateGoodsById(Map<String, Object> data) {
 		try {
-			this.updateTableById("pss_goods", data);
+			this.updateSourceById("pss_goods", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -36,12 +35,12 @@ public class SortController {
 	@ResponseBody
 	@RequestMapping(value = "/childlist", produces = "application/json;charset=utf-8")
 	public String querySort(String parentId, String role) {
-		return JSON.toJSONString(sortService.querySort(parentId, role));
+		return JSON.toJSONString(sortService.queryChild(parentId, role));
 	}
 
 	@RequestMapping("/list")
 	public String querySort(ModelMap map) {
-		List<SortForm> list = sortService.querySort();
+		List<SortForm> list = sortService.queryPrimarySort();
 		map.put("sortList", list);
 		return "inventory/sortlist";
 	}
@@ -49,13 +48,19 @@ public class SortController {
 	@ResponseBody
 	@RequestMapping(value = "/ajaxlist", produces = "application/json;charset=utf-8")
 	public String querySort() {
-		List<SortForm> list = sortService.querySort();
+		List<SortForm> list = sortService.queryPrimarySort();
 		return JSON.toJSONString(list);
 	}
 	
 	@ResponseBody
+	@RequestMapping("/edit")
+	public String editSort(String id, String name, String parentId, String primary) {
+		return String.valueOf(sortService.editSort(id, name, parentId, primary));
+	}
+	
+	@ResponseBody
 	@RequestMapping("/del")
-	public String deleteSort(@RequestParam String idStr) {
+	public String deleteSort(String idStr) {
 		return String.valueOf(sortService.deleteSort(idStr));
 	}
 }

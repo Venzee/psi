@@ -9,7 +9,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vsoft.core.base.entity.Page;
 import com.vsoft.core.util.DataUtil;
 import com.vsoft.pss.inventory.dao.BrandDao;
 import com.vsoft.pss.inventory.dao.GoodsDao;
@@ -30,6 +29,12 @@ public class SortService {
 	@Autowired
 	private GoodsDao goodsDao;
 
+	/**
+	 * 新增类目
+	 * 
+	 * @param sort
+	 * @return
+	 */
 	public boolean addSort(Sort sort) {
 		Map<String, Object> data = DataUtil.parseObjectToMap(sort, Sort.class);
 		if (sort.getId() == 0) {
@@ -39,6 +44,12 @@ public class SortService {
 		}
 	}
 
+	/**
+	 * 新增类目并返回
+	 * 
+	 * @param sort
+	 * @return
+	 */
 	public Sort addSortReturn(Sort sort) {
 		Map<String, Object> data = DataUtil.parseObjectToMap(sort, Sort.class);
 		data = sortDao.addSortAndReturn(data);
@@ -46,20 +57,14 @@ public class SortService {
 		return sort;
 	}
 
-	public List<SortForm> querySort(Page page) {
-		List<SortForm> list = new ArrayList<SortForm>();
-		List<Object> params = new ArrayList<Object>();
-		params.add(page.getStartRecord());
-		params.add(page.getPageRecord());
-		List<Map<String, Object>> datas = sortDao.querySort(params);
-		for (Map<String, Object> data : datas) {
-			SortForm sortForm = (SortForm) DataUtil.parseMapToObject(data, SortForm.class);
-			list.add(sortForm);
-		}
-		return list;
-	}
-
-	public List<SortForm> querySort(String id, String role) {
+	/**
+	 * 获取下级类目或品牌和商品
+	 * 
+	 * @param id
+	 * @param role
+	 * @return
+	 */
+	public List<SortForm> queryChild(String id, String role) {
 		List<SortForm> list = new ArrayList<SortForm>();
 		Map<String, Object> params = new LinkedHashMap<String, Object>();
 		Map<String, SortForm> tempMap = new HashMap<String, SortForm>();
@@ -78,9 +83,14 @@ public class SortService {
 		return list;
 	}
 
-	public List<SortForm> querySort() {
+	/**
+	 * 查询初级类目
+	 * 
+	 * @return
+	 */
+	public List<SortForm> queryPrimarySort() {
 		List<SortForm> list = new ArrayList<SortForm>();
-		List<Map<String, Object>> datas = sortDao.querySort();
+		List<Map<String, Object>> datas = sortDao.queryPrimarySort();
 		Map<Integer, SortForm> tempMap = new HashMap<Integer, SortForm>();
 		SortForm sortForm = null;
 		for (Map<String, Object> data : datas) {
@@ -110,10 +120,14 @@ public class SortService {
 		return list;
 	}
 
-	public boolean deleteSort(String idStr) {
-		return sortDao.deleteSort(idStr);
-	}
-
+	/**
+	 * 获取类目下的子类目
+	 * 
+	 * @param id
+	 * @param tempMap
+	 * @param params
+	 * @param list
+	 */
 	private void getChildSort(String id, Map<String, SortForm> tempMap, Map<String, Object> params, List<SortForm> list) {
 		params.clear();
 		params.put("id", id);
@@ -139,6 +153,14 @@ public class SortService {
 		}
 	}
 
+	/**
+	 * 获取类目下的品牌
+	 * 
+	 * @param id
+	 * @param tempMap
+	 * @param params
+	 * @param list
+	 */
 	private void getChildBrand(String id, Map<String, SortForm> tempMap, Map<String, Object> params, List<SortForm> list) {
 		params.clear();
 		params.put("sortId", id);
@@ -165,6 +187,14 @@ public class SortService {
 		}
 	}
 
+	/**
+	 * 获取类目或品牌下的商品
+	 * 
+	 * @param id
+	 * @param tempMap
+	 * @param params
+	 * @param list
+	 */
 	private void getChildGoods(String id, Map<String, SortForm> tempMap, Map<String, Object> params, List<SortForm> list) {
 		params.clear();
 		params.put("brandId", id);
@@ -214,4 +244,50 @@ public class SortService {
 			}
 		}
 	}
+
+	/**
+	 * 编辑类目信息
+	 * 
+	 * @param id
+	 * @param name
+	 * @param parentId
+	 * @param primary
+	 * @return
+	 */
+	public boolean editSort(String id, String name, String parentId, String primary) {
+		Map<String, Object> data = new LinkedHashMap<String, Object>();
+		if(!DataUtil.isEmptyStr(id)){
+			data.put("id", id);
+		}
+		if(!DataUtil.isEmptyStr(name)){
+			data.put("name", name);
+		}
+		if(!DataUtil.isEmptyStr(parentId)){
+			Map<String, Object> countData = new LinkedHashMap<String, Object>();
+			data.put("parentId", parentId);
+			countData.put("parentId", parentId);
+			int count = sortDao.countSort(countData); // 统计是否有子类目
+			if(count > 0){
+				data.put("hasChild", true);
+			}else{
+				data.put("hasChild", false);
+			}
+		}
+		if(!DataUtil.isEmptyStr(primary)){
+			if("true".equals(primary)){
+				data.put("primary", true);
+			}else{
+				data.put("primary", false);
+			}
+		}
+		if(data.size() < 1){
+			return false;
+		}
+		return sortDao.updateSort(data);
+	}
+	
+	public boolean deleteSort(String idStr) {
+		return sortDao.deleteSort(idStr);
+	}
+	
 }

@@ -340,7 +340,7 @@ public class BaseDao {
 	 * @param data
 	 * @throws SQLException
 	 */
-	public void updateTableById(String tableName, Map<String, Object> data) throws SQLException {
+	public void updateSourceById(String tableName, Map<String, Object> data) throws SQLException {
 		String sql = makeUpdateTableSql(tableName, data.keySet());
 		List<Object> params = new ArrayList<Object>(data.values());
 		Object id = params.get(0);
@@ -348,7 +348,7 @@ public class BaseDao {
 		params.add(id);
 		execute(sql, params);
 	}
-
+	
 	/**
 	 * 新增数据
 	 * 
