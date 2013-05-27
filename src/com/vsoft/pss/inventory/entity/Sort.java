@@ -12,7 +12,7 @@ public class Sort implements Serializable {
 	private String name; // 类别名称
 	private String code; // 编码(名称首字母)
 	private int parentId; // 父级ID
-	private boolean primary; // 主要类目(即初始加载类目)
+	private boolean main; // 主要类目(即初始加载类目)
 	private boolean hasChild; // 是否有下属类目
 
 	public int getId() {
@@ -47,12 +47,12 @@ public class Sort implements Serializable {
 		this.parentId = parentId;
 	}
 
-	public boolean isPrimary() {
-		return primary;
+	public boolean isMain() {
+		return main;
 	}
 
-	public void setPrimary(boolean primary) {
-		this.primary = primary;
+	public void setMain(boolean main) {
+		this.main = main;
 	}
 
 	public boolean isHasChild() {

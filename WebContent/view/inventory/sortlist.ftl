@@ -12,15 +12,14 @@
 			$('div.btn-add').on('click', function(){
 				var item = $('li.cc-selected:last'), id = item.attr('id'), role = item.attr('role');
 				alert(id+role)
-				/*$.dgform({
-					url: 'add', width: '300'
-					title: '新增品牌',
-					label: ['品牌名称','英文名称',{style: 'high', name:'备注'},{style: 'img-150', name:'Logo'}],
-					source: ['<input type="text" class="text-500 not-null form-value" name="name" />',
-						'<input type="text" class="text-500 form-value" name="englishName" />',
-						'<textarea class="text-500 not-null form-value" name="remark"></textarea>',
-						'<img class="img-150"/>']
-				});*/
+				$.dgform({
+					url: 'add', 
+					width: '300',
+					title: '新增类目',
+					label: ['类目名称'],
+					source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
+						'<input type="hidden" class="not-null form-value" name="main" value="true" />']
+				});
 			});
 
 			$('div.btn-edit').on('click', function(){
@@ -58,7 +57,21 @@
 					onOpen: function(){
 						$('button.operation-add').on('click', function(){
 							$.dgClose();
-							if(role === undefined || role === 'sort'){
+							if(role === undefined){
+								$.dgform({
+									url: 'add',
+									width: 300,
+									title: '新增类目',
+									label: ['类目名称'],
+									source: ['<input type="hidden" class="not-null form-value" name="parentId" value="' + id + '"/>', 
+										'<input type="hidden" class="not-null form-value" name="main" value="true"/>',
+										'<input type="text" class="text-130 not-null form-value" name="name" value=""/>'],
+									sucSub: function(){
+										
+									}
+								});
+							}
+							if(role === 'sort'){
 								$.dgform({
 									url: 'add',
 									width: 300,
@@ -67,8 +80,7 @@
 									source: ['<input type="hidden" class="not-null form-value" name="parentId" value="' + id + '"/>', 
 										'<input type="text" class="text-130 not-null form-value" name="name" value=""/>'],
 									sucSub: function(){
-										var newVal = $.getODGSourceVal('name');
-										parent.attr('title', newVal).html(newVal + '<span class="lab">&nbsp;</span>');
+										
 									}
 								});
 							}

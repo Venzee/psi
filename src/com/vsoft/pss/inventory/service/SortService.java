@@ -38,6 +38,12 @@ public class SortService {
 	public boolean addSort(Sort sort) {
 		Map<String, Object> data = DataUtil.parseObjectToMap(sort, Sort.class);
 		if (sort.getId() == 0) {
+			String pinYinStr = DataUtil.toPinYinStr(sort.getName().substring(0, 1));
+			data.put("code", pinYinStr.toUpperCase().substring(0, 1));
+			List<Object> params = new ArrayList<Object>();
+			params.add(true);
+			params.add(sort.getParentId());
+			sortDao.updateHasChild(params);
 			return sortDao.addSort(data);
 		} else {
 			return sortDao.updateSort(data);
@@ -88,14 +94,14 @@ public class SortService {
 	 * 
 	 * @return
 	 */
-	public List<SortForm> queryPrimarySort() {
+	public List<SortForm> queryMainSort() {
 		List<SortForm> list = new ArrayList<SortForm>();
 		List<Map<String, Object>> datas = sortDao.queryPrimarySort();
 		Map<Integer, SortForm> tempMap = new HashMap<Integer, SortForm>();
 		SortForm sortForm = null;
 		for (Map<String, Object> data : datas) {
 			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
-			if (sort.isPrimary() && 0 == sort.getParentId()) {
+			if (sort.isMain() && 0 == sort.getParentId()) {
 				sortForm = tempMap.get(sort.getId());
 				if (null == sortForm) {
 					sortForm = new SortForm();
@@ -254,7 +260,7 @@ public class SortService {
 	 * @param primary
 	 * @return
 	 */
-	public boolean editSort(String id, String name, String parentId, String primary) {
+	public boolean editSort(String id, String name, String parentId, String main) {
 		Map<String, Object> data = new LinkedHashMap<String, Object>();
 		if(!DataUtil.isEmptyStr(id)){
 			data.put("id", id);
@@ -273,11 +279,11 @@ public class SortService {
 				data.put("hasChild", false);
 			}
 		}
-		if(!DataUtil.isEmptyStr(primary)){
-			if("true".equals(primary)){
-				data.put("primary", true);
+		if(!DataUtil.isEmptyStr(main)){
+			if("true".equals(main)){
+				data.put("main", true);
 			}else{
-				data.put("primary", false);
+				data.put("main", false);
 			}
 		}
 		if(data.size() < 1){

@@ -15,19 +15,28 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.alibaba.druid.pool.DruidDataSource;
 
 @Repository
-public class BaseDao {
+public class BaseDao extends JdbcDaoSupport {
 
 	private static final Logger LOG = Logger.getLogger(BaseDao.class);
 
 	@Autowired
 	private DruidDataSource dataSource;
+
+	@Resource(name = "dataSource")
+	public void setSuperDataSource(DataSource dataSource) {
+		super.setDataSource(dataSource);
+	}
 
 	/**
 	 * 批量执行
@@ -348,7 +357,7 @@ public class BaseDao {
 		params.add(id);
 		execute(sql, params);
 	}
-	
+
 	/**
 	 * 新增数据
 	 * 
@@ -427,7 +436,8 @@ public class BaseDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data) throws SQLException {
+	public Map<String, Object> insertAndReturnObject(String sql, String tableName, Map<String, Object> data)
+			throws SQLException {
 		Object primaryId = insertAndReturnPrimaryId(tableName, data);
 		Map<String, Object> returnData = executeQuerySingle(sql, Arrays.asList(primaryId));
 		return returnData;
@@ -442,7 +452,8 @@ public class BaseDao {
 	 * @return
 	 */
 	public String makeCountTableSql(String tableNameOrSql, String countColumn, Collection<String> paramNames) {
-		StringBuilder sql = new StringBuilder().append("select count(").append(countColumn).append(") as count from ").append(tableNameOrSql);
+		StringBuilder sql = new StringBuilder().append("select count(").append(countColumn).append(") as count from ")
+				.append(tableNameOrSql);
 		if (paramNames != null && paramNames.size() > 0) {
 			int nameCount = 0;
 			sql.append(" where ");
@@ -508,25 +519,6 @@ public class BaseDao {
 		}
 		sql.append(" where id = ?");
 		return sql.toString();
-	}
-
-	/**
-	 * 获取DataSource
-	 * 
-	 * @return
-	 */
-	public final DruidDataSource getDataSource() {
-		return dataSource;
-	}
-
-	/**
-	 * 获取Connection
-	 * 
-	 * @return
-	 * @throws SQLException
-	 */
-	public final Connection getConnection() throws SQLException {
-		return dataSource.getConnection();
 	}
 
 	/**
