@@ -407,6 +407,13 @@ li.cc-hasChild-item {
 	width: 176px;
 }
 
+.cc-cbox-operation {
+	position: absolute;
+	width: 221px;
+	top: 260px;
+	z-index: 10;
+}
+
 .cc-cbox-hit {
 	color: red;
 }
@@ -457,20 +464,6 @@ li.cc-hasChild-item {
 	height: 30px;
 	line-height: 30px;
 	margin: 25px;
-}
-
-.lab {
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
-	z-index: 10;
-	width: 16px;
-	height: 16px;
-	margin: 2px 0;
-}
-
-.lab:hover {
-	
 }
 
 .operation-box {

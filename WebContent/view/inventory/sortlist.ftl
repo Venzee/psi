@@ -1,293 +1,307 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>商品类目管理</title>
 	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
-	<link rel="stylesheet" type="text/css" href="../../style/css/sort.css">
+	<link rel="stylesheet" type="text/css" href="../../style/zTreeStyle/zTreeStyle.css">
 	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/js/jquery.ztree.all-3.5.min.js"></script>
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			var setting = {
+				async: {
+					enable: true,
+					url: 'childlist',
+					dataType: 'json',
+					autoParam: ['id=parentId']
+				},
+				check: {
+					enable: true
+				},
+				view: {
+					dblClickExpand: false,
+					expandSpeed: ''
+				},
+				edit: {
+					drag: {
+						autoExpandTrigger: true,
+						prev: dropPrev,
+						inner: dropInner,
+						next: dropNext
+					},
+					showRemoveBtn : false,
+					showRenameBtn : false,
+					enable: true
+				},
+				data: {
+					simpleData: {
+						enable: true
+					}
+				},
+				callback: {
+					beforeDrag: beforeDrag,
+					beforeDrop: beforeDrop,
+					beforeDragOpen: beforeDragOpen,
+					onDrag: onDrag,
+					onDrop: onDrop,
+					onExpand: onExpand,
+					onClick: onClick,
+					beforeExpand: beforeExpand,
+					onAsyncSuccess: onAsyncSuccess,
+					onAsyncError: onAsyncError
+				}
+			};
+	
+			var zNodes = ${sortList};
+
+			$.fn.zTree.init($("#sortTree"), setting, zNodes);
+			var zTree = $.fn.zTree.getZTreeObj("sortTree");
+
 			$('div.btn-add').on('click', function(){
-				var item = $('li.cc-selected:last'), id = item.attr('id'), role = item.attr('role');
-				alert(id+role)
-				$.dgform({
-					url: 'add', 
-					width: '300',
-					title: '新增类目',
-					label: ['类目名称'],
-					source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
-						'<input type="hidden" class="not-null form-value" name="main" value="true" />']
-				});
+				var nodes = zTree.getSelectedNodes(), treeNode, isParent;
+				treeNode = nodes[0];
+				if(treeNode === undefined){
+					$.dgform({
+						url : 'addre',
+						title: '新增商品类别',
+						label: ['类目名称'],
+						source: [
+							'<input type="text" class="text-500 not-null form-value" name="name" />'
+						],
+						data: {success: function(data){addSort(data);}}
+					});
+				}else{
+					isParent = treeNode.isParent;
+					if (isParent) {
+						$.dgform({
+							url : 'addre',
+							title: '新增商品类目',
+							label: ['名称','所属类目'],
+							source: [
+								'<input type="text" class="text-500 not-null form-value" name="name" />',
+								'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.id + '"/>',
+								'<span>' + treeNode.name + '</span>'
+							],
+							data: {
+								dataType: 'json',
+								success: function(data){addSort(data, nodes[0]);}
+							}
+						});
+					}else{
+						$.dgtip({
+							level : 'info',
+							autoClose : true,
+							msg : '选择的类目不能添加子类目！'
+						});
+					};
+				}
 			});
 
 			$('div.btn-edit').on('click', function(){
-				
-			});
-
-			$('div.btn-delete').on('click', function(){
-				delSource('inventory/sort/del');
-			});
-
-			$('#sort-list').on('click', 'div.cc-tree-gname', function(event){
-				var othis = $(event.target);
-				if(othis.hasClass('selected')) {
-					othis.removeClass('selected').next('ul.cc-tree-gcont').slideUp('fast');
+				var nodes = zTree.getSelectedNodes(), size;
+				if(nodes === null){
+					size = 0;
 				}else{
-					$('ul.cc-tree-gcont').slideUp('fast').prev('div.cc-tree-gname').removeClass('selected');
-					othis.addClass('selected').next('ul.cc-tree-gcont').slideDown('fast');
+					size = nodes.length;
 				}
-				$('li.cc-tree-item').removeClass('cc-selected');
-			}).on('click', 'li.cc-cbox-item', function(event){
-				getSource($(event.target));
-			}).on('click', 'li.cc-tree-item', function(event){
-				getSource($(event.target));
-			}).on('click', 'span.lab', function(event){
-				editSource($(event.target));
+				alert(size)
+				editSource(size, function(){editSort(nodes[0]);});
 			});
 
-			function editSource(obj){
-				var parent = obj.parent(), index = obj.parents('li.cc-list-item').index(), id = parent.attr('id'), text = parent.attr('title'), role = parent.attr('role');
-				$('#choose').dg({
-					title: '请选择操作',
-					width: '300',
-					cover: false,
-					position: 'follow',
-					onOpen: function(){
-						$('button.operation-add').on('click', function(){
-							$.dgClose();
-							if(role === undefined){
-								$.dgform({
-									url: 'add',
-									width: 300,
-									title: '新增类目',
-									label: ['类目名称'],
-									source: ['<input type="hidden" class="not-null form-value" name="parentId" value="' + id + '"/>', 
-										'<input type="hidden" class="not-null form-value" name="main" value="true"/>',
-										'<input type="text" class="text-130 not-null form-value" name="name" value=""/>'],
-									sucSub: function(){
-										
-									}
-								});
-							}
-							if(role === 'sort'){
-								$.dgform({
-									url: 'add',
-									width: 300,
-									title: '新增类目',
-									label: ['类目名称'],
-									source: ['<input type="hidden" class="not-null form-value" name="parentId" value="' + id + '"/>', 
-										'<input type="text" class="text-130 not-null form-value" name="name" value=""/>'],
-									sucSub: function(){
-										
-									}
-								});
-							}
-							
-						});
-						$('button.operation-edit').on('click', function(){
-							if(role === undefined || role === 'sort'){
-								$.dgform({
-									url: 'edit',
-									width: 300,
-									position: 'follow',
-									title: '编辑类目',
-									label: ['类目名称'],
-									source: ['<input type="hidden" class="not-null form-value" name="id" value="' + id + '"/>', 
-										'<input type="text" class="text-130 not-null form-value" name="name" value="' + text + '"/>'],
-									sucSub: function(){
-										var newVal = $.getODGSourceVal('name');
-										parent.attr('title', newVal).html(newVal + '<span class="lab">&nbsp;</span>');
-									}
-								});
-							}
-						});
-						$('button.operation-delete').on('click', function(){
-							alert(3)
-						});
-					},
-					onClose: function(){
+			$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 
+			function addSort(data, treeNode){
+				if (treeNode === undefined) {
+					zTree.addNodes(treeNode, {id:(data.id), pId:0, name:data.name});
+				}else{
+					zTree.addNodes(treeNode, {id:(data.id), pId:data.parentId, name:data.name});
+				}
+			}
+
+			function editSort(treeNode){
+				$.dgform({
+					url : 'add',
+					title: '编辑商品类目',
+					label: ['名称'],
+					source: [
+						'<input type="text" class="text-500 not-null form-value" name="name" value="' + treeNode.name + '"/>',
+						'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.parentId + '"/>',
+						'<input type="hidden" class="form-value" name="id" value="' + treeNode.id + '"/>'
+					],
+					data: {
+						success: function(data){}
 					}
 				});
 			}
 
-			function getSource(obj){
-				var index = obj.parents('li.cc-list-item').index(), id = obj.attr('id'), role = obj.attr('role');
-				if(!obj.hasClass('cc-selected')) {
-					if(index === 0){
-						obj.parents('li.cc-list-item').find('li.cc-tree-item').removeClass('cc-selected');
-					}else{
-						obj.parents('li.cc-list-item').find('li.cc-cbox-item').removeClass('cc-selected');
-					}
-					obj.addClass('cc-selected');
-					$('#sort-list').find('li.cc-list-item:gt(' + index + ')').remove();
-					if (obj.hasClass('cc-hasChild-item')) {
-						var str = $('body').data('childList' + id); // 获取缓存数据
-						if(str === undefined || str === '' || str === null){
-							$.ajax({
-								url: "childlist",
-								type: 'post',
-								data: 'parentId=' + id + '&role=' + role +'&randomNum=' + Math.random(),
-								dataType: 'json',
-								beforeSend: function(){
-									$('div.cc-loading').css('display', 'block');
-								},
-								success: function(datas) {
-									str = '<li class="cc-list-item"><div class="cc-cbox-filter"><label>输入名称/拼音首字母</label><input style="width: 176px;"></div><div class="cc-cbox"><ul class="cc-cbox-cont">';
-									for (var i in datas) {
-										str += '<li class="cc-cbox-group"><div class="cc-cbox-gname">' + datas[i].code + '</div><ul class="cc-cbox-gcont">';
-										var data = datas[i].childList;
-										for (var j in data) {
-											if(data[j].hasChild){
-												str += '<li role="' + datas[i].role + '" title="' + data[j].name + '" id="' + data[j].id + '" class="cc-cbox-item cc-hasChild-item">' + data[j].name + '<span class="lab">&nbsp;</span></li>';
-											}else{
-												str += '<li role="' + datas[i].role + '" title="' + data[j].name + '" id="' + data[j].id + '" class="cc-cbox-item">' + data[j].name + '<span class="lab">&nbsp;</span></li>';
-											}
-										}
-										str += '</ul></li>';
-									};
-									str += '</ul></div></li>';
-									$('body').data('childList' + id, str); // 缓存数据
-									$('#sort-list').append(str);
-									$('div.cc-loading').css('display', 'none');
-								}
-							});
-						}else{
-							$('#sort-list').append(str);
+			function onClick(e,treeId, treeNode) {
+				zTree.expandNode(treeNode);
+			}
+	
+			function dropPrev(treeId, nodes, targetNode) {
+				var pNode = targetNode.getParentNode();
+				if (pNode && pNode.dropInner === false) {
+					return false;
+				} else {
+					for (var i=0,l=curDragNodes.length; i<l; i++) {
+						var curPNode = curDragNodes[i].getParentNode();
+						if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+							return false;
 						}
-					};
+					}
 				}
-			};
+				return true;
+			}
+
+			function dropInner(treeId, nodes, targetNode) {
+				if (targetNode && targetNode.dropInner === false) {
+					return false;
+				} else {
+					for (var i=0,l=curDragNodes.length; i<l; i++) {
+						if (!targetNode && curDragNodes[i].dropRoot === false) {
+							return false;
+						} else if (curDragNodes[i].parentTId && curDragNodes[i].getParentNode() !== targetNode && curDragNodes[i].getParentNode().childOuter === false) {
+							return false;
+						}
+					}
+				}
+				return true;
+			}
+
+			function dropNext(treeId, nodes, targetNode) {
+				var pNode = targetNode.getParentNode();
+				if (pNode && pNode.dropInner === false) {
+					return false;
+				} else {
+					for (var i=0,l=curDragNodes.length; i<l; i++) {
+						var curPNode = curDragNodes[i].getParentNode();
+						if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+							return false;
+						}
+					}
+				}
+				return true;
+			}
+	
+			var className = "dark", startTime = 0, endTime = 0, perCount = 100, perTime = 100, curDragNodes, autoExpandNode;
+
+			function beforeDrag(treeId, treeNodes) {
+				className = (className === "dark" ? "":"dark");
+				for (var i=0,l=treeNodes.length; i<l; i++) {
+					if (treeNodes[i].drag === false) {
+						curDragNodes = null;
+						return false;
+					} else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag === false) {
+						curDragNodes = null;
+						return false;
+					}
+				}
+				curDragNodes = treeNodes;
+				return true;
+			}
+			
+			function beforeDragOpen(treeId, treeNode) {
+				autoExpandNode = treeNode;
+				return true;
+			}
+			
+			function beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
+				className = (className === "dark" ? "":"dark");
+				return true;
+			}
+			
+			function onDrag(event, treeId, treeNodes) {
+				className = (className === "dark" ? "":"dark");
+			}
+			
+			function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+				className = (className === "dark" ? "":"dark");
+			}
+			
+			function onExpand(event, treeId, treeNode) {
+				if (treeNode === autoExpandNode) {
+					className = (className === "dark" ? "":"dark");
+				}
+			}
+			
+			function setTrigger() {
+				zTree.setting.edit.drag.autoExpandTrigger = true;
+			}
+
+			function beforeExpand(treeId, treeNode) {
+				if (!treeNode.isAjaxing) {
+					startTime = new Date();
+					treeNode.times = 1;
+					ajaxGetNodes(treeNode, "refresh");
+					return true;
+				} else {
+					$.dgtip({
+						level : 'info',
+						autoClose : true,
+						msg : '正在下载数据中，请稍后！'
+					});
+					return false;
+				}
+			}
+
+			function onAsyncSuccess(event, treeId, treeNode, msg) {
+				if (!msg || msg.length == 0) {
+					return;
+				}
+				var zTree = $.fn.zTree.getZTreeObj("sortTree"),
+				totalCount = treeNode.count;
+				if (treeNode.children.length < totalCount) {
+					setTimeout(function() {ajaxGetNodes(treeNode);}, perTime);
+				} else {
+					treeNode.icon = "";
+					zTree.updateNode(treeNode);
+					zTree.selectNode(treeNode.children[0]);
+					endTime = new Date();
+					className = (className === "dark" ? "":"dark");
+				}
+			}
+
+			function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+				var zTree = $.fn.zTree.getZTreeObj("sortTree");
+				$.dgtip({
+					level : 'error',
+					msg : '获取数据出现异常！'
+				});
+				treeNode.icon = "";
+				zTree.updateNode(treeNode);
+			}
+
+			function ajaxGetNodes(treeNode, reloadType) {
+				var zTree = $.fn.zTree.getZTreeObj("sortTree");
+				if (reloadType == "refresh") {
+					treeNode.icon = "../style/zTreeStyle/img/loading.gif";
+					zTree.updateNode(treeNode);
+				}
+				zTree.reAsyncChildNodes(treeNode, reloadType, true);
+			}
+			
+			
 		});
 	</script>
 	<body>
-		<div class="dialog-box" id="choose">
-			<div class="operation-box">
-				<button class="operation-btn operation-add">增</button>
-				<button class="operation-btn operation-edit">改</button>
-				<button class="operation-btn operation-delete">删</button>
-			</div>
-		</div>
-		<div class="search-panel">
-			<div class="search-source">
-				<label for="keyword">请输入要搜索的类目：</label>
-				<input type="text" class="text-650" id="keyword"/>
-				<div class="ui-operation" style="*margin-top: -30px;">
-					<div class="ui-btn btn-search">搜索</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-		</div>
-		<div class="cate-container">
-			<div class="cate-main">
-				<div id="cate-cascading">
-					<a href="#" class="cc-prev cc-nav" title="上一级" id="J_LinkPrev"><span>上一级</span></a>
-					<div class="cc-listwrap">
-						<ol id="sort-list" class="cc-list">
-							<li class="cc-list-item">
-								<div class="cc-cbox-filter"><label>输入名称/拼音首字母</label><input style="width: 176px;"></div>
-								<div class="cc-tree">
-									<ul class="cc-tree-cont">
-									<#list sortList as source>
-										<li class="cc-tree-group">
-											<div title="${source.sort.name }" id="${source.sort.id }" class="cc-tree-gname">${source.sort.name }<span class="lab">&nbsp;</span></div>
-											<ul class="cc-tree-gcont">
-											<#list source.childList as childSort>
-												<#if childSort.hasChild == true>
-													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item cc-hasChild-item">${childSort.name }<span class="lab">&nbsp;</span></li>
-												</#if>
-												<#if childSort.hasChild == false>
-													<li role="${source.role }" title="${childSort.name }" id="${childSort.id }" class="cc-tree-item">${childSort.name }<span class="lab">&nbsp;</span></li>
-												</#if>
-											</#list>
-											</ul>
-										</li>
-									</#list>
-									</ul>
-								</div>
-							</li>
-						</ol>
-					</div>
-					<a href="#" class="cc-next cc-nav" title="下一级" id="J_LinkNext"><span>下一级</span></a>
-				</div>
-				<div id="J_SearchResult" class="search-result" style="display: none;">
-					<div class="result-note">
-						<strong>匹配到 <em class="J_RecordCount">0</em>个类目</strong>
-						<span class="note">(双击直接发布，括号中为该类目下相关宝贝的数量)</span>
-						<a class="J_TriggerExit trigger-exit" href="#exit"> <i></i>关闭，返回类目</a>
-					</div>
-					<div class="result-list flex-display expand">
-						<ol>
-							<li class="selected" data-sid="50024147" data-issued="0" data-bookcate="0">
-								<span class="lidx">1.</span>
-								3C数码配件 <em>&gt;&gt;</em>
-								笔记本电脑配件
-								<em>&gt;&gt;</em>
-								笔记本零部件
-								<span class="rtcount">(76557)</span>
-							</li>
-							<li class="" data-sid="50012585" data-issued="1" data-bookcate="0">
-								<span class="lidx">2.</span>
-								3C数码配件
-								<em>&gt;&gt;</em>
-								笔记本电脑配件
-								<em>&gt;&gt;</em>
-								笔记本电源
-								<span class="rtcount">(41896)</span>
-							</li>
-						</ol>
-						<a class="J_FlexTrigger trigger-expand" href="#expand" data-spm-anchor-id="686.1000923.1000796.4">展开更多 <i></i></a>
-						<a class="J_FlexTrigger trigger-close" href="#close" data-spm-anchor-id="686.1000923.1000796.5">收起更多<i></i></a>
-					</div>
-				</div>
-				<div class="cc-loading">
-					<div class="cc-loading-content">
-						<div class="cc-loading-icon">
-							<img src="http://img03.taobaocdn.com/tps/i3/T1jBamXj4fXXXXXXXX-16-16.gif"></div>
-						<span class="cc-loading-text">加载中，请稍候...</span>
-					</div>
+		<div class="ui-table ui-form" id="sortForm">
+			<div class="ui-head">
+				<div class="ui-title">
+					<div class="ui-title-name ui-title-name ui-table-title-name">商品类目列表</div>
 				</div>
 			</div>
-			<div class="cate-aside">
-				<div class="cc-tree">
-					<ul class="cc-item-out">
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-						<li>电脑硬件</li>
-						<li>电脑软件</li>
-						<li>电脑外设</li>
-					</ul>
+			<div class="form-source">
+				<ul id="sortTree" class="ztree"></ul>
+			</div>
+			<div class="ui-foot">
+				<div class="ui-operation">
+					<div class="ui-btn btn-delete">删除</div>
+					<div class="ui-btn btn-edit">编辑</div>
+					<div class="ui-btn btn-add">新增</div>
 				</div>
 			</div>
-		</div>
-		<div class="bottom-panel ui-foot">
-			<div class="ui-operation">
-				<div class="ui-btn btn-delete">删除</div>
-				<div class="ui-btn btn-edit">编辑</div>
-				<div class="ui-btn btn-add">新增</div>
-			</div>
-			<div class="clear"></div>
 		</div>
 	</body>
 </html>
