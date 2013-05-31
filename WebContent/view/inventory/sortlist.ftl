@@ -18,6 +18,9 @@
 						rootPId: 0
 					}
 				},
+				view: {
+					selectedMulti: false
+				},
 				edit: {
 					enable: true,
 					showRemoveBtn: true,
