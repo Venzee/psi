@@ -40,8 +40,8 @@ public class SortController {
 
 	@RequestMapping("/list")
 	public String querySort(ModelMap map) {
-		List<SortForm> list = sortService.queryMainSort();
-		map.put("sortList", list);
+		List<Sort> list = sortService.querySort();
+		map.put("sortList", JSON.toJSONString(list));
 		return "inventory/sortlist";
 	}
 	

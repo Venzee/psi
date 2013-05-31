@@ -125,7 +125,22 @@ public class SortService {
 		list.addAll(tempMap.values());
 		return list;
 	}
-
+	
+	/**
+	 * 查询初级类目
+	 * 
+	 * @return
+	 */
+	public List<Sort> querySort() {
+		List<Sort> list = new ArrayList<Sort>();
+		List<Map<String, Object>> datas = sortDao.queryPrimarySort();
+		for (Map<String, Object> data : datas) {
+			Sort sort = (Sort) DataUtil.parseMapToObject(data, Sort.class);
+			list.add(sort);
+		}
+		return list;
+	}
+	
 	/**
 	 * 获取类目下的子类目
 	 * 
