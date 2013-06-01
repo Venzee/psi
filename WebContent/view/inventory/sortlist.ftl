@@ -11,6 +11,11 @@
 	<script type="text/javascript">
 		$(function(){
 			var setting = {
+				async: {
+					enable: true,
+					url: 'child',
+					autoParam:['id=parentId']
+				},
 				data: {
 					simpleData: {
 						enable: true,
@@ -19,6 +24,8 @@
 					}
 				},
 				view: {
+					addHoverDom: addHoverDom,
+					removeHoverDom: removeHoverDom,
 					selectedMulti: false
 				},
 				edit: {
@@ -30,12 +37,86 @@
 				},
 				check: {
 					enable: true
+				},
+				callback: {
+					beforeExpand: beforeExpand,
+					onAsyncSuccess: onAsyncSuccess,
+					onAsyncError: onAsyncError
 				}
 			};
-
-			var zNodes = ${sortList};
+			
+			function addHoverDom(treeId, treeNode) {
+				var sObj = $("#" + treeNode.tId + "_span");
+				if (treeNode.editNameFlag || $("#addBtn_" + treeNode.id).length > 0) return;
+				var addStr = '<span class="button add" id="addBtn_' + treeNode.id + '" title="新增类目" onfocus="this.blur();"></span>';
+				sObj.after(addStr);
+				var btn = $("#addBtn_" + treeNode.id);
+				if (btn) btn.bind("click", function(){
+					var zTree = $.fn.zTree.getZTreeObj("sortTree");
+					$.dgform({
+						url: 'addre',
+						width: 300,
+						title: '新增类目',
+						label: ['类目名称'],
+						source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
+							'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.id + '" />'],
+						sucSub: function(data){
+							zTree.addNodes(treeNode, {id:data.id, parentId:treeNode.id, name:data.name });
+						}
+					});
+					return false;
+				});
+			};
+			
+			function removeHoverDom(treeId, treeNode) {
+				$("#addBtn_" + treeNode.id).unbind().remove();
+			};
+			
+			function beforeExpand(treeId, treeNode) {
+				if (!treeNode.isAjaxing) {
+					startTime = new Date();
+					treeNode.times = 1;
+					ajaxGetNodes(treeNode, "refresh");
+					return true;
+				} else {
+					alert("zTree 正在下载数据中，请稍后展开节点。。。");
+					return false;
+				}
+			}
+			function onAsyncSuccess(event, treeId, treeNode, msg) {
+				
+			}
+			
+			function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+				var zTree = $.fn.zTree.getZTreeObj("sortTree");
+				alert("异步获取数据出现异常。");
+				treeNode.icon = "";
+				zTree.updateNode(treeNode);
+			}
+			
+			function ajaxGetNodes(treeNode, reloadType) {
+				var zTree = $.fn.zTree.getZTreeObj("sortTree");
+				if (reloadType == "refresh") {
+					treeNode.icon = "../../../css/zTreeStyle/img/loading.gif";
+					zTree.updateNode(treeNode);
+				}
+				zTree.reAsyncChildNodes(treeNode, reloadType, true);
+			}
+			
+			var zNodes = ${sortList };
 
 			$.fn.zTree.init($("#sortTree"), setting, zNodes);
+			
+			$('div.btn-add').on('click', function(){
+				$.dgform({
+					url: 'add',
+					width: 300,
+					title: '新增类目',
+					label: ['类目名称'],
+					source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
+						'<input type="hidden" class="form-value" name="parentId" />']
+				});
+			});
 		});
 	</script>
 	<body>

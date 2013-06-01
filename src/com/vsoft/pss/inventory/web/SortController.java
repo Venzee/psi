@@ -33,24 +33,25 @@ public class SortController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/childlist", produces = "application/json;charset=utf-8")
-	public String querySort(String parentId, String role) {
-		return JSON.toJSONString(sortService.queryChild(parentId, role));
+	@RequestMapping(value = "/child", produces = "application/json;charset=utf-8")
+	public String querySort(String parentId) {
+		return JSON.toJSONString(sortService.querySort(parentId));
 	}
 
 	@RequestMapping("/list")
 	public String querySort(ModelMap map) {
-		List<Sort> list = sortService.querySort();
+		String parentId = "0";
+		List<SortForm> list = sortService.querySort(parentId);
 		map.put("sortList", JSON.toJSONString(list));
 		return "inventory/sortlist";
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/ajaxlist", produces = "application/json;charset=utf-8")
 	public String querySort() {
 		List<SortForm> list = sortService.queryMainSort();
 		return JSON.toJSONString(list);
-	}
+	}*/
 	
 	@ResponseBody
 	@RequestMapping("/edit")

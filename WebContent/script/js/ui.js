@@ -78,7 +78,7 @@
 				},
 				success : function(data) {
 					if(null !== config.sucSub && $.isFunction(config.sucSub)){
-						config.sucSub();
+						config.sucSub(data);
 					}else{
 						if (data === 'true' || data === true) {
 							var form = config.target.find('#mainFrame').contents().find('form.pageForm');

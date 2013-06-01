@@ -64,17 +64,6 @@ public class SortDao extends BaseDao {
 		return true;
 	}
 
-	public boolean updateHasChild(List<Object> params) {
-		String sql = "update pss_sort set hasChild = ? where id = ?";
-		try {
-			this.executeUpdate(sql, params);
-		} catch (SQLException e) {
-			LOG.error("更新商品类目是否有子类目时出错", e);
-			return false;
-		}
-		return true;
-	}
-	
 	/**
 	 * 查询对应父级商品类别的所有子类别
 	 * 
@@ -83,7 +72,7 @@ public class SortDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> querySort(Object parentId) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.code,s.parentId,s.main,s.hasChild from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
+		String sql = "select s.id,s.name,s.code,s.parentId,s.isParent from pss_sort s where s.parentId = ? order by s.parentId asc, s.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql, Arrays.asList(parentId));
 		} catch (SQLException e) {
@@ -97,9 +86,9 @@ public class SortDao extends BaseDao {
 	 * 
 	 * @return
 	 */
-	public List<Map<String, Object>> queryPrimarySort() {
+	public List<Map<String, Object>> queryRootSort() {
 		List<Map<String, Object>> datas = null;
-		String sql = "select s.id,s.name,s.code,s.parentId,s.main,s.hasChild from pss_sort s where s.main = true";
+		String sql = "select s.id,s.name,s.code,s.parentId,s.isParent from pss_sort s where s.parentId = 0";
 		try {
 			datas = this.executeQueryMultiple(sql);
 		} catch (SQLException e) {
