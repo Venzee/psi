@@ -1,7 +1,6 @@
 package com.vsoft.core.util;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
@@ -183,19 +182,19 @@ public class DataUtil {
 		if (type.equals("boolean")) {
 			try {
 				method = c.getMethod("is" + attr);
-			} catch (NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				LOG.error("没有这个方法is" + attr + "或者因为安全问题无法访问", e);
 			}
 		} else {
 			try {
 				method = c.getMethod("get" + attr);
-			} catch (NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				LOG.error("没有这个方法get" + attr + "或者因为安全问题无法访问", e);
 			}
 		}
 		try {
 			obj = method.invoke(obj);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			LOG.error("调用方法" + method.getName() + "时发生异常", e);
 		}
 		return obj;
@@ -244,12 +243,12 @@ public class DataUtil {
 			Method method = null;
 			try {
 				method = obj.getClass().getMethod("set" + attr, type);
-			} catch (NoSuchMethodException | SecurityException e) {
+			} catch (Exception e) {
 				LOG.error("没有这个方法set" + attr + "或者因为安全问题无法访问", e);
 			}
 			try {
 				method.invoke(obj, value);
-			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			} catch (Exception e) {
 				LOG.error("调用方法" + method.getName() + "时发生异常", e);
 			}
 		}

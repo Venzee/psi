@@ -15,9 +15,18 @@
 	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
 		margin: 0;
 		padding: 0;
+		font: 14px "微软雅黑";
 	}
 	#header {
-		height: 90px;
+		height: 115px;
+	}
+	#header_inner {
+		height: 60px;
+		font-weight: bold;
+		background: #ECF0F1;
+		background: -moz-linear-gradient(top, #ECF0F1 0%, #BDC3C7 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ECF0F1), color-stop(100%, #BDC3C7));
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ECF0F1', endColorstr='#BDC3C7', GradientType=0);
 	}
 	ul {
 		list-style: none;
@@ -33,17 +42,81 @@
 	#nav {
 		height: 60px;
 		float: right;
+		margin: 0 10px 0 0;
 	}
 	#nav > li {
 		display: inline-block;
-		height: 58px;
-		width:100px;
-		border: 1px solid;
+		*display: inline;
+		height: 60px;
+	}
+	a.top-menu {
+		display: block;
+		color: #5e5e5e;
+		height: 30px;
+		line-height: 30px;
+		border-left: 1px solid gray;
+		margin: 15px 0;
+		font-size: 16px;
+		font-weight: bold;
+		padding: 0 30px;
+		text-decoration: none;
+	}
+	a.top-menu:hover {
+		color: #fff;
 	}
 	#nav .megamenu {
-		display: none;
+		margin: -999999px 0 0 -999999px;
+		padding: 20px 15px 10px;
+		border: 1px solid #dcdcdc;
+		border-top: 2px solid #3a98b0;
+		position: absolute;
+		background: #fff;
+		-moz-box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
+		-webkit-box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
+		-o-box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
+		box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
+	}
+	div.nav-child {
+		float: left;
+		margin: 0 36px 0 0;
+	}
+	h4.menu-heading a{
+		color: #000;
+		margin: 0 0 4px;
+		text-decoration: none;
+	}
+	ul.nav-list {
+		padding: 0 0 5px;
+		margin: 0 0 11px;
+		border-bottom: 1px solid #e5e5e5;
+	}
+	ul.nav-list.last {
+		border-bottom: none;
+	}
+	ul.nav-list li a{
+		font-size: 12px;
+		text-decoration: none;
+	}
+	ul.nav-list li a:hover{
+		text-decoration: underline;
+	}
+	#panel {
+		height: 55px;
+		background: #f3f3f3;
+	}
+	#panel .attachment {
+		float: right;
+	}
+	#panel .attachment .signup,#panel .attachment form {
+		display: inline-block;
+		*display: inline;
 	}
 </style>
+<script type="text/javascript">
+$(function(){
+	$('#header_inner').find('.hp-nav').aiMegamenu();
+});
+</script>
 </head>
 <body class="PageMain">
 	<div id="header">
@@ -53,7 +126,7 @@
 			</a>
 			<ul class="hp-nav" id="nav">
 				<li>
-					<a href="/content/showcase.html" title="Showcase" target="_top" class="top">Showcase</a>
+					<a href="/content/showcase.html" title="Showcase" target="_top" class="top-menu">销售</a>
 					<div class="megamenu">
 						<div class="nav-child">
 							<h4 class="menu-heading">
@@ -90,10 +163,10 @@
 					</div>
 				</li>
 				<li>
-					<a href="https://developer.palm.com/index.php?option=com_appsubmission&amp;view=applist" title="My Apps" target="_top" class="top">My Apps</a>
+					<a href="https://developer.palm.com/index.php?option=com_appsubmission&amp;view=applist" title="My Apps" target="_top" class="top-menu">采购</a>
 				</li>
 				<li>
-					<a href="/content/resources.html" title="Resources" target="_top" class="top">Resources</a>
+					<a href="/content/resources.html" title="Resources" target="_top" class="top-menu">库存</a>
 					<div class="megamenu">
 						<div class="nav-child">
 							<h4 class="menu-heading">
@@ -202,6 +275,8 @@
 					</div>
 				</li>
 			</ul>
+		</div>
+		<div id="panel">
 			<div class="attachment">
 				<div class="signup">
 					<a class="account-text ctx-first" href="/index.php?option=com_user&amp;view=login&amp;login">Sign In</a>

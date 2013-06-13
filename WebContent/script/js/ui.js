@@ -1,4 +1,78 @@
 (function($) {
+	$.fn.extend({
+		
+		aiMegamenu: function(){
+
+	         return this.each(function(){
+
+	           var $thisNav = $(this);
+	           setMegamenu();
+
+	           // check if fonts are loaded
+	           var wid = $('#nav').width(),
+	               interval = 300,
+	               times = 10,
+	               currWid = wid,
+	               counter = 0;
+
+	           var timer = setInterval(function(){
+	                currWid = $('#nav').width();
+	                if (currWid != wid){
+	                  setMegamenu();
+	                }
+	                else if (counter >=times-1)
+	                {
+	                    clearInterval(timer);
+	                }
+	                counter++;
+	              }, interval);
+
+	            // set megamenu position
+	            function setMegamenu(){
+	                var $navWrapper = $thisNav.closest('.hp-center'),
+	                    pageWidth = $navWrapper.width();
+	                    
+	                $navWrapper.css({position: 'relative'});
+
+	                $thisNav.children().each(function(){
+	                  var $thisMegaMenu = $(this).find('.megamenu'),
+	                      menuWidth = $thisMegaMenu.outerWidth(),
+	                      thisWidth = $(this).width();
+	                   if ($(this).position().left + menuWidth > pageWidth){
+
+	                     $(this).hover(
+	                       function(){
+	                          $thisMegaMenu.css({marginTop: 0, marginLeft: -(menuWidth - thisWidth)})
+	                       },
+
+	                        function(){
+	                          $thisMegaMenu.removeAttr('style');
+	                        }
+	                      );
+
+	                     }
+	                     else{
+	                       $(this).hover(
+	                         function(){
+	                           $thisMegaMenu.css({margin: 'auto'});
+	                         },
+	                         function(){
+	                           $thisMegaMenu.removeAttr('style');
+	                         }
+	                       );
+
+	                     }
+	                 });
+
+	                 $navWrapper.removeAttr('style');
+	                 clearInterval(timer);
+	              }
+
+	           });
+
+	         }
+	});
+	
 	var odg = null;
 	$.fn.dg = function(settings) {
 		var config = initConfig(settings);
