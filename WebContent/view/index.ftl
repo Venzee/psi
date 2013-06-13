@@ -3,14 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>首页</title>
-<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="script/js/comm.js"></script>
-<script type="text/javascript" src="script/js/ui.js"></script>
-<script type="text/javascript">
-	$(function() {
-		
-	});
-</script>
 <style type="text/css">
 	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
 		margin: 0;
@@ -66,7 +58,7 @@
 	}
 	#nav .megamenu {
 		margin: -999999px 0 0 -999999px;
-		padding: 20px 15px 10px;
+		padding: 20px 15px 10px 20px;
 		border: 1px solid #dcdcdc;
 		border-top: 2px solid #3a98b0;
 		position: absolute;
@@ -78,7 +70,7 @@
 	}
 	div.nav-child {
 		float: left;
-		margin: 0 36px 0 0;
+		margin: 0 20px 0 0;
 	}
 	h4.menu-heading a{
 		color: #000;
@@ -94,6 +86,7 @@
 		border-bottom: none;
 	}
 	ul.nav-list li a{
+		color: #3a98b0;
 		font-size: 12px;
 		text-decoration: none;
 	}
@@ -107,16 +100,11 @@
 	#panel .attachment {
 		float: right;
 	}
-	#panel .attachment .signup,#panel .attachment form {
+	#panel .signup,#panel form {
 		display: inline-block;
 		*display: inline;
 	}
 </style>
-<script type="text/javascript">
-$(function(){
-	$('#header_inner').find('.hp-nav').aiMegamenu();
-});
-</script>
 </head>
 <body class="PageMain">
 	<div id="header">
@@ -163,92 +151,13 @@ $(function(){
 					</div>
 				</li>
 				<li>
-					<a href="https://developer.palm.com/index.php?option=com_appsubmission&amp;view=applist" title="My Apps" target="_top" class="top-menu">采购</a>
+					<a href="#" title="My Apps" target="_top" class="top-menu">采购</a>
 				</li>
 				<li>
 					<a href="/content/resources.html" title="Resources" target="_top" class="top-menu">库存</a>
 					<div class="megamenu">
 						<div class="nav-child">
-							<h4 class="menu-heading">
-								<a href="/content/resources/design_resources.html" target="_top">Design</a>
-							</h4>
-							<ul class="nav-list">
-								<li>
-									<a href="/content/api/design/design-enyo.html">Enyo Design Guide</a>
-								</li>
-								<li>
-									<a href="/content/resources/advanced_application_guidelines.html" target="_top">Advanced Application Guidelines</a>
-								</li>
-								<li>
-									<a href="/content/resources/hp_webos_and_game_development.html" target="_top">webOS and Game Development</a>
-								</li>
-							</ul>
-							<h4 class="menu-heading">
-								<a href="/content/resources/development_resources.html" target="_top">Development</a>
-							</h4>
-							<ul class="nav-list">
-								<li>
-									<a href="/content/resources/develop/sdk_pdk_download.html" target="_top">Download the SDK</a>
-								</li>
-								<li>
-									<a href="/content/api/dev-guide/enyo/enyo-basics-from-the-bottom-up.html">Enyo from the Ground Up</a>
-								</li>
-								<li>
-									<a href="/content/api/dev-guide/enyo/tutorial.html">Enyo Tutorial</a>
-								</li>
-								<li>
-									<a href="/content/resources/develop/third_party_tools.html" target="_top">Third-party Tools</a>
-								</li>
-								<li>
-									<a href="/content/resources/develop/pdk_overview.html" target="_top">PDK Development</a>
-								</li>
-								<li>
-									<a href="/content/resources/develop/developing_on_an_unactivated_device.html" target="_top">Unactivated Devices</a>
-								</li>
-								<li>
-									<a href="/content/resources/footer/glossary.html" target="_top">Glossary</a>
-								</li>
-							</ul>
-							<h4 class="menu-heading">
-								<a href="/content/showcase/device_showcase.html" target="_top">Device Specs</a>
-							</h4>
-							<ul class="nav-list last">
-								<li>
-									<a href="/content/showcase/device_showcase.html" target="_top">View All</a>
-								</li>
-							</ul>
-						</div>
-						<div class="nav-child">
-							<h4 class="menu-heading">
-								<a href="/content/resources/distribution_and_promotion_resources.html" target="_top">Distribution and Promotion</a>
-							</h4>
-							<ul class="nav-list">
-								<li>
-									<a href="/content/resources/distribute/developing_and_distributing_with_hp/developer_program_details.html" target="_top">Distributing with HP</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/application_content_criteria.html" target="_top">App Content Criteria</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/application_checklist.html" target="_top">App Submission Checklist</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/distribution_international_e_commerce.html" target="_top">International e-commerce FAQ</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/submitting_your_enyo_app.html" target="_top">Submit Your Enyo App</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/app_marketing_kit.html" target="_top">Market Your App</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/promo_codes.html" target="_top">Promo codes</a>
-								</li>
-								<li>
-									<a href="/content/resources/develop/managing_in_app_purchase_items.html" target="_top">In-App Purchase</a>
-								</li>
-							</ul>
-							<h4 class="menu-heading">FAQs</h4>
+							<h4 class="menu-heading">调拨</h4>
 							<ul class="nav-list">
 								<li>
 									<a href="/content/resources/develop/faq.html" target="_top">Developer Program FAQ</a>
@@ -263,12 +172,90 @@ $(function(){
 									<a href="/content/resources/distribute/where_can_i_distribute_my_apps.html" target="_top">Countries List</a>
 								</li>
 							</ul>
-							<h4 class="menu-heading">
-								<a href="/content/resources/videos/videos.html" target="_top">Videos</a>
-							</h4>
+							<h4 class="menu-heading">调配</h4>
 							<ul class="nav-list last">
 								<li>
-									<a href="/content/resources/videos/videos.html" target="_top">View All</a>
+									<a href="/content/resources/develop/faq.html" target="_top">Developer Program FAQ</a>
+								</li>
+								<li>
+									<a href="/content/resources/develop/pdk_technical_faq.html" target="_top">PDK Technical FAQ</a>
+								</li>
+								<li>
+									<a href="/content/resources/distribute/distribution_international_e_commerce.html" target="_top">International e-commerce FAQ</a>
+								</li>
+								<li>
+									<a href="/content/resources/distribute/where_can_i_distribute_my_apps.html" target="_top">Countries List</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#" title="My Apps" target="_top" class="top-menu">单据</a>
+					<div class="megamenu">
+						<div class="nav-child">
+							<h4 class="menu-heading">销售类</h4>
+							<ul class="nav-list">
+								<li>
+									<a href="receipt/all/list">零售单据</a>
+								</li>
+								<li>
+									<a href="receipt/all/list" target="_top">批发单据</a>
+								</li>
+								<li>
+									<a href="receipt/all/list" target="_top">保修单据</a>
+								</li>
+							</ul>
+							<h4 class="menu-heading">库存类</h4>
+							<ul class="nav-list last">
+								<li>
+									<a href="receipt/all/list">出入库单据</a>
+								</li>
+								<li>
+									<a href="receipt/all/list" target="_top">调拨单据</a>
+								</li>
+							</ul>
+						</div>
+						<div class="nav-child">
+							<h4 class="menu-heading">其他</h4>
+							<ul class="nav-list last">
+								<li>
+									<a href="receipt/all/list" target="_top">其他单据</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#" title="My Apps" target="_top" class="top-menu">基础设置</a>
+					<div class="megamenu">
+						<div class="nav-child">
+							<h4 class="menu-heading">商品信息</h4>
+							<ul class="nav-list last">
+								<li>
+									<a href="inventory/brand/list">品牌管理</a>
+								</li>
+								<li>
+									<a href="inventory/sort/list" target="_top">商品类型</a>
+								</li>
+								<li>
+									<a href="inventory/goods/list" target="_top">商品管理</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#" title="My Apps" target="_top" class="top-menu">系统设置</a>
+					<div class="megamenu">
+						<div class="nav-child">
+							<h4 class="menu-heading">用户</h4>
+							<ul class="nav-list last">
+								<li>
+									<a href="inventory/brand/list">用户管理</a>
+								</li>
+								<li>
+									<a href="inventory/sort/list" target="_top">权限配置</a>
 								</li>
 							</ul>
 						</div>
@@ -297,6 +284,16 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<div id="main"></div>
+	<div id="main">
+
+	</div>
+	<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="script/js/comm.js"></script>
+	<script type="text/javascript" src="script/js/ui.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#header_inner').find('.hp-nav').aiMegamenu();
+		});
+	</script>
 </body>
 </html>
