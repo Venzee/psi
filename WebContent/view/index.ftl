@@ -54,11 +54,11 @@
 		text-decoration: none;
 	}
 	a.top-menu:hover {
-		color: #fff;
+		color: #000;
 	}
 	#nav .megamenu {
 		margin: -999999px 0 0 -999999px;
-		padding: 20px 15px 10px 20px;
+		padding: 20px 0 10px 20px;
 		border: 1px solid #dcdcdc;
 		border-top: 2px solid #3a98b0;
 		position: absolute;
@@ -70,7 +70,7 @@
 	}
 	div.nav-child {
 		float: left;
-		margin: 0 20px 0 0;
+		margin: 0 30px 0 0;
 	}
 	h4.menu-heading a{
 		color: #000;
@@ -114,84 +114,70 @@
 			</a>
 			<ul class="hp-nav" id="nav">
 				<li>
-					<a href="/content/showcase.html" title="Showcase" target="_top" class="top-menu">销售</a>
-					<div class="megamenu">
-						<div class="nav-child">
-							<h4 class="menu-heading">
-								<a href="/content/showcase/why_webos.html" target="_top">Why webOS</a>
-							</h4>
-							<ul class="nav-list last">
-								<li>
-									<a href="/content/showcase/why_webos.html" target="_top">The Opportunity</a>
-								</li>
-								<li>
-									<a href="/content/showcase/why_webos.html#item2" target="_top">Innovative Platform</a>
-								</li>
-								<li>
-									<a href="/content/showcase/why_webos.html#item3" target="_top">Cross-Platform</a>
-								</li>
-								<li>
-									<a href="/content/showcase/why_webos.html#item5" target="_top">Vibrant Community</a>
-								</li>
-							</ul>
-						</div>
-						<div class="nav-child">
-							<h4 class="menu-heading">
-								<a href="/content/showcase.html" target="_top">Showcase</a>
-							</h4>
-							<ul class="nav-list last">
-								<li>
-									<a href="/content/showcase/app_showcase.html" target="_top">App Showcase</a>
-								</li>
-								<li>
-									<a href="/content/showcase/developer_voices.html" target="_top">Developer Voices</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					<a href="/content/showcase.html" title="Showcase" class="top-menu">销售</a>
 				</li>
 				<li>
-					<a href="#" title="My Apps" target="_top" class="top-menu">采购</a>
-				</li>
-				<li>
-					<a href="/content/resources.html" title="Resources" target="_top" class="top-menu">库存</a>
+					<a href="/content/resources.html" title="Resources" class="top-menu">库存</a>
 					<div class="megamenu">
 						<div class="nav-child">
 							<h4 class="menu-heading">调拨</h4>
 							<ul class="nav-list">
 								<li>
-									<a href="/content/resources/develop/faq.html" target="_top">Developer Program FAQ</a>
+									<a href="receipt/all/list">仓库到仓库</a>
 								</li>
 								<li>
-									<a href="/content/resources/develop/pdk_technical_faq.html" target="_top">PDK Technical FAQ</a>
+									<a href="receipt/all/list">仓库到门店</a>
 								</li>
 								<li>
-									<a href="/content/resources/distribute/distribution_international_e_commerce.html" target="_top">International e-commerce FAQ</a>
-								</li>
-								<li>
-									<a href="/content/resources/distribute/where_can_i_distribute_my_apps.html" target="_top">Countries List</a>
+									<a href="receipt/all/list">门店到门店</a>
 								</li>
 							</ul>
-							<h4 class="menu-heading">调配</h4>
+							<h4 class="menu-heading">其他出入库</h4>
 							<ul class="nav-list last">
 								<li>
-									<a href="/content/resources/develop/faq.html" target="_top">Developer Program FAQ</a>
+									<a href="receipt/all/list">报损</a>
 								</li>
 								<li>
-									<a href="/content/resources/develop/pdk_technical_faq.html" target="_top">PDK Technical FAQ</a>
+									<a href="receipt/all/list">报溢</a>
 								</li>
 								<li>
-									<a href="/content/resources/distribute/distribution_international_e_commerce.html" target="_top">International e-commerce FAQ</a>
+									<a href="receipt/all/list">获赠</a>
 								</li>
 								<li>
-									<a href="/content/resources/distribute/where_can_i_distribute_my_apps.html" target="_top">Countries List</a>
+									<a href="receipt/all/list">赠送</a>
+								</li>
+							</ul>
+						</div>
+						<div class="nav-child">
+							<h4 class="menu-heading">采购</h4>
+							<ul class="nav-list">
+								<li>
+									<a href="receipt/all/list">进货</a>
+								</li>
+								<li>
+									<a href="receipt/all/list">退货</a>
+								</li>
+								<li>
+									<a href="receipt/all/list">订单</a>
+								</li>
+							</ul>
+							<h4 class="menu-heading">库存状况</h4>
+							<ul class="nav-list last">
+								<li>
+									<a href="receipt/all/list">库存查询</a>
+								</li>
+								<li>
+									<a href="receipt/all/list">批次库存</a>
+								</li>
+								<li>
+									<a href="receipt/all/list">库存报警</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</li>
 				<li>
-					<a href="#" title="My Apps" target="_top" class="top-menu">单据</a>
+					<a href="#" title="My Apps" class="top-menu">单据</a>
 					<div class="megamenu">
 						<div class="nav-child">
 							<h4 class="menu-heading">销售类</h4>
@@ -200,10 +186,10 @@
 									<a href="receipt/all/list">零售单据</a>
 								</li>
 								<li>
-									<a href="receipt/all/list" target="_top">批发单据</a>
+									<a href="receipt/all/list">批发单据</a>
 								</li>
 								<li>
-									<a href="receipt/all/list" target="_top">保修单据</a>
+									<a href="receipt/all/list">保修单据</a>
 								</li>
 							</ul>
 							<h4 class="menu-heading">库存类</h4>
@@ -212,7 +198,7 @@
 									<a href="receipt/all/list">出入库单据</a>
 								</li>
 								<li>
-									<a href="receipt/all/list" target="_top">调拨单据</a>
+									<a href="receipt/all/list">调拨单据</a>
 								</li>
 							</ul>
 						</div>
@@ -220,46 +206,71 @@
 							<h4 class="menu-heading">其他</h4>
 							<ul class="nav-list last">
 								<li>
-									<a href="receipt/all/list" target="_top">其他单据</a>
+									<a href="receipt/all/list">其他单据</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</li>
 				<li>
-					<a href="#" title="My Apps" target="_top" class="top-menu">基础设置</a>
+					<a href="#" title="My Apps" class="top-menu">基础设置</a>
 					<div class="megamenu">
 						<div class="nav-child">
 							<h4 class="menu-heading">商品信息</h4>
+							<ul class="nav-list">
+								<li>
+									<a href="inventory/brand/list">品牌</a>
+								</li>
+								<li>
+									<a href="inventory/sort/list">类型</a>
+								</li>
+								<li>
+									<a href="inventory/goods/list">商品</a>
+								</li>
+							</ul>
+							<h4 class="menu-heading">往来单位</h4>
 							<ul class="nav-list last">
 								<li>
-									<a href="inventory/brand/list">品牌管理</a>
+									<a href="inventory/brand/list">供应商</a>
 								</li>
 								<li>
-									<a href="inventory/sort/list" target="_top">商品类型</a>
+									<a href="inventory/sort/list">代理商</a>
 								</li>
 								<li>
-									<a href="inventory/goods/list" target="_top">商品管理</a>
+									<a href="inventory/goods/list">客户</a>
+								</li>
+							</ul>
+						</div>
+						<div class="nav-child">
+							<h4 class="menu-heading">人力资源</h4>
+							<ul class="nav-list">
+								<li>
+									<a href="inventory/brand/list">分公司</a>
+								</li>
+								<li>
+									<a href="inventory/sort/list">部门</a>
+								</li>
+								<li>
+									<a href="inventory/goods/list">员工</a>
+								</li>
+							</ul>
+							<h4 class="menu-heading">用户管理</h4>
+							<ul class="nav-list last">
+								<li>
+									<a href="inventory/sort/list">用户组</a>
+								</li>
+								<li>
+									<a href="inventory/sort/list">权限</a>
+								</li>
+								<li>
+									<a href="inventory/brand/list">用户</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</li>
 				<li>
-					<a href="#" title="My Apps" target="_top" class="top-menu">系统设置</a>
-					<div class="megamenu">
-						<div class="nav-child">
-							<h4 class="menu-heading">用户</h4>
-							<ul class="nav-list last">
-								<li>
-									<a href="inventory/brand/list">用户管理</a>
-								</li>
-								<li>
-									<a href="inventory/sort/list" target="_top">权限配置</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					<a href="#" title="My Apps" class="top-menu">系统设置</a>
 				</li>
 			</ul>
 		</div>
