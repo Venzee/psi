@@ -25,6 +25,7 @@
 	}
 	#logo {
 		height: 60px;
+		float: left;
 	}
 	#logo img {
 		height: 40px;
@@ -36,12 +37,12 @@
 		float: right;
 		margin: 0 10px 0 0;
 	}
-	#nav > li {
-		display: inline-block;
-		*display: inline;
+	#nav .top-nav {
+		float: left;
 		height: 60px;
 	}
 	a.top-menu {
+		_float: left;
 		display: block;
 		color: #5e5e5e;
 		height: 30px;
@@ -102,21 +103,26 @@
 	}
 	#panel .signup,#panel form {
 		display: inline-block;
-		*display: inline;
+	}
+	#main {
+		position: absolute;
+		top: 115px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: auto;
+		_height: expression(document.body.offsetHeight - 115 + 'px');
 	}
 </style>
 </head>
 <body class="PageMain">
 	<div id="header">
 		<div id="header_inner">
-			<a href="/content/home.html" id="logo">
-				<img src="/content/typo3conf/ext/palm_template/html/../img/structure/logo24.png" alt="Palm Developer Center"/>
-			</a>
 			<ul class="hp-nav" id="nav">
-				<li>
+				<li class="top-nav">
 					<a href="/content/showcase.html" title="Showcase" class="top-menu">销售</a>
 				</li>
-				<li>
+				<li class="top-nav">
 					<a href="/content/resources.html" title="Resources" class="top-menu">库存</a>
 					<div class="megamenu">
 						<div class="nav-child">
@@ -176,7 +182,7 @@
 						</div>
 					</div>
 				</li>
-				<li>
+				<li class="top-nav">
 					<a href="#" title="My Apps" class="top-menu">单据</a>
 					<div class="megamenu">
 						<div class="nav-child">
@@ -212,7 +218,7 @@
 						</div>
 					</div>
 				</li>
-				<li>
+				<li class="top-nav">
 					<a href="#" title="My Apps" class="top-menu">基础设置</a>
 					<div class="megamenu">
 						<div class="nav-child">
@@ -269,7 +275,7 @@
 						</div>
 					</div>
 				</li>
-				<li>
+				<li class="top-nav">
 					<a href="#" title="My Apps" class="top-menu">系统设置</a>
 				</li>
 			</ul>
@@ -289,7 +295,7 @@
 							<span>Search</span>
 						</button>
 						<input class="search-txt" name="search" placeholder="Just Search">
-							<input type="hidden" value="all" id="basic-search-collection">
+						<input type="hidden" value="all" id="basic-search-collection">
 					</fieldset>
 				</form>
 			</div>
