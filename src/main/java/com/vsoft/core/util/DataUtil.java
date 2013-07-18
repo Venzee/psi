@@ -3,6 +3,8 @@ package com.vsoft.core.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import net.sourceforge.pinyin4j.PinyinHelper;
@@ -13,10 +15,43 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.apache.log4j.Logger;
 
+/**
+ * 数据工具类
+ * 
+ * @author Venz
+ *
+ */
 public class DataUtil {
 
 	private final static Logger LOG = Logger.getLogger(DataUtil.class);
 	private static final String[] BASE_CLASS_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
+
+	/**
+	 * 获取当前小时(24小时制)
+	 * 
+	 * @return
+	 */
+	public static String getCurrHour() {
+		return formatDate("HH");
+	}
+
+	/**
+	 * 获取当前日期(yyyy-mm-dd)
+	 * 
+	 * @return
+	 */
+	public static String getCurrDateStr() {
+		return formatDate("yyyy-mm-dd");
+	}
+
+	/**
+	 * 获取当前时间(yyyy-mm-dd HH:ss:mm)
+	 * 
+	 * @return
+	 */
+	public static String getCurrDateTimeStr() {
+		return formatDate("yyyy-mm-dd HH:mm:ss");
+	}
 
 	/**
 	 * 判断字符串是否是数字
@@ -35,12 +70,12 @@ public class DataUtil {
 	 * @return
 	 */
 	public static boolean isEmptyStr(String str) {
-		if(null == str || "".equals(str) || str.trim().length() < 1){
+		if (null == str || "".equals(str) || str.trim().length() < 1) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 中文字符串转拼音码
 	 * 
@@ -50,33 +85,33 @@ public class DataUtil {
 	public static String toPinYinStr(String str) {
 		String pystr = "";
 		String[] t = new String[str.length()];
-		
-		char [] hanzi=new char[str.length()];
-        for(int i=0;i<str.length();i++){
-            hanzi[i]=str.charAt(i);
-        }
-		
+
+		char[] hanzi = new char[str.length()];
+		for (int i = 0; i < str.length(); i++) {
+			hanzi[i] = str.charAt(i);
+		}
+
 		HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
 		format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
 		format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
 		format.setVCharType(HanyuPinyinVCharType.WITH_V);
-        
+
 		try {
 			for (int i = 0; i < str.length(); i++) {
 				if ((str.charAt(i) >= 'a' && str.charAt(i) < 'z') || (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') || (str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
 					pystr += str.charAt(i);
 				} else {
-		            t = PinyinHelper.toHanyuPinyinStringArray(hanzi[i], format);
-		            pystr = pystr + t[0];
-		        }
+					t = PinyinHelper.toHanyuPinyinStringArray(hanzi[i], format);
+					pystr = pystr + t[0];
+				}
 			}
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			e.printStackTrace();
 		}
-		
+
 		return pystr.trim().toString();
 	}
-	
+
 	/**
 	 * Map转换成对象
 	 * 
@@ -200,7 +235,7 @@ public class DataUtil {
 		return obj;
 	}
 
-	protected static void setter(Field field, Object obj, Map<String, Object> data) {
+	private static void setter(Field field, Object obj, Map<String, Object> data) {
 		String fieldName = field.getName();
 		Class<?> type = field.getType();
 		char[] fc = fieldName.toCharArray();
@@ -214,7 +249,7 @@ public class DataUtil {
 		setter(obj, newFiledName.toString(), data.get(lowerCaseFiledName.toString()), type);
 	}
 
-	protected static void setter(Object obj, String attr, Object value, Class<?> type) {
+	private static void setter(Object obj, String attr, Object value, Class<?> type) {
 		if (value != null) {
 			if (type.isPrimitive()) {
 				String name = type.getName();
@@ -252,6 +287,11 @@ public class DataUtil {
 				LOG.error("调用方法" + method.getName() + "时发生异常", e);
 			}
 		}
+	}
+
+	private static String formatDate(String pattern) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+		return dateFormat.format(new Date());
 	}
 
 }

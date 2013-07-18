@@ -17,11 +17,11 @@ public class Receipt implements Serializable {
 	private Double totalMoney;// 总金额
 	private int customerId;// 客户ID
 	private int supplierId;// 供应商ID
-	private int outWarehouseId; // 出货仓库
-	private int inWarehouseId;// 收货仓库
-	private int handleEmployeeId;// 经手员工ID
-	private int checkEmployeeId;// 审核员工ID
-	private int postedEmployeeId;// 过账员工ID
+	private int outWareId; // 出货仓库
+	private int inWareId;// 收货仓库
+	private int handleEmpId;// 经手员工ID
+	private int checkEmpId;// 审核员工ID
+	private int postedEmpId;// 过账员工ID
 	private int status;// 单据状态 1为等待审核，2为已审核等待过账，3为已过帐未收款，4为已收款
 	private int type;// 单据类型 1为进货单，2为销售单，3为销售退货单，4为进货退货单，5为调拨单，0为无效
 	private int companyId;// 单据所属公司ID
@@ -91,44 +91,44 @@ public class Receipt implements Serializable {
 		this.supplierId = supplierId;
 	}
 
-	public int getOutWarehouseId() {
-		return outWarehouseId;
+	public int getOutWareId() {
+		return outWareId;
 	}
 
-	public void setOutWarehouseId(int outWarehouseId) {
-		this.outWarehouseId = outWarehouseId;
+	public void setOutWareId(int outWareId) {
+		this.outWareId = outWareId;
 	}
 
-	public int getInWarehouseId() {
-		return inWarehouseId;
+	public int getInWareId() {
+		return inWareId;
 	}
 
-	public void setInWarehouseId(int inWarehouseId) {
-		this.inWarehouseId = inWarehouseId;
+	public void setInWareId(int inWareId) {
+		this.inWareId = inWareId;
 	}
 
-	public int getHandleEmployeeId() {
-		return handleEmployeeId;
+	public int getHandleEmpId() {
+		return handleEmpId;
 	}
 
-	public void setHandleEmployeeId(int handleEmployeeId) {
-		this.handleEmployeeId = handleEmployeeId;
+	public void setHandleEmpId(int handleEmpId) {
+		this.handleEmpId = handleEmpId;
 	}
 
-	public int getCheckEmployeeId() {
-		return checkEmployeeId;
+	public int getCheckEmpId() {
+		return checkEmpId;
 	}
 
-	public void setCheckEmployeeId(int checkEmployeeId) {
-		this.checkEmployeeId = checkEmployeeId;
+	public void setCheckEmpId(int checkEmpId) {
+		this.checkEmpId = checkEmpId;
 	}
 
-	public int getPostedEmployeeId() {
-		return postedEmployeeId;
+	public int getPostedEmpId() {
+		return postedEmpId;
 	}
 
-	public void setPostedEmployeeId(int postedEmployeeId) {
-		this.postedEmployeeId = postedEmployeeId;
+	public void setPostedEmpId(int postedEmpId) {
+		this.postedEmpId = postedEmpId;
 	}
 
 	public int getStatus() {

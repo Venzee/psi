@@ -14,9 +14,6 @@ public class Goods implements Serializable {
 	private String englishName; // 英文名称
 	private int brandId;// 品牌ID
 	private int sortId;// 类型ID
-	private String barcode; // 商品条码
-	private String code;// 编码，用于快速搜索，一般为商品简称拼音首字母缩写
-	private String remark;
 	private int status;// 状态 (默认0)
 	private int companyId; // 新建商品的公司ID (默认0)
 
@@ -66,30 +63,6 @@ public class Goods implements Serializable {
 
 	public void setSortId(int sortId) {
 		this.sortId = sortId;
-	}
-
-	public String getBarcode() {
-		return barcode;
-	}
-
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
 	}
 
 	public int getStatus() {

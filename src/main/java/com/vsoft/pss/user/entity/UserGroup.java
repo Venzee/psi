@@ -10,7 +10,7 @@ public class UserGroup implements Serializable {
 	private static final long serialVersionUID = -5791537186344710459L;
 	private int id;
 	private String name;// 名称
-	private String rights;// 权限字符串
+	private String powers;// 权限字符串
 
 	public int getId() {
 		return id;
@@ -28,12 +28,12 @@ public class UserGroup implements Serializable {
 		this.name = name;
 	}
 
-	public String getRights() {
-		return rights;
+	public String getPowers() {
+		return powers;
 	}
 
-	public void setRights(String rights) {
-		this.rights = rights;
+	public void setPowers(String powers) {
+		this.powers = powers;
 	}
 
 }

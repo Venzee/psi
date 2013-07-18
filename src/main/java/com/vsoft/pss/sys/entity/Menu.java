@@ -12,7 +12,6 @@ public class Menu implements Serializable {
 	private String name;
 	private String url;
 	private int parentId;
-	private boolean parent;
 	private String power;
 
 	public int getId() {
@@ -45,14 +44,6 @@ public class Menu implements Serializable {
 
 	public void setParentId(int parentId) {
 		this.parentId = parentId;
-	}
-
-	public boolean isParent() {
-		return parent;
-	}
-
-	public void setParent(boolean parent) {
-		this.parent = parent;
 	}
 
 	public String getPower() {

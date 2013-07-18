@@ -1,6 +1,7 @@
 package com.vsoft.pss.organization.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Company implements Serializable {
 
@@ -15,7 +16,10 @@ public class Company implements Serializable {
 	private String tel; // 联系方式
 	private String fax;// 传真
 	private String address;// 联系地址
-	private int organizationId;// 所属机构
+	private int industryId;
+	private int companyId;// 所属机构
+	private Date joinDate;
+	private Date expireDate;
 	private boolean master;// 是否是总公司 默认false
 
 	public int getId() {
@@ -74,12 +78,36 @@ public class Company implements Serializable {
 		this.address = address;
 	}
 
-	public int getOrganizationId() {
-		return organizationId;
+	public int getIndustryId() {
+		return industryId;
 	}
 
-	public void setOrganizationId(int organizationId) {
-		this.organizationId = organizationId;
+	public void setIndustryId(int industryId) {
+		this.industryId = industryId;
+	}
+
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	public Date getExpireDate() {
+		return expireDate;
+	}
+
+	public void setExpireDate(Date expireDate) {
+		this.expireDate = expireDate;
 	}
 
 	public boolean isMaster() {

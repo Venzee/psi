@@ -9,8 +9,8 @@ public class GoodsProperty implements Serializable {
 	 */
 	private static final long serialVersionUID = 3394760144357089169L;
 	private int id;
-	private int propertyId;
-	private int propertyValueId;
+	private int propId;
+	private int propValId;
 	private int goodsId;
 
 	public int getId() {
@@ -21,20 +21,22 @@ public class GoodsProperty implements Serializable {
 		this.id = id;
 	}
 
-	public int getPropertyId() {
-		return propertyId;
+	
+
+	public int getPropId() {
+		return propId;
 	}
 
-	public void setPropertyId(int propertyId) {
-		this.propertyId = propertyId;
+	public void setPropId(int propId) {
+		this.propId = propId;
 	}
 
-	public int getPropertyValueId() {
-		return propertyValueId;
+	public int getPropValId() {
+		return propValId;
 	}
 
-	public void setPropertyValueId(int propertyValueId) {
-		this.propertyValueId = propertyValueId;
+	public void setPropValId(int propValId) {
+		this.propValId = propValId;
 	}
 
 	public int getGoodsId() {
