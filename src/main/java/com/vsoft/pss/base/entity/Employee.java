@@ -1,4 +1,4 @@
-package com.vsoft.pss.organization.entity;
+package com.vsoft.pss.base.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +14,7 @@ public class Employee implements Serializable {
 	private Date birth;// 生日
 	private String name;// 姓名
 	private String card;// 身份证号码
-	private String contact;// 联系方式
+	private String phone;// 联系电话
 	private String address;// 联系地址
 	private int status;// 状态 1为正常，2为离职，3为已删除
 	private int companyId;// 所属公司ID
@@ -26,14 +26,6 @@ public class Employee implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getAge() {
@@ -52,6 +44,14 @@ public class Employee implements Serializable {
 		this.birth = birth;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getCard() {
 		return card;
 	}
@@ -60,20 +60,20 @@ public class Employee implements Serializable {
 		this.card = card;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getAddress() {
 		return address;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
 	}
 
 	public int getStatus() {

@@ -96,7 +96,7 @@ $(function(){
 					<dl class="form-source-value">
 						<dd><input type="text" class="text-500 not-null form-value" name="username" /></dd>
 						<dd><input type="text" class="text-500 not-null form-value" name="password" /></dd>
-						<dd><input type="text" class="text-300 not-null" id="kapache" /></dd>
+						<dd><input type="text" class="text-300 not-null" id="kaptcha" name="kaptcha" /></dd>
 					</dl>
 					<div class="clear"></div>
 				</div>

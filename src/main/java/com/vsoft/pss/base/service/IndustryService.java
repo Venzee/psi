@@ -1,4 +1,4 @@
-package com.vsoft.pss.organization.service;
+package com.vsoft.pss.base.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vsoft.core.util.DataUtil;
-import com.vsoft.pss.organization.dao.IndustryDao;
-import com.vsoft.pss.organization.entity.Industry;
+import com.vsoft.pss.base.dao.IndustryDao;
+import com.vsoft.pss.base.entity.Industry;
 
 @Service
 public class IndustryService {

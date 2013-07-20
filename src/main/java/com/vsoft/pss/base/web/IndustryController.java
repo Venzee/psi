@@ -1,4 +1,4 @@
-package com.vsoft.pss.organization.web;
+package com.vsoft.pss.base.web;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.vsoft.pss.organization.entity.Industry;
-import com.vsoft.pss.organization.service.IndustryService;
+import com.vsoft.pss.base.entity.Industry;
+import com.vsoft.pss.base.service.IndustryService;
 
 @Controller
 @RequestMapping("/org/industry")

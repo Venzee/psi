@@ -1,12 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2013/7/18 17:03:37                           */
+/* Created on:     2013/7/19 10:56:25                           */
 /*==============================================================*/
 
 
 drop table if exists pss_company;
 
 drop table if exists pss_department;
+
+drop table if exists pss_emp_sales;
 
 drop table if exists pss_employee;
 
@@ -83,6 +85,18 @@ create table pss_department
    name                 varchar(50) not null,
    employeeId           int default 0,
    companyId            int not null,
+   primary key (id)
+);
+
+/*==============================================================*/
+/* Table: pss_emp_sales                                         */
+/*==============================================================*/
+create table pss_emp_sales
+(
+   id                   int not null auto_increment,
+   receiptId            int not null,
+   num                  double not null,
+   money                double not null,
    primary key (id)
 );
 
@@ -271,6 +285,7 @@ create table pss_power
 (
    id                   int not null auto_increment,
    name                 varchar(30) not null,
+   code                 char(3) not null,
    remark               varchar(300) default "",
    primary key (id)
 );
@@ -285,12 +300,13 @@ create table pss_receipt
    createDate           datetime not null,
    checkDate            datetime not null,
    postedDate           datetime not null,
-   totalMoney           double not null,
+   totalMoney           double not null default 0,
+   totleNum             double not null default 0,
    customerId           int default 0,
    supplierId           int default 0,
    outWareId            int default 0,
    inWareId             int default 0,
-   handleEmpId          int not null,
+   handleEmps           varchar(100) not null,
    checkEmpId           int not null,
    postedEmpId          int not null,
    status               int not null default 0,
@@ -385,9 +401,10 @@ create table pss_user
    username             varchar(20) not null,
    password             varchar(50) not null,
    groupId              int not null,
-   employeeId           int not null,
+   employeeId           int not null default 0,
    companyId            int not null,
    powers               varchar(300) default "",
+   status               int not null default 0,
    createDate           datetime not null,
    primary key (id)
 );

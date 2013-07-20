@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vsoft.core.base.entity.SessionUser;
+import com.vsoft.core.util.DataUtil;
 import com.vsoft.core.util.SessionUtil;
-import com.vsoft.pss.organization.entity.Company;
-import com.vsoft.pss.sys.service.MenuService;
-import com.vsoft.pss.user.entity.User;
 import com.vsoft.pss.user.service.UserService;
 
 @Controller
@@ -19,45 +18,35 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private MenuService menuService;
-
-	@RequestMapping("/register/init")
-	public String initRegister(HttpServletRequest request, ModelMap map, Company company, User user) {
-		user = userService.register(user);
-		return login(request, map, user);
-	}
-
-	@RequestMapping("/register")
-	public String register(HttpServletRequest request, User user, ModelMap map) {
-		if ("".equals(user.getUsername()) || null == user.getUsername()) {
-			map.put("tip", "用户名不能为空！");
-			return "register";
-		}
-		if ("".equals(user.getPassword()) || null == user.getPassword()) {
-			map.put("tip", "密码不能为空！");
-			return "register";
-		}
-		user = userService.register(user);
-		return login(request, map, user);
-	}
 
 	@RequestMapping("/login")
-	public String login(HttpServletRequest request, ModelMap map, User user) {
+	public String login(HttpServletRequest request, ModelMap map, @RequestParam String username,
+			@RequestParam String password, @RequestParam String kaptcha) {
 		boolean result = false;
+		if(DataUtil.isEmptyStr(username)){
+			map.put("tip", "用户名不能为空！");
+			return "login";
+		}
+		if(DataUtil.isEmptyStr(password)){
+			map.put("tip", "密码不能为空！");
+			return "login";
+		}
+		if(DataUtil.isEmptyStr(kaptcha)){
+			map.put("tip", "验证码不能为空！");
+			return "login";
+		}
 		String sessionId = request.getSession().getId();
 		SessionUser sessionUser = SessionUtil.getUserBySessionId(sessionId);
-		if( sessionUser == null){
-			sessionUser = new SessionUser();
-			user = userService.login(user);
-			if (user.getId() == 0) {
+		if (sessionUser == null) {
+			sessionUser = userService.login(username, password);
+			if (sessionUser.getUserId() == 0) {
 				map.put("tip", "用户名或密码错误！");
 				return "login";
 			}
-			sessionUser.setUsername(user.getUsername());
 			result = SessionUtil.putSession(sessionId, sessionUser);
 			if (result) {
+				String ip = getIpAddr(request);
+				
 				return "redirect:/index";
 			}
 		}
@@ -73,5 +62,29 @@ public class UserController {
 			return "login";
 		}
 		return "index";
+	}
+
+	private String getIpAddr(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		if(ip != null && ip.length() != 0 && !"unknow".equalsIgnoreCase((ip))){
+			if(ip.indexOf(",") != -1){
+				String ipArr[] = ip.split(",");
+				for (int i = 0; i < ipArr.length; i++) {
+					if(!ipArr[i].equalsIgnoreCase("unknow")){
+						ip = ipArr[i];
+					}
+				}
+			}
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
 	}
 }

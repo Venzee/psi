@@ -1,4 +1,4 @@
-package com.vsoft.pss.organization.dao;
+package com.vsoft.pss.base.dao;
 
 import java.sql.SQLException;
 import java.util.List;

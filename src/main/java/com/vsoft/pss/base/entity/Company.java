@@ -1,4 +1,4 @@
-package com.vsoft.pss.organization.entity;
+package com.vsoft.pss.base.entity;
 
 import java.io.Serializable;
 import java.util.Date;

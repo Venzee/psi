@@ -16,6 +16,7 @@ public class User implements Serializable {
 	private int employeeId; // 用户对应的员工ID 首次注册管理员为0
 	private int companyId;// 用户归属公司ID
 	private String powers;// 权限串
+	private int status;// 状态
 	private Date createDate;// 创建时间
 
 	public int getId() {
@@ -72,6 +73,14 @@ public class User implements Serializable {
 
 	public void setPowers(String powers) {
 		this.powers = powers;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public Date getCreateDate() {
