@@ -1,15 +1,14 @@
 package com.vsoft.core.util;
 
-import java.util.HashMap;
-
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.log4j.Logger;
-
 import com.vsoft.core.base.entity.SessionUser;
 
 public class SessionUtil {
 
 	private static final Logger LOG = Logger.getLogger(SessionUtil.class);
-	private static HashMap<String, SessionUser> sessionMap = new HashMap<String, SessionUser>(500, 0.95f);
+	private static Map<String, SessionUser> sessionMap = new ConcurrentHashMap<String, SessionUser>(500, 0.95f);
 
 	public static boolean putSession(String sessionId, SessionUser user) {
 		SessionUser sessionUser = getUserBySessionId(sessionId);

@@ -3,122 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>首页</title>
-<style type="text/css">
-	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
-		margin: 0;
-		padding: 0;
-		font: 14px "微软雅黑";
-	}
-	#header {
-		height: 115px;
-	}
-	#header_inner {
-		height: 60px;
-		font-weight: bold;
-		background: #ECF0F1;
-		background: -moz-linear-gradient(top, #ECF0F1 0%, #BDC3C7 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ECF0F1), color-stop(100%, #BDC3C7));
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ECF0F1', endColorstr='#BDC3C7', GradientType=0);
-	}
-	ul {
-		list-style: none;
-	}
-	#logo {
-		height: 60px;
-		float: left;
-	}
-	#logo img {
-		height: 40px;
-		width: 227px;
-		margin: 10px;
-	}
-	#nav {
-		height: 60px;
-		float: right;
-		margin: 0 10px 0 0;
-	}
-	#nav .top-nav {
-		float: left;
-		height: 60px;
-	}
-	a.top-menu {
-		_float: left;
-		display: block;
-		color: #5e5e5e;
-		height: 30px;
-		line-height: 30px;
-		border-left: 1px solid gray;
-		margin: 15px 0;
-		font-size: 16px;
-		font-weight: bold;
-		padding: 0 30px;
-		text-decoration: none;
-	}
-	a.top-menu:hover {
-		color: #000;
-	}
-	#nav .megamenu {
-		margin: -999999px 0 0 -999999px;
-		padding: 20px 0 10px 20px;
-		border: 1px solid #dcdcdc;
-		border-top: 2px solid #3a98b0;
-		position: absolute;
-		background: #fff;
-		-moz-box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
-		-webkit-box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
-		-o-box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
-		box-shadow: rgba(0,0,0,0.3) 0 0 16px 0;
-	}
-	div.nav-child {
-		float: left;
-		margin: 0 30px 0 0;
-	}
-	h4.menu-heading a{
-		color: #000;
-		margin: 0 0 4px;
-		text-decoration: none;
-	}
-	ul.nav-list {
-		padding: 0 0 5px;
-		margin: 0 0 11px;
-		border-bottom: 1px solid #e5e5e5;
-	}
-	ul.nav-list.last {
-		border-bottom: none;
-	}
-	ul.nav-list li a{
-		color: #3a98b0;
-		font-size: 12px;
-		text-decoration: none;
-	}
-	ul.nav-list li a:hover{
-		text-decoration: underline;
-	}
-	#panel {
-		height: 55px;
-		background: #f3f3f3;
-	}
-	#panel .attachment {
-		float: right;
-	}
-	#panel .signup,#panel form {
-		display: inline-block;
-	}
-	#main {
-		position: absolute;
-		top: 115px;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: auto;
-		_height: expression(document.body.offsetHeight - 115 + 'px');
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="style/css/pss.css">
 </head>
-<body class="PageMain">
+<body>
 	<div id="header">
-		<div id="header_inner">
-			<ul class="hp-nav" id="nav">
+		<div id="header-inner">
+			<ul class="nav" id="nav">
 				<li class="top-nav">
 					<a href="/content/showcase.html" title="Showcase" class="top-menu">销售</a>
 				</li>
@@ -129,7 +19,7 @@
 							<h4 class="menu-heading">调拨</h4>
 							<ul class="nav-list">
 								<li>
-									<a href="receipt/all/list">仓库到仓库</a>
+									<a target="mainFrame" href="receipt/all/list">仓库到仓库</a>
 								</li>
 								<li>
 									<a href="receipt/all/list">仓库到门店</a>
@@ -281,35 +171,33 @@
 			</ul>
 		</div>
 		<div id="panel">
-			<div class="attachment">
-				<div class="signup">
-					<a class="account-text ctx-first" href="/index.php?option=com_user&amp;view=login&amp;login">Sign In</a>
-					<a class="account-text" href="/index.php?option=com_user&amp;view=login&amp;signup">Sign Up</a>
-				</div>
-				<form class="hp-search" action="http://www.palm.com/us/search/developer.html" method="get">
-					<fieldset>
-						<legend>
-							<span>Search Form</span>
-						</legend>
-						<button class="sifr ext-sifr-search" type="submit">
-							<span>Search</span>
-						</button>
-						<input class="search-txt" name="search" placeholder="Just Search">
-						<input type="hidden" value="all" id="basic-search-collection">
-					</fieldset>
-				</form>
-			</div>
+			
 		</div>
 	</div>
 	<div id="main">
-
+		<iframe name="mainFrame" id="mainFrame" src=""></iframe>
 	</div>
 	<script type="text/javascript" src="script/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="script/js/comm.js"></script>
 	<script type="text/javascript" src="script/js/ui.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			$('#header_inner').find('.hp-nav').aiMegamenu();
+		$(document).ready(function(){
+			$('a.top-menu').on('mouseenter', function(){
+				if(!$(this).hasClass('active')){
+					$('a.top-menu').removeClass('active');
+					$('div.megamenu').css('top', '-9999px').attr('active', false);
+					$(this).addClass('active').next('div.megamenu').css('top', '46px').attr('active', true);
+				}
+			}).on('mouseleave', function(){
+				if(!$(this).next('div.megamenu').attr('active')){
+					$(this).removeClass('active');
+				}
+			}).next('div.megamenu').on('mouseleave', function(){
+				$(this).removeClass('active').css('top', '-9999px').attr('active', false);
+				if($(this).prev('a.top-menu').hasClass('active')){
+					$(this).prev('a.top-menu').removeClass('active');
+				}
+			});
 		});
 	</script>
 </body>
