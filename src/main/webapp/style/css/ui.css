@@ -262,7 +262,7 @@
 }
 
 .table-source .odd {
-	background-color: #f3f3f3;
+	background: #f3f3f3;
 }
 
 .table-source dl dd {
@@ -280,7 +280,7 @@
 }
 
 .table-source-line:HOVER {
-	background-color: #fff;
+	background: #fff;
 }
 
 .table-source-line dd {
