@@ -1,6 +1,7 @@
 package com.vsoft.pss.user.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,8 @@ public class UserController {
 			map.put("tip", "验证码不能为空！");
 			return "login";
 		}
-		String sessionId = request.getSession().getId();
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
 		SessionUser sessionUser = SessionUtil.getUserBySessionId(sessionId);
 		if (sessionUser == null) {
 			sessionUser = userService.login(username, password);
@@ -46,7 +48,7 @@ public class UserController {
 			result = SessionUtil.putSession(sessionId, sessionUser);
 			if (result) {
 				String ip = getIpAddr(request);
-				
+				session.setAttribute("sessionUser", sessionUser);
 				return "redirect:/index";
 			}
 		}
