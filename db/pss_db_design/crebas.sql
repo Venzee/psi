@@ -1,65 +1,65 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2013/7/19 10:56:25                           */
+/* Created on:     2013/7/25 10:55:08                           */
 /*==============================================================*/
 
 
-drop table if exists pss_company;
+drop table if exists psi_company;
 
-drop table if exists pss_department;
+drop table if exists psi_department;
 
-drop table if exists pss_emp_sales;
+drop table if exists psi_emp_sales;
 
-drop table if exists pss_employee;
+drop table if exists psi_employee;
 
-drop table if exists pss_file;
+drop table if exists psi_file;
 
-drop table if exists pss_goods;
+drop table if exists psi_goods;
 
-drop table if exists pss_goods_brand;
+drop table if exists psi_goods_brand;
 
-drop table if exists pss_goods_defprop;
+drop table if exists psi_goods_defprop;
 
-drop table if exists pss_goods_price;
+drop table if exists psi_goods_price;
 
-drop table if exists pss_goods_prop;
+drop table if exists psi_goods_prop;
 
-drop table if exists pss_goods_propval;
+drop table if exists psi_goods_propval;
 
-drop table if exists pss_goods_sku;
+drop table if exists psi_goods_sku;
 
-drop table if exists pss_goods_sort;
+drop table if exists psi_goods_sort;
 
-drop table if exists pss_industry;
+drop table if exists psi_industry;
 
-drop table if exists pss_inventory;
+drop table if exists psi_inventory;
 
-drop table if exists pss_menu;
+drop table if exists psi_menu;
 
-drop table if exists pss_power;
+drop table if exists psi_power;
 
-drop table if exists pss_receipt;
+drop table if exists psi_receipt;
 
-drop table if exists pss_receipt_config;
+drop table if exists psi_receipt_config;
 
-drop table if exists pss_receipt_record;
+drop table if exists psi_receipt_record;
 
-drop table if exists pss_receipt_type;
+drop table if exists psi_receipt_type;
 
-drop table if exists pss_relation;
+drop table if exists psi_relation;
 
-drop table if exists pss_relation_defset;
+drop table if exists psi_relation_defset;
 
-drop table if exists pss_user;
+drop table if exists psi_user;
 
-drop table if exists pss_user_group;
+drop table if exists psi_user_group;
 
-drop table if exists pss_warehouse;
+drop table if exists psi_warehouse;
 
 /*==============================================================*/
-/* Table: pss_company                                           */
+/* Table: psi_company                                           */
 /*==============================================================*/
-create table pss_company
+create table psi_company
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
@@ -77,9 +77,9 @@ create table pss_company
 );
 
 /*==============================================================*/
-/* Table: pss_department                                        */
+/* Table: psi_department                                        */
 /*==============================================================*/
-create table pss_department
+create table psi_department
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
@@ -89,9 +89,9 @@ create table pss_department
 );
 
 /*==============================================================*/
-/* Table: pss_emp_sales                                         */
+/* Table: psi_emp_sales                                         */
 /*==============================================================*/
-create table pss_emp_sales
+create table psi_emp_sales
 (
    id                   int not null auto_increment,
    receiptId            int not null,
@@ -101,9 +101,9 @@ create table pss_emp_sales
 );
 
 /*==============================================================*/
-/* Table: pss_employee                                          */
+/* Table: psi_employee                                          */
 /*==============================================================*/
-create table pss_employee
+create table psi_employee
 (
    id                   int not null auto_increment,
    age                  int default 0,
@@ -119,9 +119,9 @@ create table pss_employee
 );
 
 /*==============================================================*/
-/* Table: pss_file                                              */
+/* Table: psi_file                                              */
 /*==============================================================*/
-create table pss_file
+create table psi_file
 (
    id                   int not null auto_increment,
    md5                  varchar(50) not null,
@@ -129,9 +129,9 @@ create table pss_file
 );
 
 /*==============================================================*/
-/* Table: pss_goods                                             */
+/* Table: psi_goods                                             */
 /*==============================================================*/
-create table pss_goods
+create table psi_goods
 (
    id                   int not null auto_increment,
    shortName            varchar(30) default "",
@@ -145,9 +145,9 @@ create table pss_goods
 );
 
 /*==============================================================*/
-/* Table: pss_goods_brand                                       */
+/* Table: psi_goods_brand                                       */
 /*==============================================================*/
-create table pss_goods_brand
+create table psi_goods_brand
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
@@ -162,9 +162,9 @@ create table pss_goods_brand
 );
 
 /*==============================================================*/
-/* Table: pss_goods_defprop                                     */
+/* Table: psi_goods_defprop                                     */
 /*==============================================================*/
-create table pss_goods_defprop
+create table psi_goods_defprop
 (
    id                   int not null auto_increment,
    goodsId              int not null,
@@ -174,9 +174,9 @@ create table pss_goods_defprop
 );
 
 /*==============================================================*/
-/* Table: pss_goods_price                                       */
+/* Table: psi_goods_price                                       */
 /*==============================================================*/
-create table pss_goods_price
+create table psi_goods_price
 (
    id                   int not null auto_increment,
    skuId                int not null,
@@ -186,9 +186,9 @@ create table pss_goods_price
 );
 
 /*==============================================================*/
-/* Table: pss_goods_prop                                        */
+/* Table: psi_goods_prop                                        */
 /*==============================================================*/
-create table pss_goods_prop
+create table psi_goods_prop
 (
    id                   int not null,
    name                 varbinary(20) not null,
@@ -196,9 +196,9 @@ create table pss_goods_prop
 );
 
 /*==============================================================*/
-/* Table: pss_goods_propval                                     */
+/* Table: psi_goods_propval                                     */
 /*==============================================================*/
-create table pss_goods_propval
+create table psi_goods_propval
 (
    id                   int not null auto_increment,
    value                varchar(300) not null,
@@ -208,9 +208,9 @@ create table pss_goods_propval
 );
 
 /*==============================================================*/
-/* Table: pss_goods_sku                                         */
+/* Table: psi_goods_sku                                         */
 /*==============================================================*/
-create table pss_goods_sku
+create table psi_goods_sku
 (
    id                   int not null auto_increment,
    goodsId              int not null,
@@ -228,9 +228,9 @@ create table pss_goods_sku
 );
 
 /*==============================================================*/
-/* Table: pss_goods_sort                                        */
+/* Table: psi_goods_sort                                        */
 /*==============================================================*/
-create table pss_goods_sort
+create table psi_goods_sort
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
@@ -239,9 +239,9 @@ create table pss_goods_sort
 );
 
 /*==============================================================*/
-/* Table: pss_industry                                          */
+/* Table: psi_industry                                          */
 /*==============================================================*/
-create table pss_industry
+create table psi_industry
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
@@ -251,9 +251,9 @@ create table pss_industry
 );
 
 /*==============================================================*/
-/* Table: pss_inventory                                         */
+/* Table: psi_inventory                                         */
 /*==============================================================*/
-create table pss_inventory
+create table psi_inventory
 (
    id                   int not null auto_increment,
    skuId                int not null,
@@ -266,9 +266,9 @@ create table pss_inventory
 );
 
 /*==============================================================*/
-/* Table: pss_menu                                              */
+/* Table: psi_menu                                              */
 /*==============================================================*/
-create table pss_menu
+create table psi_menu
 (
    id                   int not null auto_increment,
    name                 varchar(30) not null,
@@ -279,9 +279,9 @@ create table pss_menu
 );
 
 /*==============================================================*/
-/* Table: pss_power                                             */
+/* Table: psi_power                                             */
 /*==============================================================*/
-create table pss_power
+create table psi_power
 (
    id                   int not null auto_increment,
    name                 varchar(30) not null,
@@ -291,9 +291,9 @@ create table pss_power
 );
 
 /*==============================================================*/
-/* Table: pss_receipt                                           */
+/* Table: psi_receipt                                           */
 /*==============================================================*/
-create table pss_receipt
+create table psi_receipt
 (
    id                   int not null auto_increment,
    serialId             int not null,
@@ -319,9 +319,9 @@ create table pss_receipt
 );
 
 /*==============================================================*/
-/* Table: pss_receipt_config                                    */
+/* Table: psi_receipt_config                                    */
 /*==============================================================*/
-create table pss_receipt_config
+create table psi_receipt_config
 (
    id                   int not null auto_increment,
    needCheck            tinyint not null default 1,
@@ -334,9 +334,9 @@ create table pss_receipt_config
 );
 
 /*==============================================================*/
-/* Table: pss_receipt_record                                    */
+/* Table: psi_receipt_record                                    */
 /*==============================================================*/
-create table pss_receipt_record
+create table psi_receipt_record
 (
    id                   int not null auto_increment,
    num                  double not null,
@@ -352,9 +352,9 @@ create table pss_receipt_record
 );
 
 /*==============================================================*/
-/* Table: pss_receipt_type                                      */
+/* Table: psi_receipt_type                                      */
 /*==============================================================*/
-create table pss_receipt_type
+create table psi_receipt_type
 (
    id                   int not null auto_increment,
    name                 varchar(30) not null,
@@ -362,9 +362,9 @@ create table pss_receipt_type
 );
 
 /*==============================================================*/
-/* Table: pss_relation                                          */
+/* Table: psi_relation                                          */
 /*==============================================================*/
-create table pss_relation
+create table psi_relation
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
@@ -379,9 +379,9 @@ create table pss_relation
 );
 
 /*==============================================================*/
-/* Table: pss_relation_defset                                   */
+/* Table: psi_relation_defset                                   */
 /*==============================================================*/
-create table pss_relation_defset
+create table psi_relation_defset
 (
    id                   int not null auto_increment,
    price                double not null default 0,
@@ -393,9 +393,9 @@ create table pss_relation_defset
 );
 
 /*==============================================================*/
-/* Table: pss_user                                              */
+/* Table: psi_user                                              */
 /*==============================================================*/
-create table pss_user
+create table psi_user
 (
    id                   int not null auto_increment,
    username             varchar(20) not null,
@@ -410,9 +410,9 @@ create table pss_user
 );
 
 /*==============================================================*/
-/* Table: pss_user_group                                        */
+/* Table: psi_user_group                                        */
 /*==============================================================*/
-create table pss_user_group
+create table psi_user_group
 (
    id                   int not null auto_increment,
    name                 varchar(30) not null,
@@ -421,9 +421,9 @@ create table pss_user_group
 );
 
 /*==============================================================*/
-/* Table: pss_warehouse                                         */
+/* Table: psi_warehouse                                         */
 /*==============================================================*/
-create table pss_warehouse
+create table psi_warehouse
 (
    id                   int not null auto_increment,
    name                 varchar(50) not null,
