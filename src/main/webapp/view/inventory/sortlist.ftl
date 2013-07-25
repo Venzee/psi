@@ -3,138 +3,125 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>商品类目管理</title>
 	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
-	<link rel="stylesheet" type="text/css" href="../../style/zTreeStyle/zTreeStyle.css">
-	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="../../script/js/jquery.ztree.all-3.5.min.js"></script>
+	<script type="text/javascript" src="../../script/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/js/jquery.form.js"></script>
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">
-		$(function(){
-			var setting = {
-				async: {
-					enable: true,
-					url: 'child',
-					autoParam:['id=parentId']
-				},
-				data: {
-					simpleData: {
-						enable: true,
-						pIdKey: 'parentId',
-						rootPId: 0
-					}
-				},
-				view: {
-					addHoverDom: addHoverDom,
-					removeHoverDom: removeHoverDom,
-					selectedMulti: false
-				},
-				edit: {
-					enable: true,
-					showRemoveBtn: true,
-					removeTitle: "删除类目",
-					showRenameBtn: true,
-					renameTitle: "编辑类目名称"
-				},
-				check: {
-					enable: true
-				},
-				callback: {
-					beforeExpand: beforeExpand,
-					onAsyncSuccess: onAsyncSuccess,
-					onAsyncError: onAsyncError
-				}
-			};
-			
-			function addHoverDom(treeId, treeNode) {
-				var sObj = $("#" + treeNode.tId + "_span");
-				if (treeNode.editNameFlag || $("#addBtn_" + treeNode.id).length > 0) return;
-				var addStr = '<span class="button add" id="addBtn_' + treeNode.id + '" title="新增类目" onfocus="this.blur();"></span>';
-				sObj.after(addStr);
-				var btn = $("#addBtn_" + treeNode.id);
-				if (btn) btn.bind("click", function(){
-					var zTree = $.fn.zTree.getZTreeObj("sortTree");
-					$.dgform({
-						url: 'addre',
-						width: 300,
-						title: '新增类目',
-						label: ['类目名称'],
-						source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
-							'<input type="hidden" class="form-value" name="parentId" value="' + treeNode.id + '" />'],
-						sucSub: function(data){
-							zTree.addNodes(treeNode, {id:data.id, parentId:treeNode.id, name:data.name });
-						}
-					});
-					return false;
-				});
-			};
-			
-			function removeHoverDom(treeId, treeNode) {
-				$("#addBtn_" + treeNode.id).unbind().remove();
-			};
-			
-			function beforeExpand(treeId, treeNode) {
-				if (!treeNode.isAjaxing) {
-					startTime = new Date();
-					treeNode.times = 1;
-					ajaxGetNodes(treeNode, "refresh");
-					return true;
-				} else {
-					alert("zTree 正在下载数据中，请稍后展开节点。。。");
-					return false;
-				}
-			}
-			function onAsyncSuccess(event, treeId, treeNode, msg) {
-				
-			}
-			
-			function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
-				var zTree = $.fn.zTree.getZTreeObj("sortTree");
-				alert("异步获取数据出现异常。");
-				treeNode.icon = "";
-				zTree.updateNode(treeNode);
-			}
-			
-			function ajaxGetNodes(treeNode, reloadType) {
-				var zTree = $.fn.zTree.getZTreeObj("sortTree");
-				if (reloadType == "refresh") {
-					treeNode.icon = "../../../css/zTreeStyle/img/loading.gif";
-					zTree.updateNode(treeNode);
-				}
-				zTree.reAsyncChildNodes(treeNode, reloadType, true);
-			}
-			
-			var zNodes = ${sortList };
-
-			$.fn.zTree.init($("#sortTree"), setting, zNodes);
+		$(document).ready(function(){
 			
 			$('div.btn-add').on('click', function(){
+				var hpId = $('#hpId').val();
+				if(hpId === ''){
+					hpId = 0;
+				}
 				$.dgform({
 					url: 'add',
 					width: 300,
 					title: '新增类目',
 					label: ['类目名称'],
 					source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
-						'<input type="hidden" class="form-value" name="parentId" />']
+						'<input type="hidden" class="form-value" name="parentId" value="' + hpId + '" />']
+				});
+			});
+
+			$('div.btn-delete').on('click', function(){delSource('del');});
+			$('div.btn-edit').on('click', function(){
+				editSource(function(id){
+					alert(id)
 				});
 			});
 		});
 	</script>
 	<body>
-		<div class="ui-table ui-form" id="sortForm">
+		<input type="hidden" value="${sort.id }" id="hpId" />
+		<div class="ui-table tb-70p" id="sortTable">
 			<div class="ui-head">
 				<div class="ui-title">
-					<div class="ui-title-name ui-title-name ui-table-title-name">商品类目列表</div>
+					<div class="ui-title-name ui-table-title-name">商品类目</div>
+					<div class="ui-operation">
+						<div class="ui-btn btn-delete">删除</div>
+						<div class="ui-btn btn-edit">编辑</div>
+						<div class="ui-btn btn-add">新增</div>
+						<#if goodsFlag == '' || goodsFlag == 0>
+							<div class="ui-btn">
+								<#if sort.parentId == -1>
+									<a href="list?parentId=0&brandFlag=${brandFlag }&goodsFlag=1">显示商品</a>
+								<#else>
+									<a href="list?parentId=${sort.id }&brandFlag=${brandFlag }&goodsFlag=1">显示商品</a>
+								</#if>
+							</div>
+						<#else>
+							<div class="ui-btn">
+								<#if sort.parentId == -1>
+									<a href="list?parentId=0&brandFlag=${brandFlag }&goodsFlag=0">不显示商品</a>
+								<#else>
+									<a href="list?parentId=${sort.id }&brandFlag=${brandFlag }&goodsFlag=0">不显示商品</a>
+								</#if>
+							</div>
+						</#if>
+						<#if brandFlag == '' || brandFlag == 0>
+							<div class="ui-btn">
+								<#if sort.parentId == -1>
+									<a href="list?parentId=0&brandFlag=1&goodsFlag=${goodsFlag }">显示品牌</a>
+								<#else>
+									<a href="list?parentId=${sort.id }&brandFlag=1&goodsFlag=${goodsFlag }">显示品牌</a>
+								</#if>
+							</div>
+						<#else>
+							<div class="ui-btn">
+								<#if sort.parentId == -1>
+									<a href="list?parentId=0&brandFlag=0&goodsFlag=${goodsFlag }">不显示品牌</a>
+								<#else>
+									<a href="list?parentId=${sort.id }&brandFlag=0&goodsFlag=${goodsFlag }">不显示品牌</a>
+								</#if>
+							</div>
+						</#if>
+						<#if sort.parentId != -1>
+							<div class="ui-btn">
+								<a href="list?parentId=${sort.parentId }">返回</a>
+							</div>
+						</#if>
+						<#if sort.parentId != -1 && sort.parentId != 0>
+							<div class="ui-btn">
+								<a href="list?parentId=0">返回顶部</a>
+							</div>
+						</#if>
+					</div>
+				</div>
+				<div class="table-source-head">
+					<dl>
+						<dd class="text-5p">选项</dd>
+						<dd class="text-5p">编号</dd>
+						<dd class="text-55p">名称</dd>
+					</dl>
 				</div>
 			</div>
-			<div class="form-source">
-				<ul id="sortTree" class="ztree"></ul>
+			<div class="table-source">
+				<#list sortList as sort>
+					<#if sort_index % 2 = 0>
+						<dl class="table-source-line odd">
+							<dd class="text-5p"><span id="${sort.id }" class="checkbox"></span></dd>
+							<dd class="text-5p">${sort_index + 1 }</dd>
+							<dd class="text-55p"><a href="list?parentId=${sort.id }">${sort.name }</a></dd>
+						</dl>
+					</#if>
+					<#if sort_index % 2 = 1>
+						<dl class="table-source-line">
+							<dd class="text-5p"><span id="${sort.id }" class="checkbox"></span></dd>
+							<dd class="text-5p">${sort_index + 1 }</dd>
+							<dd class="text-55p"><a href="list?parentId=${sort.id }">${sort.name }</a></dd>
+						</dl>
+					</#if>
+				</#list>
 			</div>
 			<div class="ui-foot">
-				<div class="ui-operation">
-					<div class="ui-btn btn-delete">删除</div>
-					<div class="ui-btn btn-edit">编辑</div>
-					<div class="ui-btn btn-add">新增</div>
-				</div>
+				<#if (sortList?size > 1) >
+					<div class="btn">
+						<div class="ui-btn btn-check-all">全选</div>
+						<div class="ui-btn btn-check-invert">反选</div>
+					</div>
+				</#if>
 			</div>
 		</div>
 	</body>

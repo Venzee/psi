@@ -214,13 +214,21 @@
 }
 
 .ui-btn {
-	width: 50px;
+	padding: 0 5px;
 	height: 24px;
 	line-height: 24px;
 	font-weight: bold;
 	margin: 3px 5px;
 	text-align: center;
 	cursor: pointer;
+}
+
+.ui-btn a {
+	color: #eee;
+}
+
+.ui-btn a:hover {
+	color: #808080;
 }
 
 .btn-add:hover,.btn-sub:hover,.btn-view:hover {
@@ -287,6 +295,10 @@
 	height: 30px;
 	line-height: 30px;
 	text-shadow: 0px 1px 1px #555;
+}
+
+.table-source-line dd a:hover {
+	text-decoration: underline;
 }
 
 .checkbox {
@@ -499,4 +511,19 @@
 
 .dialog-box {
 	display: none;
+}
+
+.tb-70p {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.tb-80p {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.tb-90p {
+	width: 90%;
+	margin: 0 auto;
 }

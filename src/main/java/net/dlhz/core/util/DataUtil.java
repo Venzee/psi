@@ -122,60 +122,62 @@ public class DataUtil {
 	public static Object parseMapToObject(Map<String, Object> data, Class<?> pc) {
 		Object obj = null;
 		Class<?> c = null;
-		try {
-			c = Class.forName(pc.getName());
-		} catch (ClassNotFoundException e) {
-			LOG.error("未找到类" + pc.getName(), e);
-		}
-		try {
-			obj = c.newInstance();
-		} catch (InstantiationException e) {
-			LOG.error("实例化" + pc.getName() + "时异常", e);
-		} catch (IllegalAccessException e) {
-			LOG.error("非法访问异常", e);
-		}
-		Field[] fields = c.getDeclaredFields();
-		for (Field field : fields) {
-			int mod = field.getModifiers();
-			if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
-				if (!field.getType().isPrimitive()) {
-					boolean isBean = true;
-					Class<?> type = field.getType();
-					String typeSimpleName = type.getSimpleName();
-					for (String str : BASE_CLASS_TYPE) {
-						if (str.equals(typeSimpleName)) {
-							isBean = false;
-							break;
+		if(null != data){
+			try {
+				c = Class.forName(pc.getName());
+			} catch (ClassNotFoundException e) {
+				LOG.error("未找到类" + pc.getName(), e);
+			}
+			try {
+				obj = c.newInstance();
+			} catch (InstantiationException e) {
+				LOG.error("实例化" + pc.getName() + "时异常", e);
+			} catch (IllegalAccessException e) {
+				LOG.error("非法访问异常", e);
+			}
+			Field[] fields = c.getDeclaredFields();
+			for (Field field : fields) {
+				int mod = field.getModifiers();
+				if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
+					if (!field.getType().isPrimitive()) {
+						boolean isBean = true;
+						Class<?> type = field.getType();
+						String typeSimpleName = type.getSimpleName();
+						for (String str : BASE_CLASS_TYPE) {
+							if (str.equals(typeSimpleName)) {
+								isBean = false;
+								break;
+							}
+						}
+						if (isBean) {
+							Class<?> oc = null;
+							try {
+								oc = Class.forName(type.getName());
+							} catch (ClassNotFoundException e) {
+								LOG.error("未找到类" + type.getName(), e);
+							}
+							Field[] fs = oc.getDeclaredFields();
+							Object o = null;
+							try {
+								o = oc.newInstance();
+							} catch (InstantiationException e) {
+								LOG.error("非法访问异常", e);
+							} catch (IllegalAccessException e) {
+								LOG.error("实例化" + oc.getName() + "时异常", e);
+							}
+							for (Field f : fs) {
+								setter(f, o, data);
+							}
+							char[] fc = field.getName().toCharArray();
+							StringBuffer lowerCaseFiledName = new StringBuffer();
+							for (char ch : fc) {
+								lowerCaseFiledName.append(Character.toLowerCase(ch));
+							}
+							data.put(lowerCaseFiledName.toString(), o);
 						}
 					}
-					if (isBean) {
-						Class<?> oc = null;
-						try {
-							oc = Class.forName(type.getName());
-						} catch (ClassNotFoundException e) {
-							LOG.error("未找到类" + type.getName(), e);
-						}
-						Field[] fs = oc.getDeclaredFields();
-						Object o = null;
-						try {
-							o = oc.newInstance();
-						} catch (InstantiationException e) {
-							LOG.error("非法访问异常", e);
-						} catch (IllegalAccessException e) {
-							LOG.error("实例化" + oc.getName() + "时异常", e);
-						}
-						for (Field f : fs) {
-							setter(f, o, data);
-						}
-						char[] fc = field.getName().toCharArray();
-						StringBuffer lowerCaseFiledName = new StringBuffer();
-						for (char ch : fc) {
-							lowerCaseFiledName.append(Character.toLowerCase(ch));
-						}
-						data.put(lowerCaseFiledName.toString(), o);
-					}
+					setter(field, obj, data);
 				}
-				setter(field, obj, data);
 			}
 		}
 		return obj;

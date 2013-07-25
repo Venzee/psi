@@ -3,7 +3,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>品牌管理</title>
 	<link rel="stylesheet" type="text/css" href="../../style/css/pss.css">
-	<script type="text/javascript" src="../../script/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="../../script/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/js/jquery.form.js"></script>
 	<script type="text/javascript" src="../../script/js/comm.js"></script>
 	<script type="text/javascript" src="../../script/js/ui.js"></script>
 	<script type="text/javascript">

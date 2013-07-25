@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2013/7/25 10:55:08                           */
+/* Created on:     2013/7/25 17:49:46                           */
 /*==============================================================*/
 
 
@@ -235,6 +235,7 @@ create table psi_goods_sort
    id                   int not null auto_increment,
    name                 varchar(50) not null,
    parentId             int not null default 0,
+   companyId            int not null default 0,
    primary key (id)
 );
 
