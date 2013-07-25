@@ -16,7 +16,7 @@ public class BrandDao extends BaseDao {
 
 	public boolean addBrand(Map<String, Object> data) {
 		try {
-			this.insertToTable("pss_brand", data);
+			this.insertToTable("pss_goods_brand", data);
 			LOG.info("新增品牌成功");
 			return true;
 		} catch (SQLException e) {
@@ -38,7 +38,7 @@ public class BrandDao extends BaseDao {
 
 	public List<Map<String, Object>> queryAllBrand(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select b.id,b.name,b.englishName,b.logo,b.remark,b.status,b.createDate,i.name as sortname from pss_brand b left join pss_sort i on i.id = b.sortId order by b.id desc limit ? , ?";
+		String sql = "select b.id,b.name,b.englishName,b.logo,b.remark,b.status,b.createDate,i.name as sortname from pss_goods_brand b left join pss_goods_sort i on i.id = b.sortId order by b.id desc limit ? , ?";
 		try {
 			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
@@ -49,7 +49,7 @@ public class BrandDao extends BaseDao {
 
 	public List<Map<String, Object>> queryBrandByIndustry(List<Object> params) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select b.id,b.name from pss_brand b where b.industryId = ? or b.createCompanyId = ? order by b.id desc";
+		String sql = "select b.id,b.name from pss_goods_brand b where b.industryId = ? or b.createCompanyId = ? order by b.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql, params);
 		} catch (SQLException e) {
@@ -60,7 +60,7 @@ public class BrandDao extends BaseDao {
 
 	public Map<String, Object> queryOneBrand(List<Object> params) {
 		Map<String, Object> data = null;
-		String sql = "select * from pss_brand s where s.id = ?";
+		String sql = "select * from pss_goods_brand s where s.id = ?";
 		try {
 			data = this.executeQuerySingle(sql, params);
 		} catch (SQLException e) {
@@ -77,7 +77,7 @@ public class BrandDao extends BaseDao {
 	 */
 	public List<Map<String, Object>> queryBrandBySort(Object sortId) {
 		List<Map<String, Object>> datas = null;
-		String sql = "select b.id,b.name,b.englishName,b.code,b.sortId from pss_brand b where b.sortId = ? and b.status = 0 order by b.id desc";
+		String sql = "select b.id,b.name,b.englishName,b.code,b.sortId from pss_goods_brand b where b.sortId = ? and b.status = 0 order by b.id desc";
 		try {
 			datas = this.executeQueryMultiple(sql, Arrays.asList(sortId));
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class BrandDao extends BaseDao {
 	}
 	
 	public boolean deleteBrand(String idStr) {
-		StringBuffer sql = new StringBuffer("delete from pss_brand where id in (");
+		StringBuffer sql = new StringBuffer("delete from pss_goods_brand where id in (");
 		sql.append(idStr).append(")");
 		try {
 			this.execute(sql.toString());
@@ -107,7 +107,7 @@ public class BrandDao extends BaseDao {
 	public int countBrand(Map<String, Object> data) {
 		int count = 0;
 		try {
-			count = this.countTable("pss_brand", "id", data);
+			count = this.countTable("pss_goods_brand", "id", data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
