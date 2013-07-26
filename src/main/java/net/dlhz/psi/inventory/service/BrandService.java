@@ -9,7 +9,6 @@ import net.dlhz.core.base.entity.Page;
 import net.dlhz.core.util.DataUtil;
 import net.dlhz.psi.inventory.dao.BrandDao;
 import net.dlhz.psi.inventory.entity.Brand;
-import net.dlhz.psi.inventory.entity.form.BrandFrom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,15 +25,15 @@ public class BrandService {
 		return brandDao.addBrand(data);
 	}
 
-	public List<BrandFrom> queryAllBrand(Page page) {
-		List<BrandFrom> list = new ArrayList<BrandFrom>();
+	public List<Brand> queryBrand(Page page) {
+		List<Brand> list = new ArrayList<Brand>();
 		List<Object> params = new ArrayList<Object>();
 		params.add(page.getStartRecord());
 		params.add(page.getPageRecord());
-		List<Map<String, Object>> datas = brandDao.queryAllBrand(params);
+		List<Map<String, Object>> datas = brandDao.queryBrand(params);
 		for (Map<String, Object> data : datas) {
-			BrandFrom brandFrom = (BrandFrom) DataUtil.parseMapToObject(data, BrandFrom.class);
-			list.add(brandFrom);
+			Brand brand = (Brand) DataUtil.parseMapToObject(data, Brand.class);
+			list.add(brand);
 		}
 		return list;
 	}
@@ -44,7 +43,7 @@ public class BrandService {
 		List<Object> params = new ArrayList<Object>();
 		params.add(form.getCompanyId());
 		params.add(form.getSortId());
-		List<Map<String, Object>> datas = brandDao.queryAllBrand(params);
+		List<Map<String, Object>> datas = brandDao.queryBrand(params);
 		for (Map<String, Object> data : datas) {
 			Brand brand = (Brand) DataUtil.parseMapToObject(data, Brand.class);
 			list.add(brand);

@@ -12,8 +12,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-
 @Controller
 @RequestMapping("/inventory/sort")
 public class SortController {
@@ -27,18 +25,6 @@ public class SortController {
 		return String.valueOf(sortService.addSort(sort));
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/addre", produces = "application/json;charset=utf-8")
-	public String addSortReturn(Sort sort) {
-		return JSON.toJSONString(sortService.addSortReturn(sort));
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/child", produces = "application/json;charset=utf-8")
-	public String querySort(String parentId) {
-		return JSON.toJSONString(sortService.querySort(parentId));
-	}
-
 	/**
 	 * 查看商品类目
 	 * 
@@ -72,7 +58,7 @@ public class SortController {
 				sort.setParentId(0);
 			}
 		}
-		List<Sort> list = sortService.querySort(parentId);
+		List<Sort> list = sortService.querySort(parentId, brandFlag, goodsFlag);
 		map.put("brandFlag", brandFlag);
 		map.put("goodsFlag", goodsFlag);
 		map.put("sort", sort);

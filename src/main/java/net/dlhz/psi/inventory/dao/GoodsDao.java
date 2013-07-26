@@ -35,7 +35,7 @@ public class GoodsDao extends BaseDao {
 		return true;
 	}
 
-	public List<Map<String, Object>> queryAllGoods(List<Object> params) {
+	public List<Map<String, Object>> queryGoods(List<Object> params) {
 		List<Map<String, Object>> datas = null;
 		String sql = "select * from psi_goods s order by s.id desc limit ? , ?";
 		try {

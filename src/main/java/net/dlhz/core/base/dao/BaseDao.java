@@ -11,12 +11,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+
+import net.dlhz.core.base.entity.Page;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -262,6 +265,56 @@ public class BaseDao extends JdbcDaoSupport {
 		return rows;
 	}
 
+	/**
+	 * 条件查询多个结果
+	 * 
+	 * @param sql
+	 * @param condition
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> executeQueryByConditionMultiple(String sql, LinkedHashMap<String, Object> condition) throws SQLException {
+		StringBuffer sqlBuffer = new StringBuffer(sql.trim());
+		List<Object> params = new ArrayList<Object>();
+		this.makeConditionSql(condition, sqlBuffer, sql, params);
+		return this.executeQueryMultiple(sqlBuffer.toString(), params);
+	}
+	
+	/**
+	 * 分页条件查询多个结果
+	 * 
+	 * @param sql
+	 * @param condition
+	 * @param page
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Map<String, Object>> executeQueryByConditionMultiple(String sql, LinkedHashMap<String, Object> condition, Page page) throws SQLException {
+		StringBuffer sqlBuffer = new StringBuffer(sql.trim());
+		List<Object> params = new ArrayList<Object>();
+		this.makeConditionSql(condition, sqlBuffer, sql, params);
+		if(null != page){
+			sqlBuffer.append(" limit ?,?");
+			params.add(page.getStartRecord());
+			params.add(page.getPageRecord());
+		}
+		return this.executeQueryMultiple(sqlBuffer.toString(), params);
+	}
+	
+	private void makeConditionSql(LinkedHashMap<String, Object> condition, StringBuffer sqlBuffer, String sql, List<Object> params) {
+		if(condition.size() > 0){
+			if(sql.indexOf("where") == -1){
+				sqlBuffer.append(" where 1=1");
+			}
+			Iterator<String> keys = condition.keySet().iterator();
+			while (keys.hasNext()) {
+				String key = (String) keys.next();
+				sqlBuffer.append(" and ").append(key).append("=?");
+			}
+			params.addAll(condition.values());
+		}
+	}
+	
 	/**
 	 * 查询多个结果
 	 * 

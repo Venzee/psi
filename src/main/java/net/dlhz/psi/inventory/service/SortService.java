@@ -61,9 +61,11 @@ public class SortService {
 	 * 获取类目
 	 * 
 	 * @param parentId
+	 * @param goodsFlag 
+	 * @param brandFlag 
 	 * @return
 	 */
-	public List<Sort> querySort(String parentId) {
+	public List<Sort> querySort(String parentId, String brandFlag, String goodsFlag) {
 		List<Sort> list = new ArrayList<Sort>();
 		Map<String, Object> params = new LinkedHashMap<String, Object>();
 		params.put("parentId", parentId);

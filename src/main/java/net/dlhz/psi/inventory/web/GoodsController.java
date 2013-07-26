@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.dlhz.core.base.entity.Page;
 import net.dlhz.psi.inventory.entity.Goods;
-import net.dlhz.psi.inventory.entity.form.GoodsForm;
 import net.dlhz.psi.inventory.service.GoodsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.alibaba.fastjson.JSON;
 
 @Controller
@@ -29,15 +29,12 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/list")
-	public String queryAllGoods(ModelMap map, Page page, GoodsForm GoodsForm) {
+	public String queryAllGoods(ModelMap map, Page page) {
 		if (page == null) {
 			page = new Page();
 		}
-		if (GoodsForm == null) {
-			GoodsForm = new GoodsForm();
-		}
 		goodsService.buildPage(page);
-		List<GoodsForm> list = goodsService.queryAllGoods(page);
+		List<Goods> list = goodsService.queryGoods(page);
 		map.put("page", page);
 		map.put("goodsList", list);
 		return "inventory/goodslist";

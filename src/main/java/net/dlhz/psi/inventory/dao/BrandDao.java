@@ -2,6 +2,7 @@ package net.dlhz.psi.inventory.dao;
 
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,12 @@ public class BrandDao extends BaseDao {
 		return true;
 	}
 
-	public List<Map<String, Object>> queryAllBrand(List<Object> params) {
+	public List<Map<String, Object>> queryBrandByCondition(LinkedHashMap<String, Object> condition) {
+		
+		return null;
+	}
+	
+	public List<Map<String, Object>> queryBrand(List<Object> params) {
 		List<Map<String, Object>> datas = null;
 		String sql = "select b.id,b.name,b.englishName,b.logo,b.remark,b.status,b.createDate,i.name as sortname from psi_goods_brand b left join psi_goods_sort i on i.id = b.sortId order by b.id desc limit ? , ?";
 		try {

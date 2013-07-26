@@ -10,7 +10,6 @@ import net.dlhz.core.base.entity.Page;
 import net.dlhz.core.util.DataUtil;
 import net.dlhz.psi.inventory.dao.GoodsDao;
 import net.dlhz.psi.inventory.entity.Goods;
-import net.dlhz.psi.inventory.entity.form.GoodsForm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,16 +26,15 @@ public class GoodsService {
 		return goodsDao.addGoods(data);
 	}
 	
-	
-	public List<GoodsForm> queryAllGoods(Page page) {
-		List<GoodsForm> list = new ArrayList<GoodsForm>();
+	public List<Goods> queryGoods(Page page) {
+		List<Goods> list = new ArrayList<Goods>();
 		List<Object> params = new ArrayList<Object>();
 		params.add(page.getStartRecord());
 		params.add(page.getPageRecord());
-		List<Map<String, Object>> datas = goodsDao.queryAllGoods(params);
+		List<Map<String, Object>> datas = goodsDao.queryGoods(params);
 		for (Map<String, Object> data : datas) {
-			GoodsForm goodsForm = (GoodsForm) DataUtil.parseMapToObject(data, GoodsForm.class);
-			list.add(goodsForm);
+			Goods goods = (Goods) DataUtil.parseMapToObject(data, Goods.class);
+			list.add(goods);
 		}
 		return list;
 	}

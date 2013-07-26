@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.dlhz.core.base.entity.Page;
 import net.dlhz.psi.inventory.entity.Brand;
-import net.dlhz.psi.inventory.entity.form.BrandFrom;
 import net.dlhz.psi.inventory.service.BrandService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class BrandController {
 			page = new Page();
 		}
 		brandService.buildPage(page);
-		List<BrandFrom> list = brandService.queryAllBrand(page);
+		List<Brand> list = brandService.queryBrand(page);
 		map.put("brandList", list);
 		return "inventory/brandlist";
 	}
