@@ -7,7 +7,6 @@ import net.dlhz.core.base.entity.SessionUser;
 
 import org.apache.log4j.Logger;
 
-
 public class SessionUtil {
 
 	private static final Logger LOG = Logger.getLogger(SessionUtil.class);

@@ -3,7 +3,7 @@
 html,body {
 	font: 14px "Microsoft Yahei", sans-serif;
 	background-color: #eee;
-	background-image: url("../image/body_bg.png");
+	/*background-image: url("../image/body_bg.png");*/
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -18,10 +18,6 @@ input,textarea,img,select,button {
 	font-family: "微软雅黑";
 }
 
-input:focus,textarea:focus,img:focus,select:focus {
-	border-color: #1abc9c;
-}
-
 ul {
 	list-style: none;
 }
@@ -29,6 +25,7 @@ ul {
 a {
 	text-decoration: none;
 }
+
 .clear {
 	display: block;
 	width: 0;
@@ -53,12 +50,13 @@ a {
 	display: none;
 	background-color: #808080;
 	position: absolute;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity = 50);
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
 
 #load {
+	padding: 0 20px;
 	position: absolute;
 	z-index: 1002;
 	border: none;
@@ -66,6 +64,86 @@ a {
 	display: none;
 }
 
+#load img {
+	width: 32px;
+	height: 32px;
+	border: none;
+	margin: 3px 10px;
+}
+
+#load p {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/* LOGIN */
+#login-box {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#login-box-holder {
+	width: 600px;
+	margin-top: 30%;
+}
+
+#navi {
+	width: 583px;
+	height: 38px;
+	line-height: 38px;
+	border-left: 1px solid #dcdcdc;
+	border-right: 1px solid #dcdcdc;
+	border-top: 1px solid #dcdcdc;
+	padding-left: 15px;
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	background: #f3f3f3;
+}
+
+.form-holder {
+	width: 598px;
+	border-left: 1px solid #dcdcdc;
+	border-right: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	background: #fff;
+	padding-top: 20px;
+}
+
+#tip {
+	padding: 0 10px;
+	margin: 0 20px;
+	width: 534px;
+	height: 30px;
+	line-height: 30px;
+	border: 2px solid #e60000;
+	color: #e60000;
+	display: none;
+}
+
+.form-holder-foot {
+	width: 100%;
+}
+
+.form-holder-foot a {
+	width: 590px;
+	display: block;
+	padding: 2px 0;
+	margin: 4px;
+	color: #000;
+	background: #f3f3f3;
+}
+
+.form-holder-foot a:hover {
+	color: #f3f3f3;
+	background: #1abc9c;
+}
+
+#btn-sub {
+	letter-spacing: 40px;
+}
+
+/* HOME */
 #header {
 	width: 100%;
 	height: 65px;
@@ -78,13 +156,15 @@ a {
 	border-bottom: 1px solid #808080;
 	background: #34495E;
 	background: -moz-linear-gradient(top, #34495E 0%, #2C3E50 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #34495E), color-stop(100%, #2C3E50));
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#34495E', endColorstr='#2C3E50', GradientType=0);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #34495E), color-stop(100%, #2C3E50) );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#34495E', endColorstr='#2C3E50', GradientType=0 );
 }
 
 #header-inner {
-	float: left;
+	float: right;
+	width: 800px;
 	height: 44px;
+	display: none;
 }
 
 ul.nav {
@@ -153,7 +233,7 @@ ul.nav-list a:hover {
 }
 
 #panel {
-	float: right;
+	width: 320px;
 	height: 44px;
 	padding: 0 20px;
 	color: #eee;
@@ -210,8 +290,8 @@ ul.nav-list a:hover {
 	position: absolute;
 	_position: relative;
 	width: 100%;
-	_width: expression(document.body.offsetWidth -   15 +   'px');
+	_width: expression(document.body.offsetWidth - 15 + 'px');
 	height: 100%;
-	*height: expression(document.body.offsetHeight -   110 +   'px');
+	*height: expression(document.body.offsetHeight - 110 + 'px');
 	z-index: 5;
 }

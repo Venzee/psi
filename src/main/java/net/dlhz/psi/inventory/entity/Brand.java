@@ -12,7 +12,6 @@ public class Brand implements Serializable {
 	private int id;
 	private String name; // 品牌名称
 	private String englishName; // 品牌英文名
-	private String code;// 编码
 	private String logo; // logo
 	private String remark; // 备注&描述
 	private int status; // 状态
@@ -42,14 +41,6 @@ public class Brand implements Serializable {
 
 	public void setEnglishName(String englishName) {
 		this.englishName = englishName;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public String getLogo() {

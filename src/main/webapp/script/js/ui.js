@@ -193,8 +193,7 @@
 	$.showCover = function(obj) {
 		obj = initObj(obj);
 		var cover = '<div id="cover"></div>';
-		obj.append(cover);
-		obj.find('#cover').fadeIn('fast');
+		obj.append(cover).find('#cover').fadeIn('fast');
 	};
 	
 	/* 隐藏覆盖层 */
@@ -210,9 +209,8 @@
 		obj = initObj(obj);
 		var left = (obj.width() - 32) / 2;
 		var top = (obj.height() - 32) / 2;
-		var loading = '<img id="load" style="left: ' + left + 'px; top: ' + top + 'px" src="style/image/loading.gif" />';
-		obj.append(loading);
-		obj.find('#load').fadeIn('fast');
+		var loading = '<div id="load" style="left: ' + left + 'px; top: ' + top + 'px"><img src="style/image/loading.gif" /><p>正在加载...</p></div>';
+		obj.append(loading).find('#load').fadeIn('fast');
 	};
 	
 	/* 隐藏loading层 */
