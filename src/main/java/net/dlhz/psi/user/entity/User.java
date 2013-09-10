@@ -1,26 +1,28 @@
 package net.dlhz.psi.user.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+/**
+ * 用户
+ * 
+ * @author Venz
+ * 
+ */
+public class User implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8188452692896685717L;
+	private static final long serialVersionUID = 1193061932662346669L;
 	private int id;
-	private String username;// 用户名
-	private String password;// 密码
-	private int groupId; // 用户组ID
-	private int employeeId; // 用户对应的员工ID 首次注册管理员为0
-	private int companyId;// 用户归属公司ID
-	private String powers;// 权限串
-	private int status;// 状态
-	private Date createDate;// 创建时间
+	private String username;
+	private String password;
+	private int groupId;
+	private int empId;
+	private int comId;
+	private String powers;
+	private int status;
+	private Date createDate;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -28,7 +30,7 @@ public class User implements Serializable {
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
@@ -36,7 +38,7 @@ public class User implements Serializable {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -44,31 +46,31 @@ public class User implements Serializable {
 	}
 
 	public int getGroupId() {
-		return groupId;
+		return this.groupId;
 	}
 
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
 	}
 
-	public int getEmployeeId() {
-		return employeeId;
+	public int getEmpId() {
+		return this.empId;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setEmpId(int empId) {
+		this.empId = empId;
 	}
 
-	public int getCompanyId() {
-		return companyId;
+	public int getComId() {
+		return this.comId;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setComId(int comId) {
+		this.comId = comId;
 	}
 
 	public String getPowers() {
-		return powers;
+		return this.powers;
 	}
 
 	public void setPowers(String powers) {
@@ -76,7 +78,7 @@ public class User implements Serializable {
 	}
 
 	public int getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(int status) {
@@ -84,7 +86,7 @@ public class User implements Serializable {
 	}
 
 	public Date getCreateDate() {
-		return createDate;
+		return this.createDate;
 	}
 
 	public void setCreateDate(Date createDate) {

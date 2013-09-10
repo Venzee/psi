@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.dlhz.core.base.dao.BaseDao;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -22,13 +24,13 @@ public class UserDao extends BaseDao {
 	}
 
 	public Map<String, Object> queryUserForLogin(List<Object> params) {
-		String sql = "select u.id userId,u.username,u.groupId,u.employeeId,u.companyId,u.powers||g.powers,"
+		String sql = "select u.id userId,u.username,u.groupId,u.empId,u.comId,u.powers||g.powers,"
 				+ "c.name companyName,c.expireDate,c.master,i.sorts,g.name groupName,e.name employeeName,e.birth employeeBirth,e.status,d.name departmentName "
-				+ "from psi_user u " + "left join psi_company c on u.companyId = c.id "
-				+ "left join psi_industry i on c.industryId = i.id "
+				+ "from psi_user u " + "left join psi_base_company c on u.comId = c.id "
+				+ "left join psi_base_industry i on c.indusId = i.id "
 				+ "left join psi_user_group g on u.groupId = g.id "
-				+ "left join psi_employee e on u.employeeId = e.id "
-				+ "left join psi_department d on e.departmentId = d.id "
+				+ "left join psi_base_employee e on u.empId = e.id "
+				+ "left join psi_base_department d on e.deptId = d.id "
 				+ "where u.username = ? and u.password = ? and u.status = 0";
 		try {
 			return executeQuerySingle(sql, params);

@@ -1,44 +1,45 @@
 package net.dlhz.psi.user.entity;
 
-import java.io.Serializable;
+/**
+ * 权限
+ * 
+ * @author Venz
+ * 
+ */
+public class Power implements java.io.Serializable {
 
-public class Power implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 450306277333347257L;
+	private static final long serialVersionUID = 2038623972276629597L;
 	private int id;
-	private String code; // 权限字符串
-	private String name; // 权限名称
-	private String remark;// 备注
+	private String name;
+	private String code;
+	private String remark;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public String getCode() {
+		return this.code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getRemark() {
-		return remark;
+		return this.remark;
 	}
 
 	public void setRemark(String remark) {

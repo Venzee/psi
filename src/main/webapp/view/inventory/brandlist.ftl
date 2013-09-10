@@ -16,27 +16,15 @@
 			$(function(){
 				$('form.pageForm').attr('action', 'inventory/brand/list');
 				$('div.btn-add').on('click', function(){
-					var industrys = '';
-					/*$.ajax({
-						type : 'POST',
-						url : '../../organization/industry/ajaxlist',
-						data : 'randomNum=' + Math.random(),
-						dataType: 'json',
-						success : function(data) {
-							$.each(data, function(i,n){
-								industrys = industrys + '<option value="' + n.id + '">' + n.name + '</option>'
-							});*/
-							$.dgform({
-								url: 'inventory/brand/add',
-								title: '新增品牌',
-								label: ['品牌名称','英文名称',{style: 'high', name:'备注'},{style: 'img-150', name:'Logo'}],
-								source: ['<input type="text" class="w-500 not-null form-value" name="name" />',
-									'<input type="text" class="w-500 form-value" name="englishName" />',
-									'<textarea class="w-500 not-null form-value" name="remark"></textarea>',
-									'<img class="img-150"/>']
-							});
-						/*}
-					});*/
+					$.dgform({
+						url: 'inventory/brand/add',
+						title: '新增品牌',
+						label: ['品牌名称','英文名称',{style: 'high', name:'备注'},{style: 'img-150', name:'Logo'}],
+						source: ['<input type="text" class="w-500 not-null form-value" name="name" />',
+							'<input type="text" class="w-500 form-value" name="englishName" />',
+							'<textarea class="w-500 not-null form-value" name="remark"></textarea>',
+							'<img class="img-150"/>']
+					});
 				});
 				$('div.btn-edit').on('click', function(){
 					editSource('inventory/brand/edit');
@@ -80,18 +68,18 @@
 				<#list brandList as brand>
 					<#if brand_index % 2 = 0>
 						<dl class="table-source-line odd">
-							<dd class="w-50"><span id="${brand.brand.id}" class="checkbox"></span></dd>
+							<dd class="w-50"><span id="${brand.id}" class="checkbox"></span></dd>
 							<dd class="w-200">${brand_index + 1}</dd>
-							<dd class="w-500">${brand.brand.name}</dd>
-							<dd class="w-250">${brand.industryName}</dd>
+							<dd class="w-500">${brand.name}</dd>
+							<dd class="w-250">${brand.sortName}</dd>
 						</dl>
 					</#if>
 					<#if brand_index % 2 = 1>
 						<dl class="table-source-line">
-							<dd class="w-50"><span id="${brand.brand.id}" class="checkbox"></span></dd>
+							<dd class="w-50"><span id="${brand.id}" class="checkbox"></span></dd>
 							<dd class="w-200">${brand_index + 1}</dd>
-							<dd class="w-500">${brand.brand.name}</dd>
-							<dd class="w-250">${brand.industryName}</dd>
+							<dd class="w-500">${brand.name}</dd>
+							<dd class="w-250">${brand.sortName}</dd>
 						</dl>
 					</#if>
 				</#list>

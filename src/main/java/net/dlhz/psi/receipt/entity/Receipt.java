@@ -1,34 +1,39 @@
 package net.dlhz.psi.receipt.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Receipt implements Serializable {
+/**
+ * 单据
+ * 
+ * @author Venz
+ * 
+ */
+public class Receipt implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6362812078414111806L;
+	private static final long serialVersionUID = 7739214322432187299L;
 	private int id;
-	private int serialId;// 流水号
-	private Date createDate;// 创建时间
-	private Date checkDate;// 审核时间
-	private Date postedDate;// 过账时间
-	private Double totalMoney;// 总金额
-	private int customerId;// 客户ID
-	private int supplierId;// 供应商ID
-	private int outWareId; // 出货仓库
-	private int inWareId;// 收货仓库
-	private int handleEmpId;// 经手员工ID
-	private int checkEmpId;// 审核员工ID
-	private int postedEmpId;// 过账员工ID
-	private int status;// 单据状态 1为等待审核，2为已审核等待过账，3为已过帐未收款，4为已收款
-	private int type;// 单据类型 1为进货单，2为销售单，3为销售退货单，4为进货退货单，5为调拨单，0为无效
-	private int companyId;// 单据所属公司ID
-	private String remark;// 备注
+	private int serialId;
+	private Date createDate;
+	private Date checkDate;
+	private Date postedDate;
+	private double totalMoney;
+	private double totleNum;
+	private int custId;
+	private int supId;
+	private int outwhId;
+	private int inwhId;
+	private String handleEmps;
+	private int checkEmpId;
+	private int postedEmpId;
+	private int status;
+	private int type;
+	private double rebate;
+	private double discount;
+	private int comId;
+	private String remark;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -36,7 +41,7 @@ public class Receipt implements Serializable {
 	}
 
 	public int getSerialId() {
-		return serialId;
+		return this.serialId;
 	}
 
 	public void setSerialId(int serialId) {
@@ -44,7 +49,7 @@ public class Receipt implements Serializable {
 	}
 
 	public Date getCreateDate() {
-		return createDate;
+		return this.createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
@@ -52,7 +57,7 @@ public class Receipt implements Serializable {
 	}
 
 	public Date getCheckDate() {
-		return checkDate;
+		return this.checkDate;
 	}
 
 	public void setCheckDate(Date checkDate) {
@@ -60,63 +65,71 @@ public class Receipt implements Serializable {
 	}
 
 	public Date getPostedDate() {
-		return postedDate;
+		return this.postedDate;
 	}
 
 	public void setPostedDate(Date postedDate) {
 		this.postedDate = postedDate;
 	}
 
-	public Double getTotalMoney() {
-		return totalMoney;
+	public double getTotalMoney() {
+		return this.totalMoney;
 	}
 
-	public void setTotalMoney(Double totalMoney) {
+	public void setTotalMoney(double totalMoney) {
 		this.totalMoney = totalMoney;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public double getTotleNum() {
+		return this.totleNum;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setTotleNum(double totleNum) {
+		this.totleNum = totleNum;
 	}
 
-	public int getSupplierId() {
-		return supplierId;
+	public int getCustId() {
+		return this.custId;
 	}
 
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
+	public void setCustId(int custId) {
+		this.custId = custId;
 	}
 
-	public int getOutWareId() {
-		return outWareId;
+	public int getSupId() {
+		return this.supId;
 	}
 
-	public void setOutWareId(int outWareId) {
-		this.outWareId = outWareId;
+	public void setSupId(int supId) {
+		this.supId = supId;
 	}
 
-	public int getInWareId() {
-		return inWareId;
+	public int getOutwhId() {
+		return this.outwhId;
 	}
 
-	public void setInWareId(int inWareId) {
-		this.inWareId = inWareId;
+	public void setOutwhId(int outwhId) {
+		this.outwhId = outwhId;
 	}
 
-	public int getHandleEmpId() {
-		return handleEmpId;
+	public int getInwhId() {
+		return this.inwhId;
 	}
 
-	public void setHandleEmpId(int handleEmpId) {
-		this.handleEmpId = handleEmpId;
+	public void setInwhId(int inwhId) {
+		this.inwhId = inwhId;
+	}
+
+	public String getHandleEmps() {
+		return this.handleEmps;
+	}
+
+	public void setHandleEmps(String handleEmps) {
+		this.handleEmps = handleEmps;
 	}
 
 	public int getCheckEmpId() {
-		return checkEmpId;
+		return this.checkEmpId;
 	}
 
 	public void setCheckEmpId(int checkEmpId) {
@@ -124,7 +137,7 @@ public class Receipt implements Serializable {
 	}
 
 	public int getPostedEmpId() {
-		return postedEmpId;
+		return this.postedEmpId;
 	}
 
 	public void setPostedEmpId(int postedEmpId) {
@@ -132,7 +145,7 @@ public class Receipt implements Serializable {
 	}
 
 	public int getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(int status) {
@@ -140,23 +153,39 @@ public class Receipt implements Serializable {
 	}
 
 	public int getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(int type) {
 		this.type = type;
 	}
 
-	public int getCompanyId() {
-		return companyId;
+	public double getRebate() {
+		return this.rebate;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setRebate(double rebate) {
+		this.rebate = rebate;
+	}
+
+	public double getDiscount() {
+		return this.discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public int getComId() {
+		return this.comId;
+	}
+
+	public void setComId(int comId) {
+		this.comId = comId;
 	}
 
 	public String getRemark() {
-		return remark;
+		return this.remark;
 	}
 
 	public void setRemark(String remark) {

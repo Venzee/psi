@@ -1,19 +1,18 @@
-package net.dlhz.psi.sys.entity;
+package net.dlhz.psi.goods.entity;
 
 /**
- * 菜单
+ * 商品类型
  * 
  * @author Venz
  * 
  */
-public class Menu implements java.io.Serializable {
+public class Sort implements java.io.Serializable {
 
-	private static final long serialVersionUID = -8277958767625162413L;
+	private static final long serialVersionUID = 8394123246707983070L;
 	private int id;
 	private String name;
-	private String url;
 	private int parentId;
-	private String power;
+	private int comId;
 
 	public int getId() {
 		return this.id;
@@ -31,14 +30,6 @@ public class Menu implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public String getUrl() {
-		return this.url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 	public int getParentId() {
 		return this.parentId;
 	}
@@ -47,12 +38,12 @@ public class Menu implements java.io.Serializable {
 		this.parentId = parentId;
 	}
 
-	public String getPower() {
-		return this.power;
+	public int getComId() {
+		return this.comId;
 	}
 
-	public void setPower(String power) {
-		this.power = power;
+	public void setComId(int comId) {
+		this.comId = comId;
 	}
 
 }

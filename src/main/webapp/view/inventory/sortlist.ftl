@@ -21,15 +21,15 @@
 						hpId = 0;
 					}
 					$.dgform({
-						url: 'add',
+						url: 'inventory/sort/add',
 						width: 300,
 						title: '新增类目',
 						label: ['类目名称'],
-						source: ['<input type="text" class="text-130 not-null form-value" name="name" />',
+						source: ['<input type="text" class="w-130 not-null form-value" name="name" />',
 							'<input type="hidden" class="form-value" name="parentId" value="' + hpId + '" />']
 					});
 				});
-				$('div.btn-delete').on('click', function(){delSource('del');});
+				$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
 				$('div.btn-edit').on('click', function(){
 					editSource(function(id){
 						alert(id)
@@ -96,9 +96,9 @@
 				</div>
 				<div class="table-source-head">
 					<dl>
-						<dd class="text-5p">选项</dd>
-						<dd class="text-5p">编号</dd>
-						<dd class="text-55p">名称</dd>
+						<dd class="w-50">选项</dd>
+						<dd class="w-200">编号</dd>
+						<dd class="w-500">名称</dd>
 					</dl>
 				</div>
 			</div>
@@ -106,16 +106,16 @@
 				<#list sortList as sort>
 				<#if sort_index % 2 = 0>
 				<dl class="table-source-line odd">
-					<dd class="text-5p"><span id="${sort.id }" class="checkbox"></span></dd>
-					<dd class="text-5p">${sort_index + 1 }</dd>
-					<dd class="text-55p"><a href="inventory/sort/list?parentId=${sort.id }">${sort.name }</a></dd>
+					<dd class="w-50"><span id="${sort.id }" class="checkbox"></span></dd>
+					<dd class="w-200">${sort_index + 1 }</dd>
+					<dd class="w-500"><a href="inventory/sort/list?parentId=${sort.id }">${sort.name }</a></dd>
 				</dl>
 				</#if>
 				<#if sort_index % 2 = 1>
 				<dl class="table-source-line">
-					<dd class="text-5p"><span id="${sort.id }" class="checkbox"></span></dd>
-					<dd class="text-5p">${sort_index + 1 }</dd>
-					<dd class="text-55p"><a href="inventory/sort/list?parentId=${sort.id }">${sort.name }</a></dd>
+					<dd class="w-50"><span id="${sort.id }" class="checkbox"></span></dd>
+					<dd class="w-200">${sort_index + 1 }</dd>
+					<dd class="w-500"><a href="inventory/sort/list?parentId=${sort.id }">${sort.name }</a></dd>
 				</dl>
 				</#if>
 				</#list>

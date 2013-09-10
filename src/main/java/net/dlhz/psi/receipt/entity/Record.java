@@ -1,26 +1,27 @@
 package net.dlhz.psi.receipt.entity;
 
-import java.io.Serializable;
+/**
+ * 单据明细
+ * 
+ * @author Venz
+ * 
+ */
+public class Record implements java.io.Serializable {
 
-public class Record implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8111638833035538599L;
+	private static final long serialVersionUID = -6647306020012174903L;
 	private int id;
-	private double num;// 数量
-	private int skuId;// 商品ID
-	private double inprice;// 进货价
-	private double price;// 销售价格
-	private double totalMoney;// 金额
-	private int receiptId;// 单据编号
+	private double num;
+	private int skuId;
+	private double inprice;
+	private double price;
+	private double totalMoney;
+	private int rcpId;
 	private double rebate;
 	private double discount;
-	private String remark;// 备注
+	private String remark;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -28,7 +29,7 @@ public class Record implements Serializable {
 	}
 
 	public double getNum() {
-		return num;
+		return this.num;
 	}
 
 	public void setNum(double num) {
@@ -36,7 +37,7 @@ public class Record implements Serializable {
 	}
 
 	public int getSkuId() {
-		return skuId;
+		return this.skuId;
 	}
 
 	public void setSkuId(int skuId) {
@@ -44,7 +45,7 @@ public class Record implements Serializable {
 	}
 
 	public double getInprice() {
-		return inprice;
+		return this.inprice;
 	}
 
 	public void setInprice(double inprice) {
@@ -52,7 +53,7 @@ public class Record implements Serializable {
 	}
 
 	public double getPrice() {
-		return price;
+		return this.price;
 	}
 
 	public void setPrice(double price) {
@@ -60,23 +61,23 @@ public class Record implements Serializable {
 	}
 
 	public double getTotalMoney() {
-		return totalMoney;
+		return this.totalMoney;
 	}
 
 	public void setTotalMoney(double totalMoney) {
 		this.totalMoney = totalMoney;
 	}
 
-	public int getReceiptId() {
-		return receiptId;
+	public int getRcpId() {
+		return this.rcpId;
 	}
 
-	public void setReceiptId(int receiptId) {
-		this.receiptId = receiptId;
+	public void setRcpId(int rcpId) {
+		this.rcpId = rcpId;
 	}
 
 	public double getRebate() {
-		return rebate;
+		return this.rebate;
 	}
 
 	public void setRebate(double rebate) {
@@ -84,7 +85,7 @@ public class Record implements Serializable {
 	}
 
 	public double getDiscount() {
-		return discount;
+		return this.discount;
 	}
 
 	public void setDiscount(double discount) {
@@ -92,7 +93,7 @@ public class Record implements Serializable {
 	}
 
 	public String getRemark() {
-		return remark;
+		return this.remark;
 	}
 
 	public void setRemark(String remark) {

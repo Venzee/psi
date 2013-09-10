@@ -1,7 +1,6 @@
 package net.dlhz.core.base.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class SessionUser implements Serializable {
 

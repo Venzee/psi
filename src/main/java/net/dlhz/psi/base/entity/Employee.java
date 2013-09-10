@@ -1,27 +1,29 @@
 package net.dlhz.psi.base.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Employee implements Serializable {
+/**
+ * 员工
+ * 
+ * @author Venz
+ * 
+ */
+public class Employee implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5349739869324485892L;
+	private static final long serialVersionUID = -8813010876212589379L;
 	private int id;
-	private int age;// 年龄
-	private Date birth;// 生日
-	private String name;// 姓名
-	private String card;// 身份证号码
-	private String phone;// 联系电话
-	private String address;// 联系地址
-	private int status;// 状态 1为正常，2为离职，3为已删除
-	private int companyId;// 所属公司ID
-	private int departmentId;// 所属部门
+	private int age;
+	private Date birth;
+	private String name;
+	private String card;
+	private String phone;
+	private String addr;
+	private int status;
+	private int comId;
+	private int deptId;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -29,7 +31,7 @@ public class Employee implements Serializable {
 	}
 
 	public int getAge() {
-		return age;
+		return this.age;
 	}
 
 	public void setAge(int age) {
@@ -37,7 +39,7 @@ public class Employee implements Serializable {
 	}
 
 	public Date getBirth() {
-		return birth;
+		return this.birth;
 	}
 
 	public void setBirth(Date birth) {
@@ -45,7 +47,7 @@ public class Employee implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -53,7 +55,7 @@ public class Employee implements Serializable {
 	}
 
 	public String getCard() {
-		return card;
+		return this.card;
 	}
 
 	public void setCard(String card) {
@@ -61,43 +63,43 @@ public class Employee implements Serializable {
 	}
 
 	public String getPhone() {
-		return phone;
+		return this.phone;
 	}
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getAddr() {
+		return this.addr;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 	public int getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public int getCompanyId() {
-		return companyId;
+	public int getComId() {
+		return this.comId;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setComId(int comId) {
+		this.comId = comId;
 	}
 
-	public int getDepartmentId() {
-		return departmentId;
+	public int getDeptId() {
+		return this.deptId;
 	}
 
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
+	public void setDeptId(int deptId) {
+		this.deptId = deptId;
 	}
 
 }

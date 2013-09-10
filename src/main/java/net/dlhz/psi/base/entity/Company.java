@@ -1,29 +1,31 @@
 package net.dlhz.psi.base.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Company implements Serializable {
+/**
+ * 公司
+ * 
+ * @author Venz
+ * 
+ */
+public class Company implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -477720023176145839L;
+	private static final long serialVersionUID = 1409154983202187201L;
 	private int id;
-	private String name;// 公司名称
-	private String email;// 联系邮箱
-	private String contact;// 联系人
-	private String tel; // 联系方式
-	private String fax;// 传真
-	private String address;// 联系地址
-	private int industryId;
-	private int companyId;// 所属机构
+	private String name;
+	private String email;
+	private String contact;
+	private String tel;
+	private String fax;
+	private String addr;
+	private int indusId;
+	private int comId;
 	private Date joinDate;
 	private Date expireDate;
-	private boolean master;// 是否是总公司 默认false
+	private boolean master;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -31,7 +33,7 @@ public class Company implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -39,7 +41,7 @@ public class Company implements Serializable {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -47,7 +49,7 @@ public class Company implements Serializable {
 	}
 
 	public String getContact() {
-		return contact;
+		return this.contact;
 	}
 
 	public void setContact(String contact) {
@@ -55,7 +57,7 @@ public class Company implements Serializable {
 	}
 
 	public String getTel() {
-		return tel;
+		return this.tel;
 	}
 
 	public void setTel(String tel) {
@@ -63,39 +65,39 @@ public class Company implements Serializable {
 	}
 
 	public String getFax() {
-		return fax;
+		return this.fax;
 	}
 
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getAddr() {
+		return this.addr;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
-	public int getIndustryId() {
-		return industryId;
+	public int getIndusId() {
+		return this.indusId;
 	}
 
-	public void setIndustryId(int industryId) {
-		this.industryId = industryId;
+	public void setIndusId(int indusId) {
+		this.indusId = indusId;
 	}
 
-	public int getCompanyId() {
-		return companyId;
+	public int getComId() {
+		return this.comId;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setComId(int comId) {
+		this.comId = comId;
 	}
 
 	public Date getJoinDate() {
-		return joinDate;
+		return this.joinDate;
 	}
 
 	public void setJoinDate(Date joinDate) {
@@ -103,15 +105,15 @@ public class Company implements Serializable {
 	}
 
 	public Date getExpireDate() {
-		return expireDate;
+		return this.expireDate;
 	}
 
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
 
-	public boolean isMaster() {
-		return master;
+	public boolean getMaster() {
+		return this.master;
 	}
 
 	public void setMaster(boolean master) {

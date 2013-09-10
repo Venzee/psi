@@ -1,25 +1,26 @@
 package net.dlhz.psi.relation.entity;
 
-import java.io.Serializable;
+/**
+ * 往来单位
+ * 
+ * @author Venz
+ * 
+ */
+public class Relation implements java.io.Serializable {
 
-public class Relation implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6992809248914449330L;
+	private static final long serialVersionUID = 3704149310917954805L;
 	private int id;
-	private String name;// 客户名称
-	private String contact;// 联系人
-	private String phone;// 联系电话
-	private String fax;// 传真
-	private String address;// 联系地址
+	private String name;
+	private String contact;
+	private String phone;
+	private String fax;
+	private String addr;
 	private String remark;
-	private int type;// 往来单位类型 1为客户，2为供货商，3为代理商
-	private int companyId;// 信息所属公司ID
+	private int type;
+	private int comId;
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {
@@ -27,7 +28,7 @@ public class Relation implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -35,7 +36,7 @@ public class Relation implements Serializable {
 	}
 
 	public String getContact() {
-		return contact;
+		return this.contact;
 	}
 
 	public void setContact(String contact) {
@@ -43,7 +44,7 @@ public class Relation implements Serializable {
 	}
 
 	public String getPhone() {
-		return phone;
+		return this.phone;
 	}
 
 	public void setPhone(String phone) {
@@ -51,23 +52,23 @@ public class Relation implements Serializable {
 	}
 
 	public String getFax() {
-		return fax;
+		return this.fax;
 	}
 
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getAddr() {
+		return this.addr;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 	public String getRemark() {
-		return remark;
+		return this.remark;
 	}
 
 	public void setRemark(String remark) {
@@ -75,19 +76,19 @@ public class Relation implements Serializable {
 	}
 
 	public int getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(int type) {
 		this.type = type;
 	}
 
-	public int getCompanyId() {
-		return companyId;
+	public int getComId() {
+		return this.comId;
 	}
 
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
+	public void setComId(int comId) {
+		this.comId = comId;
 	}
 
 }

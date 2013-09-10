@@ -1,17 +1,17 @@
-package net.dlhz.psi.base.entity;
+package net.dlhz.psi.goods.entity;
 
 /**
- * 部门
+ * 仓库
  * 
  * @author Venz
  * 
  */
-public class Department implements java.io.Serializable {
+public class Warehouse implements java.io.Serializable {
 
-	private static final long serialVersionUID = -84376594563663345L;
+	private static final long serialVersionUID = -5904025649484887697L;
 	private int id;
 	private String name;
-	private int empId;
+	private String addr;
 	private int comId;
 
 	public int getId() {
@@ -30,12 +30,12 @@ public class Department implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public int getEmpId() {
-		return this.empId;
+	public String getAddr() {
+		return this.addr;
 	}
 
-	public void setEmpId(int empId) {
-		this.empId = empId;
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 	public int getComId() {
