@@ -40,7 +40,7 @@
 						$('a.target-link').removeClass('active');
 						$(this).addClass('active');
 						var url = $(this).attr('url') + '?randomNum=' + Math.random();
-						$('#mainFrame').attr('src', url);
+						$('#main-frame').attr('src', url);
 						$('#navi-title em').text($(this).text());
 					}
 				});
@@ -48,7 +48,7 @@
 			});
 		</script>
 	</head>
-	<body class="frame_class">
+	<body class="frame-body">
 		<div id="header">
 			<div id="header-inner">
 				<ul class="nav" id="nav">
@@ -224,8 +224,8 @@
 		</div>
 		
 		<div id="menu-navi"><span id="navi-title">您当前位置：<em>首页</em></span></div>
-		<div id="mainFrameContainer">
-			<iframe src="inventory/brand/list" name="mainFrame" id="mainFrame" frameborder="no" scrolling="yes" hidefocus></iframe>
+		<div id="main-container">
+			<iframe src="view/sales/vipconsume.ftl" name="mainFrame" id="main-frame" frameborder="no" scrolling="yes" hidefocus></iframe>
 		</div>
 	</body>
 </html>

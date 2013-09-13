@@ -21,12 +21,11 @@ import org.apache.log4j.Logger;
  * 数据工具类
  * 
  * @author Venz
- *
+ * 
  */
 public class DataUtil {
 
 	private final static Logger LOG = Logger.getLogger(DataUtil.class);
-	private static final String[] BASE_CLASS_TYPE = { "Integer", "String", "Boolean", "Long", "Character", "Byte", "Double", "Float", "Short" };
 
 	/**
 	 * 获取当前小时(24小时制)
@@ -100,7 +99,8 @@ public class DataUtil {
 
 		try {
 			for (int i = 0; i < str.length(); i++) {
-				if ((str.charAt(i) >= 'a' && str.charAt(i) < 'z') || (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') || (str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
+				if ((str.charAt(i) >= 'a' && str.charAt(i) < 'z') || (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z')
+						|| (str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
 					pystr += str.charAt(i);
 				} else {
 					t = PinyinHelper.toHanyuPinyinStringArray(hanzi[i], format);
@@ -124,7 +124,7 @@ public class DataUtil {
 	public static Object parseMapToObject(Map<String, Object> data, Class<?> pc) {
 		Object obj = null;
 		Class<?> c = null;
-		if(null != data){
+		if (null != data) {
 			try {
 				c = Class.forName(pc.getName());
 			} catch (ClassNotFoundException e) {
@@ -142,16 +142,8 @@ public class DataUtil {
 				int mod = field.getModifiers();
 				if (!Modifier.isFinal(mod) && !Modifier.isStatic(mod)) {
 					if (!field.getType().isPrimitive()) {
-						boolean isBean = true;
 						Class<?> type = field.getType();
-						String typeSimpleName = type.getSimpleName();
-						for (String str : BASE_CLASS_TYPE) {
-							if (str.equals(typeSimpleName)) {
-								isBean = false;
-								break;
-							}
-						}
-						if (isBean) {
+						if (!isCompatibleType(type)) {
 							Class<?> oc = null;
 							try {
 								oc = Class.forName(type.getName());
@@ -291,6 +283,28 @@ public class DataUtil {
 				LOG.error("调用方法" + method.getName() + "时发生异常", e);
 			}
 		}
+	}
+
+	private static boolean isCompatibleType(Class<?> type) {
+		// Do object check first, then primitives
+		if (type.equals(Integer.TYPE)) {
+			return true;
+		} else if (type.equals(Long.TYPE)) {
+			return true;
+		} else if (type.equals(Double.TYPE)) {
+			return true;
+		} else if (type.equals(Float.TYPE)) {
+			return true;
+		} else if (type.equals(Short.TYPE)) {
+			return true;
+		} else if (type.equals(Byte.TYPE)) {
+			return true;
+		} else if (type.equals(Character.TYPE)) {
+			return true;
+		} else if (type.equals(Boolean.TYPE)) {
+			return true;
+		}
+		return false;
 	}
 
 	private static String formatDate(String pattern) {

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import net.dlhz.core.base.entity.Page;
+import net.dlhz.core.util.DataUtil;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,7 +102,8 @@ public class BaseDao extends JdbcDaoSupport {
 	 * @throws SQLException
 	 */
 	public void execute(String sql) throws SQLException {
-		Connection conn = getConnection();
+		this.getJdbcTemplate().execute(sql);
+		/*Connection conn = getConnection();
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -108,7 +111,7 @@ public class BaseDao extends JdbcDaoSupport {
 		} finally {
 			close(stmt);
 			close(conn);
-		}
+		}*/
 	}
 
 	/**
@@ -142,7 +145,8 @@ public class BaseDao extends JdbcDaoSupport {
 	 * @throws SQLException
 	 */
 	public int executeUpdate(String sql, List<Object> params) throws SQLException {
-		Connection conn = getConnection();
+		return this.getJdbcTemplate().update(sql, params.toArray());
+		/*Connection conn = getConnection();
 		PreparedStatement stmt = null;
 		int updateCount;
 		try {
@@ -153,7 +157,7 @@ public class BaseDao extends JdbcDaoSupport {
 			close(stmt);
 			close(conn);
 		}
-		return updateCount;
+		return updateCount;*/
 	}
 
 	/**
@@ -165,7 +169,8 @@ public class BaseDao extends JdbcDaoSupport {
 	 * @throws SQLException
 	 */
 	public Map<String, Object> executeQuerySingle(String sql, List<Object> params) throws SQLException {
-		Connection conn = getConnection();
+		return this.getJdbcTemplate().queryForMap(sql, params.toArray());
+		/*Connection conn = getConnection();
 		Map<String, Object> row = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -191,7 +196,7 @@ public class BaseDao extends JdbcDaoSupport {
 			close(stmt);
 			close(conn);
 		}
-		return row;
+		return row;*/
 	}
 
 	/**
@@ -239,7 +244,8 @@ public class BaseDao extends JdbcDaoSupport {
 	 * @throws SQLException
 	 */
 	public List<Map<String, Object>> executeQueryMultiple(String sql, List<Object> params) throws SQLException {
-		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		return this.getJdbcTemplate().queryForList(sql, params.toArray());
+		/*List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Connection conn = getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -262,7 +268,7 @@ public class BaseDao extends JdbcDaoSupport {
 			close(stmt);
 			close(conn);
 		}
-		return rows;
+		return rows;*/
 	}
 
 	/**
@@ -323,7 +329,8 @@ public class BaseDao extends JdbcDaoSupport {
 	 * @throws SQLException
 	 */
 	public List<Map<String, Object>> executeQueryMultiple(String sql) throws SQLException {
-		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		return this.getJdbcTemplate().queryForList(sql);
+		/*List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Connection conn = getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -345,7 +352,7 @@ public class BaseDao extends JdbcDaoSupport {
 			close(stmt);
 			close(conn);
 		}
-		return rows;
+		return rows;*/
 	}
 
 	/**
