@@ -4,8 +4,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>首页</title>
-		<#assign basePath = request.contextPath>
-		<base href="${basePath }/">
 		<link rel="stylesheet" type="text/css" href="style/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="style/css/ui.css">
 		<link rel="stylesheet" type="text/css" href="style/css/web.css">
@@ -62,28 +60,28 @@
 								<h4 class="menu-heading">调拨</h4>
 								<ul class="nav-list">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">仓库到仓库</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">仓库到仓库</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">仓库到门店</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">仓库到门店</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">门店到门店</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">门店到门店</a>
 									</li>
 								</ul>
 								<h4 class="menu-heading">其他出入库</h4>
 								<ul class="nav-list last">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">报损</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">报损</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">报溢</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">报溢</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">获赠</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">获赠</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">赠送</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">赠送</a>
 									</li>
 								</ul>
 							</div>
@@ -91,25 +89,25 @@
 								<h4 class="menu-heading">采购</h4>
 								<ul class="nav-list">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">进货</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">进货</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">退货</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">退货</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">订单</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">订单</a>
 									</li>
 								</ul>
 								<h4 class="menu-heading">库存状况</h4>
 								<ul class="nav-list last">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">库存查询</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">库存查询</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">批次库存</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">批次库存</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">库存报警</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">库存报警</a>
 									</li>
 								</ul>
 							</div>
@@ -122,22 +120,22 @@
 								<h4 class="menu-heading">销售类</h4>
 								<ul class="nav-list">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">零售单据</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">零售单据</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">批发单据</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">批发单据</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">保修单据</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">保修单据</a>
 									</li>
 								</ul>
 								<h4 class="menu-heading">库存类</h4>
 								<ul class="nav-list last">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">出入库单据</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">出入库单据</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">调拨单据</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">调拨单据</a>
 									</li>
 								</ul>
 							</div>
@@ -145,7 +143,7 @@
 								<h4 class="menu-heading">其他</h4>
 								<ul class="nav-list last">
 									<li>
-										<a class="target-link" href="javacript:;" url="receipt/all/list">其他单据</a>
+										<a class="target-link" href="javascript:;" url="receipt/all/list">其他单据</a>
 									</li>
 								</ul>
 							</div>
@@ -158,25 +156,25 @@
 								<h4 class="menu-heading">商品信息</h4>
 								<ul class="nav-list">
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/brand/list">品牌</a>
+										<a class="target-link" href="javascript:;" url="inventory/brand/list">品牌</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/sort/list">类型</a>
+										<a class="target-link" href="javascript:;" url="inventory/sort/list">类型</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/goods/list">商品</a>
+										<a class="target-link" href="javascript:;" url="inventory/goods/list">商品</a>
 									</li>
 								</ul>
 								<h4 class="menu-heading">往来单位</h4>
 								<ul class="nav-list last">
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/brand/list">供应商</a>
+										<a class="target-link" href="javascript:;" url="inventory/brand/list">供应商</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/sort/list">代理商</a>
+										<a class="target-link" href="javascript:;" url="inventory/sort/list">代理商</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/goods/list">客户</a>
+										<a class="target-link" href="javascript:;" url="inventory/goods/list">客户</a>
 									</li>
 								</ul>
 							</div>
@@ -184,25 +182,25 @@
 								<h4 class="menu-heading">人力资源</h4>
 								<ul class="nav-list">
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/brand/list">分公司</a>
+										<a class="target-link" href="javascript:;" url="inventory/brand/list">分公司</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/sort/list">部门</a>
+										<a class="target-link" href="javascript:;" url="inventory/sort/list">部门</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/goods/list">员工</a>
+										<a class="target-link" href="javascript:;" url="inventory/goods/list">员工</a>
 									</li>
 								</ul>
 								<h4 class="menu-heading">用户管理</h4>
 								<ul class="nav-list last">
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/sort/list">用户组</a>
+										<a class="target-link" href="javascript:;" url="inventory/sort/list">用户组</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/sort/list">权限</a>
+										<a class="target-link" href="javascript:;" url="inventory/sort/list">权限</a>
 									</li>
 									<li>
-										<a class="target-link" href="javacript:;" url="inventory/brand/list">用户</a>
+										<a class="target-link" href="javascript:;" url="inventory/brand/list">用户</a>
 									</li>
 								</ul>
 							</div>
@@ -225,7 +223,7 @@
 		
 		<div id="menu-navi"><span id="navi-title">您当前位置：<em>首页</em></span></div>
 		<div id="main-container">
-			<iframe src="view/sales/vipconsume.ftl" name="mainFrame" id="main-frame" frameborder="no" scrolling="yes" hidefocus></iframe>
+			<iframe src="view/sales/consume.ftl" name="mainFrame" id="main-frame" frameborder="no" scrolling="yes" hidefocus></iframe>
 		</div>
 	</body>
 </html>

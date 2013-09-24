@@ -287,7 +287,9 @@ public class DataUtil {
 
 	private static boolean isCompatibleType(Class<?> type) {
 		// Do object check first, then primitives
-		if (type.equals(Integer.TYPE)) {
+		if (type.equals(String.class)) {
+			return true;
+		} else if (type.equals(Integer.TYPE)) {
 			return true;
 		} else if (type.equals(Long.TYPE)) {
 			return true;

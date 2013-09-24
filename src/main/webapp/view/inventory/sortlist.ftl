@@ -3,19 +3,17 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>商品类目管理</title>
-		<#assign basePath = request.contextPath>
-		<base href="${basePath }/">
-		<link rel="stylesheet" type="text/css" href="style/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="style/css/ui.css">
-		<link rel="stylesheet" type="text/css" href="style/css/web.css">
-		<script type="text/javascript" src="script/js/jquery.min.js"></script>
-		<script type="text/javascript" src="script/js/jquery.form.min.js"></script>
-		<script type="text/javascript" src="script/js/comm.js"></script>
-		<script type="text/javascript" src="script/js/ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../style/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../../style/css/ui.css">
+		<link rel="stylesheet" type="text/css" href="../../style/css/web.css">
+		<script type="text/javascript" src="../../script/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../script/js/jquery.form.min.js"></script>
+		<script type="text/javascript" src="../../script/js/comm.js"></script>
+		<script type="text/javascript" src="../../script/js/ui.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				
-				$('div.btn-add').on('click', function(){
+				$('a.btn-add').on('click', function(){
 					var hpId = $('#hpId').val();
 					if(hpId === ''){
 						hpId = 0;
@@ -29,8 +27,8 @@
 							'<input type="hidden" class="form-value" name="parentId" value="' + hpId + '" />']
 					});
 				});
-				$('div.btn-delete').on('click', function(){delSource('inventory/sort/del');});
-				$('div.btn-edit').on('click', function(){
+				$('a.btn-delete').on('click', function(){delSource('inventory/sort/del');});
+				$('a.btn-edit').on('click', function(){
 					editSource(function(id){
 						alert(id)
 					});
@@ -45,53 +43,41 @@
 				<div class="ui-title">
 					<div class="ui-title-name ui-table-title-name">商品类目</div>
 					<div class="ui-operation">
-						<div class="ui-btn btn-delete">删除</div>
-						<div class="ui-btn btn-edit">编辑</div>
-						<div class="ui-btn btn-add">新增</div>
-						<#if goodsFlag == '' || goodsFlag == 0>
-						<div class="ui-btn">
-							<#if sort.parentId == -1>
-							<a href="inventory/sort/list?parentId=0&brandFlag=${brandFlag }&goodsFlag=1">显示商品</a>
-							<#else>
-							<a href="inventory/sort/list?parentId=${sort.id }&brandFlag=${brandFlag }&goodsFlag=1">显示商品</a>
-							</#if>
-						</div>
-						<#else>
-						<div class="ui-btn">
-							<#if sort.parentId == -1>
-							<a href="inventory/sort/list?parentId=0&brandFlag=${brandFlag }&goodsFlag=0">不显示商品</a>
-							<#else>
-							<a href="inventory/sort/list?parentId=${sort.id }&brandFlag=${brandFlag }&goodsFlag=0">不显示商品</a>
-							</#if>
-						</div>
-						</#if>
-						<#if brandFlag == '' || brandFlag == 0>
-						<div class="ui-btn">
-							<#if sort.parentId == -1>
-							<a href="inventory/sort/list?parentId=0&brandFlag=1&goodsFlag=${goodsFlag }">显示品牌</a>
-							<#else>
-							<a href="inventory/sort/list?parentId=${sort.id }&brandFlag=1&goodsFlag=${goodsFlag }">显示品牌</a>
-							</#if>
-						</div>
-						<#else>
-						<div class="ui-btn">
-							<#if sort.parentId == -1>
-							<a href="inventory/sort/list?parentId=0&brandFlag=0&goodsFlag=${goodsFlag }">不显示品牌</a>
-							<#else>
-							<a href="inventory/sort/list?parentId=${sort.id }&brandFlag=0&goodsFlag=${goodsFlag }">不显示品牌</a>
-							</#if>
-						</div>
+						<#if sort.parentId != -1 && sort.parentId != 0>
+							<a class="ui-btn" href="inventory/sort/list?parentId=0">返回顶部</a>
 						</#if>
 						<#if sort.parentId != -1>
-						<div class="ui-btn">
-							<a href="inventory/sort/list?parentId=${sort.parentId }">返回</a>
-						</div>
+							<a class="ui-btn" href="inventory/sort/list?parentId=${sort.parentId }">返回</a>
 						</#if>
-						<#if sort.parentId != -1 && sort.parentId != 0>
-						<div class="ui-btn">
-							<a href="inventory/sort/list?parentId=0">返回顶部</a>
-						</div>
+						<#if brandFlag == '' || brandFlag == 0>
+							<#if sort.parentId == -1>
+							<a class="ui-btn" href="inventory/sort/list?parentId=0&brandFlag=1&goodsFlag=${goodsFlag }">显示品牌</a>
+							<#else>
+							<a class="ui-btn" href="inventory/sort/list?parentId=${sort.id }&brandFlag=1&goodsFlag=${goodsFlag }">显示品牌</a>
+							</#if>
+						<#else>
+							<#if sort.parentId == -1>
+							<a class="ui-btn" href="inventory/sort/list?parentId=0&brandFlag=0&goodsFlag=${goodsFlag }">不显示品牌</a>
+							<#else>
+							<a class="ui-btn" href="inventory/sort/list?parentId=${sort.id }&brandFlag=0&goodsFlag=${goodsFlag }">不显示品牌</a>
+							</#if>
 						</#if>
+						<#if goodsFlag == '' || goodsFlag == 0>
+							<#if sort.parentId == -1>
+							<a class="ui-btn" href="inventory/sort/list?parentId=0&brandFlag=${brandFlag }&goodsFlag=1">显示商品</a>
+							<#else>
+							<a class="ui-btn" href="inventory/sort/list?parentId=${sort.id }&brandFlag=${brandFlag }&goodsFlag=1">显示商品</a>
+							</#if>
+						<#else>
+							<#if sort.parentId == -1>
+							<a class="ui-btn" href="inventory/sort/list?parentId=0&brandFlag=${brandFlag }&goodsFlag=0">不显示商品</a>
+							<#else>
+							<a class="ui-btn" href="inventory/sort/list?parentId=${sort.id }&brandFlag=${brandFlag }&goodsFlag=0">不显示商品</a>
+							</#if>
+						</#if>
+						<a href="javascript:;" class="ui-btn btn-add">新增</a>
+						<a href="javascript:;" class="ui-btn btn-edit">编辑</a>
+						<a href="javascript:;" class="ui-btn btn-delete">删除</a>
 					</div>
 				</div>
 				<div class="table-source-head">
@@ -123,8 +109,8 @@
 			<div class="ui-foot">
 				<#if (sortList?size > 1) >
 				<div class="btn">
-					<div class="ui-btn btn-check-all">全选</div>
-					<div class="ui-btn btn-check-invert">反选</div>
+					<a href="javascript:;" class="ui-btn btn-check-all">全选</a>
+					<a href="javascript:;" class="ui-btn btn-check-invert">反选</a>
 				</div>
 				</#if>
 			</div>

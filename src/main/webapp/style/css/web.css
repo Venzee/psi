@@ -50,7 +50,7 @@ a {
 	display: none;
 	background-color: #808080;
 	position: absolute;
-	filter: alpha(opacity =   50);
+	filter: alpha(opacity = 50);
 	-moz-opacity: 0.5;
 	opacity: 0.5;
 }
@@ -84,7 +84,7 @@ a {
 
 #login-box-holder {
 	width: 600px;
-	margin-top: 30%;
+	margin-top: 200px;
 }
 
 #navi {
@@ -128,19 +128,17 @@ a {
 .form-holder-foot a {
 	width: 590px;
 	display: block;
-	padding: 2px 0;
+	padding: 5px 0;
 	margin: 4px;
 	color: #000;
+	text-align: center;
+	font-weight: bold;
 	background: #f3f3f3;
 }
 
 .form-holder-foot a:hover {
 	color: #f3f3f3;
 	background: #1abc9c;
-}
-
-#btn-sub {
-	letter-spacing: 40px;
 }
 
 /* HOME */
@@ -159,7 +157,6 @@ a {
 #header-inner {
 	float: right;
 	height: 50px;
-	display: none;
 }
 
 ul.nav {
@@ -229,7 +226,6 @@ ul.nav-list a:hover {
 
 #panel {
 	width: 320px;
-	height: 44px;
 	padding: 0 20px;
 	color: #eee;
 	font-size: 12px;
@@ -237,7 +233,7 @@ ul.nav-list a:hover {
 
 #user {
 	height: 40px;
-	margin: 2px;
+	margin: 5px;
 }
 
 #user div {
@@ -254,7 +250,6 @@ ul.nav-list a:hover {
 #menu-navi {
 	height: 30px;
 	line-height: 30px;
-	margin: 0 0 10px 0;
 	border-bottom: 4px solid #808080;
 }
 
@@ -273,7 +268,7 @@ ul.nav-list a:hover {
 
 #main-container {
 	position: absolute;
-	top: 100px;
+	top: 85px;
 	left: 0;
 	bottom: 0;
 	right: 0;
@@ -285,16 +280,16 @@ ul.nav-list a:hover {
 	position: absolute;
 	_position: relative;
 	width: 100%;
-	_width: expression(document.body.offsetWidth - 15 + 'px');
+	_width: expression(document.body.offsetWidth + 'px');
 	height: 100%;
-	*height: expression(document.body.offsetHeight - 110 + 'px');
+	*height: expression(document.body.offsetHeight - 85 + 'px');
 	z-index: 5;
 }
 
 /* consume */
 #left-container {
 	width: 300px;
-	background: #808080;
+	background: #333;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -305,13 +300,36 @@ ul.nav-list a:hover {
 	_height: expression(document.body.offsetHeight + 'px');
 }
 
-#right-frame {
-	
+#container-menu {
+	position: absolute;
+	top: 0;
+	left: 300px;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 34px;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+#container-menu dd {
+	display: inline;
+	height: 34px;
+	line-height: 34px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 0 35px;
+	cursor: pointer;
+	border-right: 1px solid #dcdcdc;
+}
+
+#container-menu dd a {
+	display: block;
 }
 
 #right-container {
 	position: absolute;
-	top: 0;
+	top: 35px;
 	left: 300px;
 	bottom: 0;
 	right: 0;
@@ -327,4 +345,39 @@ ul.nav-list a:hover {
 	height: 100%;
 	*height: expression(document.body.offsetHeight + 'px');
 	z-index: 5;
+}
+
+#left-panel {
+	padding: 5px 10px;
+}
+
+#left-panel dd {
+	margin: 5px 0;
+}
+
+#mem-head {
+	float: left;
+}
+
+#mem-head img {
+	width: 96px;
+	height: 116px;
+}
+
+#mem-head span {
+	display: block;
+	width: 100px;
+	text-align: center;
+}
+
+#mem-info {
+	float: left;
+}
+
+#mem-info dd {
+	margin: 0;
+	padding: 3px 0;
+	font-weight: bold;
+	height: 14px;
+	line-height: 14px;
 }

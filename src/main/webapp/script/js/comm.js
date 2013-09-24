@@ -133,7 +133,7 @@ function delSource(url){
 }
 
 $(function(){
-	$('div.btn-check-all').on('click', function(){
+	$('a.btn-check-all').on('click', function(){
 		if ($(this).text() === '全选') {
 			$('div.ui-table').find('span.checkbox').addClass('checked');
 			$(this).text('不全选');
@@ -142,20 +142,20 @@ $(function(){
 			$(this).text('全选');
 		}
 	});
-	$('div.btn-check-invert').on('click', function(){
+	$('a.btn-check-invert').on('click', function(){
 		$('div.ui-table').find('span.checkbox').toggleClass('checked');
 		if (checked()) {
-			$('div.btn-check-all').text('不全选');
+			$('a.btn-check-all').text('不全选');
 		} else {
-			$('div.btn-check-all').text('全选');
+			$('a.btn-check-all').text('全选');
 		}
 	});
 	$('dl.table-source-line').on('click', function(){
 		$(this).find('span.checkbox').toggleClass('checked');
 		if (checked()) {
-			$('div.btn-check-all').text('不全选');
+			$('a.btn-check-all').text('不全选');
 		} else {
-			$('div.btn-check-all').text('全选');
+			$('a.btn-check-all').text('全选');
 		}
 	});
 	top.$(document).on('click', $('div.radio-group').find('.radio'), function(){

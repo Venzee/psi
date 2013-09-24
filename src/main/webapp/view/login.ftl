@@ -2,9 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>欢迎使用火种进销存，请登录：</title>
-		<#assign basePath = request.contextPath>
-		<base href="${basePath }/">
+		<title>欢迎使用，请登录：</title>
 		<link rel="stylesheet" type="text/css" href="style/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="style/css/ui.css">
 		<link rel="stylesheet" type="text/css" href="style/css/web.css">
@@ -121,7 +119,9 @@
 							</dl>
 							<div class="clear"></div>
 						</div>
-						<div class="form-holder-foot"><a href="javascript:;"><div class="ui-btn" id="btn-sub">登陆</div></a></div>
+						<div class="form-holder-foot">
+							<a href="javascript:;" id="btn-sub">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;陆</a>
+						</div>
 					</div>
 				</form>
 			</div>

@@ -3,19 +3,17 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>品牌管理</title>
-		<#assign basePath = request.contextPath>
-		<base href="${basePath }/">
-		<link rel="stylesheet" type="text/css" href="style/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="style/css/ui.css">
-		<link rel="stylesheet" type="text/css" href="style/css/web.css">
-		<script type="text/javascript" src="script/js/jquery.min.js"></script>
-		<script type="text/javascript" src="script/js/jquery.form.min.js"></script>
-		<script type="text/javascript" src="script/js/comm.js"></script>
-		<script type="text/javascript" src="script/js/ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../style/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../../style/css/ui.css">
+		<link rel="stylesheet" type="text/css" href="../../style/css/web.css">
+		<script type="text/javascript" src="../../script/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../script/js/jquery.form.min.js"></script>
+		<script type="text/javascript" src="../../script/js/comm.js"></script>
+		<script type="text/javascript" src="../../script/js/ui.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				$('form.pageForm').attr('action', 'inventory/brand/list');
-				$('div.btn-add').on('click', function(){
+				$('a.btn-add').on('click', function(){
 					$.dgform({
 						url: 'inventory/brand/add',
 						title: '新增品牌',
@@ -26,10 +24,10 @@
 							'<img class="img-150"/>']
 					});
 				});
-				$('div.btn-edit').on('click', function(){
+				$('a.btn-edit').on('click', function(){
 					editSource('inventory/brand/edit');
 				});
-				$('div.btn-delete').on('click', function(){
+				$('a.btn-delete').on('click', function(){
 					delSource('inventory/brand/del');
 				});
 			});
@@ -50,9 +48,9 @@
 				<div class="ui-title">
 					<div class="ui-title-name ui-table-title-name">品牌信息</div>
 					<div class="ui-operation">
-						<div class="ui-btn btn-delete">删除</div>
-						<div class="ui-btn btn-edit">编辑</div>
-						<div class="ui-btn btn-add">新增</div>
+						<a href="javascript:;" class="ui-btn btn-add">新增</a>
+						<a href="javascript:;" class="ui-btn btn-edit">编辑</a>
+						<a href="javascript:;" class="ui-btn btn-delete">删除</a>
 					</div>
 				</div>
 				<div class="table-source-head">
@@ -87,8 +85,8 @@
 			<div class="ui-foot">
 				<#if (brandList?size>1) >
 					<div class="btn">
-						<div class="ui-btn btn-check-all">全选</div>
-						<div class="ui-btn btn-check-invert">反选</div>
+						<a href="javascript:;" class="ui-btn btn-check-all">全选</a>
+						<a href="javascript:;" class="ui-btn btn-check-invert">反选</a>
 					</div>
 				</#if>
 				<div class="ui-operation">
